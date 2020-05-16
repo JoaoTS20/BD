@@ -129,10 +129,10 @@ CREATE TABLE Scouting.Participa_Em(
 );
 
 CREATE TABLE Scouting.Observacao_Metodo_de_Observacao(
-	O_Metodo_de_Observacao bit,
-	Numero_Identificacao_Federacao varchar(9),
+	O_Metodo_de_Observacao varchar(15),
+	ID_Relatorio varchar(9),
 	--FOREIGN KEY Numero_Identificacao_Federacao REFERENCES Scouting.Observador(Numero_Identificacao_Federacao)
-	PRIMARY KEY(O_Metodo_de_Observacao,Numero_Identificacao_Federacao)
+	PRIMARY KEY(O_Metodo_de_Observacao,ID_Relatorio)
 );
 
 CREATE TABLE Scouting.Selecionador(
@@ -224,7 +224,7 @@ ALTER TABLE Scouting.Participa_Em
 		FOREIGN KEY (Participa_Em_Jogo_Local) REFERENCES Scouting.Jogo(Jogo_Local);
 
 ALTER TABLE Scouting.Observacao_Metodo_de_Observacao
-	ADD FOREIGN KEY (Numero_Identificacao_Federacao) REFERENCES Scouting.Observador(Numero_Identificacao_Federacao);
+	ADD FOREIGN KEY (ID_Relatorio) REFERENCES Scouting.Relatorio(ID);
 
 ALTER TABLE Scouting.Selecionador
 	ADD FOREIGN KEY (Lista_Idade_Maxima) REFERENCES Scouting.Lista_Observacao_Selecao(Lista_Idade_Maxima);
