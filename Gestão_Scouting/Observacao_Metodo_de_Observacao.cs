@@ -8,18 +8,18 @@ namespace Gestão_Scouting
 {
     class Observacao_Metodo_de_Observacao
     {
-        private String _O_Metodo_de_Observacao;
-        private String _Numero_Identificacao_Federacao;
+        private String _Rel_Metodo_de_Observacao;
+        private String _Rel_ID_Relatorio;
 
-		public String O_Metodo_de_Observacao
+		public String Rel_Metodo_de_Observacao
 		{
-			get { return _O_Metodo_de_Observacao; }
-			set { _O_Metodo_de_Observacao = value; }
+			get { return _Rel_Metodo_de_Observacao; }
+			set { _Rel_Metodo_de_Observacao = value; }
 		}
-		public String Numero_Identificacao_Federacao
+		public String Rel_ID_Relatorio
 		{
-			get { return _Numero_Identificacao_Federacao; }
-			set { _Numero_Identificacao_Federacao = value; }
+			get { return _Rel_ID_Relatorio; }
+			set { _Rel_ID_Relatorio = value; }
 		}
 	}
 }
