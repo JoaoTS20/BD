@@ -1,0 +1,10 @@
+C:\Users\João Soares\source\repos\BD\Gestão_Scouting\obj\Debug\Gestão_Scouting.csprojAssemblyReference.cache
+C:\Users\João Soares\source\repos\BD\Gestão_Scouting\obj\Debug\Gestão_Scouting.Form1.resources
+C:\Users\João Soares\source\repos\BD\Gestão_Scouting\obj\Debug\Gestão_Scouting.Properties.Resources.resources
+C:\Users\João Soares\source\repos\BD\Gestão_Scouting\obj\Debug\Gestão_Scouting.csproj.GenerateResource.cache
+C:\Users\João Soares\source\repos\BD\Gestão_Scouting\obj\Debug\Gestão_Scouting.csproj.CoreCompileInputs.cache
+C:\Users\João Soares\source\repos\BD\Gestão_Scouting\bin\Debug\Gestão_Scouting.exe.config
+C:\Users\João Soares\source\repos\BD\Gestão_Scouting\bin\Debug\Gestão_Scouting.exe
+C:\Users\João Soares\source\repos\BD\Gestão_Scouting\bin\Debug\Gestão_Scouting.pdb
+C:\Users\João Soares\source\repos\BD\Gestão_Scouting\obj\Debug\Gestão_Scouting.exe
+C:\Users\João Soares\source\repos\BD\Gestão_Scouting\obj\Debug\Gestão_Scouting.pdb

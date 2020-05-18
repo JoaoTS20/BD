@@ -132,7 +132,7 @@ CREATE TABLE Scouting.Observacao_Metodo_de_Observacao(
 	Rel_Metodo_de_Observacao varchar(15),
 	Rel_ID_Relatorio varchar(9),
 	--FOREIGN KEY Numero_Identificacao_Federacao REFERENCES Scouting.Relatorio(ID)
-	PRIMARY KEY(O_Metodo_de_Observacao,Rel_ID_Relatorio)
+	PRIMARY KEY(Rel_Metodo_de_Observacao,Rel_ID_Relatorio)
 );
 
 CREATE TABLE Scouting.Selecionador(

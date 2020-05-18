@@ -24,12 +24,13 @@ namespace Gestão_Scouting
         private void Form1_Load(object sender, EventArgs e)
         {
             cn = getSGBDConnection();
+            // dataGridView1.DataSource
         }
 
         private SqlConnection getSGBDConnection()
         {
             //Local a Editar!!
-            return new SqlConnection("data source= LAPTOP-MH91MTBV;integrated security=true;initial catalog=Scouting_Federacao");
+            return new SqlConnection("data source= LAPTOP-MH91MTBV;integrated security=true;initial catalog=Trabalho_Final");
         }
         private bool verifySGBDConnection()
         {
@@ -43,5 +44,38 @@ namespace Gestão_Scouting
         }
 
 
+        private void toolStripMenuItem2_Click(object sender, EventArgs e)
+        {
+            if (!verifySGBDConnection())
+                return;
+
+            SqlCommand cmd = new SqlCommand("SELECT * FROM Scouting.Jogador", cn);
+            SqlDataReader reader = cmd.ExecuteReader();
+            dataGridView1.DataSource = null;
+
+            while (reader.Read())
+            {
+                Jogador C = new Jogador();
+                C.ID_FIFPro = reader["ID_FIFPro"].ToString();
+                C.Jogador_Nome = reader["Jogador_Nome"].ToString();
+                C.Jogador_Altura = reader["Jogador_Altura"].ToString();
+                C.Jogador_Peso = reader["Jogador_Peso"].ToString();
+                C.Pe_Favorito = reader["Pe_Favorito"].ToString();
+                C.Idade = reader["Idade"].ToString();
+                C.Dupla_Nacionalidade = reader["Dupla_Nacionalidade"].ToString();
+                C.Numero_Internacionalizao = reader["Numero_Internacionalizao"].ToString();
+                C.Idade_Maxima = reader["Idade_Maxima"].ToString();
+                dataGridView1.DataSource = C;
+            }
+
+            cn.Close();
+
+
+            currentJogador = 0;
+            //LockControls();
+            //ShowJogador();
+
+        }
     }
-}
+    }
+
