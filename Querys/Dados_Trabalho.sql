@@ -26,9 +26,9 @@ INSERT INTO Scouting.Treinador VALUES(3,'Guardiola','UEFA A',40,'espanhol')
 
 --Selecionadores
 
-INSERT INTO Scouting.Selecionador VALUES(1,'José Mourinho','UEFA PRO','português',40,'2019-05-01','2020-06-01',21)
-INSERT INTO Scouting.Selecionador VALUES(2,'Jorge Jesus','UEFA B','português',21,'2018-05-01','2019-06-01',15)
-INSERT INTO Scouting.Selecionador VALUES(3,'Low','UEFA PRO','alemão',30,'2017-05-01','2019-06-01',19)
+INSERT INTO Scouting.Selecionador VALUES(1,'José Mourinho','UEFA PRO','português',40)
+INSERT INTO Scouting.Selecionador VALUES(2,'Jorge Jesus','UEFA B','português',21)
+INSERT INTO Scouting.Selecionador VALUES(3,'Low','UEFA PRO','alemão',30)
 
 --Observadores
 
@@ -37,10 +37,17 @@ INSERT INTO Scouting.Observador VALUES(2,'Antero Henriques','UEFA A','português'
 
 
 --Clubes
-INSERT INTO Scouting.Clube VALUES (1,'Portugal','FCP',2,null,'2017-02-01')
-INSERT INTO Scouting.Clube VALUES (2,'Portugal','Arouca',1,'2019-03-21','2017-02-01')
+INSERT INTO Scouting.Clube VALUES (1,'Portugal','FCP')
+INSERT INTO Scouting.Clube VALUES (2,'Portugal','Arouca')
 
 
+INSERT INTO Scouting.Responsavel VALUES (21,3,'2019-05-01','2020-06-01')
+INSERT INTO Scouting.Responsavel VALUES (15,1,'4-01-2016','4-01-2018')
+INSERT INTO Scouting.Responsavel VALUES (19,2,'1-07-2014','1-07-2022')
+
+--Treina
+INSERT INTO Scouting.Treina VALUES(1,null,'2017-02-01',2)
+INSERT INTO Scouting.Treina VALUES(2,'2019-03-21','2017-02-01',1)
 
 --Competições
 INSERT INTO Scouting.Competicao VALUES (1,'Iniciados',23)
@@ -60,6 +67,8 @@ INSERT INTO Scouting.Participa_Em Values(2,'2012-05-11','Arouca',18)
 
 INSERT INTO Scouting.Jogador_Pertence_Clube VALUES (1,8,'1-07-2010','1-07-2013')
 INSERT INTO Scouting.Jogador_Pertence_Clube VALUES (2,3,'1-07-2010','1-07-2013')
+
+
 
 SELECT Jogador_Nome,Clube_Nome FROM   Scouting.Jogador JOIN (Scouting.Jogador_Pertence_Clube join Scouting.Clube ON Scouting.Jogador_Pertence_Clube.JPC_Clube_Numero_Inscricao_FIFA=Scouting.Clube.Clube_Numero_Inscricao_FIFA ) ON Scouting.Jogador.ID_FIFPRO = Scouting.Jogador_Pertence_Clube.ID_FIFPRO
 

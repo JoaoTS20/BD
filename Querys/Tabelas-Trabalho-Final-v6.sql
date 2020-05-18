@@ -1,3 +1,5 @@
+use Proj;
+
 CREATE SCHEMA Scouting;
 GO
 
@@ -34,7 +36,8 @@ CREATE TABLE Scouting.Relatorio(
 
 CREATE TYPE Dados_Value from INT NOT NULL;
 
-CREATE TABLE Scouting.Dados_Analiticos_Rel(
+CREATE TABLE Scouting.Analise_Caracteristica_Jogador(
+	ID_Auto_Carateristicas int PRIMARY KEY,
 	Rel_ID varchar(9),
 	Qualidade_Atual Dados_Value CHECK (Qualidade_Atual>0 AND Qualidade_Atual<=100),
 	Qualidade_Potencial Dados_Value CHECK (Qualidade_Potencial>0 AND Qualidade_Potencial <=100), 
@@ -47,11 +50,12 @@ CREATE TABLE Scouting.Dados_Analiticos_Rel(
 	--FOREIGN KEY Rel_ID REFERENCES Scouting.Relatorio(ID),
 	--FOREIGN KEY Obs_Num_Iden_Federacao REFERENCES Scouting.Observador(Numero_Identificacao_Federacao),
 	UNIQUE(Rel_ID),
-	UNIQUE(Obs_Num_Iden_Federacao),
-	PRIMARY KEY(Rel_ID,Obs_Num_Iden_Federacao)
+	UNIQUE(Obs_Num_Iden_Federacao)
+	
 );
 
-CREATE TABLE Scouting.Dados_Analiticos_Abs(
+CREATE TABLE Scouting.Metricas_Jogo_Jogador(
+	ID_Auto_Metricas int PRIMARY KEY,
 	Numero_Golos Dados_Value,
 	Rel_ID varchar(9),
 	Numero_Assistencias Dados_Value,
@@ -72,7 +76,6 @@ CREATE TABLE Scouting.Dados_Analiticos_Abs(
 	UNIQUE(Rel_ID),
 	--FOREIGN KEY Rel_ID REFERENCES Scouting.Relatorio(ID),
 	--FOREIGN KEY Obs_Num_Iden_Federacao REFERENCES Scouting.Observador(Numero_Identificacao_Federacao);
-	PRIMARY KEY(Obs_Num_Iden_Federacao,Rel_ID)
 );
 
 CREATE TABLE Scouting.Observador(
@@ -89,6 +92,14 @@ CREATE TABLE Scouting.Lista_Observacao_Selecao(
 	Lista_Nome varchar(30) NOT NULL
 );
 
+CREATE TABLE Scouting.Responsavel(
+Idade_Maxima int,
+Selec_Numero_Iden_Federacao varchar(9),
+Res_Data_Inicio date,
+Res_Data_Final date,
+CHECK(Res_Data_Final>Res_Data_Inicio)
+);
+
 CREATE TABLE Scouting.Jog_Posicoes(
 	J_Posicoes varchar(30),
 	Jog_Posicoes_ID_FIFPro varchar(9),
@@ -100,12 +111,19 @@ CREATE TABLE Scouting.Clube(
 	Clube_Numero_Inscricao_FIFA varchar(9) PRIMARY KEY,
 	Clube_Pais varchar(40) NOT NULL,
 	Clube_Nome varchar(50) NOT NULL,
-	Clube_Treinador_Numero_Inscricao_FIFA varchar(9),
-	Treinador_Data_Saida date,
-	Treinador_Data_Inicio date,
-	CHECK(Treinador_Data_Saida>Treinador_Data_Inicio)
+	
 	--FOREIGN KEY (Clube_Treinador_Numero_Inscricao_FIFA) REFERENCES Scouting.Treinador(Treinador_Numero_Inscricao_FIFA);
 );
+
+CREATE TABLE Scouting.Treina(
+	Treina_Num_Insc_FIFA varchar(9),
+	Treinador_Data_Saida date,
+	Treinador_Data_Inicio date,
+	Clube_Num_insc_FIFA varchar(9),
+	PRIMARY KEY(Treina_Num_Insc_FIFA,Clube_Num_insc_FIFA),
+	CHECK(Treinador_Data_Saida>Treinador_Data_Inicio)
+);
+
 CREATE TABLE Scouting.Jogador_Pertence_Clube(
 	JPC_Clube_Numero_Inscricao_FIFA varchar(9),
 	ID_FIFPro varchar(9),
@@ -141,11 +159,6 @@ CREATE TABLE Scouting.Selecionador(
 	Selecionador_Qualificacao varchar(100) NOT NULL,
 	Selecionador_Nacionalidade varchar(40) NOT NULL,
 	Selecionador_Idade int NOT NULL CHECK(Selecionador_Idade >=18),
-	Res_Data_Inicio date,
-	Res_Data_Fim date,
-	CHECK(Res_Data_Fim>Res_Data_Inicio),
-	Lista_Idade_Maxima int
-	--FOREIGN KEY Lista_Idade_Maxima REFERENCES Scouting.Lista_Observacao_Selecao(Lista_Idade_Maxima);
 );
 
 
@@ -199,13 +212,13 @@ ALTER TABLE Scouting.Relatorio
 ;
 
 
-ALTER TABLE Scouting.Dados_Analiticos_Rel
+ALTER TABLE Scouting.Analise_Caracteristica_Jogador
 	ADD FOREIGN KEY (Rel_ID) REFERENCES Scouting.Relatorio(ID),
 		FOREIGN KEY (Obs_Num_Iden_Federacao) REFERENCES Scouting.Observador(Numero_Identificacao_Federacao)
 ;
 
 
-ALTER TABLE Scouting.Dados_Analiticos_Abs
+ALTER TABLE Scouting.Metricas_Jogo_Jogador
 	ADD FOREIGN KEY (Rel_ID) REFERENCES Scouting.Relatorio(ID),
 		FOREIGN KEY (Obs_Num_Iden_Federacao) REFERENCES Scouting.Observador(Numero_Identificacao_Federacao)
 ;
@@ -226,20 +239,24 @@ ALTER TABLE Scouting.Participa_Em
 ALTER TABLE Scouting.Observacao_Metodo_de_Observacao
 	ADD FOREIGN KEY (Rel_ID_Relatorio) REFERENCES Scouting.Relatorio(ID);
 
-ALTER TABLE Scouting.Selecionador
-	ADD FOREIGN KEY (Lista_Idade_Maxima) REFERENCES Scouting.Lista_Observacao_Selecao(Lista_Idade_Maxima);
 
 ALTER TABLE Scouting.Jogo
 	ADD FOREIGN KEY (Jogo_Competicao_ID_FIFA) REFERENCES Scouting.Competicao(Competicao_ID_FIFA),
 		FOREIGN KEY (Obs_Num_Iden_Federacao) REFERENCES Scouting.Observador(Numero_Identificacao_Federacao)
 ;
 
-ALTER TABLE Scouting.Selecionador
-	ADD FOREIGN KEY (Lista_Idade_Maxima) REFERENCES Scouting.Lista_Observacao_Selecao(Lista_Idade_Maxima);
 
 ALTER TABLE Scouting.Inscrito_Em
 	ADD FOREIGN KEY (Ins_Competicao_ID_FIFA) REFERENCES Scouting.Competicao(Competicao_ID_FIFA),
 		FOREIGN KEY (Ins_Clube_Numero_Inscricao_FIFA) REFERENCES Scouting.Clube(Clube_Numero_Inscricao_FIFA);
 
 ALTER TABLE Scouting.Clube
-	ADD FOREIGN KEY (Clube_Treinador_Numero_Inscricao_FIFA) REFERENCES Scouting.Treinador(Treinador_Numero_Inscricao_FIFA);
+	ADD FOREIGN KEY (Clube_Numero_Inscricao_FIFA) REFERENCES Scouting.Treinador(Treinador_Numero_Inscricao_FIFA);
+
+ALTER TABLE Scouting.Responsavel
+	ADD FOREIGN KEY (Selec_Numero_Iden_Federacao) REFERENCES Scouting.Selecionador(Selecionador_Numero_Identificacao_Federacao),
+	FOREIGN KEY(Idade_Maxima) REFERENCES Scouting.Lista_Observacao_Selecao(Lista_Idade_Maxima);
+
+ALTER TABLE Scouting.Treina
+	ADD FOREIGN KEY (Treina_Num_Insc_FIFA) REFERENCES Scouting.Treinador(Treinador_Numero_Inscricao_FIFA),
+	FOREIGN KEY (Clube_Num_Insc_FIFA) REFERENCES Scouting.Clube(Clube_Numero_Inscricao_FIFA);
