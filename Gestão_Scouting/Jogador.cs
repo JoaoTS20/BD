@@ -16,7 +16,7 @@ namespace Gestão_Scouting
 		private String _Idade;
 		private String _Dupla_Nacionalidade;
 		private String _Numero_Internacionalizao;
-		private String _Idade_Maxima;
+		private String _Lista_Idade_Maxima;
 
 		public String ID_FIFPro
 		{
@@ -70,10 +70,10 @@ namespace Gestão_Scouting
 
 		}
 
-		public String Idade_Maxima
+		public String Lista_Idade_Maxima
 		{
-			get { return _Idade_Maxima; }
-			set { _Idade_Maxima = value; }
+			get { return _Lista_Idade_Maxima; }
+			set { _Lista_Idade_Maxima = value; }
 		}
 
 
