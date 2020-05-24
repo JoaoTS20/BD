@@ -51,9 +51,11 @@ namespace Gestão_Scouting
 
             SqlCommand cmd = new SqlCommand("SELECT * FROM Scouting.Jogador", cn);
             SqlDataReader reader = cmd.ExecuteReader();
-            dataGridView1.DataSource = null;
+            listBox1.Items.Clear();
+            //listBox1.Items.Add("ID   Nome  Altura   Peso   Idade   NºInternacionalizações");
             //List<Jogador> n = new List<Jogador>();
-
+           // DataTable dt = new DataTable();
+            
             while (reader.Read())
             {
                 Jogador C = new Jogador();
@@ -66,17 +68,36 @@ namespace Gestão_Scouting
                 C.Dupla_Nacionalidade = reader["Dupla_Nacionalidade"].ToString();
                 C.Numero_Internacionalizao = reader["Numero_Internacionalizao"].ToString();
                 C.Lista_Idade_Maxima = reader["Lista_Idade_Maxima"].ToString();
-                dataGridView1;
+                listBox1.Items.Add(C);
+                
+
             }
-            //dataGridView1.DataSource = n;
+            
+            //dataGridView1.DataSource = dt;
+
+            //Para a Data Grid
+
+
 
             cn.Close();
-
+            loadatagried();
 
             currentJogador = 0;
             //LockControls();
             //ShowJogador();
 
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+        private void loadatagried()
+        {
+            DataTable dt = new DataTable();
+            SqlDataAdapter adpt = new SqlDataAdapter("SELECT * FROM Scouting.Jogador", cn);
+            adpt.Fill(dt);
+            dataGridView1.DataSource = dt;
         }
     }
     }

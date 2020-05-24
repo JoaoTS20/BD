@@ -79,10 +79,11 @@ namespace Gestão_Scouting
 
 		public override String ToString()
 		{
-			return _ID_FIFPro + "   " + _Jogador_Nome;
-		}
+			return _ID_FIFPro + "   " + _Jogador_Nome +"   "+ _Jogador_Altura +"   " + _Jogador_Peso +"   " + _Idade +"   "+ _Numero_Internacionalizao;
 
-		public Jogador() : base()
+	}
+
+	public Jogador() : base()
 		{
 		}
 	}
