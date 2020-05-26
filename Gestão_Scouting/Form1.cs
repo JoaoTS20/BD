@@ -15,6 +15,7 @@ namespace Gestão_Scouting
     {
         private SqlConnection cn;
         private int currentJogador;
+        private int currentRelatorioJogador;
 
         public Form1()
         {
@@ -24,15 +25,18 @@ namespace Gestão_Scouting
         private void Form1_Load(object sender, EventArgs e)
         {
             cn = getSGBDConnection();
-            addPlayers();
-            // dataGridView1.DataSource
+            LoadJogadores("");
+            GetListaObservacaoSelecao();
+
+
         }
 
         private SqlConnection getSGBDConnection()
         {
             //Local a Editar!!
-            return new SqlConnection("data source= LAPTOP-2KEGA0ER;integrated security=true;initial catalog=Proj");
+            return new SqlConnection("data source= LAPTOP-MH91MTBV;integrated security=true;initial catalog=Trabalho_Final");
         }
+
         private bool verifySGBDConnection()
         {
             if (cn == null)
@@ -44,22 +48,36 @@ namespace Gestão_Scouting
             return cn.State == ConnectionState.Open;
         }
 
-
+        //Utils Functions
         private void toolStripMenuItem2_Click(object sender, EventArgs e)
         {
-            addPlayers();
+            LoadJogadores("");
+            comboBoxListaSelecao.SelectedIndex = 0;
         }
-        private void addPlayers()
+
+
+
+
+        //Jogadores Functions
+        private void LoadJogadores(String numero) //Com as alterações fica 70%feita
         {
             if (!verifySGBDConnection())
                 return;
-
-            SqlCommand cmd = new SqlCommand("SELECT * FROM Scouting.Jogador", cn);
-            SqlDataReader reader = cmd.ExecuteReader();
-            listBox1.Items.Clear();
-            //listBox1.Items.Add("ID   Nome  Altura   Peso   Idade   NºInternacionalizações");
-            //List<Jogador> n = new List<Jogador>();
-            // DataTable dt = new DataTable();
+            SqlCommand cmd;
+            SqlDataReader reader;
+            //Esta parte aqui é feita numa query UDF ou Stored Procedure
+            if (numero == "")
+            {   
+                
+                cmd = new SqlCommand("SELECT * FROM Scouting.Jogador", cn);
+            }
+            else
+            {
+                String x = "SELECT * FROM Scouting.Jogador WHERE Lista_Idade_Maxima =" + numero;
+                cmd = new SqlCommand(x, cn);
+            }
+            reader = cmd.ExecuteReader();
+            listBoxJogadores.Items.Clear();
 
             while (reader.Read())
             {
@@ -73,48 +91,112 @@ namespace Gestão_Scouting
                 C.Dupla_Nacionalidade = reader["Dupla_Nacionalidade"].ToString();
                 C.Numero_Internacionalizao = reader["Numero_Internacionalizao"].ToString();
                 C.Lista_Idade_Maxima = reader["Lista_Idade_Maxima"].ToString();
-                listBox1.Items.Add(C);
+                listBoxJogadores.Items.Add(C);
 
             }
-
-            //dataGridView1.DataSource = dt;
-
-            //Para a Data Grid
-
-
-
-            cn.Close();
-
-
+            //cn.Close();
+            reader.Close();
             currentJogador = 0;
-            //LockControls();
-            //ShowJogador();
+            LockJogadoresControls();
+            ShowJogadores();
 
         }
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void listBoxJogadores_SelectedIndexChanged_1(object sender, EventArgs e)
         {
+            if (listBoxJogadores.SelectedIndex > 0)
+            {
+                currentJogador = listBoxJogadores.SelectedIndex;
+                ShowJogadores();
 
+            }
+        }
+        public void ShowJogadores()
+        {
+            if (listBoxJogadores.Items.Count == 0 | currentJogador < 0)
+                return;
+            Jogador jogador = new Jogador();
+            jogador = (Jogador)listBoxJogadores.Items[currentJogador];
+            textID_FIFPro.Text = jogador.ID_FIFPro;
+            textJNome.Text = jogador.Jogador_Nome;
+            textAltura.Text = jogador.Jogador_Altura.ToString() + " m";
+            textPeso.Text = jogador.Jogador_Peso.ToString()+ " Kg";
+            //textPe_fav.Text = jogador.Pe_Favorito.ToString();
+            textJogadorIdade.Text = jogador.Idade.ToString();
+            textDuplaNacionalidade.Text = jogador.Dupla_Nacionalidade.ToString();
+            textNumeroInter.Text = jogador.Numero_Internacionalizao.ToString();
+            //text_Idade_max.Text = jogador.Lista_Idade_Maxima.ToString();
+            if (jogador.Pe_Favorito.ToString() == "True")
+            {
+                radioButtonDireito.Checked = true;
+                radioButtonEsquerdo.Checked = false;
+            }
+            else
+            {
+                radioButtonEsquerdo.Checked = true;
+                radioButtonDireito.Checked = false;
+            }
+            if (jogador.Dupla_Nacionalidade.ToString() == "True")
+            {
+                textDuplaNacionalidade.Text = "Sim";
+            }
+            else
+            {
+                textDuplaNacionalidade.Text = "Não";
+            }
+            
         }
 
-        private void loadPlayerAndDataById()
+
+        public void GetListaObservacaoSelecao()
         {
-            Console.WriteLine("Entrou bro");
-            /*DataTable dt = new DataTable();
-            SqlDataAdapter adpt = new SqlDataAdapter("SELECT * FROM Scouting.Jogador", cn);
-            adpt.Fill(dt);
-            listBox2.DataSource = dt;*/
+            SqlCommand cmd = new SqlCommand("SELECT * FROM Scouting.Lista_Observacao_Selecao", cn);
+            SqlDataReader reader = cmd.ExecuteReader();
+            Lista_Observacao_Selecao S = new Lista_Observacao_Selecao();
+            S.Lista_Nome = "Todos";
+            S.Lista_Idade_Maxima = "";
+
+            comboBoxListaSelecao.Items.Add(S);
+            while (reader.Read())
+            {
+                Lista_Observacao_Selecao L = new Lista_Observacao_Selecao();
+                L.Lista_Nome = reader["Lista_Nome"].ToString();
+                L.Lista_Idade_Maxima = reader["Lista_Idade_Maxima"].ToString();
+                comboBoxListaSelecao.Items.Add(L);
+            }
+            reader.Close();
         }
 
-        private void listBox1_MouseDoubleClick(object sender, MouseEventArgs e)
+        //--Bloquear Dados Jogadores
+        public void LockJogadoresControls()
         {
-            listBox1.Visible = false;
-            listBox2.Visible = true;
-            string indice = listBox1.Text;
-            string[] vals = indice.Split('\t');
-            label1.Text="Relatório relativo a "+vals[1];
-            label1.Visible = true;
-            loadPlayerAndDataById();
+            textID_FIFPro.ReadOnly = true;
+            textJNome.ReadOnly = true;
+            textAltura.ReadOnly = true;
+            textPeso.ReadOnly = true;
+            textJogadorIdade.ReadOnly = true;
+            textDuplaNacionalidade.ReadOnly = true;
+            textNumeroInter.ReadOnly = true;
+            //text_Idade_max.ReadOnly = true;
+            radioButtonEsquerdo.Enabled = false;
+            radioButtonDireito.Enabled = false;
+        }
+
+        private void comboBoxListaSelecao_SelectedIndexChanged(object sender, EventArgs e) //Função na 80% certa
+        {
+            if (comboBoxListaSelecao.SelectedIndex >= 0)
+            {
+                Lista_Observacao_Selecao list = new Lista_Observacao_Selecao();
+                list = (Lista_Observacao_Selecao)comboBoxListaSelecao.Items[comboBoxListaSelecao.SelectedIndex];
+                String name = list.Lista_Idade_Maxima.ToString();
+                LoadJogadores(name);
+
+            }
+        }
+
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
         }
     }
-    }
+}
 

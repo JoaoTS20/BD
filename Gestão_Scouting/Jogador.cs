@@ -81,7 +81,7 @@ namespace Gestão_Scouting
 		{
 			return _ID_FIFPro + "	" + _Jogador_Nome;
 
-	}
+		}
 
 	public Jogador() : base()
 		{

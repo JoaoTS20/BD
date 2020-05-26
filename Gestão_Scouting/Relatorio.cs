@@ -58,5 +58,11 @@ namespace Gestão_Scouting
 			set { _Jogo_Data = value; }
 		}
 
+		public override String ToString()
+		{
+			return _ID + " " + _Relatorio_Titulo+ " "+ _Relatorio_Data;
+
+		}
+
 	}
 }

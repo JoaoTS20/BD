@@ -21,6 +21,11 @@ namespace Gestão_Scouting
 			get { return _Lista_Nome; }
 			set { _Lista_Nome = value; }
 		}
+		public override String ToString()
+		{
+			return _Lista_Nome + "    Idade:" + _Lista_Idade_Maxima;
+
+		}
 	}
 	
 }
