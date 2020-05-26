@@ -51,13 +51,14 @@ INSERT INTO Scouting.Treina VALUES(2,'2019-03-21','2017-02-01',1)
 
 --Competições
 INSERT INTO Scouting.Competicao VALUES (1,'Iniciados',23)
-
+INSERT INTO Scouting.Competicao VALUES (2,'Juvenis Nacional PT A',18)
 
 --Jogos
 INSERT INTO Scouting.Jogo Values('Arouca','2012-05-11','2-0',1,1)
-
+INSERT INTO Scouting.Jogo VALUES('Lisboa','2011-11-13','3-1',2,2)
 --Relatório
 INSERT INtO Scouting.Relatorio Values(1,'Relatório João Moutinho','2012-05-13',1,8,'Arouca','2012-05-11')
+INSERT INtO Scouting.Relatorio Values(2,'Relatório Famoso Toni','2016-11-23',2,3,'Lisboa','2011-11-13')
 
 --Participa_em
 INSERT INTO Scouting.Participa_Em Values(1,'2012-05-11','Arouca',21)
@@ -80,7 +81,7 @@ INSERT INTO Scouting.Observacao_Metodo_de_Observacao VALUES ('Presencial',1)
 INSERT INTO Scouting.Metricas_Jogo_Jogador VALUES (0,2,1,1,12,6,1,32,0,2,25,5,2,1)
 
 --Dados_Analiticos_Rel
-INSERT INTO Scouting.Analise_Caracteristica_Jogador VALUES (1,1, 72,91,'Passe','Boa',81,90,72,1)
+
 
 --Query a relacionar isto
 
@@ -91,6 +92,9 @@ INSERT INTO Scouting.Analise_Caracteristica_Jogador VALUES (1,1, 72,91,'Passe','
 INSERT INTO Scouting.Jog_Posicoes VALUES ('MC',8);
 INSERT INTO Scouting.Jog_Posicoes VALUES ('MDF',8);
 
+--Analise_Jogador
+
+INSERT INTO Scouting.Analise_Caracteristica_Jogador VALUES (1,1,70,65,'','Boa',76,83,78,1);
 --SELECT * FROM Scouting.Jogador JOIN Scouting.Jog_Posicoes ON ID_FIFPro=Jog_Posicoes_ID_FIFPro
 
 

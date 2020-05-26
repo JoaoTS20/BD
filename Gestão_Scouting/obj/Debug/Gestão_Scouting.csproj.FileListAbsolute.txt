@@ -8,3 +8,12 @@ C:\Users\João Soares\source\repos\BD\Gestão_Scouting\bin\Debug\Gestão_Scoutin
 C:\Users\João Soares\source\repos\BD\Gestão_Scouting\bin\Debug\Gestão_Scouting.pdb
 C:\Users\João Soares\source\repos\BD\Gestão_Scouting\obj\Debug\Gestão_Scouting.exe
 C:\Users\João Soares\source\repos\BD\Gestão_Scouting\obj\Debug\Gestão_Scouting.pdb
+C:\Users\Utilizador\Desktop\2ºano\BD\Projeto\BD\Gestão_Scouting\bin\Debug\Gestão_Scouting.exe.config
+C:\Users\Utilizador\Desktop\2ºano\BD\Projeto\BD\Gestão_Scouting\bin\Debug\Gestão_Scouting.exe
+C:\Users\Utilizador\Desktop\2ºano\BD\Projeto\BD\Gestão_Scouting\bin\Debug\Gestão_Scouting.pdb
+C:\Users\Utilizador\Desktop\2ºano\BD\Projeto\BD\Gestão_Scouting\obj\Debug\Gestão_Scouting.csprojAssemblyReference.cache
+C:\Users\Utilizador\Desktop\2ºano\BD\Projeto\BD\Gestão_Scouting\obj\Debug\Gestão_Scouting.Form1.resources
+C:\Users\Utilizador\Desktop\2ºano\BD\Projeto\BD\Gestão_Scouting\obj\Debug\Gestão_Scouting.Properties.Resources.resources
+C:\Users\Utilizador\Desktop\2ºano\BD\Projeto\BD\Gestão_Scouting\obj\Debug\Gestão_Scouting.csproj.GenerateResource.cache
+C:\Users\Utilizador\Desktop\2ºano\BD\Projeto\BD\Gestão_Scouting\obj\Debug\Gestão_Scouting.exe
+C:\Users\Utilizador\Desktop\2ºano\BD\Projeto\BD\Gestão_Scouting\obj\Debug\Gestão_Scouting.pdb

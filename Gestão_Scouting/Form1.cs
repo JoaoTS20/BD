@@ -30,7 +30,7 @@ namespace Gestão_Scouting
         private SqlConnection getSGBDConnection()
         {
             //Local a Editar!!
-            return new SqlConnection("data source= LAPTOP-MH91MTBV;integrated security=true;initial catalog=Trabalho_Final");
+            return new SqlConnection("data source= LAPTOP-2KEGA0ER;integrated security=true;initial catalog=Proj");
         }
         private bool verifySGBDConnection()
         {
@@ -61,6 +61,9 @@ namespace Gestão_Scouting
                 Jogador C = new Jogador();
                 C.ID_FIFPro = reader["ID_FIFPro"].ToString();
                 C.Jogador_Nome = reader["Jogador_Nome"].ToString();
+                //shows only these 2 atributes
+                listBox1.Items.Add(C);
+
                 C.Jogador_Altura = reader["Jogador_Altura"].ToString();
                 C.Jogador_Peso = reader["Jogador_Peso"].ToString();
                 C.Pe_Favorito = reader["Pe_Favorito"].ToString();
@@ -68,11 +71,10 @@ namespace Gestão_Scouting
                 C.Dupla_Nacionalidade = reader["Dupla_Nacionalidade"].ToString();
                 C.Numero_Internacionalizao = reader["Numero_Internacionalizao"].ToString();
                 C.Lista_Idade_Maxima = reader["Lista_Idade_Maxima"].ToString();
-                listBox1.Items.Add(C);
-                
+
 
             }
-            
+
             //dataGridView1.DataSource = dt;
 
             //Para a Data Grid
@@ -98,6 +100,11 @@ namespace Gestão_Scouting
             SqlDataAdapter adpt = new SqlDataAdapter("SELECT * FROM Scouting.Jogador", cn);
             adpt.Fill(dt);
             dataGridView1.DataSource = dt;
+        }
+
+        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
         }
     }
     }
