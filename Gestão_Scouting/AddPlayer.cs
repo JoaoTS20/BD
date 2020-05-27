@@ -39,38 +39,57 @@ namespace Gestão_Scouting
 
         private void Adicionar_Click(object sender, EventArgs e)
         {
-            if (!verifySGBDConnection())
-                return;
+            double altura;
+            double peso;
+            int idade;
+            int inter;
+            int dupnac;
+            int pefav;
             SqlCommand cmd;
             SqlDataReader reader;
-            
-            cmd = new SqlCommand("SELECT * FROM Scouting.Jogador", cn);
-            
-
-            reader = cmd.ExecuteReader();
-            while (reader.Read())
+            if (!verifySGBDConnection())
+                return;
+            if(ID.Text=="" || NomeBox.Text=="" || AlturaBox.Text=="" || PesoBox.Text == "" || IdadeBox.Text == "" || NumeroInterBox.Text == "")
             {
-                Jogador C = new Jogador();
-                C.ID_FIFPro = reader["ID_FIFPro"].ToString();
-                C.Jogador_Nome = reader["Jogador_Nome"].ToString();
-                C.Jogador_Altura = reader["Jogador_Altura"].ToString();
-                C.Jogador_Peso = reader["Jogador_Peso"].ToString();
-                C.Pe_Favorito = reader["Pe_Favorito"].ToString();
-                C.Idade = reader["Idade"].ToString();
-                C.Dupla_Nacionalidade = reader["Dupla_Nacionalidade"].ToString();
-                C.Numero_Internacionalizao = reader["Numero_Internacionalizao"].ToString();
-                C.Lista_Idade_Maxima = reader["Lista_Idade_Maxima"].ToString();
-            }
-        
-            try
-            {
-                int id = Int32.Parse(ID.Text);
-
-            }
-            catch (InvalidCastException)
-            {
+                Console.WriteLine("Tem de preencher todos os campo!");
                 return;
             }
+            else if(!(DupSim.Checked || DupNao.Checked) || !(PeEsq.Checked || PeDir.Checked))
+            {
+                Console.WriteLine("Tem de preencher todos os campos!");
+                return;
+            }
+            if(!Double.TryParse(AlturaBox.Text,out altura))
+            {
+                Console.WriteLine("Valor Altura impróprio.");
+                return;
+            }
+            if (!Double.TryParse(PesoBox.Text, out peso))
+            {
+                Console.WriteLine("Valor Peso impróprio.");
+                return;
+            }
+            if (!Int32.TryParse(IdadeBox.Text, out idade))
+            {
+                Console.WriteLine("Valor Idade imprópria.");
+                return;
+            }
+            for (int i = 0; i < Form1.ids.Length; i++)//ir buscar ao ids todos os ID_FIFPro para ver se o que esta a ser introduzido ja existe
+            {
+                if (ID.Text == Form1.ids[i])
+                {
+                    Console.WriteLine("This ID already exists.");
+                    return;
+                }
+            }
+            if (DupSim.Checked){ dupnac = 1;}
+            else { dupnac = 0; }
+            if (PeDir.Checked) { pefav = 1; }
+            else { pefav = 1; }
+            return;
+            String x = "INSERT INTO Scouting.Jogador VALUES("+ID.Text+","+NomeBox.Text+")";
+            cmd = new SqlCommand(x, cn);
+            reader = cmd.ExecuteReader();
         }
         private void Cancelar_Click(object sender, EventArgs e)
         {

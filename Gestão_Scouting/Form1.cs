@@ -16,6 +16,7 @@ namespace Gestão_Scouting
         private SqlConnection cn;
         private int currentJogador;
         private int currentRelatorioJogador;
+        public static String[] ids;
 
         public Form1()
         {
@@ -78,9 +79,10 @@ namespace Gestão_Scouting
             }
             reader = cmd.ExecuteReader();
             listBoxJogadores.Items.Clear();
-
+            int i = 0;
             while (reader.Read())
             {
+
                 Jogador C = new Jogador();
                 C.ID_FIFPro = reader["ID_FIFPro"].ToString();
                 C.Jogador_Nome = reader["Jogador_Nome"].ToString();
@@ -91,8 +93,9 @@ namespace Gestão_Scouting
                 C.Dupla_Nacionalidade = reader["Dupla_Nacionalidade"].ToString();
                 C.Numero_Internacionalizao = reader["Numero_Internacionalizao"].ToString();
                 C.Lista_Idade_Maxima = reader["Lista_Idade_Maxima"].ToString();
+                
                 listBoxJogadores.Items.Add(C);
-
+                i++;
             }
             //cn.Close();
             reader.Close();

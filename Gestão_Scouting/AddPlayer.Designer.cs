@@ -29,27 +29,27 @@
         private void InitializeComponent()
         {
             this.ID = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.PesoBox = new System.Windows.Forms.TextBox();
+            this.AlturaBox = new System.Windows.Forms.TextBox();
+            this.NomeBox = new System.Windows.Forms.TextBox();
             this.ID_FIFPro = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.Peso = new System.Windows.Forms.Label();
             this.Altura = new System.Windows.Forms.Label();
             this.Idade = new System.Windows.Forms.Label();
-            this.textBox5 = new System.Windows.Forms.TextBox();
-            this.textBox6 = new System.Windows.Forms.TextBox();
-            this.DuplaNac = new System.Windows.Forms.Label();
+            this.IdadeBox = new System.Windows.Forms.TextBox();
+            this.NumeroInterBox = new System.Windows.Forms.TextBox();
+            this.NumInter = new System.Windows.Forms.Label();
             this.Adicionar = new System.Windows.Forms.Button();
             this.Cancelar = new System.Windows.Forms.Button();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
-            this.radioButton2 = new System.Windows.Forms.RadioButton();
-            this.radioButton3 = new System.Windows.Forms.RadioButton();
-            this.radioButton4 = new System.Windows.Forms.RadioButton();
-            this.groupBox1.SuspendLayout();
-            this.groupBox2.SuspendLayout();
+            this.DupNac = new System.Windows.Forms.GroupBox();
+            this.DupNao = new System.Windows.Forms.RadioButton();
+            this.DupSim = new System.Windows.Forms.RadioButton();
+            this.PeFav = new System.Windows.Forms.GroupBox();
+            this.PeEsq = new System.Windows.Forms.RadioButton();
+            this.PeDir = new System.Windows.Forms.RadioButton();
+            this.DupNac.SuspendLayout();
+            this.PeFav.SuspendLayout();
             this.SuspendLayout();
             // 
             // ID
@@ -59,26 +59,26 @@
             this.ID.Size = new System.Drawing.Size(100, 20);
             this.ID.TabIndex = 0;
             // 
-            // textBox2
+            // PesoBox
             // 
-            this.textBox2.Location = new System.Drawing.Point(294, 38);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(100, 20);
-            this.textBox2.TabIndex = 1;
+            this.PesoBox.Location = new System.Drawing.Point(294, 38);
+            this.PesoBox.Name = "PesoBox";
+            this.PesoBox.Size = new System.Drawing.Size(100, 20);
+            this.PesoBox.TabIndex = 1;
             // 
-            // textBox3
+            // AlturaBox
             // 
-            this.textBox3.Location = new System.Drawing.Point(36, 218);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(100, 20);
-            this.textBox3.TabIndex = 2;
+            this.AlturaBox.Location = new System.Drawing.Point(36, 218);
+            this.AlturaBox.Name = "AlturaBox";
+            this.AlturaBox.Size = new System.Drawing.Size(100, 20);
+            this.AlturaBox.TabIndex = 2;
             // 
-            // textBox4
+            // NomeBox
             // 
-            this.textBox4.Location = new System.Drawing.Point(36, 131);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(142, 20);
-            this.textBox4.TabIndex = 3;
+            this.NomeBox.Location = new System.Drawing.Point(36, 131);
+            this.NomeBox.Name = "NomeBox";
+            this.NomeBox.Size = new System.Drawing.Size(142, 20);
+            this.NomeBox.TabIndex = 3;
             // 
             // ID_FIFPro
             // 
@@ -125,28 +125,28 @@
             this.Idade.TabIndex = 8;
             this.Idade.Text = "Idade";
             // 
-            // textBox5
+            // IdadeBox
             // 
-            this.textBox5.Location = new System.Drawing.Point(294, 131);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(100, 20);
-            this.textBox5.TabIndex = 9;
+            this.IdadeBox.Location = new System.Drawing.Point(294, 131);
+            this.IdadeBox.Name = "IdadeBox";
+            this.IdadeBox.Size = new System.Drawing.Size(100, 20);
+            this.IdadeBox.TabIndex = 9;
             // 
-            // textBox6
+            // NumeroInterBox
             // 
-            this.textBox6.Location = new System.Drawing.Point(294, 218);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(100, 20);
-            this.textBox6.TabIndex = 10;
+            this.NumeroInterBox.Location = new System.Drawing.Point(294, 218);
+            this.NumeroInterBox.Name = "NumeroInterBox";
+            this.NumeroInterBox.Size = new System.Drawing.Size(100, 20);
+            this.NumeroInterBox.TabIndex = 10;
             // 
-            // DuplaNac
+            // NumInter
             // 
-            this.DuplaNac.AutoSize = true;
-            this.DuplaNac.Location = new System.Drawing.Point(291, 202);
-            this.DuplaNac.Name = "DuplaNac";
-            this.DuplaNac.Size = new System.Drawing.Size(106, 13);
-            this.DuplaNac.TabIndex = 11;
-            this.DuplaNac.Text = "Dupla Nacionalidade";
+            this.NumInter.AutoSize = true;
+            this.NumInter.Location = new System.Drawing.Point(291, 202);
+            this.NumInter.Name = "NumInter";
+            this.NumInter.Size = new System.Drawing.Size(83, 13);
+            this.NumInter.TabIndex = 11;
+            this.NumInter.Text = "NumeroInterBox";
             // 
             // Adicionar
             // 
@@ -168,99 +168,99 @@
             this.Cancelar.UseVisualStyleBackColor = true;
             this.Cancelar.Click += new System.EventHandler(this.Cancelar_Click);
             // 
-            // groupBox1
+            // DupNac
             // 
-            this.groupBox1.Controls.Add(this.radioButton2);
-            this.groupBox1.Controls.Add(this.radioButton1);
-            this.groupBox1.Location = new System.Drawing.Point(36, 277);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(127, 85);
-            this.groupBox1.TabIndex = 20;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Dupla Nacionalidade";
+            this.DupNac.Controls.Add(this.DupNao);
+            this.DupNac.Controls.Add(this.DupSim);
+            this.DupNac.Location = new System.Drawing.Point(36, 277);
+            this.DupNac.Name = "DupNac";
+            this.DupNac.Size = new System.Drawing.Size(127, 85);
+            this.DupNac.TabIndex = 20;
+            this.DupNac.TabStop = false;
+            this.DupNac.Text = "Dupla Nacionalidade";
             // 
-            // groupBox2
+            // DupNao
             // 
-            this.groupBox2.Controls.Add(this.radioButton4);
-            this.groupBox2.Controls.Add(this.radioButton3);
-            this.groupBox2.Location = new System.Drawing.Point(289, 277);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(127, 85);
-            this.groupBox2.TabIndex = 21;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Pé Favorito";
+            this.DupNao.AutoSize = true;
+            this.DupNao.Location = new System.Drawing.Point(6, 42);
+            this.DupNao.Name = "DupNao";
+            this.DupNao.Size = new System.Drawing.Size(45, 17);
+            this.DupNao.TabIndex = 1;
+            this.DupNao.TabStop = true;
+            this.DupNao.Text = "Não";
+            this.DupNao.UseVisualStyleBackColor = true;
             // 
-            // radioButton1
+            // DupSim
             // 
-            this.radioButton1.AutoSize = true;
-            this.radioButton1.Location = new System.Drawing.Point(6, 19);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(42, 17);
-            this.radioButton1.TabIndex = 0;
-            this.radioButton1.TabStop = true;
-            this.radioButton1.Text = "Sim";
-            this.radioButton1.UseVisualStyleBackColor = true;
+            this.DupSim.AutoSize = true;
+            this.DupSim.Location = new System.Drawing.Point(6, 19);
+            this.DupSim.Name = "DupSim";
+            this.DupSim.Size = new System.Drawing.Size(42, 17);
+            this.DupSim.TabIndex = 0;
+            this.DupSim.TabStop = true;
+            this.DupSim.Text = "Sim";
+            this.DupSim.UseVisualStyleBackColor = true;
             // 
-            // radioButton2
+            // PeFav
             // 
-            this.radioButton2.AutoSize = true;
-            this.radioButton2.Location = new System.Drawing.Point(6, 42);
-            this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(45, 17);
-            this.radioButton2.TabIndex = 1;
-            this.radioButton2.TabStop = true;
-            this.radioButton2.Text = "Não";
-            this.radioButton2.UseVisualStyleBackColor = true;
+            this.PeFav.Controls.Add(this.PeEsq);
+            this.PeFav.Controls.Add(this.PeDir);
+            this.PeFav.Location = new System.Drawing.Point(289, 277);
+            this.PeFav.Name = "PeFav";
+            this.PeFav.Size = new System.Drawing.Size(127, 85);
+            this.PeFav.TabIndex = 21;
+            this.PeFav.TabStop = false;
+            this.PeFav.Text = "Pé Favorito";
             // 
-            // radioButton3
+            // PeEsq
             // 
-            this.radioButton3.AutoSize = true;
-            this.radioButton3.Location = new System.Drawing.Point(6, 19);
-            this.radioButton3.Name = "radioButton3";
-            this.radioButton3.Size = new System.Drawing.Size(55, 17);
-            this.radioButton3.TabIndex = 2;
-            this.radioButton3.TabStop = true;
-            this.radioButton3.Text = "Direito";
-            this.radioButton3.UseVisualStyleBackColor = true;
+            this.PeEsq.AutoSize = true;
+            this.PeEsq.Location = new System.Drawing.Point(6, 42);
+            this.PeEsq.Name = "PeEsq";
+            this.PeEsq.Size = new System.Drawing.Size(70, 17);
+            this.PeEsq.TabIndex = 3;
+            this.PeEsq.TabStop = true;
+            this.PeEsq.Text = "Esquerdo";
+            this.PeEsq.UseVisualStyleBackColor = true;
             // 
-            // radioButton4
+            // PeDir
             // 
-            this.radioButton4.AutoSize = true;
-            this.radioButton4.Location = new System.Drawing.Point(6, 42);
-            this.radioButton4.Name = "radioButton4";
-            this.radioButton4.Size = new System.Drawing.Size(70, 17);
-            this.radioButton4.TabIndex = 3;
-            this.radioButton4.TabStop = true;
-            this.radioButton4.Text = "Esquerdo";
-            this.radioButton4.UseVisualStyleBackColor = true;
+            this.PeDir.AutoSize = true;
+            this.PeDir.Location = new System.Drawing.Point(6, 19);
+            this.PeDir.Name = "PeDir";
+            this.PeDir.Size = new System.Drawing.Size(55, 17);
+            this.PeDir.TabIndex = 2;
+            this.PeDir.TabStop = true;
+            this.PeDir.Text = "Direito";
+            this.PeDir.UseVisualStyleBackColor = true;
             // 
             // AddPlayer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(474, 450);
-            this.Controls.Add(this.groupBox2);
-            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.PeFav);
+            this.Controls.Add(this.DupNac);
             this.Controls.Add(this.Cancelar);
             this.Controls.Add(this.Adicionar);
-            this.Controls.Add(this.DuplaNac);
-            this.Controls.Add(this.textBox6);
-            this.Controls.Add(this.textBox5);
+            this.Controls.Add(this.NumInter);
+            this.Controls.Add(this.NumeroInterBox);
+            this.Controls.Add(this.IdadeBox);
             this.Controls.Add(this.Idade);
             this.Controls.Add(this.Altura);
             this.Controls.Add(this.Peso);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.ID_FIFPro);
-            this.Controls.Add(this.textBox4);
-            this.Controls.Add(this.textBox3);
-            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.NomeBox);
+            this.Controls.Add(this.AlturaBox);
+            this.Controls.Add(this.PesoBox);
             this.Controls.Add(this.ID);
             this.Name = "AddPlayer";
             this.Text = "AddPlayer";
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
+            this.DupNac.ResumeLayout(false);
+            this.DupNac.PerformLayout();
+            this.PeFav.ResumeLayout(false);
+            this.PeFav.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -269,24 +269,24 @@
         #endregion
 
         private System.Windows.Forms.TextBox ID;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.TextBox PesoBox;
+        private System.Windows.Forms.TextBox AlturaBox;
+        private System.Windows.Forms.TextBox NomeBox;
         private System.Windows.Forms.Label ID_FIFPro;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label Peso;
         private System.Windows.Forms.Label Altura;
         private System.Windows.Forms.Label Idade;
-        private System.Windows.Forms.TextBox textBox5;
-        private System.Windows.Forms.TextBox textBox6;
-        private System.Windows.Forms.Label DuplaNac;
+        private System.Windows.Forms.TextBox IdadeBox;
+        private System.Windows.Forms.TextBox NumeroInterBox;
+        private System.Windows.Forms.Label NumInter;
         private System.Windows.Forms.Button Adicionar;
         private System.Windows.Forms.Button Cancelar;
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.RadioButton radioButton2;
-        private System.Windows.Forms.RadioButton radioButton1;
-        private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.RadioButton radioButton4;
-        private System.Windows.Forms.RadioButton radioButton3;
+        private System.Windows.Forms.GroupBox DupNac;
+        private System.Windows.Forms.RadioButton DupNao;
+        private System.Windows.Forms.RadioButton DupSim;
+        private System.Windows.Forms.GroupBox PeFav;
+        private System.Windows.Forms.RadioButton PeEsq;
+        private System.Windows.Forms.RadioButton PeDir;
     }
 }
