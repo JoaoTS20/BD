@@ -34,7 +34,7 @@ namespace Gestão_Scouting
         private SqlConnection getSGBDConnection()
         {
             //Local a Editar!!
-            return new SqlConnection("data source= LAPTOP-MH91MTBV;integrated security=true;initial catalog=Trabalho_Final");
+            return new SqlConnection("data source= LAPTOP-2KEGA0ER;integrated security=true;initial catalog=Proj");
         }
 
         private bool verifySGBDConnection()
@@ -196,6 +196,16 @@ namespace Gestão_Scouting
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Application.Exit();
+        }
+
+        private void buttonCriarJogadores_Click(object sender, EventArgs e)
+        {
+            if (listBoxJogadores.SelectedIndex > -1)
+            {
+                listBoxJogadores.ClearSelected();
+            }
+            AddPlayer ap = new AddPlayer();
+            ap.ShowDialog();
         }
     }
 }

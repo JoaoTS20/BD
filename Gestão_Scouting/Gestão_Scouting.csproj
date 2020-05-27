@@ -46,6 +46,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddPlayer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddPlayer.Designer.cs">
+      <DependentUpon>AddPlayer.cs</DependentUpon>
+    </Compile>
     <Compile Include="Clube.cs" />
     <Compile Include="Competicao.cs" />
     <Compile Include="Dados_Analiticos_Abs.cs" />
@@ -69,6 +75,9 @@
     <Compile Include="Relatorio.cs" />
     <Compile Include="Selecionador.cs" />
     <Compile Include="Treinador.cs" />
+    <EmbeddedResource Include="AddPlayer.resx">
+      <DependentUpon>AddPlayer.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>

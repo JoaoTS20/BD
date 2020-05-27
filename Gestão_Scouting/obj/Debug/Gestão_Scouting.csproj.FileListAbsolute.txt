@@ -17,3 +17,4 @@ C:\Users\Utilizador\Desktop\2ºano\BD\Projeto\BD\Gestão_Scouting\obj\Debug\Gest
 C:\Users\Utilizador\Desktop\2ºano\BD\Projeto\BD\Gestão_Scouting\obj\Debug\Gestão_Scouting.csproj.GenerateResource.cache
 C:\Users\Utilizador\Desktop\2ºano\BD\Projeto\BD\Gestão_Scouting\obj\Debug\Gestão_Scouting.exe
 C:\Users\Utilizador\Desktop\2ºano\BD\Projeto\BD\Gestão_Scouting\obj\Debug\Gestão_Scouting.pdb
+C:\Users\Utilizador\Desktop\2ºano\BD\Projeto\BD\Gestão_Scouting\obj\Debug\Gestão_Scouting.AddPlayer.resources
