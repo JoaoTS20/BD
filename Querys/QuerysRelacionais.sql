@@ -1,4 +1,3 @@
-
 --Jogador e Respetivas Posições
 SELECT * FROM Scouting.Jogador JOIN Scouting.Jog_Posicoes ON ID_FIFPro=Jog_Posicoes_ID_FIFPro
 

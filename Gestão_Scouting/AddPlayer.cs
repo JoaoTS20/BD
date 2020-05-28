@@ -82,14 +82,15 @@ namespace Gestão_Scouting
                     return;
                 }
             }
+            Console.WriteLine("");
             if (DupSim.Checked){ dupnac = 1;}
             else { dupnac = 0; }
             if (PeDir.Checked) { pefav = 1; }
             else { pefav = 1; }
-            return;
-            String x = "INSERT INTO Scouting.Jogador VALUES("+ID.Text+","+NomeBox.Text+")";
-            cmd = new SqlCommand(x, cn);
-            reader = cmd.ExecuteReader();
+            //String x = "INSERT INTO Scouting.Jogador VALUES("+ID.Text+","+NomeBox.Text+")";
+            //cmd = new SqlCommand(x, cn);
+            //reader = cmd.ExecuteReader();
+            Console.WriteLine("Inseriu");
         }
         private void Cancelar_Click(object sender, EventArgs e)
         {
