@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
+using System.Web.SessionState;
 
 namespace Gestão_Scouting
 {
@@ -18,7 +19,7 @@ namespace Gestão_Scouting
         private int currentRelatorioJogador;
         private static String List="";
         private static String Order="";
-        public static String[] ids;
+        public static Session["ids"] Pl_ids;
 
         public Form1()
         {
@@ -40,7 +41,7 @@ namespace Gestão_Scouting
         private SqlConnection getSGBDConnection()
         {
             //Local a Editar!!
-            return new SqlConnection("data source=LAPTOP-MH91MTBV;integrated security=true;initial catalog=Trabalho_Final");
+            return new SqlConnection("data source=LAPTOP-2KEGA0ER;integrated security=true;initial catalog=Proj");
         }
 
         private bool verifySGBDConnection()
@@ -97,7 +98,6 @@ namespace Gestão_Scouting
                 C.Dupla_Nacionalidade = reader["Dupla_Nacionalidade"].ToString();
                 C.Numero_Internacionalizao = reader["Numero_Internacionalizao"].ToString();
                 C.Lista_Idade_Maxima = reader["Lista_Idade_Maxima"].ToString();
-                
                 listBoxJogadores.Items.Add(C);
                 i++;
             }
