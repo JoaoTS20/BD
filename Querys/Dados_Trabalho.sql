@@ -1,4 +1,3 @@
-
 --Inserir Dados
 
 --Listas Observação Seleção
@@ -35,13 +34,15 @@ INSERT INTO Scouting.Selecionador VALUES(3,'Low','UEFA PRO','alemão',30)
 
 INSERT INTO Scouting.Observador VALUES(1,'José Boto','','português',42,'Aveiro')
 INSERT INTO Scouting.Observador VALUES(2,'Antero Henriques','UEFA A','português',43,'Lisboa')
+INSERT INTO Scouting.Observador VALUES(3,'Manuel Fernanades','UEFA B','português',38,'Porto')
+INSERT INTO Scouting.Observador VALUES(4,'Bruno Emanuel','','português',31,'Aveiro')
 
 
 --Clubes
 INSERT INTO Scouting.Clube VALUES (1,'Portugal','FCP')
 INSERT INTO Scouting.Clube VALUES (2,'Portugal','Arouca')
 
-
+--Responsavel
 INSERT INTO Scouting.Responsavel VALUES (21,3,'2019-05-01','2020-06-01')
 INSERT INTO Scouting.Responsavel VALUES (15,1,'4-01-2016','4-01-2018')
 INSERT INTO Scouting.Responsavel VALUES (19,2,'1-07-2014','1-07-2022')
@@ -53,13 +54,22 @@ INSERT INTO Scouting.Treina VALUES(2,'2019-03-21','2017-02-01',1)
 --Competições
 INSERT INTO Scouting.Competicao VALUES (1,'Iniciados',23)
 INSERT INTO Scouting.Competicao VALUES (2,'Juvenis Nacional PT A',18)
+INSERT INTO Scouting.Competicao VALUES (3,'Juniores Nacional PT A',18)
+
 
 --Jogos
-INSERT INTO Scouting.Jogo Values('Arouca','2012-05-11','2-0',1,1)
+INSERT INTO Scouting.Jogo VALUES('Arouca','2012-05-11','2-0',1,1)
 INSERT INTO Scouting.Jogo VALUES('Lisboa','2011-11-13','3-1',2,2)
+INSERT INTO Scouting.Jogo VALUES('Porto','2011-11-17','0-1',3,3)
+INSERT INTO Scouting.Jogo VALUES('Aveiro','2011-11-18','3-2',3,2)
+SELECT * FROM Scouting.Jogo;
 --Relatório
 INSERT INtO Scouting.Relatorio Values(1,'Relatório João Moutinho','2012-05-13',1,8,'Arouca','2012-05-11')
-INSERT INtO Scouting.Relatorio Values(2,'Relatório Famoso Toni','2016-11-23',2,3,'Lisboa','2011-11-13')
+INSERT INtO Scouting.Relatorio Values(2,'Relatório Famoso Toni','2011-11-23',2,3,'Lisboa','2011-11-13')
+INSERT INtO Scouting.Relatorio Values(3,'Relatório Ricardo Sousa','2011-11-18',3,9,'Porto','2011-11-17')
+INSERT INtO Scouting.Relatorio Values(4,'Relatório Carvalho Sousa','2011-11-18',4,7,'Aveiro','2011-11-18')
+DELETE FROM Scouting.Relatorio WHERE Scouting.Relatorio.ID=3
+SELECT * FROM Scouting.Relatorio;
 
 --Participa_em
 INSERT INTO Scouting.Participa_Em Values(1,'2012-05-11','Arouca',21)
@@ -70,18 +80,36 @@ INSERT INTO Scouting.Participa_Em Values(2,'2012-05-11','Arouca',18)
 INSERT INTO Scouting.Jogador_Pertence_Clube VALUES (1,8,'1-07-2010','1-07-2013')
 INSERT INTO Scouting.Jogador_Pertence_Clube VALUES (2,3,'1-07-2010','1-07-2013')
 
-
-
---SELECT Jogador_Nome,Clube_Nome FROM   Scouting.Jogador JOIN (Scouting.Jogador_Pertence_Clube join Scouting.Clube ON Scouting.Jogador_Pertence_Clube.JPC_Clube_Numero_Inscricao_FIFA=Scouting.Clube.Clube_Numero_Inscricao_FIFA ) ON Scouting.Jogador.ID_FIFPRO = Scouting.Jogador_Pertence_Clube.ID_FIFPRO
-
-
 --Metodo de Observacao
 INSERT INTO Scouting.Observacao_Metodo_de_Observacao VALUES ('Presencial',1)
 
 --Dados_Analiticos_Abs
 INSERT INTO Scouting.Metricas_Jogo_Jogador VALUES (0,2,1,1,12,6,1,32,0,2,25,5,2,1)
+INSERT INTO Scouting.Metricas_Jogo_Jogador VALUES (0,2,1,1,12,6,1,32,0,2,25,5,2,1)
 
---Dados_Analiticos_Rel
+--Jog_Posicoes
+INSERT INTO Scouting.Jog_Posicoes VALUES ('MC',8);
+INSERT INTO Scouting.Jog_Posicoes VALUES ('MDF',8);
+INSERT INTO Scouting.Jog_Posicoes VALUES ('AVA',4);
+INSERT INTO Scouting.Jog_posicoes VALUES ('DLE',9);
+
+--Analise_Jogador
+INSERT INTO Scouting.Analise_Caracteristica_Jogador VALUES (1,1,70,65,'','Boa',76,83,78,1);
+INSERT INTO Scouting.Analise_Caracteristica_Jogador VALUES (2,2,78,78,'Passe','Boa',68,90,80,2);
+INSERT INTO Scouting.Analise_Caracteristica_Jogador VALUES (3,3,81,73,'Drible','Boa',78,83,77,3);
+INSERT INTO Scouting.Analise_Caracteristica_Jogador VALUES (4,4,77,80,'Visão de Jogo','Média',73,91,71,4);
+
+DELETE FROM Scouting.Analise_Caracteristica_Jogador WHERE Scouting.Analise_Caracteristica_Jogador.Rel_ID=3
+
+--Métricas do Jogo
+INSERT INTO Scouting.Metricas_Jogo_Jogador VALUES (1,0,2,1,40,28,12,90,0,8.2,143,8,2,2);
+INSERT INTO Scouting.Metricas_Jogo_Jogador VALUES (2,0,3,0,21,14,4,66,0,4.2,80,3,3,3);
+INSERT INTO Scouting.Metricas_Jogo_Jogador VALUES (3,1,4,1,50,41,6,81,0,6.8,93,5,2,4);
+
+SELECT * FROM Scouting.Metricas_Jogo_Jogador;
+
+--SELECT Jogador_Nome,Clube_Nome FROM   Scouting.Jogador JOIN (Scouting.Jogador_Pertence_Clube join Scouting.Clube ON Scouting.Jogador_Pertence_Clube.JPC_Clube_Numero_Inscricao_FIFA=Scouting.Clube.Clube_Numero_Inscricao_FIFA ) ON Scouting.Jogador.ID_FIFPRO = Scouting.Jogador_Pertence_Clube.ID_FIFPRO
+
 
 
 --Query a relacionar isto
@@ -89,13 +117,9 @@ INSERT INTO Scouting.Metricas_Jogo_Jogador VALUES (0,2,1,1,12,6,1,32,0,2,25,5,2,
 --SELECT * FROM Scouting.Jogador JOIN (Scouting.Observador JOIN (Scouting.Relatorio JOIN (Scouting.Dados_Analiticos_Rel JOIN Scouting.Dados_Analiticos_ABS ON Scouting.Dados_Analiticos_Rel.Rel_ID= Scouting.Dados_Analiticos_ABS.REL_ID )ON Scouting.Dados_Analiticos_Rel.Obs_Num_Iden_Federacao=ID) on Scouting.Observador.Numero_Identificacao_Federacao=Scouting.Relatorio.ID ) ON Scouting.Jogador.ID_FIFPro=Scouting.Relatorio.ID_FIFPro
 
 
---Jog_Posicoes
-INSERT INTO Scouting.Jog_Posicoes VALUES ('MC',8);
-INSERT INTO Scouting.Jog_Posicoes VALUES ('MDF',8);
 
---Analise_Jogador
 
-INSERT INTO Scouting.Analise_Caracteristica_Jogador VALUES (1,1,70,65,'','Boa',76,83,78,1);
+
 --SELECT * FROM Scouting.Jogador JOIN Scouting.Jog_Posicoes ON ID_FIFPro=Jog_Posicoes_ID_FIFPro
 
 
