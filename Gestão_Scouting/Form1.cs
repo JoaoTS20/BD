@@ -28,7 +28,7 @@ namespace Gestão_Scouting
         private void Form1_Load(object sender, EventArgs e)
         {
             cn = getSGBDConnection();
-            LoadJogadores("","");
+            LoadJogadores(List,Order);
             GetListaObservacaoSelecao();
             ListboxOrderSelec();
             comboBoxListaSelecao.SelectedIndex=0;
@@ -36,6 +36,7 @@ namespace Gestão_Scouting
 
         }
 
+        //Funções SQL
         private SqlConnection getSGBDConnection()
         {
             //Local a Editar!!
@@ -52,6 +53,7 @@ namespace Gestão_Scouting
 
             return cn.State == ConnectionState.Open;
         }
+        //----------------------------------------------------------------------------
 
         //Utils Functions
         private void toolStripMenuItem2_Click(object sender, EventArgs e)
@@ -59,9 +61,11 @@ namespace Gestão_Scouting
             LoadJogadores("","");
             comboBoxListaSelecao.SelectedIndex = 0;
         }
-
-
-
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+        //-----------------------------------------------------------------------------
 
         //Jogadores Functions
         private void LoadJogadores(String numero, String Order) //Com as alterações fica 70%feita
@@ -70,9 +74,11 @@ namespace Gestão_Scouting
                 return;
             SqlCommand cmd=new SqlCommand();
             SqlDataReader reader;
-            cmd.Connection = cn;
+            //cmd.Connection = cn;
             cmd.CommandType = CommandType.Text;
-            cmd.CommandText="EXEC Scouting.GetListaJogadores @IdadeList , @OrderBy";
+            cmd = new SqlCommand("Scouting.GetListaJogadores", cn);
+            cmd.CommandType = CommandType.StoredProcedure;
+            //cmd.CommandText="EXEC Scouting.GetListaJogadores @IdadeList , @OrderBy";
             cmd.Parameters.AddWithValue("@IdadeList", numero);
             cmd.Parameters.AddWithValue("@OrderBy", Order);
   
@@ -81,7 +87,6 @@ namespace Gestão_Scouting
             int i = 0;
             while (reader.Read())
             {
-
                 Jogador C = new Jogador();
                 C.ID_FIFPro = reader["ID_FIFPro"].ToString();
                 C.Jogador_Nome = reader["Jogador_Nome"].ToString();
@@ -103,6 +108,7 @@ namespace Gestão_Scouting
             ShowJogadores();
 
         }
+
         private void listBoxJogadores_SelectedIndexChanged_1(object sender, EventArgs e)
         {
             if (listBoxJogadores.SelectedIndex > 0)
@@ -112,6 +118,7 @@ namespace Gestão_Scouting
 
             }
         }
+            //Função Mostrar Jogadores
         public void ShowJogadores()
         {
             if (listBoxJogadores.Items.Count == 0 | currentJogador < 0)
@@ -148,7 +155,7 @@ namespace Gestão_Scouting
             
         }
 
-
+            //Mostrar Jogadores por Lista
         public void GetListaObservacaoSelecao()
         {
             SqlCommand cmd = new SqlCommand("SELECT * FROM Scouting.Lista_Observacao_Selecao", cn);
@@ -167,11 +174,11 @@ namespace Gestão_Scouting
             }
             reader.Close();
         }
-
+            //ComboBox Order by
         public void ListboxOrderSelec()
         {
             ComboBoxOrder Null = new ComboBoxOrder();
-            Null.Text = "";
+            Null.Text = "Null";
             Null.Value = "";
             comboBoxOrder.Items.Add(Null);
 
@@ -181,7 +188,7 @@ namespace Gestão_Scouting
             comboBoxOrder.Items.Add(Jogador_Nome);
 
             ComboBoxOrder Jogador_Altura = new ComboBoxOrder();
-            Jogador_Altura.Text = "Jogador_Altura";
+            Jogador_Altura.Text = "Altura";
             Jogador_Altura.Value = "Jogador_Altura";
             comboBoxOrder.Items.Add(Jogador_Altura);
 
@@ -195,19 +202,13 @@ namespace Gestão_Scouting
             Idade.Value = "Idade";
             comboBoxOrder.Items.Add(Idade);
 
-
-            //comboBoxOrder.Items.Add("ID_FIFPro");
-            //comboBoxOrder.Items.Add("Jogador_Nome");
-            //comboBoxOrder.Items.Add("Jogador_Altura");
-            //comboBoxOrder.Items.Add("Jogador_Peso");
-            //comboBoxOrder.Items.Add("Idade");
-            //comboBoxOrder.Items.Add("Pe_Favorito");
-            //comboBoxOrder.Items.Add("Dupla_Nacionalidade");
-            //comboBoxOrder.Items.Add("Numero_Internacionalizao");
-
+            ComboBoxOrder Numero_Internacionalizao = new ComboBoxOrder();
+            Idade.Text = "Internacionalizações";
+            Idade.Value = "Numero_Internacionalizao";
+            comboBoxOrder.Items.Add(Idade);
         }
 
-        //--Bloquear Dados Jogadores
+            //Bloquear Dados Jogadores
         public void LockJogadoresControls()
         {
             textID_FIFPro.ReadOnly = true;
@@ -221,8 +222,8 @@ namespace Gestão_Scouting
             radioButtonEsquerdo.Enabled = false;
             radioButtonDireito.Enabled = false;
         }
-
-        private void comboBoxListaSelecao_SelectedIndexChanged(object sender, EventArgs e) //Função na 80% certa
+            //Selecionar Tipo de Selecao
+        private void comboBoxListaSelecao_SelectedIndexChanged(object sender, EventArgs e) //Função na 90% certa
         {
             if (comboBoxListaSelecao.SelectedIndex >= 0)
             {
@@ -234,12 +235,21 @@ namespace Gestão_Scouting
 
             }
         }
-
-        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+            //Selecionar Order
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Application.Exit();
+            if (comboBoxListaSelecao.SelectedIndex >= 0)
+            {
+                ComboBoxOrder list = new ComboBoxOrder();
+                list = (ComboBoxOrder)comboBoxOrder.Items[comboBoxOrder.SelectedIndex];
+                String x = list.Value.ToString();
+                Order = x;
+                LoadJogadores(List, Order);
+
+            }
         }
 
+            //Criar Jogador
         private void buttonCriarJogadores_Click(object sender, EventArgs e)
         {
             if (listBoxJogadores.SelectedIndex > -1)
@@ -248,20 +258,27 @@ namespace Gestão_Scouting
             }
             AddPlayer ap = new AddPlayer();
             ap.ShowDialog();
+
         }
 
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+            // Editar Jogador
+        private void buttonEditarJogador_Click(object sender, EventArgs e)
         {
-            if (comboBoxListaSelecao.SelectedIndex >= 0)
-            {
-                ComboBoxOrder list = new ComboBoxOrder();
-                list = (ComboBoxOrder)comboBoxOrder.Items[comboBoxOrder.SelectedIndex];
-                Order = list.ToString();
-                LoadJogadores(List,Order);
-
-            }
 
         }
+            //Eliminar Jogador
+        private void buttonEliminarJogador_Click(object sender, EventArgs e)
+        {
+
+        }
+        //-----------------------------------------------------------------------------
+
+        //Funções Relatorio
+
+
+
     }
 }
+
+
 

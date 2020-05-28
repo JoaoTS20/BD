@@ -38,6 +38,8 @@ namespace Gestão_Scouting
             this.textJogadorNome = new System.Windows.Forms.TextBox();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.comboBoxOrder = new System.Windows.Forms.ComboBox();
+            this.label11 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.buttonEliminarRelatorio = new System.Windows.Forms.Button();
             this.buttonEditarRelatório = new System.Windows.Forms.Button();
@@ -69,8 +71,6 @@ namespace Gestão_Scouting
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.tabPage5 = new System.Windows.Forms.TabPage();
-            this.label11 = new System.Windows.Forms.Label();
-            this.comboBoxOrder = new System.Windows.Forms.ComboBox();
             this.menuStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -185,6 +185,25 @@ namespace Gestão_Scouting
             this.tabPage1.Text = "Jogadores";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
+            // comboBoxOrder
+            // 
+            this.comboBoxOrder.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxOrder.FormattingEnabled = true;
+            this.comboBoxOrder.Location = new System.Drawing.Point(57, 50);
+            this.comboBoxOrder.Name = "comboBoxOrder";
+            this.comboBoxOrder.Size = new System.Drawing.Size(284, 24);
+            this.comboBoxOrder.TabIndex = 31;
+            this.comboBoxOrder.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(6, 53);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(55, 17);
+            this.label11.TabIndex = 30;
+            this.label11.Text = "Ordem:";
+            // 
             // label10
             // 
             this.label10.AutoSize = true;
@@ -263,6 +282,7 @@ namespace Gestão_Scouting
             this.buttonEliminarJogador.TabIndex = 22;
             this.buttonEliminarJogador.Text = "Eliminar Jogador";
             this.buttonEliminarJogador.UseVisualStyleBackColor = true;
+            this.buttonEliminarJogador.Click += new System.EventHandler(this.buttonEliminarJogador_Click);
             // 
             // buttonEditarJogador
             // 
@@ -273,6 +293,7 @@ namespace Gestão_Scouting
             this.buttonEditarJogador.TabIndex = 21;
             this.buttonEditarJogador.Text = "Editar Jogador";
             this.buttonEditarJogador.UseVisualStyleBackColor = true;
+            this.buttonEditarJogador.Click += new System.EventHandler(this.buttonEditarJogador_Click);
             // 
             // buttonCriarJogadores
             // 
@@ -443,7 +464,7 @@ namespace Gestão_Scouting
             this.tabPage2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.tabPage2.Size = new System.Drawing.Size(1399, 837);
+            this.tabPage2.Size = new System.Drawing.Size(1539, 863);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Clubes";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -454,7 +475,7 @@ namespace Gestão_Scouting
             this.tabPage3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.tabPage3.Size = new System.Drawing.Size(1399, 837);
+            this.tabPage3.Size = new System.Drawing.Size(1539, 863);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Observadores";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -465,7 +486,7 @@ namespace Gestão_Scouting
             this.tabPage4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tabPage4.Name = "tabPage4";
             this.tabPage4.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.tabPage4.Size = new System.Drawing.Size(1399, 837);
+            this.tabPage4.Size = new System.Drawing.Size(1539, 863);
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "Competição";
             this.tabPage4.UseVisualStyleBackColor = true;
@@ -476,29 +497,10 @@ namespace Gestão_Scouting
             this.tabPage5.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tabPage5.Name = "tabPage5";
             this.tabPage5.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.tabPage5.Size = new System.Drawing.Size(1399, 837);
+            this.tabPage5.Size = new System.Drawing.Size(1539, 863);
             this.tabPage5.TabIndex = 4;
             this.tabPage5.Text = "Gestão";
             this.tabPage5.UseVisualStyleBackColor = true;
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(6, 53);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(55, 17);
-            this.label11.TabIndex = 30;
-            this.label11.Text = "Ordem:";
-            // 
-            // comboBoxOrder
-            // 
-            this.comboBoxOrder.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBoxOrder.FormattingEnabled = true;
-            this.comboBoxOrder.Location = new System.Drawing.Point(57, 50);
-            this.comboBoxOrder.Name = "comboBoxOrder";
-            this.comboBoxOrder.Size = new System.Drawing.Size(284, 24);
-            this.comboBoxOrder.TabIndex = 31;
-            this.comboBoxOrder.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
             // Form1
             // 
