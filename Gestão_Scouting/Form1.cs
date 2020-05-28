@@ -8,7 +8,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
-using System.Web.SessionState;
 
 namespace Gestão_Scouting
 {
@@ -19,7 +18,7 @@ namespace Gestão_Scouting
         private int currentRelatorioJogador;
         private static String List="";
         private static String Order="";
-        public static Session["ids"] Pl_ids;
+        public static  String[] ids; 
 
         public Form1()
         {
@@ -41,7 +40,7 @@ namespace Gestão_Scouting
         private SqlConnection getSGBDConnection()
         {
             //Local a Editar!!
-            return new SqlConnection("data source=LAPTOP-2KEGA0ER;integrated security=true;initial catalog=Proj");
+            return new SqlConnection("data source=LAPTOP-MH91MTBV;integrated security=true;initial catalog=Trabalho_Final");
         }
 
         private bool verifySGBDConnection()
@@ -114,7 +113,13 @@ namespace Gestão_Scouting
             if (listBoxJogadores.SelectedIndex > 0)
             {
                 currentJogador = listBoxJogadores.SelectedIndex;
+                
+                //Mostrar Jogadores
                 ShowJogadores();
+                //Mostrar Posicoes Jogadores
+                PosicoesInsert(textID_FIFPro.Text);
+                //Mostrar Relatorios Jogadores
+                RelatoriosInsert(textID_FIFPro.Text);
 
             }
         }
@@ -152,7 +157,34 @@ namespace Gestão_Scouting
             {
                 textDuplaNacionalidade.Text = "Não";
             }
+
             
+
+
+           
+        }
+            //ObterPosicoes;
+        public void PosicoesInsert(String x)
+        {
+            SqlCommand cmda = new SqlCommand();
+            SqlDataReader readera;
+            //cmd.Connection = cn;
+            cmda.CommandType = CommandType.Text;
+            cmda = new SqlCommand("Scouting.GetPosicoesByJogador", cn);
+            cmda.CommandType = CommandType.StoredProcedure;
+            cmda.Parameters.AddWithValue("@ID", x);
+            readera = cmda.ExecuteReader();
+            listBoxPosicoes.Items.Clear();
+            while (readera.Read())
+            {
+                Jog_Posicoes L = new Jog_Posicoes();
+                L.J_Posicoes_ID_FIFPro = readera["Jog_Posicoes_ID_FIFPro"].ToString();
+                L.J_Posicoes = readera["J_Posicoes"].ToString();
+                
+                listBoxPosicoes.Items.Add(L.ToString());
+            }
+            readera.Close();
+
         }
 
             //Mostrar Jogadores por Lista
@@ -274,7 +306,32 @@ namespace Gestão_Scouting
         //-----------------------------------------------------------------------------
 
         //Funções Relatorio
+        public void RelatoriosInsert(String x)
+        {
+            SqlCommand cmda = new SqlCommand();
+            SqlDataReader readera;
+            //cmd.Connection = cn;
+            cmda.CommandType = CommandType.Text;
+            cmda = new SqlCommand("Scouting.GetRelatorioByJogador", cn);
+            cmda.CommandType = CommandType.StoredProcedure;
+            cmda.Parameters.AddWithValue("@ID", x);
+            readera = cmda.ExecuteReader();
+            listBoxRelatoriosJogador.Items.Clear();
+            while (readera.Read())
+            {
+                Relatorio L = new Relatorio();
+                L.ID = readera["ID"].ToString();
+                L.Relatorio_Titulo = readera["Relatorio_Titulo"].ToString();
+                L.Relatorio_Data = readera["Relatorio_Data"].ToString();
+                L.Numero_Identificacao_Federacao = readera["Numero_Identificacao_Federacao"].ToString();
+                L.ID_FIFPro = readera["ID_FIFPro"].ToString();
+                L.Jogo_Local = readera["Jogo_Local"].ToString();
+                L.Jogo_Data = readera["Jogo_Data"].ToString();
+                listBoxRelatoriosJogador.Items.Add(L.ToString());
+            }
+            readera.Close();
 
+        }
 
 
     }

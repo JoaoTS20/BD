@@ -119,3 +119,21 @@ AS
 
 	EXEC Scouting.GetListaJogadores '15','IDADE'
 	DROP procedure Scouting.GetListaJogadores
+
+
+--Obter Posições Jogadores
+CREATE PROCEDURE Scouting.GetPosicoesByJogador @ID varchar(30)
+AS
+SELECT Scouting.Jog_Posicoes.Jog_Posicoes_ID_FIFPro, Scouting.Jog_Posicoes.J_Posicoes FROM Scouting.Jogador JOIN Scouting.Jog_Posicoes ON ID_FIFPro=Jog_Posicoes_ID_FIFPro WHERE Scouting.Jogador.ID_FIFPro=@ID;
+
+EXEC Scouting.GetPosicoesByJogador 8
+Drop procedure Scouting.GetPosicoesByJogador
+
+
+--Obter Relatório Jogador
+Create Procedure Scouting.GetRelatorioByJogador @ID varchar(9)
+AS
+	SELECT Scouting.Relatorio.* FROM Scouting.Relatorio where ID_FIFPro=@ID 
+
+EXEC Scouting.GetRelatorioByJogador 8
+Drop procedure Scouting.GetRelatorioByJogador

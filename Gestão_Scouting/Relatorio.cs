@@ -60,7 +60,7 @@ namespace Gestão_Scouting
 
 		public override String ToString()
 		{
-			return _ID + " " + _Relatorio_Titulo+ " "+ _Relatorio_Data;
+			return _ID + " " + _Relatorio_Titulo+ " "+ _Relatorio_Data.Split(' ')[0];
 
 		}
 

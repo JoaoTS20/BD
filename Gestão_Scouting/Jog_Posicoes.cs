@@ -10,6 +10,7 @@ namespace Gestão_Scouting
     {
         private String _J_Posicoes;
         private String _Jog_Posicoes_ID_FIFPro;
+
 		public String J_Posicoes
 		{
 			get { return _J_Posicoes; }
@@ -19,6 +20,11 @@ namespace Gestão_Scouting
 		{
 			get { return _Jog_Posicoes_ID_FIFPro; }
 			set { _Jog_Posicoes_ID_FIFPro = value; }
+		}
+		public override String ToString()
+		{
+			return _J_Posicoes;
+
 		}
 	}
 }

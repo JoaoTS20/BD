@@ -71,6 +71,8 @@ namespace Gestão_Scouting
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.tabPage5 = new System.Windows.Forms.TabPage();
+            this.listBoxPosicoes = new System.Windows.Forms.ListBox();
+            this.label12 = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -146,6 +148,8 @@ namespace Gestão_Scouting
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.label12);
+            this.tabPage1.Controls.Add(this.listBoxPosicoes);
             this.tabPage1.Controls.Add(this.comboBoxOrder);
             this.tabPage1.Controls.Add(this.label11);
             this.tabPage1.Controls.Add(this.label10);
@@ -246,7 +250,7 @@ namespace Gestão_Scouting
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(527, 262);
+            this.label9.Location = new System.Drawing.Point(527, 289);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(72, 17);
             this.label9.TabIndex = 25;
@@ -256,7 +260,7 @@ namespace Gestão_Scouting
             // 
             this.listBoxRelatoriosJogador.FormattingEnabled = true;
             this.listBoxRelatoriosJogador.ItemHeight = 16;
-            this.listBoxRelatoriosJogador.Location = new System.Drawing.Point(375, 294);
+            this.listBoxRelatoriosJogador.Location = new System.Drawing.Point(375, 327);
             this.listBoxRelatoriosJogador.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.listBoxRelatoriosJogador.Name = "listBoxRelatoriosJogador";
             this.listBoxRelatoriosJogador.Size = new System.Drawing.Size(381, 340);
@@ -502,6 +506,24 @@ namespace Gestão_Scouting
             this.tabPage5.Text = "Gestão";
             this.tabPage5.UseVisualStyleBackColor = true;
             // 
+            // listBoxPosicoes
+            // 
+            this.listBoxPosicoes.FormattingEnabled = true;
+            this.listBoxPosicoes.ItemHeight = 16;
+            this.listBoxPosicoes.Location = new System.Drawing.Point(504, 167);
+            this.listBoxPosicoes.Name = "listBoxPosicoes";
+            this.listBoxPosicoes.Size = new System.Drawing.Size(120, 68);
+            this.listBoxPosicoes.TabIndex = 32;
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(504, 146);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(65, 17);
+            this.label12.TabIndex = 33;
+            this.label12.Text = "Posições";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -569,6 +591,8 @@ namespace Gestão_Scouting
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
         private System.Windows.Forms.ComboBox comboBoxOrder;
         private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.ListBox listBoxPosicoes;
     }
 }
 
