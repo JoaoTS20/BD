@@ -16,6 +16,8 @@ namespace Gestão_Scouting
         private SqlConnection cn;
         private int currentJogador;
         private int currentRelatorioJogador;
+        private static String List="";
+        private static String Order="";
         public static String[] ids;
 
         public Form1()
@@ -26,8 +28,10 @@ namespace Gestão_Scouting
         private void Form1_Load(object sender, EventArgs e)
         {
             cn = getSGBDConnection();
-            LoadJogadores("");
+            LoadJogadores("","");
             GetListaObservacaoSelecao();
+            ListboxOrderSelec();
+            comboBoxListaSelecao.SelectedIndex=0;
 
 
         }
@@ -35,7 +39,7 @@ namespace Gestão_Scouting
         private SqlConnection getSGBDConnection()
         {
             //Local a Editar!!
-            return new SqlConnection("data source= LAPTOP-2KEGA0ER;integrated security=true;initial catalog=Proj");
+            return new SqlConnection("data source=LAPTOP-MH91MTBV;integrated security=true;initial catalog=Trabalho_Final");
         }
 
         private bool verifySGBDConnection()
@@ -52,7 +56,7 @@ namespace Gestão_Scouting
         //Utils Functions
         private void toolStripMenuItem2_Click(object sender, EventArgs e)
         {
-            LoadJogadores("");
+            LoadJogadores("","");
             comboBoxListaSelecao.SelectedIndex = 0;
         }
 
@@ -60,23 +64,18 @@ namespace Gestão_Scouting
 
 
         //Jogadores Functions
-        private void LoadJogadores(String numero) //Com as alterações fica 70%feita
+        private void LoadJogadores(String numero, String Order) //Com as alterações fica 70%feita
         {
             if (!verifySGBDConnection())
                 return;
-            SqlCommand cmd;
+            SqlCommand cmd=new SqlCommand();
             SqlDataReader reader;
-            //Esta parte aqui é feita numa query UDF ou Stored Procedure
-            if (numero == "")
-            {   
-                
-                cmd = new SqlCommand("SELECT * FROM Scouting.Jogador", cn);
-            }
-            else
-            {
-                String x = "SELECT * FROM Scouting.Jogador WHERE Lista_Idade_Maxima =" + numero;
-                cmd = new SqlCommand(x, cn);
-            }
+            cmd.Connection = cn;
+            cmd.CommandType = CommandType.Text;
+            cmd.CommandText="EXEC Scouting.GetListaJogadores @IdadeList , @OrderBy";
+            cmd.Parameters.AddWithValue("@IdadeList", numero);
+            cmd.Parameters.AddWithValue("@OrderBy", Order);
+  
             reader = cmd.ExecuteReader();
             listBoxJogadores.Items.Clear();
             int i = 0;
@@ -169,6 +168,45 @@ namespace Gestão_Scouting
             reader.Close();
         }
 
+        public void ListboxOrderSelec()
+        {
+            ComboBoxOrder Null = new ComboBoxOrder();
+            Null.Text = "";
+            Null.Value = "";
+            comboBoxOrder.Items.Add(Null);
+
+            ComboBoxOrder Jogador_Nome = new ComboBoxOrder();
+            Jogador_Nome.Text = "Nome";
+            Jogador_Nome.Value = "Jogador_Nome";
+            comboBoxOrder.Items.Add(Jogador_Nome);
+
+            ComboBoxOrder Jogador_Altura = new ComboBoxOrder();
+            Jogador_Altura.Text = "Jogador_Altura";
+            Jogador_Altura.Value = "Jogador_Altura";
+            comboBoxOrder.Items.Add(Jogador_Altura);
+
+            ComboBoxOrder Jogador_Peso = new ComboBoxOrder();
+            Jogador_Peso.Text = "Peso";
+            Jogador_Peso.Value = "Jogador_Peso";
+            comboBoxOrder.Items.Add(Jogador_Peso);
+
+            ComboBoxOrder Idade = new ComboBoxOrder();
+            Idade.Text = "Idade";
+            Idade.Value = "Idade";
+            comboBoxOrder.Items.Add(Idade);
+
+
+            //comboBoxOrder.Items.Add("ID_FIFPro");
+            //comboBoxOrder.Items.Add("Jogador_Nome");
+            //comboBoxOrder.Items.Add("Jogador_Altura");
+            //comboBoxOrder.Items.Add("Jogador_Peso");
+            //comboBoxOrder.Items.Add("Idade");
+            //comboBoxOrder.Items.Add("Pe_Favorito");
+            //comboBoxOrder.Items.Add("Dupla_Nacionalidade");
+            //comboBoxOrder.Items.Add("Numero_Internacionalizao");
+
+        }
+
         //--Bloquear Dados Jogadores
         public void LockJogadoresControls()
         {
@@ -191,7 +229,8 @@ namespace Gestão_Scouting
                 Lista_Observacao_Selecao list = new Lista_Observacao_Selecao();
                 list = (Lista_Observacao_Selecao)comboBoxListaSelecao.Items[comboBoxListaSelecao.SelectedIndex];
                 String name = list.Lista_Idade_Maxima.ToString();
-                LoadJogadores(name);
+                List = name;
+                LoadJogadores(List,Order);
 
             }
         }
@@ -209,6 +248,19 @@ namespace Gestão_Scouting
             }
             AddPlayer ap = new AddPlayer();
             ap.ShowDialog();
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (comboBoxListaSelecao.SelectedIndex >= 0)
+            {
+                ComboBoxOrder list = new ComboBoxOrder();
+                list = (ComboBoxOrder)comboBoxOrder.Items[comboBoxOrder.SelectedIndex];
+                Order = list.ToString();
+                LoadJogadores(List,Order);
+
+            }
+
         }
     }
 }

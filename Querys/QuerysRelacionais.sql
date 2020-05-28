@@ -23,3 +23,36 @@ SELECT * FROM Scouting.Analise_Caracteristica_Jogador;
 SELECT * FROM (Scouting.Jogador JOIN Scouting.Relatorio ON Scouting.Jogador.ID_FIFPro=Scouting.Relatorio.ID_FIFPro)
 				JOIN Scouting.Analise_Caracteristica_Jogador ON Scouting.Analise_Caracteristica_Jogador.Rel_ID=Scouting.Relatorio.ID
 				WHERE Scouting.Analise_Caracteristica_Jogador.Qualidade_Atual>70 AND Scouting.Analise_Caracteristica_Jogador.Capacidade_Decisao>80;
+
+
+--GetListaJogadores e como Ordenar
+CREATE PROCEDURE Scouting.GetListaJogadores (@IdadeList varchar(3), @OrderBy varchar(50))
+AS
+	
+		DECLARE @SQLStatement varchar(300)
+		IF(LEN(@IdadeList)=0 AND LEN(@OrderBy)>0 )
+			BEGIN
+			SELECT @SQLStatement= 'SELECT * FROM Scouting.Jogador ORDER BY ' + @OrderBy;
+			EXEC(@SQLStatement)
+			END
+		IF (LEN(@OrderBy)=0 AND LEN(@IdadeList)>0)
+			BEGIN
+			SELECT @SQLStatement= 'SELECT * FROM Scouting.Jogador WHERE Scouting.Jogador.Lista_Idade_Maxima =' + @IdadeList;
+			EXEC(@SQLStatement)
+			END
+		IF(LEN(@OrderBy) =0 AND LEN(@IdadeList)=0)
+			BEGIN
+			SELECT @SQLStatement= 'SELECT * FROM Scouting.Jogador'
+			EXEC(@SQLStatement)
+			END
+		IF(LEN(@OrderBy)>0 AND LEN(@IdadeList)>0)
+			BEGIN
+			SELECT @SQLStatement= 'SELECT * FROM Scouting.Jogador WHERE Scouting.Jogador.Lista_Idade_Maxima =' + @IdadeList +
+			' ORDER BY ' + @OrderBy;
+			EXEC(@SQLStatement)
+			END
+
+	
+
+	EXEC Scouting.GetListaJogadores '15','IDADE'
+	DROP procedure Scouting.GetListaJogadores

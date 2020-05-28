@@ -53,6 +53,7 @@
       <DependentUpon>AddPlayer.cs</DependentUpon>
     </Compile>
     <Compile Include="Clube.cs" />
+    <Compile Include="ComboBoxOrder.cs" />
     <Compile Include="Competicao.cs" />
     <Compile Include="Dados_Analiticos_Abs.cs" />
     <Compile Include="Dados_Analiticos_Rel.cs" />
