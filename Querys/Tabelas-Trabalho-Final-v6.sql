@@ -1,4 +1,5 @@
-use Proj;
+CREATE DATABASE Project;
+use Project;
 
 CREATE SCHEMA Scouting;
 GO
@@ -11,7 +12,7 @@ CREATE TABLE Scouting.Jogador (
 	Pe_Favorito bit,
 	Idade int NOT NULL CHECK(Idade>0),
 	Dupla_Nacionalidade bit,
-	Numero_Internacionalizao int,
+	Numero_Internacionalizacoes int,
 	Lista_Idade_Maxima int ,
 	CHECK (Idade <= Lista_Idade_Maxima),
 	CHECK (Dupla_Nacionalidade >= 0)
@@ -19,15 +20,15 @@ CREATE TABLE Scouting.Jogador (
 );
 
 CREATE TABLE Scouting.Relatorio(
-	ID varchar(9) PRIMARY KEY,
+	ID INT IDENTITY(0,1)PRIMARY KEY,
 	Relatorio_Titulo varchar(50)  NOT NULL,
 	Relatorio_Data date  NOT NULL,
 	Numero_Identificacao_Federacao varchar(9),
 	ID_FIFPro varchar(9),
 	Jogo_Local varchar(100),
 	Jogo_Data date,
-	UNIQUE(Numero_Identificacao_Federacao),
-	UNIQUE(ID_FIFPro)
+	--UNIQUE(Numero_Identificacao_Federacao),
+	--UNIQUE(ID_FIFPro)
 	--FOREIGN KEY Numero_Identificacao_Federacao REFERENCES Scouting.Observador(Numero_Identificacao_Federacao),
 	--FOREIGN KEY Jogo_Local REFERENCES Scouting.Jogo(Jogo_Local),
 	--FOREIGN KEY ID_FIFPro REFERENCES Scouting.Jogador(ID_FIFPro),
@@ -37,8 +38,8 @@ CREATE TABLE Scouting.Relatorio(
 CREATE TYPE Dados_Value from INT NOT NULL;
 
 CREATE TABLE Scouting.Analise_Caracteristica_Jogador(
-	ID_Auto_Carateristicas int PRIMARY KEY,
-	Rel_ID varchar(9),
+	ID_Auto_Carateristicas int IDENTITY(0,1) PRIMARY KEY,
+	Rel_ID int,
 	Qualidade_Atual Dados_Value CHECK (Qualidade_Atual>0 AND Qualidade_Atual<=100),
 	Qualidade_Potencial Dados_Value CHECK (Qualidade_Potencial>0 AND Qualidade_Potencial <=100), 
 	Melhor_Atributo varchar(50),
@@ -50,14 +51,14 @@ CREATE TABLE Scouting.Analise_Caracteristica_Jogador(
 	--FOREIGN KEY Rel_ID REFERENCES Scouting.Relatorio(ID),
 	--FOREIGN KEY Obs_Num_Iden_Federacao REFERENCES Scouting.Observador(Numero_Identificacao_Federacao),
 	UNIQUE(Rel_ID),
-	UNIQUE(Obs_Num_Iden_Federacao)
+	--UNIQUE(Obs_Num_Iden_Federacao)
 	
 );
 
 CREATE TABLE Scouting.Metricas_Jogo_Jogador(
-	ID_Auto_Metricas int PRIMARY KEY,
+	ID_Auto_Metricas int IDENTITY(0,1) PRIMARY KEY,
 	Numero_Golos Dados_Value,
-	Rel_ID varchar(9),
+	Rel_ID int,
 	Numero_Assistencias Dados_Value,
 	Numero_Passes_Efectuados Dados_Value,
 	Numero_Passes_Completos Dados_Value,
@@ -72,7 +73,7 @@ CREATE TABLE Scouting.Metricas_Jogo_Jogador(
 	CHECK(Numero_Passes_Completos<Numero_Passes_Efectuados),
 	CHECK(Numero_Assistencias<Numero_Passes_Completos),
 	CHECK(Numero_Toques>Numero_Passes_Efectuados AND Numero_Toques>Numero_Remates),
-	UNIQUE(Obs_Num_Iden_Federacao),
+	--UNIQUE(Obs_Num_Iden_Federacao),
 	UNIQUE(Rel_ID),
 	--FOREIGN KEY Rel_ID REFERENCES Scouting.Relatorio(ID),
 	--FOREIGN KEY Obs_Num_Iden_Federacao REFERENCES Scouting.Observador(Numero_Identificacao_Federacao);
@@ -93,11 +94,11 @@ CREATE TABLE Scouting.Lista_Observacao_Selecao(
 );
 
 CREATE TABLE Scouting.Responsavel(
-Idade_Maxima int,
-Selec_Numero_Iden_Federacao varchar(9),
-Res_Data_Inicio date,
-Res_Data_Final date,
-CHECK(Res_Data_Final>Res_Data_Inicio)
+	Idade_Maxima int,
+	Selec_Numero_Iden_Federacao varchar(9),
+	Res_Data_Inicio date,
+	Res_Data_Final date,
+	CHECK(Res_Data_Final>Res_Data_Inicio)
 );
 
 CREATE TABLE Scouting.Jog_Posicoes(
@@ -148,10 +149,11 @@ CREATE TABLE Scouting.Participa_Em(
 
 CREATE TABLE Scouting.Observacao_Metodo_de_Observacao(
 	Rel_Metodo_de_Observacao varchar(15),
-	Rel_ID_Relatorio varchar(9),
+	Rel_ID_Relatorio INT,
 	--FOREIGN KEY Numero_Identificacao_Federacao REFERENCES Scouting.Relatorio(ID)
 	PRIMARY KEY(Rel_Metodo_de_Observacao,Rel_ID_Relatorio)
 );
+DROP table Scouting.Observacao_Metodo_de_Observacao
 
 CREATE TABLE Scouting.Selecionador(
 	Selecionador_Numero_Identificacao_Federacao varchar(9) PRIMARY KEY,
@@ -163,15 +165,16 @@ CREATE TABLE Scouting.Selecionador(
 
 
 CREATE TABLE Scouting.Jogo(
-	Jogo_Local varchar(100),
-	Jogo_Data date,
+	Jogo_Local varchar(100) Not null,
+	Jogo_Data date Not Null,
 	Resultado varchar(5) NOT NULL,
 	Jogo_Competicao_ID_FIFA varchar(9),
 	Obs_Num_Iden_Federacao varchar(9),
-	UNIQUE(Jogo_Local),
-	UNIQUE(Jogo_Data),
+	--UNIQUE(Jogo_Local),
+	--UNIQUE(Jogo_Data),
 	PRIMARY KEY(Jogo_Local,Jogo_Data)
 );
+drop table Scouting.Jogo
 
 CREATE TABLE Scouting.Treinador(
 	Treinador_Numero_Inscricao_FIFA varchar(9) PRIMARY KEY,
@@ -206,10 +209,10 @@ ADD FOREIGN KEY (Lista_Idade_Maxima) REFERENCES Scouting.Lista_Observacao_Seleca
 
 ALTER TABLE Scouting.Relatorio
 	ADD FOREIGN KEY (Numero_Identificacao_Federacao) REFERENCES Scouting.Observador(Numero_Identificacao_Federacao),
-		FOREIGN KEY (Jogo_Local) REFERENCES Scouting.Jogo(Jogo_Local),
-		FOREIGN KEY (ID_FIFPro) REFERENCES Scouting.Jogador(ID_FIFPro),
-		FOREIGN KEY (Jogo_Data) REFERENCES Scouting.Jogo(Jogo_Data);
-;
+		FOREIGN KEY (Jogo_Local,Jogo_Data) REFERENCES Scouting.Jogo(Jogo_Local,Jogo_Data),
+		FOREIGN KEY (ID_FIFPro) REFERENCES Scouting.Jogador(ID_FIFPro);
+		--FOREIGN KEY (Jogo_Data) REFERENCES Scouting.Jogo(Jogo_Data);
+--;
 
 
 ALTER TABLE Scouting.Analise_Caracteristica_Jogador
@@ -233,8 +236,8 @@ ALTER TABLE Scouting.Jogador_Pertence_Clube
 
 ALTER TABLE Scouting.Participa_Em
 	ADD FOREIGN KEY (Participa_Clube_Numero_Inscricao_FIFA) REFERENCES Scouting.Clube(Clube_Numero_Inscricao_FIFA),
-		FOREIGN KEY (Participa_Em_Jogo_Data) REFERENCES Scouting.Jogo(Jogo_Data),
-		FOREIGN KEY (Participa_Em_Jogo_Local) REFERENCES Scouting.Jogo(Jogo_Local);
+		FOREIGN KEY (Participa_Em_Jogo_Local,Participa_Em_Jogo_Data) REFERENCES Scouting.Jogo(Jogo_Local,Jogo_Data);
+		--FOREIGN KEY (Participa_Em_Jogo_Local) REFERENCES Scouting.Jogo(Jogo_Local);
 
 ALTER TABLE Scouting.Observacao_Metodo_de_Observacao
 	ADD FOREIGN KEY (Rel_ID_Relatorio) REFERENCES Scouting.Relatorio(ID);

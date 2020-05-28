@@ -1,4 +1,4 @@
---Inserir Dados
+	--Inserir Dados
 
 --Listas Observação Seleção
 INSERT INTO Scouting.Lista_Observacao_selecao VALUES (21,'Sub-21')
@@ -64,10 +64,10 @@ INSERT INTO Scouting.Jogo VALUES('Porto','2011-11-17','0-1',3,3)
 INSERT INTO Scouting.Jogo VALUES('Aveiro','2011-11-18','3-2',3,2)
 SELECT * FROM Scouting.Jogo;
 --Relatório
-INSERT INtO Scouting.Relatorio Values(1,'Relatório João Moutinho','2012-05-13',1,8,'Arouca','2012-05-11')
-INSERT INtO Scouting.Relatorio Values(2,'Relatório Famoso Toni','2011-11-23',2,3,'Lisboa','2011-11-13')
-INSERT INtO Scouting.Relatorio Values(3,'Relatório Ricardo Sousa','2011-11-18',3,9,'Porto','2011-11-17')
-INSERT INtO Scouting.Relatorio Values(4,'Relatório Carvalho Sousa','2011-11-18',4,7,'Aveiro','2011-11-18')
+INSERT INtO Scouting.Relatorio Values('Relatório João Moutinho','2012-05-13',1,8,'Arouca','2012-05-11')
+INSERT INtO Scouting.Relatorio Values('Relatório Famoso Toni','2011-11-23',2,3,'Lisboa','2011-11-13')
+INSERT INtO Scouting.Relatorio Values('Relatório Famoso Toni v2','2011-11-18',1,3,'Porto','2011-11-17')
+INSERT INtO Scouting.Relatorio Values('Relatório Carvalho Sousa','2011-11-18',4,7,'Aveiro','2011-11-18')
 DELETE FROM Scouting.Relatorio WHERE Scouting.Relatorio.ID=3
 SELECT * FROM Scouting.Relatorio;
 
@@ -81,31 +81,27 @@ INSERT INTO Scouting.Jogador_Pertence_Clube VALUES (1,8,'1-07-2010','1-07-2013')
 INSERT INTO Scouting.Jogador_Pertence_Clube VALUES (2,3,'1-07-2010','1-07-2013')
 
 --Metodo de Observacao
-INSERT INTO Scouting.Observacao_Metodo_de_Observacao VALUES ('Presencial',1)
-
---Dados_Analiticos_Abs
-INSERT INTO Scouting.Metricas_Jogo_Jogador VALUES (0,2,1,1,12,6,1,32,0,2,25,5,2,1)
-INSERT INTO Scouting.Metricas_Jogo_Jogador VALUES (0,2,1,1,12,6,1,32,0,2,25,5,2,1)
+INSERT INTO Scouting.Observacao_Metodo_de_Observacao VALUES ('Presencial',11)
 
 --Jog_Posicoes
 INSERT INTO Scouting.Jog_Posicoes VALUES ('MC',8);
 INSERT INTO Scouting.Jog_Posicoes VALUES ('MDF',8);
-INSERT INTO Scouting.Jog_Posicoes VALUES ('AVA',4);
+INSERT INTO Scouting.Jog_Posicoes VALUES ('PL',4);
 INSERT INTO Scouting.Jog_posicoes VALUES ('DLE',9);
 
 --Analise_Jogador
-INSERT INTO Scouting.Analise_Caracteristica_Jogador VALUES (1,1,70,65,'','Boa',76,83,78,1);
-INSERT INTO Scouting.Analise_Caracteristica_Jogador VALUES (2,2,78,78,'Passe','Boa',68,90,80,2);
-INSERT INTO Scouting.Analise_Caracteristica_Jogador VALUES (3,3,81,73,'Drible','Boa',78,83,77,3);
-INSERT INTO Scouting.Analise_Caracteristica_Jogador VALUES (4,4,77,80,'Visão de Jogo','Média',73,91,71,4);
+INSERT INTO Scouting.Analise_Caracteristica_Jogador VALUES (11,70,65,'','Boa',76,83,78,1);
+INSERT INTO Scouting.Analise_Caracteristica_Jogador VALUES (12,78,78,'Passe','Boa',68,90,80,2);
+INSERT INTO Scouting.Analise_Caracteristica_Jogador VALUES (13,81,73,'Drible','Boa',78,83,77,3);
+INSERT INTO Scouting.Analise_Caracteristica_Jogador VALUES (14,77,80,'Visão de Jogo','Média',73,91,71,4);
+
 
 DELETE FROM Scouting.Analise_Caracteristica_Jogador WHERE Scouting.Analise_Caracteristica_Jogador.Rel_ID=3
 
 --Métricas do Jogo
-INSERT INTO Scouting.Metricas_Jogo_Jogador VALUES (1,0,2,1,40,28,12,90,0,8.2,143,8,2,2);
-INSERT INTO Scouting.Metricas_Jogo_Jogador VALUES (2,0,3,0,21,14,4,66,0,4.2,80,3,3,3);
-INSERT INTO Scouting.Metricas_Jogo_Jogador VALUES (3,1,4,1,50,41,6,81,0,6.8,93,5,2,4);
-
+INSERT INTO Scouting.Metricas_Jogo_Jogador VALUES (0,12,1,40,28,12,90,0,8.2,143,8,2,2);
+INSERT INTO Scouting.Metricas_Jogo_Jogador VALUES (0,13,0,21,14,4,66,0,4.2,80,3,3,3);
+INSERT INTO Scouting.Metricas_Jogo_Jogador VALUES (1,14,1,50,41,6,81,0,6.8,93,5,2,4);
 SELECT * FROM Scouting.Metricas_Jogo_Jogador;
 
 --SELECT Jogador_Nome,Clube_Nome FROM   Scouting.Jogador JOIN (Scouting.Jogador_Pertence_Clube join Scouting.Clube ON Scouting.Jogador_Pertence_Clube.JPC_Clube_Numero_Inscricao_FIFA=Scouting.Clube.Clube_Numero_Inscricao_FIFA ) ON Scouting.Jogador.ID_FIFPRO = Scouting.Jogador_Pertence_Clube.ID_FIFPRO
