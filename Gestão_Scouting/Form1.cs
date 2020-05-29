@@ -40,7 +40,7 @@ namespace Gestão_Scouting
         private SqlConnection getSGBDConnection()
         {
             //Local a Editar!!
-            return new SqlConnection("data source=LAPTOP-MH91MTBV;integrated security=true;initial catalog=Trabalho_Final");
+            return new SqlConnection("data source=LAPTOP-2KEGA0ER;integrated security=true;initial catalog=Project");
         }
 
         private bool verifySGBDConnection()
@@ -95,7 +95,7 @@ namespace Gestão_Scouting
                 C.Pe_Favorito = reader["Pe_Favorito"].ToString();
                 C.Idade = reader["Idade"].ToString();
                 C.Dupla_Nacionalidade = reader["Dupla_Nacionalidade"].ToString();
-                C.Numero_Internacionalizao = reader["Numero_Internacionalizao"].ToString();
+                C.Numero_Internacionalizao = reader["Numero_Internacionalizacoes"].ToString();
                 C.Lista_Idade_Maxima = reader["Lista_Idade_Maxima"].ToString();
                 listBoxJogadores.Items.Add(C);
                 i++;
@@ -333,7 +333,11 @@ namespace Gestão_Scouting
 
         }
 
-
+        private void GoToInfoRelatorio(object sender, MouseEventArgs e)
+        {
+            DadosRelatorio dr = new DadosRelatorio();
+            dr.ShowDialog();
+        }
     }
 }
 

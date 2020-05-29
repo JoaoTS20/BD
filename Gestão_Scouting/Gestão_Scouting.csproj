@@ -55,6 +55,12 @@
     <Compile Include="Clube.cs" />
     <Compile Include="ComboBoxOrder.cs" />
     <Compile Include="Competicao.cs" />
+    <Compile Include="DadosRelatorio.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DadosRelatorio.Designer.cs">
+      <DependentUpon>DadosRelatorio.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dados_Analiticos_Abs.cs" />
     <Compile Include="Dados_Analiticos_Rel.cs" />
     <Compile Include="Form1.cs">
@@ -78,6 +84,9 @@
     <Compile Include="Treinador.cs" />
     <EmbeddedResource Include="AddPlayer.resx">
       <DependentUpon>AddPlayer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DadosRelatorio.resx">
+      <DependentUpon>DadosRelatorio.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
