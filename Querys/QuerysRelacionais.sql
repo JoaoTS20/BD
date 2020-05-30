@@ -144,5 +144,6 @@ Drop procedure Scouting.GetRelatorioByJogador
 Create Procedure Scouting.GetRelatorioData @ID varchar(9)
 AS
 	Select *from (Scouting.Relatorio Join  ( (Scouting.Analise_Caracteristica_Jogador join Scouting.Metricas_Jogo_Jogador on Scouting.Metricas_Jogo_Jogador.Rel_ID=Scouting.Analise_Caracteristica_Jogador.Rel_ID)) on ID=Scouting.Analise_Caracteristica_Jogador.Rel_ID) join Scouting.Jogo on (Jogo.Jogo_Local=Relatorio.Jogo_Local And Jogo.Jogo_Data=Relatorio.Jogo_Data) WHERE Relatorio.ID=@ID
+EXEC Scouting.GetRelatorioData '12'
 SELECT * From Scouting.Relatorio;
-use Project;
+use Proj;
