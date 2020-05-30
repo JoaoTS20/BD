@@ -162,6 +162,7 @@
             // 
             // QualAtualBox
             // 
+            this.QualAtualBox.Enabled = false;
             this.QualAtualBox.Location = new System.Drawing.Point(447, 135);
             this.QualAtualBox.Name = "QualAtualBox";
             this.QualAtualBox.ReadOnly = true;
@@ -170,6 +171,7 @@
             // 
             // NivTecBox
             // 
+            this.NivTecBox.Enabled = false;
             this.NivTecBox.Location = new System.Drawing.Point(629, 257);
             this.NivTecBox.Name = "NivTecBox";
             this.NivTecBox.ReadOnly = true;
@@ -178,6 +180,7 @@
             // 
             // CapDecBox
             // 
+            this.CapDecBox.Enabled = false;
             this.CapDecBox.Location = new System.Drawing.Point(629, 195);
             this.CapDecBox.Name = "CapDecBox";
             this.CapDecBox.ReadOnly = true;
@@ -186,6 +189,8 @@
             // 
             // DeterminacaoBox
             // 
+            this.DeterminacaoBox.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.DeterminacaoBox.Enabled = false;
             this.DeterminacaoBox.Location = new System.Drawing.Point(629, 135);
             this.DeterminacaoBox.Name = "DeterminacaoBox";
             this.DeterminacaoBox.ReadOnly = true;
@@ -194,6 +199,7 @@
             // 
             // EticaTrabBox
             // 
+            this.EticaTrabBox.Enabled = false;
             this.EticaTrabBox.Location = new System.Drawing.Point(448, 312);
             this.EticaTrabBox.Name = "EticaTrabBox";
             this.EticaTrabBox.ReadOnly = true;
@@ -202,6 +208,7 @@
             // 
             // MelhorAtribBox
             // 
+            this.MelhorAtribBox.Enabled = false;
             this.MelhorAtribBox.Location = new System.Drawing.Point(448, 257);
             this.MelhorAtribBox.Name = "MelhorAtribBox";
             this.MelhorAtribBox.ReadOnly = true;
@@ -210,6 +217,7 @@
             // 
             // QualPotBox
             // 
+            this.QualPotBox.Enabled = false;
             this.QualPotBox.Location = new System.Drawing.Point(448, 195);
             this.QualPotBox.Name = "QualPotBox";
             this.QualPotBox.ReadOnly = true;
@@ -218,6 +226,7 @@
             // 
             // AssistsBox
             // 
+            this.AssistsBox.Enabled = false;
             this.AssistsBox.Location = new System.Drawing.Point(45, 195);
             this.AssistsBox.Name = "AssistsBox";
             this.AssistsBox.ReadOnly = true;
@@ -226,6 +235,7 @@
             // 
             // PassesBox
             // 
+            this.PassesBox.Enabled = false;
             this.PassesBox.Location = new System.Drawing.Point(45, 257);
             this.PassesBox.Name = "PassesBox";
             this.PassesBox.ReadOnly = true;
@@ -234,6 +244,7 @@
             // 
             // PassesCompBox
             // 
+            this.PassesCompBox.Enabled = false;
             this.PassesCompBox.Location = new System.Drawing.Point(45, 312);
             this.PassesCompBox.Name = "PassesCompBox";
             this.PassesCompBox.ReadOnly = true;
@@ -242,6 +253,7 @@
             // 
             // CortesBox
             // 
+            this.CortesBox.Enabled = false;
             this.CortesBox.Location = new System.Drawing.Point(212, 135);
             this.CortesBox.Name = "CortesBox";
             this.CortesBox.ReadOnly = true;
@@ -250,6 +262,7 @@
             // 
             // MinutosBox
             // 
+            this.MinutosBox.Enabled = false;
             this.MinutosBox.Location = new System.Drawing.Point(212, 195);
             this.MinutosBox.Name = "MinutosBox";
             this.MinutosBox.ReadOnly = true;
@@ -258,6 +271,7 @@
             // 
             // DefesasBox
             // 
+            this.DefesasBox.Enabled = false;
             this.DefesasBox.Location = new System.Drawing.Point(212, 257);
             this.DefesasBox.Name = "DefesasBox";
             this.DefesasBox.ReadOnly = true;
@@ -266,6 +280,7 @@
             // 
             // GolosBox
             // 
+            this.GolosBox.Enabled = false;
             this.GolosBox.Location = new System.Drawing.Point(44, 135);
             this.GolosBox.Name = "GolosBox";
             this.GolosBox.ReadOnly = true;
@@ -337,6 +352,7 @@
             // 
             // DistanciaBox
             // 
+            this.DistanciaBox.Enabled = false;
             this.DistanciaBox.Location = new System.Drawing.Point(212, 312);
             this.DistanciaBox.Name = "DistanciaBox";
             this.DistanciaBox.ReadOnly = true;
@@ -354,6 +370,7 @@
             // 
             // RematesBox
             // 
+            this.RematesBox.Enabled = false;
             this.RematesBox.Location = new System.Drawing.Point(45, 418);
             this.RematesBox.Name = "RematesBox";
             this.RematesBox.ReadOnly = true;
@@ -371,6 +388,7 @@
             // 
             // DriblesBox
             // 
+            this.DriblesBox.Enabled = false;
             this.DriblesBox.Location = new System.Drawing.Point(212, 366);
             this.DriblesBox.Name = "DriblesBox";
             this.DriblesBox.ReadOnly = true;
@@ -388,6 +406,7 @@
             // 
             // ToquesBox
             // 
+            this.ToquesBox.Enabled = false;
             this.ToquesBox.Location = new System.Drawing.Point(45, 366);
             this.ToquesBox.Name = "ToquesBox";
             this.ToquesBox.ReadOnly = true;

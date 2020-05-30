@@ -168,7 +168,6 @@ namespace Gestão_Scouting
         {
             SqlCommand cmda = new SqlCommand();
             SqlDataReader readera;
-            //cmd.Connection = cn;
             cmda.CommandType = CommandType.Text;
             cmda = new SqlCommand("Scouting.GetPosicoesByJogador", cn);
             cmda.CommandType = CommandType.StoredProcedure;
@@ -335,7 +334,11 @@ namespace Gestão_Scouting
 
         private void GoToInfoRelatorio(object sender, MouseEventArgs e)
         {
-            DadosRelatorio dr = new DadosRelatorio();
+            String dados = listBoxRelatoriosJogador.GetItemText(listBoxRelatoriosJogador);
+
+            String[] texto = listBoxRelatoriosJogador.GetItemText(dados).Split(' ');
+            String id = texto[0];
+            DadosRelatorio dr = new DadosRelatorio(id,cn);
             dr.ShowDialog();
         }
     }

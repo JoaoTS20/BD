@@ -98,6 +98,12 @@ namespace Gestão_Scouting
 			get { return _Obs_Num_Iden_Federacao; }
 			set { _Obs_Num_Iden_Federacao = value; }
 		}
+		public String toString()
+		{
+			return this.Numero_Golos + " " + this.Rel_ID + " " + this.Numero_Assistencias + " " + this.Numero_Passes_Efectuados + " " + this.Numero_Passes_Completos + " " +
+				this.Numero_Cortes + " " + this.Minutos_Jogados + " " + this.Defesas_Realizadas + "" + this.Distancia_Percorrida + " " + this.Numero_Toques + " " + this.Numero_Dribles +
+				" " + this.Numero_Remates + " " + this.Obs_Num_Iden_Federacao;
+		}
 
 	}
 }
