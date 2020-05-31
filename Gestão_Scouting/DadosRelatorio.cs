@@ -54,6 +54,13 @@ namespace Gestão_Scouting
                 //---------------------------------------------------------------------
                 DBB.Etica_Trabalho = reader["Etica_Trabalho"].ToString();
                 DBB.Capacidade_Decisao = reader["Capacidade_Decisao"].ToString();
+                DBB.Determinacao = reader["Determinacao"].ToString();
+                DBB.Rel_ID = reader["Rel_ID"].ToString();
+                DBB.Nivel_tecnica = reader["Nivel_tecnica"].ToString();
+                DBB.Qualidade_Potencial = reader["Qualidade_Potencial"].ToString();
+                DBB.Qualidade_Atual = reader["Qualidade_Atual"].ToString();
+                DBB.Obs_Num_Iden_Federacao = reader["Obs_Num_Iden_Federacao"].ToString();
+                DBB.Melhor_Atributo = reader["Melhor_Atributo"].ToString();
 
                 //-----------------------------------------------------------------------
 
@@ -73,12 +80,40 @@ namespace Gestão_Scouting
                 //-----------------------------------------------------------------------
                     //Analise_Caracteristica_Jogador
                 EticaTrabBox.Text = DBB.Etica_Trabalho;
+                MelhorAtribBox.Text = DBB.Melhor_Atributo;
+                //QualAtualBox.Text = DBB.Qualidade_Atual;
+                //QualPotBox.Text = DBB.Qualidade_Potencial;
+                //NivTecBox.Text = DBB.Nivel_tecnica;
+                DeterminacaoBox.Text = DBB.Determinacao;
+
                 //CapDecBox.Text = DBB.Capacidade_Decisao;
 
-                if (Int32.Parse(DBB.Capacidade_Decisao) > 85)
-                {
-                    CapDecBox.Text = DBB.Capacidade_Decisao + " - Muito Bom ";
-                }
+                if (Int32.Parse(DBB.Capacidade_Decisao) > 85){ CapDecBox.Text = DBB.Capacidade_Decisao + " - Muito Bom ";}
+                else if (Int32.Parse(DBB.Capacidade_Decisao) < 85 && Int32.Parse(DBB.Capacidade_Decisao)>70){CapDecBox.Text = DBB.Capacidade_Decisao + " - Bom ";}
+                else if (Int32.Parse(DBB.Capacidade_Decisao) < 70 && Int32.Parse(DBB.Capacidade_Decisao) > 50){CapDecBox.Text = DBB.Capacidade_Decisao + " - Médio ";}
+                else{CapDecBox.Text = DBB.Capacidade_Decisao + " - Fraco ";}
+
+
+                if (Int32.Parse(DBB.Qualidade_Atual) > 85) { QualAtualBox.Text = DBB.Capacidade_Decisao + " - Muito Bom "; }
+                else if (Int32.Parse(DBB.Qualidade_Atual) < 85 && Int32.Parse(DBB.Qualidade_Atual) > 70) { QualAtualBox.Text = DBB.Capacidade_Decisao + " - Bom "; }
+                else if (Int32.Parse(DBB.Qualidade_Atual) < 70 && Int32.Parse(DBB.Qualidade_Atual) > 50) { QualAtualBox.Text = DBB.Capacidade_Decisao + " - Médio "; }
+                else { QualAtualBox.Text = DBB.Qualidade_Atual + " - Fraco "; }
+
+                if (Int32.Parse(DBB.Qualidade_Potencial) > 85) { QualPotBox.Text = DBB.Capacidade_Decisao + " - Muito Alta "; }
+                else if (Int32.Parse(DBB.Qualidade_Potencial) < 85 && Int32.Parse(DBB.Qualidade_Potencial) > 70) { QualPotBox.Text = DBB.Capacidade_Decisao + " - Alta "; }
+                else if (Int32.Parse(DBB.Qualidade_Potencial) < 70 && Int32.Parse(DBB.Qualidade_Potencial) > 50) { QualPotBox.Text = DBB.Capacidade_Decisao + " - Média "; }
+                else { QualPotBox.Text = DBB.Qualidade_Potencial + " - Baixa "; }
+
+
+                if (Int32.Parse(DBB.Nivel_tecnica) > 85) { NivTecBox.Text = DBB.Capacidade_Decisao + " - Muito Alta "; }
+                else if (Int32.Parse(DBB.Nivel_tecnica) < 85 && Int32.Parse(DBB.Nivel_tecnica) > 70) { NivTecBox.Text = DBB.Capacidade_Decisao + " - Alta "; }
+                else if (Int32.Parse(DBB.Nivel_tecnica) < 70 && Int32.Parse(DBB.Nivel_tecnica) > 50) { NivTecBox.Text = DBB.Capacidade_Decisao + " - Média "; }
+                else { NivTecBox.Text = DBB.Nivel_tecnica + " - Baixa "; }
+
+                if (Int32.Parse(DBB.Determinacao) > 85) { DeterminacaoBox.Text = DBB.Capacidade_Decisao + " - Muito Alta "; }
+                else if (Int32.Parse(DBB.Determinacao) < 85 && Int32.Parse(DBB.Determinacao) > 70) { DeterminacaoBox.Text = DBB.Capacidade_Decisao + " - Alta "; }
+                else if (Int32.Parse(DBB.Determinacao) < 70 && Int32.Parse(DBB.Determinacao) > 50) { DeterminacaoBox.Text = DBB.Capacidade_Decisao + " - Média "; }
+                else { DeterminacaoBox.Text = DBB.Determinacao + " - Baixa "; }
                 //Isto pois é copy past para os restantes e mais ifs e tal
                 //E falta as datas e assim!!
 
