@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace Gestão_Scouting
 {
-    class Dados_Analiticos_Abs
-    {
+    class Metricas_Jogo_Jogador
+	{
 		private String _Numero_Golos;
 		private String _Rel_ID;
 		private String _Numero_Assistencias;

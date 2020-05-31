@@ -1,5 +1,4 @@
-CREATE DATABASE Project;
-use Project;
+use Proj;
 
 CREATE SCHEMA Scouting;
 GO
@@ -20,7 +19,7 @@ CREATE TABLE Scouting.Jogador (
 );
 
 CREATE TABLE Scouting.Relatorio(
-	ID INT IDENTITY(0,1)PRIMARY KEY,
+	ID INT IDENTITY(0,1) PRIMARY KEY,
 	Relatorio_Titulo varchar(50)  NOT NULL,
 	Relatorio_Data date  NOT NULL,
 	Numero_Identificacao_Federacao varchar(9),

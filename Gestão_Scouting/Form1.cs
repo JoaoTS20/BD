@@ -40,7 +40,8 @@ namespace Gestão_Scouting
         private SqlConnection getSGBDConnection()
         {
             //Local a Editar!!
-            return new SqlConnection("data source=LAPTOP-2KEGA0ER;integrated security=true;initial catalog=Project");
+            return new SqlConnection("data source=LAPTOP-MH91MTBV;integrated security=true;initial catalog=Trabalho_Final");
+            //MH91MTBV
         }
 
         private bool verifySGBDConnection()
@@ -105,7 +106,6 @@ namespace Gestão_Scouting
             currentJogador = 0;
             LockJogadoresControls();
             ShowJogadores();
-
         }
 
         private void listBoxJogadores_SelectedIndexChanged_1(object sender, EventArgs e)
@@ -156,12 +156,7 @@ namespace Gestão_Scouting
             else
             {
                 textDuplaNacionalidade.Text = "Não";
-            }
-
-            
-
-
-           
+            }  
         }
             //ObterPosicoes;
         public void PosicoesInsert(String x)
@@ -183,13 +178,14 @@ namespace Gestão_Scouting
                 listBoxPosicoes.Items.Add(L.ToString());
             }
             readera.Close();
-
         }
 
             //Mostrar Jogadores por Lista
         public void GetListaObservacaoSelecao()
         {
-            SqlCommand cmd = new SqlCommand("SELECT * FROM Scouting.Lista_Observacao_Selecao", cn);
+            SqlCommand cmd = new SqlCommand();
+            cmd.CommandType = CommandType.Text;
+            cmd = new SqlCommand("Scouting.Get_Listas_Observacao_Selecao", cn);
             SqlDataReader reader = cmd.ExecuteReader();
             Lista_Observacao_Selecao S = new Lista_Observacao_Selecao();
             S.Lista_Nome = "Todos";
@@ -235,7 +231,7 @@ namespace Gestão_Scouting
 
             ComboBoxOrder Numero_Internacionalizao = new ComboBoxOrder();
             Idade.Text = "Internacionalizações";
-            Idade.Value = "Numero_Internacionalizao";
+            Idade.Value = "Numero_Internacionalizacoes";
             comboBoxOrder.Items.Add(Idade);
         }
 

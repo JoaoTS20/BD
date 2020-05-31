@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 namespace Gestão_Scouting
 {
 	
-	class Dados_Analiticos_Rel
-    {
+	class Analise_Caracteristica_Jogador
+	{
 		private String _Rel_ID;
 		private String _Qualidade_Atual;
 		private String _Qualidade_Potencial;
