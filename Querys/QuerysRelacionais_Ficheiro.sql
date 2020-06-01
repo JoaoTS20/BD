@@ -127,22 +127,51 @@ AS
 	DECLARE @SQLStatement varchar(400)
 		IF(LEN(@Club_ID)>0 )
 			BEGIN
-			SELECT @SQLStatement= 'SELECT Scouting.Clube.* FROM (Scouting.Competicao JOIN Scouting.Inscrito_Em ON Competicao.Competicao_ID_FIFA=Inscrito_Em.Ins_Competicao_ID_FIFA) JOIN Scouting.Clube ON Clube.Clube_Numero_Inscricao_FIFA=Inscrito_Em.Ins_Clube_Numero_Inscricao_FIFA WHERE Clube.Clube_Numero_Inscricao_FIFA =' + @Club_ID;
+			SELECT @SQLStatement= 'SELECT Scouting.Competicao.* FROM (Scouting.Competicao JOIN Scouting.Inscrito_Em ON Competicao.Competicao_ID_FIFA=Inscrito_Em.Ins_Competicao_ID_FIFA) JOIN Scouting.Clube ON Clube.Clube_Numero_Inscricao_FIFA=Inscrito_Em.Ins_Clube_Numero_Inscricao_FIFA WHERE Clube.Clube_Numero_Inscricao_FIFA =' + @Club_ID;
 			EXEC(@SQLStatement)
 			END
 		IF (LEN(@Club_ID)=0)
 			BEGIN
-			SELECT @SQLStatement= 'SELECT Scouting.Clube.* FROM (Scouting.Competicao JOIN Scouting.Inscrito_Em ON Competicao.Competicao_ID_FIFA=Inscrito_Em.Ins_Competicao_ID_FIFA) JOIN Scouting.Clube ON Clube.Clube_Numero_Inscricao_FIFA=Inscrito_Em.Ins_Clube_Numero_Inscricao_FIFA';
+			SELECT @SQLStatement= 'SELECT Scouting.Competicao.* FROM (Scouting.Competicao JOIN Scouting.Inscrito_Em ON Competicao.Competicao_ID_FIFA=Inscrito_Em.Ins_Competicao_ID_FIFA) JOIN Scouting.Clube ON Clube.Clube_Numero_Inscricao_FIFA=Inscrito_Em.Ins_Clube_Numero_Inscricao_FIFA';
 			EXEC(@SQLStatement)
 			END
 EXEC Scouting.Get_Competicoes_By_Clube 1
 DROP PROCEDURE Scouting.Get_Competicoes_By_Clube
 
 -- Stored Procedure Obter Jogos por Clubes
+Create Procedure Scouting.Get_Jogos_By_Clube @Club_ID varchar(9)
+AS
+	DECLARE @SQLStatement varchar(400)
+		IF(LEN(@Club_ID)>0 )
+			BEGIN
+			SELECT @SQLStatement= 'SELECT Scouting.Jogo.* FROM (Scouting.Jogo JOIN Scouting.Participa_Em ON Jogo.Jogo_Data = Participa_Em.Participa_Em_Jogo_Data AND Participa_Em.Participa_Em_Jogo_Local=Jogo.Jogo_Local) JOIN Scouting.Clube ON Clube.Clube_Numero_Inscricao_FIFA=Participa_Em.Participa_Clube_Numero_Inscricao_FIFA WHERE Clube.Clube_Numero_Inscricao_FIFA=' + @Club_ID;
+			EXEC(@SQLStatement)
+			END
+		IF (LEN(@Club_ID)=0)
+			BEGIN
+			SELECT @SQLStatement= 'SELECT Scouting.Jogo.* FROM (Scouting.Jogo JOIN Scouting.Participa_Em ON Jogo.Jogo_Data = Participa_Em.Participa_Em_Jogo_Data AND Participa_Em.Participa_Em_Jogo_Local=Jogo.Jogo_Local) JOIN Scouting.Clube ON Clube.Clube_Numero_Inscricao_FIFA=Participa_Em.Participa_Clube_Numero_Inscricao_FIFA';
+			EXEC(@SQLStatement)
+			END
+EXEC Scouting.Get_Jogos_By_Clube 2
+DROP PROCEDURE Scouting.Get_Jogos_By_Clube
+
+--Stored Procedure Adicionar Jogador EM PROGRESSO(NAO FUNCIONA)
+Create Procedure Scouting.Add_Jogador (@ID_FIFPRO varchar(9), @Nome_Jog varchar(50), @Jog_Alt float,@Jog_Peso float,@Pe_Fav bit, @idade int, @Dup_Nac bit,@Num_Inter int,@List_Max int)
+AS
+	DECLARE @SQLStat varchar(400)
+	IF (LEN(@ID_FIFPRO)=0 OR LEN(@Nome_Jog)=0 OR LEN(@Jog_Alt)=0 OR LEN(@Jog_Peso)=0 OR LEN(@Pe_Fav)=0 OR LEN(@idade)=0 OR LEN(@Dup_Nac)=0 OR LEN(@Num_Inter)=0 OR LEN(@List_Max)=0)
+	BEGIN
+		RETURN
+	END
+	PRINT ('INSERT INTO Scouting.Jogador VALUES('+@ID_FIFPRO+','''+@Nome_Jog+''','+CAST(@Jog_Alt AS float)+')')
+	SELECT @SQLstat='INSERT INTO Scouting.Jogador VALUES('+@ID_FIFPRO+','''+@Nome_Jog+''','+CAST(@Jog_Alt AS float)+')';
+	PRINT @SQLstat
+EXEC Scouting.Add_Jogador 12,'Francisco Mouta',1.65,55.3,1,18,0,0,19
+
+DROP PROCEDURE Scouting.Add_Jogador;
 --------------------------------------------------------------------------------------------
 
 
-SELECT * FROM Scouting.Clube;
 -- Jogador e Clube a que pertence
 SELECT Jogador_Nome,Clube_Nome FROM   Scouting.Jogador JOIN (Scouting.Jogador_Pertence_Clube join Scouting.Clube ON Scouting.Jogador_Pertence_Clube.JPC_Clube_Numero_Inscricao_FIFA=Scouting.Clube.Clube_Numero_Inscricao_FIFA ) ON Scouting.Jogador.ID_FIFPRO = Scouting.Jogador_Pertence_Clube.ID_FIFPRO
 
