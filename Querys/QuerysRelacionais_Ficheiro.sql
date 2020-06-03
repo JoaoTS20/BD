@@ -154,7 +154,7 @@ AS
 			END
 EXEC Scouting.Get_Jogos_By_Clube 2
 DROP PROCEDURE Scouting.Get_Jogos_By_Clube
-
+use Proj;
 --Stored Procedure Adicionar Jogador EM PROGRESSO(NAO FUNCIONA)
 Create Procedure Scouting.Add_Jogador (@ID_FIFPRO varchar(9), @Nome_Jog varchar(50), @Jog_Alt float,@Jog_Peso float,@Pe_Fav bit, @idade int, @Dup_Nac bit,@Num_Inter int,@List_Max int)
 AS
@@ -166,6 +166,19 @@ AS
 	PRINT ('INSERT INTO Scouting.Jogador VALUES('+@ID_FIFPRO+','''+@Nome_Jog+''','+CAST(@Jog_Alt AS float)+')')
 	SELECT @SQLstat='INSERT INTO Scouting.Jogador VALUES('+@ID_FIFPRO+','''+@Nome_Jog+''','+CAST(@Jog_Alt AS float)+')';
 	PRINT @SQLstat
+Create Procedure Scouting.Add_Jogador (@ID_FIFPRO varchar(9), @Nome_Jog varchar(50), @Jog_Alt float,@Jog_Peso float,@Pe_Fav bit, @idade int, @Dup_Nac bit,@Num_Inter int,@List_Max int)
+AS
+	--DECLARE @SQLStat varchar(400)
+	IF (LEN(@ID_FIFPRO)=0 OR LEN(@Nome_Jog)=0 OR LEN(@Jog_Alt)=0 OR LEN(@Jog_Peso)=0 OR LEN(@Pe_Fav)=0 OR LEN(@idade)=0 OR LEN(@Dup_Nac)=0 OR LEN(@Num_Inter)=0 OR LEN(@List_Max)=0)
+	BEGIN
+		--triguer até ou assim aqui acho eu
+		RETURN
+	END
+	else
+	Begin
+	INSERT INTO Scouting.Jogador Values (@ID_FIFPRO,@Nome_Jog,@Jog_Alt,@Jog_Peso,@Pe_Fav,@idade,@Dup_Nac,@Num_Inter,@List_Max);
+	End
+
 EXEC Scouting.Add_Jogador 12,'Francisco Mouta',1.65,55.3,1,18,0,0,19
 
 DROP PROCEDURE Scouting.Add_Jogador;
