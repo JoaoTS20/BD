@@ -68,6 +68,7 @@
             this.ToquesBox = new System.Windows.Forms.TextBox();
             this.label19 = new System.Windows.Forms.Label();
             this.buttonEdit = new System.Windows.Forms.Button();
+            this.labelTitulo = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
@@ -173,7 +174,7 @@
             // 
             this.QualAtualBox.Enabled = false;
             this.QualAtualBox.Location = new System.Drawing.Point(596, 166);
-            this.QualAtualBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.QualAtualBox.Margin = new System.Windows.Forms.Padding(4);
             this.QualAtualBox.Name = "QualAtualBox";
             this.QualAtualBox.ReadOnly = true;
             this.QualAtualBox.Size = new System.Drawing.Size(132, 22);
@@ -183,7 +184,7 @@
             // 
             this.NivTecBox.Enabled = false;
             this.NivTecBox.Location = new System.Drawing.Point(839, 316);
-            this.NivTecBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.NivTecBox.Margin = new System.Windows.Forms.Padding(4);
             this.NivTecBox.Name = "NivTecBox";
             this.NivTecBox.ReadOnly = true;
             this.NivTecBox.Size = new System.Drawing.Size(132, 22);
@@ -193,7 +194,7 @@
             // 
             this.CapDecBox.Enabled = false;
             this.CapDecBox.Location = new System.Drawing.Point(839, 240);
-            this.CapDecBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.CapDecBox.Margin = new System.Windows.Forms.Padding(4);
             this.CapDecBox.Name = "CapDecBox";
             this.CapDecBox.ReadOnly = true;
             this.CapDecBox.Size = new System.Drawing.Size(132, 22);
@@ -204,7 +205,7 @@
             this.DeterminacaoBox.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.DeterminacaoBox.Enabled = false;
             this.DeterminacaoBox.Location = new System.Drawing.Point(839, 166);
-            this.DeterminacaoBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.DeterminacaoBox.Margin = new System.Windows.Forms.Padding(4);
             this.DeterminacaoBox.Name = "DeterminacaoBox";
             this.DeterminacaoBox.ReadOnly = true;
             this.DeterminacaoBox.Size = new System.Drawing.Size(132, 22);
@@ -214,7 +215,7 @@
             // 
             this.EticaTrabBox.Enabled = false;
             this.EticaTrabBox.Location = new System.Drawing.Point(597, 384);
-            this.EticaTrabBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.EticaTrabBox.Margin = new System.Windows.Forms.Padding(4);
             this.EticaTrabBox.Name = "EticaTrabBox";
             this.EticaTrabBox.ReadOnly = true;
             this.EticaTrabBox.Size = new System.Drawing.Size(132, 22);
@@ -224,7 +225,7 @@
             // 
             this.MelhorAtribBox.Enabled = false;
             this.MelhorAtribBox.Location = new System.Drawing.Point(597, 316);
-            this.MelhorAtribBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.MelhorAtribBox.Margin = new System.Windows.Forms.Padding(4);
             this.MelhorAtribBox.Name = "MelhorAtribBox";
             this.MelhorAtribBox.ReadOnly = true;
             this.MelhorAtribBox.Size = new System.Drawing.Size(132, 22);
@@ -234,7 +235,7 @@
             // 
             this.QualPotBox.Enabled = false;
             this.QualPotBox.Location = new System.Drawing.Point(597, 240);
-            this.QualPotBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.QualPotBox.Margin = new System.Windows.Forms.Padding(4);
             this.QualPotBox.Name = "QualPotBox";
             this.QualPotBox.ReadOnly = true;
             this.QualPotBox.Size = new System.Drawing.Size(132, 22);
@@ -244,7 +245,7 @@
             // 
             this.AssistsBox.Enabled = false;
             this.AssistsBox.Location = new System.Drawing.Point(60, 240);
-            this.AssistsBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.AssistsBox.Margin = new System.Windows.Forms.Padding(4);
             this.AssistsBox.Name = "AssistsBox";
             this.AssistsBox.ReadOnly = true;
             this.AssistsBox.Size = new System.Drawing.Size(132, 22);
@@ -254,7 +255,7 @@
             // 
             this.PassesBox.Enabled = false;
             this.PassesBox.Location = new System.Drawing.Point(60, 316);
-            this.PassesBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.PassesBox.Margin = new System.Windows.Forms.Padding(4);
             this.PassesBox.Name = "PassesBox";
             this.PassesBox.ReadOnly = true;
             this.PassesBox.Size = new System.Drawing.Size(132, 22);
@@ -264,7 +265,7 @@
             // 
             this.PassesCompBox.Enabled = false;
             this.PassesCompBox.Location = new System.Drawing.Point(60, 384);
-            this.PassesCompBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.PassesCompBox.Margin = new System.Windows.Forms.Padding(4);
             this.PassesCompBox.Name = "PassesCompBox";
             this.PassesCompBox.ReadOnly = true;
             this.PassesCompBox.Size = new System.Drawing.Size(132, 22);
@@ -274,7 +275,7 @@
             // 
             this.CortesBox.Enabled = false;
             this.CortesBox.Location = new System.Drawing.Point(283, 166);
-            this.CortesBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.CortesBox.Margin = new System.Windows.Forms.Padding(4);
             this.CortesBox.Name = "CortesBox";
             this.CortesBox.ReadOnly = true;
             this.CortesBox.Size = new System.Drawing.Size(132, 22);
@@ -284,7 +285,7 @@
             // 
             this.MinutosBox.Enabled = false;
             this.MinutosBox.Location = new System.Drawing.Point(283, 240);
-            this.MinutosBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.MinutosBox.Margin = new System.Windows.Forms.Padding(4);
             this.MinutosBox.Name = "MinutosBox";
             this.MinutosBox.ReadOnly = true;
             this.MinutosBox.Size = new System.Drawing.Size(132, 22);
@@ -294,7 +295,7 @@
             // 
             this.DefesasBox.Enabled = false;
             this.DefesasBox.Location = new System.Drawing.Point(283, 316);
-            this.DefesasBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.DefesasBox.Margin = new System.Windows.Forms.Padding(4);
             this.DefesasBox.Name = "DefesasBox";
             this.DefesasBox.ReadOnly = true;
             this.DefesasBox.Size = new System.Drawing.Size(132, 22);
@@ -304,7 +305,7 @@
             // 
             this.GolosBox.Enabled = false;
             this.GolosBox.Location = new System.Drawing.Point(59, 166);
-            this.GolosBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.GolosBox.Margin = new System.Windows.Forms.Padding(4);
             this.GolosBox.Name = "GolosBox";
             this.GolosBox.ReadOnly = true;
             this.GolosBox.Size = new System.Drawing.Size(132, 22);
@@ -384,7 +385,7 @@
             // 
             this.DistanciaBox.Enabled = false;
             this.DistanciaBox.Location = new System.Drawing.Point(283, 384);
-            this.DistanciaBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.DistanciaBox.Margin = new System.Windows.Forms.Padding(4);
             this.DistanciaBox.Name = "DistanciaBox";
             this.DistanciaBox.ReadOnly = true;
             this.DistanciaBox.Size = new System.Drawing.Size(132, 22);
@@ -404,7 +405,7 @@
             // 
             this.RematesBox.Enabled = false;
             this.RematesBox.Location = new System.Drawing.Point(60, 514);
-            this.RematesBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.RematesBox.Margin = new System.Windows.Forms.Padding(4);
             this.RematesBox.Name = "RematesBox";
             this.RematesBox.ReadOnly = true;
             this.RematesBox.Size = new System.Drawing.Size(132, 22);
@@ -424,7 +425,7 @@
             // 
             this.DriblesBox.Enabled = false;
             this.DriblesBox.Location = new System.Drawing.Point(283, 450);
-            this.DriblesBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.DriblesBox.Margin = new System.Windows.Forms.Padding(4);
             this.DriblesBox.Name = "DriblesBox";
             this.DriblesBox.ReadOnly = true;
             this.DriblesBox.Size = new System.Drawing.Size(132, 22);
@@ -444,7 +445,7 @@
             // 
             this.ToquesBox.Enabled = false;
             this.ToquesBox.Location = new System.Drawing.Point(60, 450);
-            this.ToquesBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.ToquesBox.Margin = new System.Windows.Forms.Padding(4);
             this.ToquesBox.Name = "ToquesBox";
             this.ToquesBox.ReadOnly = true;
             this.ToquesBox.Size = new System.Drawing.Size(132, 22);
@@ -470,11 +471,21 @@
             this.buttonEdit.Text = "Editar";
             this.buttonEdit.UseVisualStyleBackColor = true;
             // 
+            // labelTitulo
+            // 
+            this.labelTitulo.AutoSize = true;
+            this.labelTitulo.Location = new System.Drawing.Point(450, 42);
+            this.labelTitulo.Name = "labelTitulo";
+            this.labelTitulo.Size = new System.Drawing.Size(54, 17);
+            this.labelTitulo.TabIndex = 40;
+            this.labelTitulo.Text = "label20";
+            // 
             // DadosRelatorio
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1067, 554);
+            this.Controls.Add(this.labelTitulo);
             this.Controls.Add(this.buttonEdit);
             this.Controls.Add(this.ToquesBox);
             this.Controls.Add(this.label19);
@@ -515,10 +526,9 @@
             this.Controls.Add(this.NomeRel);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "DadosRelatorio";
             this.Text = "DadosRelatorio";
-            this.Load += new System.EventHandler(this.DadosRelatorio_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -566,5 +576,6 @@
         private System.Windows.Forms.TextBox ToquesBox;
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.Button buttonEdit;
+        private System.Windows.Forms.Label labelTitulo;
     }
 }

@@ -61,11 +61,12 @@ namespace Gestão_Scouting
                 DBB.Qualidade_Atual = reader["Qualidade_Atual"].ToString();
                 DBB.Obs_Num_Iden_Federacao = reader["Obs_Num_Iden_Federacao"].ToString();
                 DBB.Melhor_Atributo = reader["Melhor_Atributo"].ToString();
+                labelTitulo.Text = reader["Relatorio_Titulo"].ToString();
 
                 //-----------------------------------------------------------------------
 
                 //Show Part
-                    //Metricas_Jogo_Jogador
+                //Metricas_Jogo_Jogador
                 GolosBox.Text = DAA.Numero_Golos;
                 AssistsBox.Text = DAA.Numero_Assistencias;
                 PassesBox.Text = DAA.Numero_Passes_Efectuados;
@@ -87,7 +88,6 @@ namespace Gestão_Scouting
                 DeterminacaoBox.Text = DBB.Determinacao;
 
                 //CapDecBox.Text = DBB.Capacidade_Decisao;
-
                 if (Int32.Parse(DBB.Capacidade_Decisao) > 85){ CapDecBox.Text = DBB.Capacidade_Decisao + " - Muito Bom ";}
                 else if (Int32.Parse(DBB.Capacidade_Decisao) < 85 && Int32.Parse(DBB.Capacidade_Decisao)>70){CapDecBox.Text = DBB.Capacidade_Decisao + " - Bom ";}
                 else if (Int32.Parse(DBB.Capacidade_Decisao) < 70 && Int32.Parse(DBB.Capacidade_Decisao) > 50){CapDecBox.Text = DBB.Capacidade_Decisao + " - Médio ";}
@@ -121,9 +121,6 @@ namespace Gestão_Scouting
             reader.Close();
         }
 
-        private void DadosRelatorio_Load(object sender, EventArgs e)
-        {
 
-        }
     }
 }

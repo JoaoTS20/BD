@@ -14,11 +14,14 @@ namespace Gestão_Scouting
     public partial class Form1 : Form
     {
         private SqlConnection cn;
+        //Jogador
         private int currentJogador;
         private int currentRelatorioJogador;
         private static String List="";
         private static String Order="";
         public static  String[] ids; 
+        //Clubes
+
 
         public Form1()
         {
@@ -28,10 +31,12 @@ namespace Gestão_Scouting
         private void Form1_Load(object sender, EventArgs e)
         {
             cn = getSGBDConnection();
+            //Jogadores
             LoadJogadores(List,Order);
             GetListaObservacaoSelecao();
             ListboxOrderSelec();
             comboBoxListaSelecao.SelectedIndex=0;
+            //Clubes
 
 
         }
@@ -40,7 +45,7 @@ namespace Gestão_Scouting
         private SqlConnection getSGBDConnection()
         {
             //Local a Editar!!
-            return new SqlConnection("data source=LAPTOP-2KEGA0ER;integrated security=true;initial catalog=Proj");
+            return new SqlConnection("data source=LAPTOP-MH91MTBV;integrated security=true;initial catalog=Trabalho_Final");
             //MH91MTBV
         }
 
@@ -67,7 +72,7 @@ namespace Gestão_Scouting
             Application.Exit();
         }
         //-----------------------------------------------------------------------------
-
+        //TAB JOGADORES
         //Jogadores Functions
         private void LoadJogadores(String numero, String Order) //Com as alterações fica 70%feita
         {
@@ -322,7 +327,7 @@ namespace Gestão_Scouting
                 L.ID_FIFPro = readera["ID_FIFPro"].ToString();
                 L.Jogo_Local = readera["Jogo_Local"].ToString();
                 L.Jogo_Data = readera["Jogo_Data"].ToString();
-                listBoxRelatoriosJogador.Items.Add(L.ToString());
+                listBoxRelatoriosJogador.Items.Add(L);
             }
             readera.Close();
 
@@ -330,12 +335,36 @@ namespace Gestão_Scouting
 
         private void GoToInfoRelatorio(object sender, MouseEventArgs e)
         {
-            String dados = listBoxRelatoriosJogador.GetItemText(listBoxRelatoriosJogador);
+            if (listBoxRelatoriosJogador.SelectedIndex >= 0)
+            {
+                currentRelatorioJogador = listBoxRelatoriosJogador.SelectedIndex;
+                String dados = listBoxRelatoriosJogador.GetItemText(listBoxRelatoriosJogador);
 
-            String[] texto = listBoxRelatoriosJogador.GetItemText(dados).Split(' ');
-            String id = texto[0];
-            DadosRelatorio dr = new DadosRelatorio(id,cn);
-            dr.ShowDialog();
+                //String[] texto = listBoxRelatoriosJogador.GetItemText(dados).Split(' ');
+                //String id = texto[0];
+                Relatorio rel = new Relatorio();
+                rel = (Relatorio)listBoxRelatoriosJogador.Items[currentRelatorioJogador];
+                String ID = rel.ID.ToString();
+                DadosRelatorio dr = new DadosRelatorio(ID, cn);
+                dr.ShowDialog();
+            }
+        }
+        //TAB CLUBES
+        //Funções Clubes
+        private void LoadClubes()
+        {
+            if (!verifySGBDConnection())
+                return;
+            SqlCommand cmd = new SqlCommand();
+            SqlDataReader reader;
+            //cmd.Connection = cn;
+            cmd.CommandType = CommandType.Text;
+        }
+
+        private void listBoxClubes_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+
         }
     }
 }
