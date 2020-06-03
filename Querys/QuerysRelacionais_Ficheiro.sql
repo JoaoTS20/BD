@@ -174,16 +174,25 @@ AS
 		--triguer até ou assim aqui acho eu
 		RETURN
 	END
-	else
+	ELSE
 	Begin
 	INSERT INTO Scouting.Jogador Values (@ID_FIFPRO,@Nome_Jog,@Jog_Alt,@Jog_Peso,@Pe_Fav,@idade,@Dup_Nac,@Num_Inter,@List_Max);
 	End
-
-EXEC Scouting.Add_Jogador 12,'Francisco Mouta',1.65,55.3,1,18,0,0,19
-
+EXEC Scouting.Add_Jogador 13,'Diogo Mota',1.45,55.5,0,15,1,3,15
+SELECT * FROM Scouting.Jogador;
 DROP PROCEDURE Scouting.Add_Jogador;
---------------------------------------------------------------------------------------------
+DELETE FROM Scouting.Jogador WHERE Jogador.ID_FIFPro=13
+CREATE TRIGGER Scouting.AddPlayer ON Scouting.Jogador
+BEFORE INSERT
+NOT FOR REPLICATION
+AS
+	BEGIN
+		SELECT inserted.ID_FIFPro FROM inserted ;
 
+
+	END
+--------------------------------------------------------------------------------------------
+DROP TRIGGER Scouting.AddPlayer
 
 -- Jogador e Clube a que pertence
 SELECT Jogador_Nome,Clube_Nome FROM   Scouting.Jogador JOIN (Scouting.Jogador_Pertence_Clube join Scouting.Clube ON Scouting.Jogador_Pertence_Clube.JPC_Clube_Numero_Inscricao_FIFA=Scouting.Clube.Clube_Numero_Inscricao_FIFA ) ON Scouting.Jogador.ID_FIFPRO = Scouting.Jogador_Pertence_Clube.ID_FIFPRO
