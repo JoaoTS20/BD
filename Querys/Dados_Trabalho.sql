@@ -107,53 +107,53 @@ INSERT INTO Scouting.Inscrito_Em VALUES (8,4,22,'02-08-2019')
 INSERT INTO Scouting.Jogo VALUES('Aveiro','2019-05-11','2-0',1,1)
 INSERT INTO Scouting.Jogo VALUES('Lisboa','2020-1-13','3-1',2,2)
 INSERT INTO Scouting.Jogo VALUES('Porto','2019-11-17','0-1',3,3)
-INSERT INTO Scouting.Jogo VALUES('Aveiro','2020-1-10','3-2',2,2)
-INSERT INTO Scouting.Jogo VALUES('Braga','2020-4-8','2-2',2,2)
-INSERT INTO Scouting.Jogo VALUES('Algarve','2019-11-3','1-2',4,2)
+INSERT INTO Scouting.Jogo VALUES('Aveiro','2020-1-10','3-2',2,4)
+INSERT INTO Scouting.Jogo VALUES('Braga','2020-4-8','2-2',2,5)
+INSERT INTO Scouting.Jogo VALUES('Algarve','2019-11-3','1-2',4,6)
 INSERT INTO Scouting.Jogo VALUES('Lisboa','2019-12-2','0-1',3,2)
-INSERT INTO Scouting.Jogo VALUES('Aveiro','2020-03-03','2-2',1,1)
+INSERT INTO Scouting.Jogo VALUES('Aveiro','2020-03-03','2-2',1,4)
 INSERT INTO Scouting.Jogo VALUES('Lisboa','2019-10-11','3-2',2,2)
 INSERT INTO Scouting.Jogo VALUES('Porto','2019-12-08','3-1',3,3)
-INSERT INTO Scouting.Jogo VALUES('Aveiro','2020-1-05','3-3',2,2)
-INSERT INTO Scouting.Jogo VALUES('Braga','2020-2-18','2-4',2,2)
-INSERT INTO Scouting.Jogo VALUES('Algarve','2019-11-7','2-2',4,2)
+INSERT INTO Scouting.Jogo VALUES('Aveiro','2020-1-05','3-3',2,1)
+INSERT INTO Scouting.Jogo VALUES('Braga','2020-2-18','2-4',2,5)
+INSERT INTO Scouting.Jogo VALUES('Algarve','2019-11-7','2-2',4,6)
 INSERT INTO Scouting.Jogo VALUES('Lisboa','2019-10-2','3-1',3,2)
 SELECT * FROM Scouting.Jogo;
 
 --Relatório
 SELECT * FROM Scouting.Relatorio;
-INSERT INtO Scouting.Relatorio Values('Relatório Famoso Toni','2011-11-23',2,3,'Lisboa','2020-11-13')
-INSERT INtO Scouting.Relatorio Values('Relatório João Moutinho','2012-05-13',1,8,'Arouca','2019-05-11')
-INSERT INtO Scouting.Relatorio Values('Relatório Ricardo Sousa','2011-11-18',3,9,'Porto','2019-11-17')
-INSERT INtO Scouting.Relatorio Values('Relatório Carvalho Sousa','2012-1-13',4,7,'Aveiro','2020-1-10')
-INSERT INtO Scouting.Relatorio Values('Relatório André Pedro','2011-11-18',4,1,'Aveiro','2020-1-10')
-INSERT INtO Scouting.Relatorio Values('Relatório Rui Soares','2011-11-18',4,2,'Aveiro','2020-1-10')
-INSERT INtO Scouting.Relatorio Values('Relatório Daniel Hulk','2011-11-23',2,4,'Lisboa','2020-1-13')
-INSERT INtO Scouting.Relatorio Values('Relatório Henrique Sousa','2011-11-23',2,5,'Lisboa','2020-1-13')
-INSERT INtO Scouting.Relatorio Values('Relatório Pinto Sousa','2011-11-23',2,6,'Lisboa','2011-11-13')
-INSERT INtO Scouting.Relatorio Values('Relatório Ronaldo Sousa','2011-11-23',2,10,'Lisboa','2011-11-13')
-INSERT INtO Scouting.Relatorio Values('Relatório Martim Coelho','2011-11-23',2,11,'Lisboa','2011-11-13')
-INSERT INtO Scouting.Relatorio Values('Relatório Roberto Pereira','2011-11-23',2,12,'Lisboa','2011-11-13')
-INSERT INtO Scouting.Relatorio Values('Relatório André Oliveira','2011-11-23',2,13,'Lisboa','2011-11-13')
-INSERT INtO Scouting.Relatorio Values('Relatório Sérgio Lima','2011-11-23',2,14,'Lisboa','2011-11-13')
-INSERT INtO Scouting.Relatorio Values('Relatório João Santos','2011-11-23',2,15,'Lisboa','2011-11-13')
-INSERT INtO Scouting.Relatorio Values('Relatório Filipe Matos','2011-11-23',2,16,'Lisboa','2011-11-13')
-INSERT INtO Scouting.Relatorio Values('Relatório Francisco Silva','2011-11-23',2,17,'Lisboa','2011-11-13')
-INSERT INtO Scouting.Relatorio Values('Relatório Joaquim José','2011-11-23',2,18,'Lisboa','2011-11-13')
+INSERT INtO Scouting.Relatorio Values('Relatório Famoso Toni','2019-1-13',1,3,'Lisboa','2020-11-13')
+INSERT INtO Scouting.Relatorio Values('Relatório João Moutinho','2019-05-11',1,8,'Aveiro','2019-05-11')
+INSERT INtO Scouting.Relatorio Values('Relatório Ricardo Sousa','2019-11-17',3,9,'Porto','2019-11-17')
+INSERT INtO Scouting.Relatorio Values('Relatório Carvalho Sousa','2020-1-10',4,7,'Aveiro','2020-1-10')
+INSERT INtO Scouting.Relatorio Values('Relatório André Pedro','2020-05-11',4,1,'Aveiro','2020-1-10')
+INSERT INtO Scouting.Relatorio Values('Relatório Rui Soares','2020-1-10',4,2,'Aveiro','2020-1-10')
+INSERT INtO Scouting.Relatorio Values('Relatório Daniel Hulk','2019-11-17',2,4,'Porto','2020-1-13')
+INSERT INtO Scouting.Relatorio Values('Relatório Henrique Sousa','2019-10-11',2,5,'Lisboa','2020-1-13')
+INSERT INtO Scouting.Relatorio Values('Relatório Pinto Sousa','2019-10-11',2,6,'Lisboa','2019-10-13')
+INSERT INtO Scouting.Relatorio Values('Relatório Ronaldo Sousa','2019-10-2',2,10,'Lisboa','2019-10-4')
+INSERT INtO Scouting.Relatorio Values('Relatório Martim Coelho','2019-11-7',2,11,'Algarve','2019-11-10')
+INSERT INtO Scouting.Relatorio Values('Relatório Roberto Pereira','2019-12-2',2,12,'Lisboa','2019-12-3')
+INSERT INtO Scouting.Relatorio Values('Relatório André Oliveira','2020-2-18',2,13,'Braga','2020-2-20')
+INSERT INtO Scouting.Relatorio Values('Relatório Sérgio Lima','2019-11-7',2,14,'Algarve','2019-11-7')
+INSERT INtO Scouting.Relatorio Values('Relatório João Santos','2020-1-13',2,15,'Lisboa','2020-1-14')
+INSERT INtO Scouting.Relatorio Values('Relatório Filipe Matos','2020-4-8',2,16,'Braga','2020-4-9')
+INSERT INtO Scouting.Relatorio Values('Relatório Francisco Silva','2019-12-2',2,17,'Lisboa','2019-12-3')
+INSERT INtO Scouting.Relatorio Values('Relatório Joaquim José','2019-11-17',2,18,'Porto','2019-11-18')
 
 
 --DELETE FROM Scouting.Relatorio WHERE Scouting.Relatorio.ID=3
 --SELECT * FROM Scouting.Relatorio;
 
 --Participa_em  POR ALTERAR POR ALTERAR POR ALTERAR POR ALTERAR POR ALTERAR POR ALTERAR POR ALTERAR POR ALTERAR
-INSERT INTO Scouting.Participa_Em Values(1,'2012-05-11','Arouca',21)
-INSERT INTO Scouting.Participa_Em Values(2,'2012-05-11','Arouca',18)
-INSERT INTO Scouting.Participa_Em Values(1,'2012-05-11','Arouca',21)
-INSERT INTO Scouting.Participa_Em Values(2,'2012-05-11','Arouca',18)
-INSERT INTO Scouting.Participa_Em Values(1,'2012-05-11','Arouca',21)
-INSERT INTO Scouting.Participa_Em Values(2,'2012-05-11','Arouca',18)
-INSERT INTO Scouting.Participa_Em Values(1,'2012-05-11','Arouca',21)
-INSERT INTO Scouting.Participa_Em Values(2,'2012-05-11','Arouca',18)
+INSERT INTO Scouting.Participa_Em Values(1,'2019-0-11','Aveiro',21)
+INSERT INTO Scouting.Participa_Em Values(2,'2019-11-17','Porto',18)
+INSERT INTO Scouting.Participa_Em Values(3,'2019-05-11','Aveiro',21)
+INSERT INTO Scouting.Participa_Em Values(4,'2020-02-18','Braga',18)
+INSERT INTO Scouting.Participa_Em Values(5,'2019-11-7','Algarve',21)
+INSERT INTO Scouting.Participa_Em Values(6,'2020-2-8','Braga',18)
+INSERT INTO Scouting.Participa_Em Values(7,'2020-1-13','Lisboa',21)
+INSERT INTO Scouting.Participa_Em Values(8,'2019-11-17','Porto',18)
 
 --Pertence_Clube
 SELECT * FROM Scouting.Jogador_Pertence_Clube;
@@ -196,46 +196,46 @@ INSERT INTO Scouting.Observacao_Metodo_de_Observacao VALUES ('Distância',16)
 INSERT INTO Scouting.Observacao_Metodo_de_Observacao VALUES ('Distância',17)
 INSERT INTO Scouting.Observacao_Metodo_de_Observacao VALUES ('Distância',18)
 
---Dados_Analiticos_Abs POR ALTERAR POR ALTERAR POR ALTERAR POR ALTERAR POR ALTERAR POR ALTERAR POR ALTERAR POR ALTERAR
-INSERT INTO Scouting.Metricas_Jogo_Jogador VALUES (2,0,1,12,6,1,32,0,2,25,5,2,1)
-INSERT INTO Scouting.Metricas_Jogo_Jogador VALUES (2,1,1,12,6,1,32,0,2,25,5,2,1)
-INSERT INTO Scouting.Metricas_Jogo_Jogador VALUES (0,0,1,12,6,1,32,0,2,25,5,2,1)
-INSERT INTO Scouting.Metricas_Jogo_Jogador VALUES (2,1,1,12,6,1,32,0,2,25,5,2,1)
-INSERT INTO Scouting.Metricas_Jogo_Jogador VALUES (2,0,1,12,6,1,32,0,2,25,5,2,1)
-INSERT INTO Scouting.Metricas_Jogo_Jogador VALUES (2,1,1,12,6,1,32,0,2,25,5,2,1)
-INSERT INTO Scouting.Metricas_Jogo_Jogador VALUES (2,0,1,12,6,1,32,0,2,25,5,2,1)
-INSERT INTO Scouting.Metricas_Jogo_Jogador VALUES (2,1,1,12,6,1,32,0,2,25,5,2,1)
-INSERT INTO Scouting.Metricas_Jogo_Jogador VALUES (2,0,1,12,6,1,32,0,2,25,5,2,1)
-INSERT INTO Scouting.Metricas_Jogo_Jogador VALUES (2,1,1,12,6,1,32,0,2,25,5,2,1)
-INSERT INTO Scouting.Metricas_Jogo_Jogador VALUES (2,0,1,12,6,1,32,0,2,25,5,2,1)
-INSERT INTO Scouting.Metricas_Jogo_Jogador VALUES (2,1,1,12,6,1,32,0,2,25,5,2,1)
-INSERT INTO Scouting.Metricas_Jogo_Jogador VALUES (2,0,1,12,6,1,32,0,2,25,5,2,1)
-INSERT INTO Scouting.Metricas_Jogo_Jogador VALUES (2,1,1,12,6,1,32,0,2,25,5,2,1)
-INSERT INTO Scouting.Metricas_Jogo_Jogador VALUES (2,0,1,12,6,1,32,0,2,25,5,2,1)
-INSERT INTO Scouting.Metricas_Jogo_Jogador VALUES (2,1,1,12,6,1,32,0,2,25,5,2,1)
-INSERT INTO Scouting.Metricas_Jogo_Jogador VALUES (2,0,1,12,6,1,32,0,2,25,5,2,1)
-INSERT INTO Scouting.Metricas_Jogo_Jogador VALUES (2,1,1,12,6,1,32,0,2,25,5,2,1)
+--Dados_Analiticos_Abs
+INSERT INTO Scouting.Metricas_Jogo_Jogador VALUES (2,0,1,12,9,3,32,0,2,25,5,2,1)
+INSERT INTO Scouting.Metricas_Jogo_Jogador VALUES (2,1,1,43,29,4,80,0,7.2,25,5,4,4)
+INSERT INTO Scouting.Metricas_Jogo_Jogador VALUES (0,2,0,66,38,7,70,0,6.4,25,1,2,6)
+INSERT INTO Scouting.Metricas_Jogo_Jogador VALUES (1,3,0,45,33,3,45,0,2.5,25,1,3,7)
+INSERT INTO Scouting.Metricas_Jogo_Jogador VALUES (0,4,0,71,60,8,80,0,6.8,25,2,1,2)
+INSERT INTO Scouting.Metricas_Jogo_Jogador VALUES (0,5,1,25,18,2,25,0,1.5,25,7,2,3)
+INSERT INTO Scouting.Metricas_Jogo_Jogador VALUES (1,6,0,61,44,5,78,0,6.8,25,6,1,1)
+INSERT INTO Scouting.Metricas_Jogo_Jogador VALUES (1,7,0,33,24,4,40,0,3.5,25,3,5,1)
+INSERT INTO Scouting.Metricas_Jogo_Jogador VALUES (1,8,0,36,30,4,37,0,2.4,25,2,2,3)
+INSERT INTO Scouting.Metricas_Jogo_Jogador VALUES (0,9,0,10,7,2,90,4,0.9,25,0,0,5)
+INSERT INTO Scouting.Metricas_Jogo_Jogador VALUES (0,10,0,65,51,9,81,0,9.3,25,1,3,6)
+INSERT INTO Scouting.Metricas_Jogo_Jogador VALUES (0,11,0,78,62,11,90,0,8.3,25,3,3,7)
+INSERT INTO Scouting.Metricas_Jogo_Jogador VALUES (1,12,0,65,48,9,70,0,6.3,25,6,2,5)
+INSERT INTO Scouting.Metricas_Jogo_Jogador VALUES (1,13,0,45,34,9,65,0,5.2,25,7,6,3)
+INSERT INTO Scouting.Metricas_Jogo_Jogador VALUES (1,14,1,34,23,6,50,0,4.8,25,4,5,1)
+INSERT INTO Scouting.Metricas_Jogo_Jogador VALUES (0,15,0,7,6,1,32,90,1,25,0,0,2)
+INSERT INTO Scouting.Metricas_Jogo_Jogador VALUES (2,16,0,65,51,10,75,0,6.1,25,5,4,4)
+INSERT INTO Scouting.Metricas_Jogo_Jogador VALUES (2,17,0,78,60,12,90,7,8.9,25,2,1,6)
 Select  *from Scouting.Metricas_Jogo_Jogador;
-
---Analise_Jogador POR ALTERAR POR ALTERAR POR ALTERAR POR ALTERAR POR ALTERAR POR ALTERAR POR ALTERAR POR ALTERAR POR ALTERAR
-INSERT INTO Scouting.Analise_Caracteristica_Jogador VALUES (1,70,65,'','Boa',76,83,78,1);
-INSERT INTO Scouting.Analise_Caracteristica_Jogador VALUES (2,78,78,'Passe','Boa',68,90,80,2);
-INSERT INTO Scouting.Analise_Caracteristica_Jogador VALUES (3,81,73,'Drible','Boa',78,83,77,3);
-INSERT INTO Scouting.Analise_Caracteristica_Jogador VALUES (0,77,80,'Visão de Jogo','Média',73,91,71,4);
-INSERT INTO Scouting.Analise_Caracteristica_Jogador VALUES (1,70,65,'','Boa',76,83,78,1);
-INSERT INTO Scouting.Analise_Caracteristica_Jogador VALUES (2,78,78,'Passe','Boa',68,90,80,2);
-INSERT INTO Scouting.Analise_Caracteristica_Jogador VALUES (3,81,73,'Drible','Boa',78,83,77,3);
-INSERT INTO Scouting.Analise_Caracteristica_Jogador VALUES (0,77,80,'Visão de Jogo','Média',73,91,71,4);
-INSERT INTO Scouting.Analise_Caracteristica_Jogador VALUES (1,70,65,'','Boa',76,83,78,1);
-INSERT INTO Scouting.Analise_Caracteristica_Jogador VALUES (2,78,78,'Passe','Boa',68,90,80,2);
-INSERT INTO Scouting.Analise_Caracteristica_Jogador VALUES (3,81,73,'Drible','Boa',78,83,77,3);
-INSERT INTO Scouting.Analise_Caracteristica_Jogador VALUES (0,77,80,'Visão de Jogo','Média',73,91,71,4);
-INSERT INTO Scouting.Analise_Caracteristica_Jogador VALUES (1,70,65,'','Boa',76,83,78,1);
-INSERT INTO Scouting.Analise_Caracteristica_Jogador VALUES (2,78,78,'Passe','Boa',68,90,80,2);
-INSERT INTO Scouting.Analise_Caracteristica_Jogador VALUES (3,81,73,'Drible','Boa',78,83,77,3);
-INSERT INTO Scouting.Analise_Caracteristica_Jogador VALUES (0,77,80,'Visão de Jogo','Média',73,91,71,4);
-INSERT INTO Scouting.Analise_Caracteristica_Jogador VALUES (1,70,65,'','Boa',76,83,78,1);
-INSERT INTO Scouting.Analise_Caracteristica_Jogador VALUES (2,78,78,'Passe','Boa',68,90,80,2);
+SELECT * FROM Scouting.Relatorio;
+--Analise_Jogador
+INSERT INTO Scouting.Analise_Caracteristica_Jogador VALUES (1,70,71,'Remate','Boa',76,83,78,1);
+INSERT INTO Scouting.Analise_Caracteristica_Jogador VALUES (2,78,78,'Passe','Boa',68,90,80,4);
+INSERT INTO Scouting.Analise_Caracteristica_Jogador VALUES (3,81,73,'Drible','Muito Boa',78,83,77,6);
+INSERT INTO Scouting.Analise_Caracteristica_Jogador VALUES (4,76,85,'Visão de Jogo','Média',73,91,71,7);
+INSERT INTO Scouting.Analise_Caracteristica_Jogador VALUES (5,70,65,'Drible','Média',76,83,78,2);
+INSERT INTO Scouting.Analise_Caracteristica_Jogador VALUES (6,83,78,'Passe','Boa',68,90,80,3);
+INSERT INTO Scouting.Analise_Caracteristica_Jogador VALUES (7,76,77,'Drible','Muito Boa',88,83,77,1);
+INSERT INTO Scouting.Analise_Caracteristica_Jogador VALUES (8,77,80,'Visão de Jogo','Muito Boa',85,91,71,1);
+INSERT INTO Scouting.Analise_Caracteristica_Jogador VALUES (9,75,69,'Antecipação','Boa',78,83,78,3);
+INSERT INTO Scouting.Analise_Caracteristica_Jogador VALUES (10,78,80,'Passe','Boa',68,75,80,5);
+INSERT INTO Scouting.Analise_Caracteristica_Jogador VALUES (11,87,73,'Corte','Boa',78,79,77,6);
+INSERT INTO Scouting.Analise_Caracteristica_Jogador VALUES (12,79,67,'Liderança','Média',68,91,71,7);
+INSERT INTO Scouting.Analise_Caracteristica_Jogador VALUES (13,79,65,'Agressividade na bola','Muito Boa',78,83,78,5);
+INSERT INTO Scouting.Analise_Caracteristica_Jogador VALUES (14,78,73,'Visão de Jogo','Boa',70,90,80,3);
+INSERT INTO Scouting.Analise_Caracteristica_Jogador VALUES (15,83,78,'Reflexos','Boa',78,83,77,1);
+INSERT INTO Scouting.Analise_Caracteristica_Jogador VALUES (16,90,80,'Visão de Jogo','Média',68,91,71,2);
+INSERT INTO Scouting.Analise_Caracteristica_Jogador VALUES (17,70,65,'Drible','Muito Boa',81,83,78,4);
+INSERT INTO Scouting.Analise_Caracteristica_Jogador VALUES (0,78,80,'Passe','Boa',68,90,80,6);
 
 --Jog_Posicoes
 INSERT INTO Scouting.Jog_Posicoes VALUES ('MC',8);
