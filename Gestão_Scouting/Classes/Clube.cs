@@ -11,9 +11,6 @@ namespace Gestão_Scouting
 		private String _Clube_Numero_Inscricao_FIFA;
 		private String _Clube_Pais;
 		private String _Clube_Nome;
-		private String _Clube_Treinador_Inscricao_FIFA;
-		private String _Treinador_Data_Saida;
-		private String _Treinador_Data_Inicio;
 
 		public String Clube_Numero_Inscricao_FIFA
 		{
@@ -31,22 +28,11 @@ namespace Gestão_Scouting
 			get { return _Clube_Nome; }
 			set { _Clube_Nome = value; }
 		}
-
-		public String Clube_Treinador_Inscricao_FIFA
+		public override String ToString()
 		{
-			get { return _Clube_Treinador_Inscricao_FIFA; }
-			set { _Clube_Treinador_Inscricao_FIFA = value; }
+			return Clube_Numero_Inscricao_FIFA + "   " + Clube_Nome;
 		}
 
-		public String Treinador_Data_Saida
-		{
-			get { return _Treinador_Data_Saida; }
-			set { _Treinador_Data_Saida = value; }
-		}
-		public String Treinador_Data_Inicio
-		{
-			get { return _Treinador_Data_Inicio; }
-			set { _Treinador_Data_Inicio = value; }
-		}
+
 	}
 }

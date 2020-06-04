@@ -27,6 +27,10 @@ namespace Gestão_Scouting
             get { return _Competicao_Numero_Equipas; }
             set { _Competicao_Numero_Equipas = value; }
         }
+        public override string ToString()
+        {
+            return Competicao_ID_FIFA + "  " + Competicao_Nome;
+        }
     }
    
 }

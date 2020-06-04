@@ -56,6 +56,9 @@ INSERT INTO Scouting.Competicao VALUES (1,'Iniciados',23)
 INSERT INTO Scouting.Competicao VALUES (2,'Juvenis Nacional PT A',18)
 INSERT INTO Scouting.Competicao VALUES (3,'Juniores Nacional PT A',18)
 
+--Inscrito Em
+INSERT INTO Scouting.Inscrito_Em VALUES (1,1,25,'12-07-2010')
+INSERT INTO Scouting.Inscrito_Em VALUES (2,2,23,'10-03-2010')
 
 --Jogos
 INSERT INTO Scouting.Jogo VALUES('Arouca','2012-05-11','2-0',1,1)
@@ -101,7 +104,7 @@ INSERT INTO Scouting.Analise_Caracteristica_Jogador VALUES (2,78,78,'Passe','Boa
 INSERT INTO Scouting.Analise_Caracteristica_Jogador VALUES (3,81,73,'Drible','Boa',78,83,77,3);
 INSERT INTO Scouting.Analise_Caracteristica_Jogador VALUES (0,77,80,'Visão de Jogo','Média',73,91,71,4);
 
-INSERT INTO Scouting.Inscrito_Em VALUES (1,1,25,'12-07-2010')
+
 
 
 

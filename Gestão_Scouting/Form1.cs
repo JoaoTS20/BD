@@ -19,9 +19,9 @@ namespace Gestão_Scouting
         private int currentRelatorioJogador;
         private static String List="";
         private static String Order="";
-        public static  String[] ids; 
+        public static  String[] ids;
         //Clubes
-
+        private int currentClube;
 
         public Form1()
         {
@@ -34,10 +34,12 @@ namespace Gestão_Scouting
             //Jogadores
             LoadJogadores(List,Order);
             GetListaObservacaoSelecao();
-            ListboxOrderSelec();
-            comboBoxListaSelecao.SelectedIndex=0;
+            ComboBoxOrderJogadores();
+            comboBoxListaSelecaoJogadores.SelectedIndex=0;
+            comboBoxOrder.SelectedIndex = 0;
             //Clubes
-
+            LoadClubes("");
+            ComboBoxOrderClubes();
 
         }
 
@@ -65,7 +67,7 @@ namespace Gestão_Scouting
         private void toolStripMenuItem2_Click(object sender, EventArgs e)
         {
             LoadJogadores("","");
-            comboBoxListaSelecao.SelectedIndex = 0;
+            comboBoxListaSelecaoJogadores.SelectedIndex = 0;
         }
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -115,7 +117,7 @@ namespace Gestão_Scouting
 
         private void listBoxJogadores_SelectedIndexChanged_1(object sender, EventArgs e)
         {
-            if (listBoxJogadores.SelectedIndex > 0)
+            if (listBoxJogadores.SelectedIndex >= 0)
             {
                 currentJogador = listBoxJogadores.SelectedIndex;
                 
@@ -124,7 +126,7 @@ namespace Gestão_Scouting
                 //Mostrar Posicoes Jogadores
                 PosicoesInsert(textID_FIFPro.Text);
                 //Mostrar Relatorios Jogadores
-                RelatoriosInsert(textID_FIFPro.Text);
+                GetRelatoriosJogadores(textID_FIFPro.Text);
 
             }
         }
@@ -196,18 +198,18 @@ namespace Gestão_Scouting
             S.Lista_Nome = "Todos";
             S.Lista_Idade_Maxima = "";
 
-            comboBoxListaSelecao.Items.Add(S);
+            comboBoxListaSelecaoJogadores.Items.Add(S);
             while (reader.Read())
             {
                 Lista_Observacao_Selecao L = new Lista_Observacao_Selecao();
                 L.Lista_Nome = reader["Lista_Nome"].ToString();
                 L.Lista_Idade_Maxima = reader["Lista_Idade_Maxima"].ToString();
-                comboBoxListaSelecao.Items.Add(L);
+                comboBoxListaSelecaoJogadores.Items.Add(L);
             }
             reader.Close();
         }
             //ComboBox Order by
-        public void ListboxOrderSelec()
+        public void ComboBoxOrderJogadores()
         {
             ComboBoxOrder Null = new ComboBoxOrder();
             Null.Text = "Null";
@@ -257,10 +259,10 @@ namespace Gestão_Scouting
             //Selecionar Tipo de Selecao
         private void comboBoxListaSelecao_SelectedIndexChanged(object sender, EventArgs e) //Função na 90% certa
         {
-            if (comboBoxListaSelecao.SelectedIndex >= 0)
+            if (comboBoxListaSelecaoJogadores.SelectedIndex >= 0)
             {
                 Lista_Observacao_Selecao list = new Lista_Observacao_Selecao();
-                list = (Lista_Observacao_Selecao)comboBoxListaSelecao.Items[comboBoxListaSelecao.SelectedIndex];
+                list = (Lista_Observacao_Selecao)comboBoxListaSelecaoJogadores.Items[comboBoxListaSelecaoJogadores.SelectedIndex];
                 String name = list.Lista_Idade_Maxima.ToString();
                 List = name;
                 LoadJogadores(List,Order);
@@ -270,7 +272,7 @@ namespace Gestão_Scouting
             //Selecionar Order
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (comboBoxListaSelecao.SelectedIndex >= 0)
+            if (comboBoxListaSelecaoJogadores.SelectedIndex >= 0)
             {
                 ComboBoxOrder list = new ComboBoxOrder();
                 list = (ComboBoxOrder)comboBoxOrder.Items[comboBoxOrder.SelectedIndex];
@@ -306,7 +308,7 @@ namespace Gestão_Scouting
         //-----------------------------------------------------------------------------
 
         //Funções Relatorio
-        public void RelatoriosInsert(String x)
+        public void GetRelatoriosJogadores(String x)
         {
             SqlCommand cmda = new SqlCommand();
             SqlDataReader readera;
@@ -351,21 +353,126 @@ namespace Gestão_Scouting
         }
         //TAB CLUBES
         //Funções Clubes
-        private void LoadClubes()
+        private void LoadClubes(String Order)
         {
             if (!verifySGBDConnection())
                 return;
             SqlCommand cmd = new SqlCommand();
             SqlDataReader reader;
-            //cmd.Connection = cn;
             cmd.CommandType = CommandType.Text;
-        }
+            cmd = new SqlCommand("Scouting.Get_Lista_Clubes", cn);
+            cmd.CommandType = CommandType.StoredProcedure; 
+            cmd.Parameters.AddWithValue("@OrderBy", Order);
 
+            reader = cmd.ExecuteReader();
+            listBoxClubes.Items.Clear();
+            while (reader.Read())
+            {
+                Clube C = new Clube();
+                C.Clube_Numero_Inscricao_FIFA = reader["Clube_Numero_Inscricao_FIFA"].ToString();
+                C.Clube_Nome = reader["Clube_Nome"].ToString();
+                C.Clube_Pais = reader["Clube_Pais"].ToString();
+                listBoxClubes.Items.Add(C);
+            }
+            reader.Close();
+            currentClube = 0;
+            LockClubesControls();
+            ShowClubes();
+        }
+            //Mostrar Dados Clube
+        private void ShowClubes()
+        {
+            if (listBoxClubes.Items.Count == 0 | currentClube < 0)
+                return;
+            Clube clube = new Clube();
+            clube = (Clube)listBoxClubes.Items[currentClube];
+            textBoxClubeNome.Text = clube.Clube_Nome;
+            textBoxClubePais.Text = clube.Clube_Numero_Inscricao_FIFA;
+            textBoxNumeroInscricaoFifaClube.Text = clube.Clube_Numero_Inscricao_FIFA;
+
+
+        }
+          
         private void listBoxClubes_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (listBoxClubes.SelectedIndex >= 0)
+            {
+                currentClube = listBoxClubes.SelectedIndex;
 
+                //Mostrar Clubes
+                ShowClubes();
+                //Mostrar Posicoes Jogadores
+                //PosicoesInsert(textID_FIFPro.Text);
+                //Mostrar Competições Clube
+                GetClubeCompeticoes(textBoxNumeroInscricaoFifaClube.Text);
+            }
 
         }
+        public void ComboBoxOrderClubes()
+        {
+            ComboBoxOrder Null = new ComboBoxOrder();
+            Null.Text = "Null";
+            Null.Value = "";
+            comboBoxOrderClubes.Items.Add(Null);
+
+            ComboBoxOrder Clube_Numero_Inscricao_FIFA = new ComboBoxOrder();
+            Clube_Numero_Inscricao_FIFA.Text = "Número de Inscrição FIFA";
+            Clube_Numero_Inscricao_FIFA.Value = "Clube_Numero_Inscricao_FIFA";
+            comboBoxOrderClubes.Items.Add(Clube_Numero_Inscricao_FIFA);
+
+            ComboBoxOrder Clube_Pais = new ComboBoxOrder();
+            Clube_Pais.Text = "País";
+            Clube_Pais.Value = "Clube_Pais";
+            comboBoxOrderClubes.Items.Add(Clube_Pais);
+
+            ComboBoxOrder Clube_Nome = new ComboBoxOrder();
+            Clube_Nome.Text = "Nome";
+            Clube_Nome.Value = "Clube_Nome";
+            comboBoxOrderClubes.Items.Add(Clube_Nome);
+        }
+        //Bloquear Dados Jogadores
+        public void LockClubesControls()
+        {
+            textBoxClubeNome.ReadOnly = true;
+            textBoxClubePais.ReadOnly = true;
+            textBoxNumeroInscricaoFifaClube.ReadOnly = true;
+            textBoxNúmeroJogadores.ReadOnly = true;
+            textBoxTreinadorAtual.ReadOnly = true;
+        }
+        private void comboBoxOrderClubes_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (comboBoxOrderClubes.SelectedIndex >= 0)
+            {
+                ComboBoxOrder list = new ComboBoxOrder();
+                list = (ComboBoxOrder)comboBoxOrderClubes.Items[comboBoxOrderClubes.SelectedIndex];
+                String x = list.Value.ToString();
+                Order = x;
+                LoadClubes(Order);
+            }
+        }
+        //CompetiçõesClubes Insert
+        private void GetClubeCompeticoes(String x)
+        {
+            SqlCommand cmda = new SqlCommand();
+            SqlDataReader readera;
+            //cmd.Connection = cn;
+            cmda.CommandType = CommandType.Text;
+            cmda = new SqlCommand("Scouting.Get_Competicoes_By_Clube", cn);
+            cmda.CommandType = CommandType.StoredProcedure;
+            cmda.Parameters.AddWithValue("@Club_ID", x);
+            readera = cmda.ExecuteReader();
+            listBoxCompeticaoClube.Items.Clear();
+            while (readera.Read())
+            {
+                Competicao P = new Competicao();
+                P.Competicao_ID_FIFA = readera["Competicao_ID_FIFA"].ToString();
+                P.Competicao_Nome = readera["Competicao_Nome"].ToString();
+                P.Competicao_Numero_Equipas = readera["Competicao_Numero_Equipas"].ToString();
+                listBoxCompeticaoClube.Items.Add(P);
+            }
+            readera.Close();
+        }
+
     }
 }
 

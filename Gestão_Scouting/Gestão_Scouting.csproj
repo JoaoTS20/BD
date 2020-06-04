@@ -52,36 +52,36 @@
     <Compile Include="AddPlayer.Designer.cs">
       <DependentUpon>AddPlayer.cs</DependentUpon>
     </Compile>
-    <Compile Include="Clube.cs" />
-    <Compile Include="ComboBoxOrder.cs" />
-    <Compile Include="Competicao.cs" />
+    <Compile Include="Classes\Clube.cs" />
+    <Compile Include="Classes\ComboBoxOrder.cs" />
+    <Compile Include="Classes\Competicao.cs" />
     <Compile Include="DadosRelatorio.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="DadosRelatorio.Designer.cs">
       <DependentUpon>DadosRelatorio.cs</DependentUpon>
     </Compile>
-    <Compile Include="Metricas_Jogo_Jogador.cs" />
-    <Compile Include="Analise_Caracteristica_Jogador.cs" />
+    <Compile Include="Classes\Metricas_Jogo_Jogador.cs" />
+    <Compile Include="Classes\Analise_Caracteristica_Jogador.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="Inscrito_Em.cs" />
-    <Compile Include="Jogador.cs" />
-    <Compile Include="Jogo.cs" />
-    <Compile Include="Jog_Posicoes.cs" />
-    <Compile Include="Lista_Observacao_Selecao.cs" />
-    <Compile Include="Observacao_Metodo_de_Observacao.cs" />
-    <Compile Include="Observador.cs" />
-    <Compile Include="Participa_Em.cs" />
-    <Compile Include="Program.cs" />
+    <Compile Include="Classes\Inscrito_Em.cs" />
+    <Compile Include="Classes\Jogador.cs" />
+    <Compile Include="Classes\Jogo.cs" />
+    <Compile Include="Classes\Jog_Posicoes.cs" />
+    <Compile Include="Classes\Lista_Observacao_Selecao.cs" />
+    <Compile Include="Classes\Observacao_Metodo_de_Observacao.cs" />
+    <Compile Include="Classes\Observador.cs" />
+    <Compile Include="Classes\Participa_Em.cs" />
+    <Compile Include="Classes\Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Relatorio.cs" />
-    <Compile Include="Selecionador.cs" />
-    <Compile Include="Treinador.cs" />
+    <Compile Include="Classes\Relatorio.cs" />
+    <Compile Include="Classes\Selecionador.cs" />
+    <Compile Include="Classes\Treinador.cs" />
     <EmbeddedResource Include="AddPlayer.resx">
       <DependentUpon>AddPlayer.cs</DependentUpon>
     </EmbeddedResource>
