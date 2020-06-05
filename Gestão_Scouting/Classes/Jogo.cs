@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Gestão_Scouting
 {
@@ -38,6 +39,11 @@ namespace Gestão_Scouting
 		{
 			get { return _Obs_Num_Iden_Federacao; }
 			set { _Obs_Num_Iden_Federacao = value; }
+		}
+
+		public override string ToString()
+		{
+			return Jogo_Local + " " + Jogo_Data.Split(' ')[0] + " " + Resultado;
 		}
 	}
 }

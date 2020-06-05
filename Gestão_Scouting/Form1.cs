@@ -67,6 +67,7 @@ namespace Gestão_Scouting
         private void toolStripMenuItem2_Click(object sender, EventArgs e)
         {
             LoadJogadores("","");
+            LoadClubes("");
             comboBoxListaSelecaoJogadores.SelectedIndex = 0;
         }
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
@@ -387,12 +388,12 @@ namespace Gestão_Scouting
             Clube clube = new Clube();
             clube = (Clube)listBoxClubes.Items[currentClube];
             textBoxClubeNome.Text = clube.Clube_Nome;
-            textBoxClubePais.Text = clube.Clube_Numero_Inscricao_FIFA;
+            textBoxClubePais.Text = clube.Clube_Pais;
             textBoxNumeroInscricaoFifaClube.Text = clube.Clube_Numero_Inscricao_FIFA;
 
 
         }
-          
+          //MostrarDadosClubeSelected
         private void listBoxClubes_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (listBoxClubes.SelectedIndex >= 0)
@@ -401,13 +402,14 @@ namespace Gestão_Scouting
 
                 //Mostrar Clubes
                 ShowClubes();
-                //Mostrar Posicoes Jogadores
-                //PosicoesInsert(textID_FIFPro.Text);
                 //Mostrar Competições Clube
                 GetClubeCompeticoes(textBoxNumeroInscricaoFifaClube.Text);
+                //Mostrar Jogos do Clube na Competicao
+                GetClubeJogosCompeticao(textBoxNumeroInscricaoFifaClube.Text);
             }
 
         }
+            //PrencherComboBoxOrderClubes
         public void ComboBoxOrderClubes()
         {
             ComboBoxOrder Null = new ComboBoxOrder();
@@ -439,6 +441,7 @@ namespace Gestão_Scouting
             textBoxNúmeroJogadores.ReadOnly = true;
             textBoxTreinadorAtual.ReadOnly = true;
         }
+        //OrderSelected
         private void comboBoxOrderClubes_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (comboBoxOrderClubes.SelectedIndex >= 0)
@@ -450,7 +453,7 @@ namespace Gestão_Scouting
                 LoadClubes(Order);
             }
         }
-        //CompetiçõesClubes Insert
+        //CompetiçõesClubes Load
         private void GetClubeCompeticoes(String x)
         {
             SqlCommand cmda = new SqlCommand();
@@ -473,6 +476,28 @@ namespace Gestão_Scouting
             readera.Close();
         }
 
+        private void GetClubeJogosCompeticao(String Club) {
+            SqlCommand cmda = new SqlCommand();
+            SqlDataReader readera;
+            //cmd.Connection = cn;
+            cmda.CommandType = CommandType.Text;
+            cmda = new SqlCommand("Scouting.Get_JogosCompeticao_By_Clube", cn);
+            cmda.CommandType = CommandType.StoredProcedure;
+            cmda.Parameters.AddWithValue("@Club_ID", Club);
+            readera = cmda.ExecuteReader();
+            listBoxJogosClubeCompeticao.Items.Clear();
+            while (readera.Read())
+            {
+                Jogo J = new Jogo();
+                J.Jogo_Data = readera["Jogo_Data"].ToString();
+                J.Jogo_Local = readera["Jogo_Local"].ToString();
+                J.Resultado = readera["Resultado"].ToString();
+                J.Jogo_Competicao_ID_FIFA = readera["Jogo_Competicao_ID_FIFA"].ToString();
+                J.Obs_Num_Iden_Federacao = readera["Obs_Num_Iden_Federacao"].ToString();
+                listBoxJogosClubeCompeticao.Items.Add(J);
+            }
+            readera.Close();
+        }
     }
 }
 

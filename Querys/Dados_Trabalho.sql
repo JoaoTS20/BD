@@ -146,7 +146,7 @@ INSERT INtO Scouting.Relatorio Values('Relatório Joaquim José','2019-11-17',2,18
 --SELECT * FROM Scouting.Relatorio;
 
 --Participa_em  POR ALTERAR POR ALTERAR POR ALTERAR POR ALTERAR POR ALTERAR POR ALTERAR POR ALTERAR POR ALTERAR
-INSERT INTO Scouting.Participa_Em Values(1,'2019-0-11','Aveiro',21)
+INSERT INTO Scouting.Participa_Em Values(1,'2019-01-11','Aveiro',21)
 INSERT INTO Scouting.Participa_Em Values(2,'2019-11-17','Porto',18)
 INSERT INTO Scouting.Participa_Em Values(3,'2019-05-11','Aveiro',21)
 INSERT INTO Scouting.Participa_Em Values(4,'2020-02-18','Braga',18)
