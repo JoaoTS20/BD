@@ -1,4 +1,3 @@
-use Proj;
 
 CREATE SCHEMA Scouting;
 GO
@@ -112,7 +111,6 @@ CREATE TABLE Scouting.Clube(
 	Clube_Pais varchar(40) NOT NULL,
 	Clube_Nome varchar(50) NOT NULL,
 	
-	--FOREIGN KEY (Clube_Treinador_Numero_Inscricao_FIFA) REFERENCES Scouting.Treinador(Treinador_Numero_Inscricao_FIFA);
 );
 
 CREATE TABLE Scouting.Treina(
@@ -152,7 +150,7 @@ CREATE TABLE Scouting.Observacao_Metodo_de_Observacao(
 	--FOREIGN KEY Numero_Identificacao_Federacao REFERENCES Scouting.Relatorio(ID)
 	PRIMARY KEY(Rel_Metodo_de_Observacao,Rel_ID_Relatorio)
 );
-DROP table Scouting.Observacao_Metodo_de_Observacao
+--DROP table Scouting.Observacao_Metodo_de_Observacao
 
 CREATE TABLE Scouting.Selecionador(
 	Selecionador_Numero_Identificacao_Federacao varchar(9) PRIMARY KEY,
@@ -173,7 +171,7 @@ CREATE TABLE Scouting.Jogo(
 	--UNIQUE(Jogo_Data),
 	PRIMARY KEY(Jogo_Local,Jogo_Data)
 );
-drop table Scouting.Jogo
+--drop table Scouting.Jogo
 
 CREATE TABLE Scouting.Treinador(
 	Treinador_Numero_Inscricao_FIFA varchar(9) PRIMARY KEY,
@@ -251,9 +249,6 @@ ALTER TABLE Scouting.Jogo
 ALTER TABLE Scouting.Inscrito_Em
 	ADD FOREIGN KEY (Ins_Competicao_ID_FIFA) REFERENCES Scouting.Competicao(Competicao_ID_FIFA),
 		FOREIGN KEY (Ins_Clube_Numero_Inscricao_FIFA) REFERENCES Scouting.Clube(Clube_Numero_Inscricao_FIFA);
-
-ALTER TABLE Scouting.Clube
-	ADD FOREIGN KEY (Clube_Numero_Inscricao_FIFA) REFERENCES Scouting.Treinador(Treinador_Numero_Inscricao_FIFA);
 
 ALTER TABLE Scouting.Responsavel
 	ADD FOREIGN KEY (Selec_Numero_Iden_Federacao) REFERENCES Scouting.Selecionador(Selecionador_Numero_Identificacao_Federacao),
