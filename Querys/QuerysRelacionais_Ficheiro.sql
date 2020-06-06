@@ -36,10 +36,6 @@ AS
 
 
 
-
-
-
-
 --Stored Procedure Obter Posi��es Jogadores
 CREATE PROCEDURE Scouting.GetPosicoesByJogador @ID varchar(30)
 AS
@@ -48,9 +44,6 @@ SELECT Scouting.Jog_Posicoes.Jog_Posicoes_ID_FIFPro, Scouting.Jog_Posicoes.J_Pos
 End
 --EXEC Scouting.GetPosicoesByJogador 8
 --Drop procedure Scouting.GetPosicoesByJogador
-
-
-
 
 
 
@@ -110,23 +103,27 @@ AS
 --DROP PROCEDURE Scouting.Get_Lista_Clubes;
 
 
-
-
-
-
-
-
-
-
--- Stored Procedure Obter Jogadores por Clubes
-Create Procedure Scouting.Get_Jogadores_By_Clube @Club_ID varchar(80)
+-- Stored Procedure Obter Jogador do Clube Atuais
+Create Procedure Scouting.Get_JogadoresAtuais_By_Clube @Club_ID varchar(80)
 AS
 		IF(LEN(@Club_ID)>0 )
 			BEGIN
-			SELECT * FROM (Scouting.Jogador JOIN Scouting.Jogador_Pertence_Clube ON Jogador.ID_FIFPro=Jogador_Pertence_Clube.ID_FIFPro)JOIN Scouting.Clube ON Clube.Clube_Numero_Inscricao_FIFA=Jogador_Pertence_Clube.JPC_Clube_Numero_Inscricao_FIFA WHERE Clube.Clube_Numero_Inscricao_FIFA = @Club_ID;
+			SELECT * FROM (Scouting.Jogador JOIN Scouting.Jogador_Pertence_Clube ON Jogador.ID_FIFPro=Jogador_Pertence_Clube.ID_FIFPro)JOIN Scouting.Clube ON Clube.Clube_Numero_Inscricao_FIFA=Jogador_Pertence_Clube.JPC_Clube_Numero_Inscricao_FIFA WHERE Clube.Clube_Numero_Inscricao_FIFA = @Club_ID and Pertence_Data_Saida is null;
 			END
---EXEC Scouting.Get_Jogadores_By_Clube 2
 
+--drop procedure Scouting.Get_JogadoresAtuais_By_Clube
+
+
+
+--Stored Procedure Obter Jogador Passados do Clube
+Create Procedure Scouting.Get_JogadoresPassado_By_Clube @Club_ID varchar(80)
+AS
+		IF(LEN(@Club_ID)>0 )
+			BEGIN
+			SELECT * FROM (Scouting.Jogador JOIN Scouting.Jogador_Pertence_Clube ON Jogador.ID_FIFPro=Jogador_Pertence_Clube.ID_FIFPro)JOIN Scouting.Clube ON Clube.Clube_Numero_Inscricao_FIFA=Jogador_Pertence_Clube.JPC_Clube_Numero_Inscricao_FIFA WHERE Clube.Clube_Numero_Inscricao_FIFA = @Club_ID and Pertence_Data_Saida is not null;
+			END
+
+--drop procedure Scouting.Get_JogadoresPassado_By_Clube
 
 
 
@@ -134,14 +131,29 @@ AS
 
 
 -- Stored Procedure Obter Treinadores por Clubes
-Create Procedure Scouting.Get_Treinadores_By_Clube @Club_ID varchar(9)
+Create Procedure Scouting.Get_TreinadoresPassado_By_Clube @Club_ID varchar(9)
 AS
 		IF(LEN(@Club_ID)>0 )
 			BEGIN
-			SELECT * FROM (Scouting.Treinador JOIN Scouting.Treina ON Treinador.Treinador_Numero_Inscricao_FIFA=Treina_Num_Insc_FIFA)JOIN Scouting.Clube ON Clube.Clube_Numero_Inscricao_FIFA=Treina.Clube_Num_insc_FIFA WHERE Clube.Clube_Numero_Inscricao_FIFA =@Club_ID;
+			SELECT * FROM (Scouting.Treinador JOIN Scouting.Treina ON Treinador.Treinador_Numero_Inscricao_FIFA=Treina_Num_Insc_FIFA)JOIN Scouting.Clube ON Clube.Clube_Numero_Inscricao_FIFA=Treina.Clube_Num_insc_FIFA WHERE Clube.Clube_Numero_Inscricao_FIFA =@Club_ID and Treinador_Data_Saida is not null ;
+			END
+--EXEC Scouting.Get_TreinadoresPassados_By_Clube 2
+--DROP PROCEDURE Scouting.Get_TreinadoresPassados_By_Clube
+
+
+
+
+
+
+-- Stored Procedure Obter Treinador Atual por Clubes
+Create Procedure Scouting.Get_TreinadorAtual_By_Clube @Club_ID varchar(9)
+AS
+		IF(LEN(@Club_ID)>0 )
+			BEGIN
+			SELECT * FROM (Scouting.Treinador JOIN Scouting.Treina ON Treinador.Treinador_Numero_Inscricao_FIFA=Treina_Num_Insc_FIFA)JOIN Scouting.Clube ON Clube.Clube_Numero_Inscricao_FIFA=Treina.Clube_Num_insc_FIFA WHERE Clube.Clube_Numero_Inscricao_FIFA =@Club_ID and Treinador_Data_Saida is null;
 			END
 --EXEC Scouting.Get_Treinadores_By_Clube 2
---DROP PROCEDURE Scouting.Get_Treinadores_By_Clube
+--DROP PROCEDURE Scouting.Get_TreinadorAtual_By_Clube
 
 
 
@@ -165,21 +177,18 @@ AS
 
 
 
--- Stored Procedure Obter Jogos por Clubes
-Create Procedure Scouting.Get_Jogos_By_Clube @Club_ID varchar(9)
+-- Stored Procedure Obter Jogos do Clube todos ou só na comp. //AINDA NÃO TESTADA
+Create Procedure Scouting.Get_Jogos_By_Clube @Club_ID varchar(9), @Comp_ID varchar(9)
 AS
-	DECLARE @SQLStatement varchar(400)
-		IF(LEN(@Club_ID)>0 )
+		IF(LEN(@Club_ID)>0 and LEN(@Comp_ID)>0 )
 			BEGIN
-			SELECT @SQLStatement= 'SELECT Scouting.Jogo.* FROM (Scouting.Jogo JOIN Scouting.Participa_Em ON Jogo.Jogo_Data = Participa_Em.Participa_Em_Jogo_Data AND Participa_Em.Participa_Em_Jogo_Local=Jogo.Jogo_Local) JOIN Scouting.Clube ON Clube.Clube_Numero_Inscricao_FIFA=Participa_Em.Participa_Clube_Numero_Inscricao_FIFA WHERE Clube.Clube_Numero_Inscricao_FIFA=' + @Club_ID;
-			EXEC(@SQLStatement)
+			SELECT Scouting.Jogo.* FROM (Scouting.Jogo JOIN Scouting.Participa_Em ON Jogo.Jogo_Data = Participa_Em.Participa_Em_Jogo_Data AND Participa_Em.Participa_Em_Jogo_Local=Jogo.Jogo_Local) JOIN Scouting.Clube ON Clube.Clube_Numero_Inscricao_FIFA=Participa_Em.Participa_Clube_Numero_Inscricao_FIFA WHERE Clube.Clube_Numero_Inscricao_FIFA=@Club_ID and Jogo_Competicao_ID_FIFA=@Comp_ID; 
 			END
- 		IF (LEN(@Club_ID)=0)
+ 		IF (LEN(@Club_ID)>0 and LEN(@Comp_ID)=0)
 			BEGIN
-			SELECT @SQLStatement= 'SELECT Scouting.Jogo.* FROM (Scouting.Jogo JOIN Scouting.Participa_Em ON Jogo.Jogo_Data = Participa_Em.Participa_Em_Jogo_Data AND Participa_Em.Participa_Em_Jogo_Local=Jogo.Jogo_Local) JOIN Scouting.Clube ON Clube.Clube_Numero_Inscricao_FIFA=Participa_Em.Participa_Clube_Numero_Inscricao_FIFA';
-			EXEC(@SQLStatement)
+			SELECT Scouting.Jogo.* FROM (Scouting.Jogo JOIN Scouting.Participa_Em ON Jogo.Jogo_Data = Participa_Em.Participa_Em_Jogo_Data AND Participa_Em.Participa_Em_Jogo_Local=Jogo.Jogo_Local) JOIN Scouting.Clube ON Clube.Clube_Numero_Inscricao_FIFA=Participa_Em.Participa_Clube_Numero_Inscricao_FIFA WHERE Clube.Clube_Numero_Inscricao_FIFA=@Club_ID;
 			END
---EXEC Scouting.Get_Jogos_By_Clube 2
+--EXEC Scouting.Get_Jogos_By_Clube 2,''
 --DROP PROCEDURE Scouting.Get_Jogos_By_Clube
 
 
@@ -190,16 +199,7 @@ AS
 
 
 
-
-
-
-
-
-
-
-
-
---ST INSERIR CLUBES
+--Stored Procedure INSERIR CLUBES
 create procedure Scouting.Insert_Clubes(@Clube_Numero_Inscricao varchar(9),@Clube_Pais varchar(40),@Clube_Nome varchar(50))
 as 
 	BEGIN
@@ -236,13 +236,7 @@ as
 
 
 
-
-
-
-
-
-
---ST Inserir Observadores 
+--Stored Procedure Inserir Observadores 
 create procedure Scouting.Insert_Observador(@Numero_Identificacao_Federacao varchar(9),@Observador_Nome varchar(50),@Observador_Qualificacoes varchar(100), @Obsevador_Nacionalidade varchar(40),@Observador_Idade int, @Area_Obsevacao varchar(50))
 as 
 	BEGIN
@@ -281,11 +275,7 @@ as
 
 
 
-
-
-
-
---ST INSERIR Competicao
+--Stored Procedure INSERIR Competicao
 create procedure Scouting.Insert_Competicao(@Competicao_ID_FIFA varchar(9),@Competicao_Nome varchar(50),@Competicao_Numero_Equipas int)
 as 
 	BEGIN
@@ -306,16 +296,6 @@ as
 	END
 	--EXEC Scouting.Insert_Competicao 12,'liga max 2', 2
 	--drop stored Scouting.Insert_Competicao
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -360,12 +340,7 @@ AS
 
 
 
-
-
-
-
-
---ST INSERIR EQUIPAS INSCRITAS COMPETICAO
+--Stored Procedure INSERIR EQUIPAS INSCRITAS COMPETICAO
 create procedure Scouting.Insert_Equipas_Inscritas_Competicao(@Ins_Clube_Numero_Inscricao_FIFA varchar(9),@Ins_Competicao_ID_FIFA varchar(9),@Numero_Jogadores_Inscritos int, @data date)
 as 
 	BEGIN
@@ -403,7 +378,7 @@ drop procedure Scouting.Insert_Equipas_Inscritas_Competicao
 
 
 
---ST INSERIR AS POSIÇÕES DO JOGADOR
+--Stored Procedure INSERIR AS POSIÇÕES DO JOGADOR
 create procedure Scouting.Insert_Posicoes(@J_Posicoes varchar(30),@ID varchar(9))
 as 
 	BEGIN
