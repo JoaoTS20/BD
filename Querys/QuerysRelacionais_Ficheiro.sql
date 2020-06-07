@@ -297,13 +297,13 @@ as
 	--EXEC Scouting.Insert_Competicao 12,'liga max 2', 2
 	--drop stored Scouting.Insert_Competicao
 
-
-
-
-
-
-
-
+-- Stored Procedure Obter Listas	
+Create Procedure Scouting.Get_Listas_Observacao_Selecao	
+AS	
+	Begin	
+	SELECT * FROM Scouting.Lista_Observacao_Selecao	
+	End	
+--Exec Scouting.Get_Listas_Observacao_Selecao
 
 
 --Trigger Não ter mais de numero de equipas inscritas
