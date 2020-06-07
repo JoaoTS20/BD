@@ -481,7 +481,38 @@ as
 	END
 
 
+--UDF Numero jogadores na lista 
+CREATE FUNCTION Scouting.Get_NumeroJogadoresLista (@lista int) RETURNS int
+AS
+	Begin
+		Declare @Total int
+			Select @Total=count(*) FROM Scouting.Jogador WHERE Lista_Idade_Maxima=@lista;	
+		Return @Total
+	End
 
+--Select  Scouting.Get_NumeroJogadoresLista (21)
+--drop function Scouting.Get_NumeroJogadoresLista
+
+
+
+
+--Trigger Não ter mais que um treinador com data de saida Null --Ainda não testada
+CREATE TRIGGER UmTreinador on Scouting.Treina
+AFTER INSERT,UPDATE
+AS 
+	SET NOCOUNT ON;
+	Declare @treinadoratual as int
+	Declare @clubid as varchar(9)
+	Declare @max_1 as int
+	Select @max_1=1;
+	Select @clubid= Clube_Num_insc_FIFA from inserted;
+	Select @treinadoratual=COUNT(*) from Scouting.Treina where Treinador_Data_Saida is null and Clube_Num_insc_FIFA=@clubid
+	if(@treinadoratual>@max_1)
+		BEGIN
+			RAISERROR ('Só pode ter um treinador a treinar de momento!', 16,1);
+				ROLLBACK TRAN; -- Anula a inserção
+		END
+-- drop trigger UmTreinador
 
 
 
