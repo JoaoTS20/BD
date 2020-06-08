@@ -71,6 +71,7 @@ namespace Gestão_Scouting
             LoadJogadores("","");
             LoadClubes("");
             comboBoxListaSelecaoJogadores.SelectedIndex = 0;
+            comboBoxOrder.SelectedIndex = 0;
         }
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -127,7 +128,7 @@ namespace Gestão_Scouting
                 //Mostrar Jogadores
                 ShowJogadores();
                 //Mostrar Posicoes Jogadores
-                PosicoesInsert(textID_FIFPro.Text);
+                LoadPositions(textID_FIFPro.Text);
                 //Mostrar Relatorios Jogadores
                 GetRelatoriosJogadores(textID_FIFPro.Text);
 
@@ -169,7 +170,7 @@ namespace Gestão_Scouting
             }  
         }
             //ObterPosicoes;
-        public void PosicoesInsert(String x)
+        public void LoadPositions(String x)
         {
             SqlCommand cmda = new SqlCommand();
             SqlDataReader readera;
@@ -309,9 +310,13 @@ namespace Gestão_Scouting
             {
                 listBoxJogadores.ClearSelected();
             }
-            AddPlayer ap = new AddPlayer();
+            InsertPlayer ap = new InsertPlayer();
             ap.ShowDialog();
-            
+            List = "";
+            Order = "";
+            comboBoxListaSelecaoJogadores.SelectedIndex = 0;
+            comboBoxOrder.SelectedIndex = 0;
+            LoadJogadores("", "");
 
         }
 

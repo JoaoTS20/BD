@@ -46,11 +46,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AddPlayer.cs">
+    <Compile Include="InsertPlayer.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AddPlayer.Designer.cs">
-      <DependentUpon>AddPlayer.cs</DependentUpon>
+    <Compile Include="InsertPlayer.Designer.cs">
+      <DependentUpon>InsertPlayer.cs</DependentUpon>
     </Compile>
     <Compile Include="Classes\Clube.cs" />
     <Compile Include="Classes\ComboBoxOrder.cs" />
@@ -88,8 +88,8 @@
     <Compile Include="Classes\Relatorio.cs" />
     <Compile Include="Classes\Selecionador.cs" />
     <Compile Include="Classes\Treinador.cs" />
-    <EmbeddedResource Include="AddPlayer.resx">
-      <DependentUpon>AddPlayer.cs</DependentUpon>
+    <EmbeddedResource Include="InsertPlayer.resx">
+      <DependentUpon>InsertPlayer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DadosRelatorio.resx">
       <DependentUpon>DadosRelatorio.cs</DependentUpon>

@@ -397,7 +397,7 @@ namespace Gestão_Scouting
             this.buttonCriarJogadores.Name = "buttonCriarJogadores";
             this.buttonCriarJogadores.Size = new System.Drawing.Size(128, 28);
             this.buttonCriarJogadores.TabIndex = 20;
-            this.buttonCriarJogadores.Text = "Criar Jogadores";
+            this.buttonCriarJogadores.Text = "Inserir Jogador";
             this.buttonCriarJogadores.UseVisualStyleBackColor = true;
             this.buttonCriarJogadores.Click += new System.EventHandler(this.buttonCriarJogadores_Click);
             // 
