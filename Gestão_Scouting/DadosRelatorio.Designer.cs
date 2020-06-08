@@ -474,11 +474,11 @@
             // labelTitulo
             // 
             this.labelTitulo.AutoSize = true;
-            this.labelTitulo.Location = new System.Drawing.Point(450, 42);
+            this.labelTitulo.Location = new System.Drawing.Point(466, 42);
             this.labelTitulo.Name = "labelTitulo";
-            this.labelTitulo.Size = new System.Drawing.Size(54, 17);
+            this.labelTitulo.Size = new System.Drawing.Size(43, 17);
             this.labelTitulo.TabIndex = 40;
-            this.labelTitulo.Text = "label20";
+            this.labelTitulo.Text = "Título";
             // 
             // DadosRelatorio
             // 

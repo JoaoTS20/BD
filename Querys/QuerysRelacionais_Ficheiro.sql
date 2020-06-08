@@ -515,9 +515,45 @@ AS
 -- drop trigger UmTreinador
 
 
+--Stored Procedure Remover Posição de Jogador
+CREATE PROCEDURE Scouting.Delete_Posicoes @J_Posicoes varchar(30), @ID varchar(9)
+AS
+	BEGIN
+		Begin Transaction  x
+			BEGIN TRY
+				delete from Scouting.Jog_Posicoes where J_Posicoes=@J_Posicoes and Jog_Posicoes_ID_FIFPro=@ID
+				print ('Posição Removida')
+				Commit Transaction x
+			END TRY
 
+			BEGIN CATCH 
+				IF @@TRANCOUNT>0
+				BEGIN
+					raiserror ('Erro Remover Posição', 16, 1);
+					RollBack Transaction x
+				END
+			END CATCH
+	END
 
+	--Stored Editar Jogador
+CREATE PROCEDURE Scouting.Update_Jogador @ID_FIFPro varchar(9),@Nome Varchar(50), @Altura float, @Peso float, @Pe bit, @Idade int, @Dupla_Na int,@numint int, @Lista int
+AS
+	BEGIN
+		Begin Transaction  x
+			BEGIN TRY
+				 UPDATE Scouting.Jogador  SET Jogador_Nome=@Nome,Jogador_Altura=@Altura,Jogador_Peso=@Peso,Pe_Favorito=@Pe,Idade=@Idade,Dupla_Nacionalidade=@Dupla_Na,Lista_Idade_Maxima=@Lista  WHERE  ID_FIFPro=@ID_FIFPro;
+				 Print 'Jogador Editado'
+				Commit Transaction x
+			END TRY
 
+			BEGIN CATCH 
+				IF @@TRANCOUNT>0
+				BEGIN
+					raiserror ('Erro Editar Jogador', 16, 1);
+					RollBack Transaction x
+				END
+			END CATCH
+	END
 
 
 

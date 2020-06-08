@@ -49,7 +49,7 @@ namespace Gestão_Scouting
         private SqlConnection getSGBDConnection()
         {
             //Local a Editar!!
-            return new SqlConnection("data source=LAPTOP-2KEGA0ER;integrated security=true;initial catalog=Proj");
+            return new SqlConnection("data source=LAPTOP-MH91MTBV;integrated security=true;initial catalog=Trabalho_Final");
             //MH91MTBV
             //2KEGA0ER
         }
@@ -363,7 +363,41 @@ namespace Gestão_Scouting
                 textBoxinsertPosicoes.Clear();
                 LoadPositions(textID_FIFPro.Text);
             }
+
         }
+            //Remover Posição
+        private void buttonRemovePos_Click(object sender, EventArgs e)
+        {
+            if (!verifySGBDConnection())
+                return;
+            if (listBoxPosicoes.Items.Count == 0)
+                return;
+
+            String pos = (String)listBoxPosicoes.Items[listBoxPosicoes.SelectedIndex].ToString();
+            SqlCommand cmda = new SqlCommand();
+            cmda.CommandType = CommandType.Text;
+            cmda = new SqlCommand("Scouting.Delete_Posicoes", cn);
+            cmda.CommandType = CommandType.StoredProcedure;
+            cmda.Parameters.AddWithValue("@ID", textID_FIFPro.Text);
+            cmda.Parameters.AddWithValue("J_Posicoes", pos);
+            try
+            {
+                cmda.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Falhou Remover Posição Jogador na BD database. \n ERROR MESSAGE: \n" + ex.Message);
+
+            }
+            finally
+            {
+                MessageBox.Show("Posição " + textBoxinsertPosicoes.Text + " Removida!");
+                textBoxinsertPosicoes.Clear();
+                LoadPositions(textID_FIFPro.Text);
+            }
+        }
+
+
         //-----------------------------------------------------------------------------
 
         //Funções Relatorio

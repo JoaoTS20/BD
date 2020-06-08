@@ -39,8 +39,6 @@ namespace Gestão_Scouting
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.textBoxinsertPosicoes = new System.Windows.Forms.TextBox();
-            this.buttonDelListas = new System.Windows.Forms.Button();
-            this.buttonInsLista = new System.Windows.Forms.Button();
             this.buttonRemovePos = new System.Windows.Forms.Button();
             this.buttonInserirPos = new System.Windows.Forms.Button();
             this.textBoxNumeroRelatoriosJogador = new System.Windows.Forms.TextBox();
@@ -142,12 +140,16 @@ namespace Gestão_Scouting
             this.label36 = new System.Windows.Forms.Label();
             this.listBoxCompeticao = new System.Windows.Forms.ListBox();
             this.tabPage5 = new System.Windows.Forms.TabPage();
+            this.buttonDelListas = new System.Windows.Forms.Button();
+            this.buttonInsLista = new System.Windows.Forms.Button();
+            this.label35 = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.tabPage4.SuspendLayout();
+            this.tabPage5.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -221,8 +223,6 @@ namespace Gestão_Scouting
             // tabPage1
             // 
             this.tabPage1.Controls.Add(this.textBoxinsertPosicoes);
-            this.tabPage1.Controls.Add(this.buttonDelListas);
-            this.tabPage1.Controls.Add(this.buttonInsLista);
             this.tabPage1.Controls.Add(this.buttonRemovePos);
             this.tabPage1.Controls.Add(this.buttonInserirPos);
             this.tabPage1.Controls.Add(this.textBoxNumeroRelatoriosJogador);
@@ -272,35 +272,18 @@ namespace Gestão_Scouting
             // 
             this.textBoxinsertPosicoes.Location = new System.Drawing.Point(657, 190);
             this.textBoxinsertPosicoes.Name = "textBoxinsertPosicoes";
-            this.textBoxinsertPosicoes.Size = new System.Drawing.Size(123, 22);
+            this.textBoxinsertPosicoes.Size = new System.Drawing.Size(133, 22);
             this.textBoxinsertPosicoes.TabIndex = 43;
-            // 
-            // buttonDelListas
-            // 
-            this.buttonDelListas.Location = new System.Drawing.Point(411, 46);
-            this.buttonDelListas.Name = "buttonDelListas";
-            this.buttonDelListas.Size = new System.Drawing.Size(111, 23);
-            this.buttonDelListas.TabIndex = 42;
-            this.buttonDelListas.Text = "Eliminar Listas";
-            this.buttonDelListas.UseVisualStyleBackColor = true;
-            // 
-            // buttonInsLista
-            // 
-            this.buttonInsLista.Location = new System.Drawing.Point(411, 17);
-            this.buttonInsLista.Name = "buttonInsLista";
-            this.buttonInsLista.Size = new System.Drawing.Size(111, 23);
-            this.buttonInsLista.TabIndex = 41;
-            this.buttonInsLista.Text = "Inserir Lista";
-            this.buttonInsLista.UseVisualStyleBackColor = true;
             // 
             // buttonRemovePos
             // 
-            this.buttonRemovePos.Location = new System.Drawing.Point(651, 225);
+            this.buttonRemovePos.Location = new System.Drawing.Point(657, 225);
             this.buttonRemovePos.Name = "buttonRemovePos";
-            this.buttonRemovePos.Size = new System.Drawing.Size(129, 28);
+            this.buttonRemovePos.Size = new System.Drawing.Size(133, 28);
             this.buttonRemovePos.TabIndex = 40;
             this.buttonRemovePos.Text = "Remover Posição";
             this.buttonRemovePos.UseVisualStyleBackColor = true;
+            this.buttonRemovePos.Click += new System.EventHandler(this.buttonRemovePos_Click);
             // 
             // buttonInserirPos
             // 
@@ -1292,6 +1275,9 @@ namespace Gestão_Scouting
             // 
             // tabPage5
             // 
+            this.tabPage5.Controls.Add(this.label35);
+            this.tabPage5.Controls.Add(this.buttonDelListas);
+            this.tabPage5.Controls.Add(this.buttonInsLista);
             this.tabPage5.Location = new System.Drawing.Point(4, 25);
             this.tabPage5.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tabPage5.Name = "tabPage5";
@@ -1300,6 +1286,33 @@ namespace Gestão_Scouting
             this.tabPage5.TabIndex = 4;
             this.tabPage5.Text = "Gestão";
             this.tabPage5.UseVisualStyleBackColor = true;
+            // 
+            // buttonDelListas
+            // 
+            this.buttonDelListas.Location = new System.Drawing.Point(179, 45);
+            this.buttonDelListas.Name = "buttonDelListas";
+            this.buttonDelListas.Size = new System.Drawing.Size(111, 23);
+            this.buttonDelListas.TabIndex = 44;
+            this.buttonDelListas.Text = "Eliminar Listas";
+            this.buttonDelListas.UseVisualStyleBackColor = true;
+            // 
+            // buttonInsLista
+            // 
+            this.buttonInsLista.Location = new System.Drawing.Point(24, 45);
+            this.buttonInsLista.Name = "buttonInsLista";
+            this.buttonInsLista.Size = new System.Drawing.Size(111, 23);
+            this.buttonInsLista.TabIndex = 43;
+            this.buttonInsLista.Text = "Inserir Lista";
+            this.buttonInsLista.UseVisualStyleBackColor = true;
+            // 
+            // label35
+            // 
+            this.label35.AutoSize = true;
+            this.label35.Location = new System.Drawing.Point(128, 15);
+            this.label35.Name = "label35";
+            this.label35.Size = new System.Drawing.Size(148, 17);
+            this.label35.TabIndex = 45;
+            this.label35.Text = "Listas De Observação";
             // 
             // Form1
             // 
@@ -1325,6 +1338,8 @@ namespace Gestão_Scouting
             this.tabPage3.PerformLayout();
             this.tabPage4.ResumeLayout(false);
             this.tabPage4.PerformLayout();
+            this.tabPage5.ResumeLayout(false);
+            this.tabPage5.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1431,8 +1446,6 @@ namespace Gestão_Scouting
         private System.Windows.Forms.Label label43;
         private System.Windows.Forms.Button buttonRemovePos;
         private System.Windows.Forms.Button buttonInserirPos;
-        private System.Windows.Forms.Button buttonDelListas;
-        private System.Windows.Forms.Button buttonInsLista;
         private System.Windows.Forms.TextBox textBoxinsertPosicoes;
         private System.Windows.Forms.Button buttonDeleteClube;
         private System.Windows.Forms.Button buttonEditClube;
@@ -1445,6 +1458,9 @@ namespace Gestão_Scouting
         private System.Windows.Forms.Button buttonEliminarRelatorio;
         private System.Windows.Forms.Button buttonEditarRelatório;
         private System.Windows.Forms.Label label33;
+        private System.Windows.Forms.Label label35;
+        private System.Windows.Forms.Button buttonDelListas;
+        private System.Windows.Forms.Button buttonInsLista;
     }
 }
 
