@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -160,14 +161,18 @@ namespace Gestão_Scouting
             {
                 bitPe = "0";
             }
+            //String al =TextBoxAltura.Text.ToString();
+            //String pe = TextBoxAltura.Text.ToString();
+            float al = (float)double.Parse(TextBoxAltura.Text.ToString(), CultureInfo.CurrentCulture);
+            float pe = (float)double.Parse(textBoxPeso.Text.ToString(), CultureInfo.CurrentCulture);
             SqlCommand cmda = new SqlCommand();
             cmda.CommandType = CommandType.Text;
             cmda = new SqlCommand("Scouting.Update_Jogador", cn);
             cmda.CommandType = CommandType.StoredProcedure;
             cmda.Parameters.AddWithValue("@ID_FIFPro", textBoxID.Text);
             cmda.Parameters.AddWithValue("@Nome", TextBoxNome.Text);
-            cmda.Parameters.AddWithValue("@Altura", TextBoxAltura.Text.ToString());
-            cmda.Parameters.AddWithValue("@Peso", textBoxPeso.Text.ToString());
+            cmda.Parameters.AddWithValue("@Altura", Math.Round(al, 2));
+            cmda.Parameters.AddWithValue("@Peso", Math.Round(pe, 2));
             cmda.Parameters.AddWithValue("@Pe", bitPe);
             cmda.Parameters.AddWithValue("@Idade", TextBoxIdade.Text);
             cmda.Parameters.AddWithValue("@Dupla_Na", bitDupl);
