@@ -268,7 +268,10 @@ namespace Gestão_Scouting
                 list = (Lista_Observacao_Selecao)comboBoxListaSelecaoJogadores.Items[comboBoxListaSelecaoJogadores.SelectedIndex];
                 String name = list.Lista_Idade_Maxima.ToString();
                 List = name;
+                //LoadListaNova
                 LoadJogadores(List,Order);
+                //LoadNumeroNovo
+                GetNumeroJogadoresLista(List);
 
             }
         }
@@ -281,9 +284,22 @@ namespace Gestão_Scouting
                 list = (ComboBoxOrder)comboBoxOrder.Items[comboBoxOrder.SelectedIndex];
                 String x = list.Value.ToString();
                 Order = x;
+                //Alterar Load Jogadores
                 LoadJogadores(List, Order);
 
             }
+        }
+        //
+        private void GetNumeroJogadoresLista(String list) {
+
+            SqlCommand cmda = new SqlCommand();
+
+            //cmd.Connection = cn;
+            cmda.CommandType = CommandType.Text;
+            cmda = new SqlCommand("select Scouting.Get_NumeroJogadoresLista (@lista)", cn);
+            //cmda.CommandType = CommandType.StoredProcedure;
+            cmda.Parameters.AddWithValue("@lista", list);
+            textBoxNumeroJogadoresLista.Text = cmda.ExecuteScalar().ToString();
         }
 
             //Criar Jogador
@@ -295,6 +311,7 @@ namespace Gestão_Scouting
             }
             AddPlayer ap = new AddPlayer();
             ap.ShowDialog();
+            
 
         }
 
@@ -412,6 +429,8 @@ namespace Gestão_Scouting
                 GetClubeJogadores(textBoxNumeroInscricaoFifaClube.Text);
                 //Mostrar Treinador Atual
                 GetTreinadorAtualClube(textBoxNumeroInscricaoFifaClube.Text);
+                //Obter Número Jogadores Atuais
+                GetNumeroJogadoresClubeAtuais(textBoxNumeroInscricaoFifaClube.Text);
             }
 
         }
@@ -459,6 +478,24 @@ namespace Gestão_Scouting
                 LoadClubes(Order);
             }
         }
+
+        //Obter Numero De jogadores Atuais
+        private void GetNumeroJogadoresClubeAtuais(String clube)
+        {
+
+            SqlCommand cmda = new SqlCommand();
+            //cmd.Connection = cn;
+            cmda.CommandType = CommandType.Text;
+            cmda = new SqlCommand("select Scouting.Get_NumeroJogadoresEquipa (@Clube_Numero_Inscricao_FIFA)", cn);
+            //cmda.CommandType = CommandType.StoredProcedure;
+            cmda.Parameters.AddWithValue("@Clube_Numero_Inscricao_FIFA", clube);
+             textBoxNumeroJogadoresAtuais.Text = cmda.ExecuteScalar().ToString();
+        }
+
+
+
+
+
         //CompetiçõesClubes Load
         private void GetClubeCompeticoes(String x)
         {
@@ -571,14 +608,6 @@ namespace Gestão_Scouting
             }
             //cn.Close();
             reader.Close();
-
-
-
-
-
-
-
-
         }
 
         private void listBoxCompeticaoClube_SelectedIndexChanged(object sender, EventArgs e)

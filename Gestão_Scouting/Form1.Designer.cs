@@ -70,6 +70,8 @@ namespace Gestão_Scouting
             this.textID_FIFPro = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.label39 = new System.Windows.Forms.Label();
+            this.listBoxJogadoresClube = new System.Windows.Forms.ListBox();
             this.textBoxTreinadorAtual = new System.Windows.Forms.TextBox();
             this.textBoxNúmeroJogadores = new System.Windows.Forms.TextBox();
             this.textBoxClubeNome = new System.Windows.Forms.TextBox();
@@ -119,17 +121,21 @@ namespace Gestão_Scouting
             this.FILTROS_OBS = new System.Windows.Forms.ComboBox();
             this.LISTA_OBSERVADORES = new System.Windows.Forms.ListBox();
             this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.label40 = new System.Windows.Forms.Label();
+            this.label38 = new System.Windows.Forms.Label();
+            this.listBoxCompeticaoJogos = new System.Windows.Forms.ListBox();
             this.ORDENAR_COMP = new System.Windows.Forms.ComboBox();
             this.label36 = new System.Windows.Forms.Label();
             this.label37 = new System.Windows.Forms.Label();
             this.FILTRAR_COMP = new System.Windows.Forms.ComboBox();
             this.listBoxCompeticao = new System.Windows.Forms.ListBox();
             this.tabPage5 = new System.Windows.Forms.TabPage();
-            this.listBoxJogadoresClube = new System.Windows.Forms.ListBox();
-            this.label39 = new System.Windows.Forms.Label();
-            this.listBoxCompeticaoJogos = new System.Windows.Forms.ListBox();
-            this.label38 = new System.Windows.Forms.Label();
-            this.label40 = new System.Windows.Forms.Label();
+            this.textBoxNumeroJogadoresLista = new System.Windows.Forms.TextBox();
+            this.label41 = new System.Windows.Forms.Label();
+            this.label42 = new System.Windows.Forms.Label();
+            this.textBoxNumeroRelatoriosJogador = new System.Windows.Forms.TextBox();
+            this.textBoxNumeroJogadoresAtuais = new System.Windows.Forms.TextBox();
+            this.label43 = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -146,7 +152,7 @@ namespace Gestão_Scouting
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(5, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(1413, 28);
+            this.menuStrip1.Size = new System.Drawing.Size(1446, 28);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -156,7 +162,7 @@ namespace Gestão_Scouting
             this.toolStripMenuItem2,
             this.exitToolStripMenuItem});
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(52, 26);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(52, 24);
             this.toolStripMenuItem1.Text = "Utils";
             // 
             // toolStripMenuItem2
@@ -180,7 +186,7 @@ namespace Gestão_Scouting
             this.listBoxJogadores.Location = new System.Drawing.Point(8, 108);
             this.listBoxJogadores.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.listBoxJogadores.Name = "listBoxJogadores";
-            this.listBoxJogadores.Size = new System.Drawing.Size(333, 644);
+            this.listBoxJogadores.Size = new System.Drawing.Size(333, 564);
             this.listBoxJogadores.TabIndex = 2;
             this.listBoxJogadores.SelectedIndexChanged += new System.EventHandler(this.listBoxJogadores_SelectedIndexChanged_1);
             // 
@@ -208,6 +214,10 @@ namespace Gestão_Scouting
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.textBoxNumeroRelatoriosJogador);
+            this.tabPage1.Controls.Add(this.label42);
+            this.tabPage1.Controls.Add(this.label41);
+            this.tabPage1.Controls.Add(this.textBoxNumeroJogadoresLista);
             this.tabPage1.Controls.Add(this.label12);
             this.tabPage1.Controls.Add(this.listBoxPosicoes);
             this.tabPage1.Controls.Add(this.comboBoxOrder);
@@ -343,7 +353,7 @@ namespace Gestão_Scouting
             this.listBoxRelatoriosJogador.Location = new System.Drawing.Point(375, 327);
             this.listBoxRelatoriosJogador.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.listBoxRelatoriosJogador.Name = "listBoxRelatoriosJogador";
-            this.listBoxRelatoriosJogador.Size = new System.Drawing.Size(381, 340);
+            this.listBoxRelatoriosJogador.Size = new System.Drawing.Size(381, 260);
             this.listBoxRelatoriosJogador.TabIndex = 24;
             this.listBoxRelatoriosJogador.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.GoToInfoRelatorio);
             // 
@@ -545,6 +555,8 @@ namespace Gestão_Scouting
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.label43);
+            this.tabPage2.Controls.Add(this.textBoxNumeroJogadoresAtuais);
             this.tabPage2.Controls.Add(this.label39);
             this.tabPage2.Controls.Add(this.listBoxJogadoresClube);
             this.tabPage2.Controls.Add(this.textBoxTreinadorAtual);
@@ -572,6 +584,24 @@ namespace Gestão_Scouting
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Clubes";
             this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // label39
+            // 
+            this.label39.AutoSize = true;
+            this.label39.Location = new System.Drawing.Point(494, 205);
+            this.label39.Name = "label39";
+            this.label39.Size = new System.Drawing.Size(193, 17);
+            this.label39.TabIndex = 19;
+            this.label39.Text = "Jogadores Atuais Clube temp";
+            // 
+            // listBoxJogadoresClube
+            // 
+            this.listBoxJogadoresClube.FormattingEnabled = true;
+            this.listBoxJogadoresClube.ItemHeight = 16;
+            this.listBoxJogadoresClube.Location = new System.Drawing.Point(478, 235);
+            this.listBoxJogadoresClube.Name = "listBoxJogadoresClube";
+            this.listBoxJogadoresClube.Size = new System.Drawing.Size(232, 420);
+            this.listBoxJogadoresClube.TabIndex = 18;
             // 
             // textBoxTreinadorAtual
             // 
@@ -1076,6 +1106,33 @@ namespace Gestão_Scouting
             this.tabPage4.Text = "Competição";
             this.tabPage4.UseVisualStyleBackColor = true;
             // 
+            // label40
+            // 
+            this.label40.AutoSize = true;
+            this.label40.Location = new System.Drawing.Point(360, 181);
+            this.label40.Name = "label40";
+            this.label40.Size = new System.Drawing.Size(50, 17);
+            this.label40.TabIndex = 12;
+            this.label40.Text = "Jogos:";
+            // 
+            // label38
+            // 
+            this.label38.AutoSize = true;
+            this.label38.Location = new System.Drawing.Point(47, 135);
+            this.label38.Name = "label38";
+            this.label38.Size = new System.Drawing.Size(86, 17);
+            this.label38.TabIndex = 11;
+            this.label38.Text = "Competição:";
+            // 
+            // listBoxCompeticaoJogos
+            // 
+            this.listBoxCompeticaoJogos.FormattingEnabled = true;
+            this.listBoxCompeticaoJogos.ItemHeight = 16;
+            this.listBoxCompeticaoJogos.Location = new System.Drawing.Point(363, 218);
+            this.listBoxCompeticaoJogos.Name = "listBoxCompeticaoJogos";
+            this.listBoxCompeticaoJogos.Size = new System.Drawing.Size(280, 468);
+            this.listBoxCompeticaoJogos.TabIndex = 10;
+            // 
             // ORDENAR_COMP
             // 
             this.ORDENAR_COMP.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -1136,56 +1193,59 @@ namespace Gestão_Scouting
             this.tabPage5.Text = "Gestão";
             this.tabPage5.UseVisualStyleBackColor = true;
             // 
-            // listBoxJogadoresClube
+            // textBoxNumeroJogadoresLista
             // 
-            this.listBoxJogadoresClube.FormattingEnabled = true;
-            this.listBoxJogadoresClube.ItemHeight = 16;
-            this.listBoxJogadoresClube.Location = new System.Drawing.Point(478, 235);
-            this.listBoxJogadoresClube.Name = "listBoxJogadoresClube";
-            this.listBoxJogadoresClube.Size = new System.Drawing.Size(232, 420);
-            this.listBoxJogadoresClube.TabIndex = 18;
+            this.textBoxNumeroJogadoresLista.Location = new System.Drawing.Point(202, 702);
+            this.textBoxNumeroJogadoresLista.Name = "textBoxNumeroJogadoresLista";
+            this.textBoxNumeroJogadoresLista.Size = new System.Drawing.Size(100, 22);
+            this.textBoxNumeroJogadoresLista.TabIndex = 34;
             // 
-            // label39
+            // label41
             // 
-            this.label39.AutoSize = true;
-            this.label39.Location = new System.Drawing.Point(494, 205);
-            this.label39.Name = "label39";
-            this.label39.Size = new System.Drawing.Size(193, 17);
-            this.label39.TabIndex = 19;
-            this.label39.Text = "Jogadores Atuais Clube temp";
+            this.label41.AutoSize = true;
+            this.label41.Location = new System.Drawing.Point(9, 705);
+            this.label41.Name = "label41";
+            this.label41.Size = new System.Drawing.Size(187, 17);
+            this.label41.TabIndex = 35;
+            this.label41.Text = "Número de Jogadores Lista:";
             // 
-            // listBoxCompeticaoJogos
+            // label42
             // 
-            this.listBoxCompeticaoJogos.FormattingEnabled = true;
-            this.listBoxCompeticaoJogos.ItemHeight = 16;
-            this.listBoxCompeticaoJogos.Location = new System.Drawing.Point(363, 218);
-            this.listBoxCompeticaoJogos.Name = "listBoxCompeticaoJogos";
-            this.listBoxCompeticaoJogos.Size = new System.Drawing.Size(280, 468);
-            this.listBoxCompeticaoJogos.TabIndex = 10;
+            this.label42.AutoSize = true;
+            this.label42.Location = new System.Drawing.Point(372, 609);
+            this.label42.Name = "label42";
+            this.label42.Size = new System.Drawing.Size(150, 17);
+            this.label42.TabIndex = 36;
+            this.label42.Text = "Número de Relatórios:";
             // 
-            // label38
+            // textBoxNumeroRelatoriosJogador
             // 
-            this.label38.AutoSize = true;
-            this.label38.Location = new System.Drawing.Point(47, 135);
-            this.label38.Name = "label38";
-            this.label38.Size = new System.Drawing.Size(86, 17);
-            this.label38.TabIndex = 11;
-            this.label38.Text = "Competição:";
+            this.textBoxNumeroRelatoriosJogador.Location = new System.Drawing.Point(554, 606);
+            this.textBoxNumeroRelatoriosJogador.Name = "textBoxNumeroRelatoriosJogador";
+            this.textBoxNumeroRelatoriosJogador.Size = new System.Drawing.Size(100, 22);
+            this.textBoxNumeroRelatoriosJogador.TabIndex = 37;
             // 
-            // label40
+            // textBoxNumeroJogadoresAtuais
             // 
-            this.label40.AutoSize = true;
-            this.label40.Location = new System.Drawing.Point(360, 181);
-            this.label40.Name = "label40";
-            this.label40.Size = new System.Drawing.Size(50, 17);
-            this.label40.TabIndex = 12;
-            this.label40.Text = "Jogos:";
+            this.textBoxNumeroJogadoresAtuais.Location = new System.Drawing.Point(615, 687);
+            this.textBoxNumeroJogadoresAtuais.Name = "textBoxNumeroJogadoresAtuais";
+            this.textBoxNumeroJogadoresAtuais.Size = new System.Drawing.Size(95, 22);
+            this.textBoxNumeroJogadoresAtuais.TabIndex = 20;
+            // 
+            // label43
+            // 
+            this.label43.AutoSize = true;
+            this.label43.Location = new System.Drawing.Point(475, 690);
+            this.label43.Name = "label43";
+            this.label43.Size = new System.Drawing.Size(133, 17);
+            this.label43.TabIndex = 21;
+            this.label43.Text = "Número Jogadores:";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1413, 759);
+            this.ClientSize = new System.Drawing.Size(1446, 848);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.textJogadorNome);
             this.Controls.Add(this.menuStrip1);
@@ -1313,6 +1373,12 @@ namespace Gestão_Scouting
         private System.Windows.Forms.Label label40;
         private System.Windows.Forms.Label label38;
         private System.Windows.Forms.ListBox listBoxCompeticaoJogos;
+        private System.Windows.Forms.Label label41;
+        private System.Windows.Forms.TextBox textBoxNumeroJogadoresLista;
+        private System.Windows.Forms.Label label42;
+        private System.Windows.Forms.TextBox textBoxNumeroRelatoriosJogador;
+        private System.Windows.Forms.TextBox textBoxNumeroJogadoresAtuais;
+        private System.Windows.Forms.Label label43;
     }
 }
 
