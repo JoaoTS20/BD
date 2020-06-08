@@ -410,7 +410,7 @@ INSERT INTO Scouting.Participa_Em Values(8,'2019-11-17','Porto',18)
 
 --Pertence_Clube
 --SELECT * FROM Scouting.Participa_Em;
-INSERT INTO Scouting.Jogador_Pertence_Clube VALUES (1,8,'2017-03-06','2020-03-06')
+INSERT INTO Scouting.Jogador_Pertence_Clube VALUES (1,10,'2017-03-06',null)
 INSERT INTO Scouting.Jogador_Pertence_Clube VALUES (2,3,'2017-05-07','2021-05-07')
 INSERT INTO Scouting.Jogador_Pertence_Clube VALUES (3,1,'2017-07-11','2022-07-11')
 INSERT INTO Scouting.Jogador_Pertence_Clube VALUES (4,2,'2017-07-14','2022-07-14')

@@ -8,21 +8,22 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
+using System.Security.Authentication;
 
 namespace Gestão_Scouting
 {
     public partial class Form1 : Form
     {
         private SqlConnection cn;
-        //Jogador
+        //Jogador TAB
         private int currentJogador;
         private int currentRelatorioJogador;
         private static String List="";
         private static String Order="";
         public static  String[] ids;
-        //Clubes
+        //Clubes TAB
         private int currentClube;
-
+        private int currentClubeComp;
         public Form1()
         {
             InitializeComponent();
@@ -48,7 +49,7 @@ namespace Gestão_Scouting
         private SqlConnection getSGBDConnection()
         {
             //Local a Editar!!
-            return new SqlConnection("data source=LAPTOP-2KEGA0ER;integrated security=true;initial catalog=Proj");
+            return new SqlConnection("data source=LAPTOP-MH91MTBV;integrated security=true;initial catalog=Trabalho_Final");
             //MH91MTBV
         }
 
@@ -406,7 +407,11 @@ namespace Gestão_Scouting
                 //Mostrar Competições Clube
                 GetClubeCompeticoes(textBoxNumeroInscricaoFifaClube.Text);
                 //Mostrar Jogos do Clube na Competicao
-                GetClubeJogosCompeticao(textBoxNumeroInscricaoFifaClube.Text);
+                GetClubeJogosCompeticao(textBoxNumeroInscricaoFifaClube.Text,"");
+                //Mostrar Jogadores Atuais do Clube
+                GetClubeJogadores(textBoxNumeroInscricaoFifaClube.Text);
+                //Mostrar Treinador Atual
+                GetTreinadorAtualClube(textBoxNumeroInscricaoFifaClube.Text);
             }
 
         }
@@ -466,6 +471,11 @@ namespace Gestão_Scouting
             cmda.Parameters.AddWithValue("@Club_ID", x);
             readera = cmda.ExecuteReader();
             listBoxCompeticaoClube.Items.Clear();
+            Competicao n = new Competicao();
+            n.Competicao_ID_FIFA = "0";
+            n.Competicao_Nome = "Null";
+            n.Competicao_Numero_Equipas = "Null";
+            comboBoxOrderClubes.Items.Add(n);
             while (readera.Read())
             {
                 Competicao P = new Competicao();
@@ -477,14 +487,15 @@ namespace Gestão_Scouting
             readera.Close();
         }
 
-        private void GetClubeJogosCompeticao(String Club) {
+        private void GetClubeJogosCompeticao(String Club, String Comp) {
             SqlCommand cmda = new SqlCommand();
             SqlDataReader readera;
             //cmd.Connection = cn;
             cmda.CommandType = CommandType.Text;
-            cmda = new SqlCommand("Scouting.Get_JogosCompeticao_By_Clube", cn);
+            cmda = new SqlCommand("Scouting.Get_Jogos_By_Clube", cn);
             cmda.CommandType = CommandType.StoredProcedure;
             cmda.Parameters.AddWithValue("@Club_ID", Club);
+            cmda.Parameters.AddWithValue("@Comp_ID", Comp);
             readera = cmda.ExecuteReader();
             listBoxJogosClubeCompeticao.Items.Clear();
             while (readera.Read())
@@ -498,6 +509,90 @@ namespace Gestão_Scouting
                 listBoxJogosClubeCompeticao.Items.Add(J);
             }
             readera.Close();
+        }
+            //Get  Jogadores
+        private void GetClubeJogadores(String x)
+        {
+
+            if (!verifySGBDConnection())
+                return;
+            SqlCommand cmd = new SqlCommand();
+            SqlDataReader reader;
+            //cmd.Connection = cn;
+            cmd.CommandType = CommandType.Text;
+            cmd = new SqlCommand("Scouting.Get_JogadoresAtuais_By_Clube", cn);
+            cmd.CommandType = CommandType.StoredProcedure;
+            //cmd.CommandText="EXEC Scouting.GetListaJogadores @IdadeList , @OrderBy";
+            cmd.Parameters.AddWithValue("@Club_ID", x);
+
+            reader = cmd.ExecuteReader();
+            listBoxJogadoresClube.Items.Clear();
+            while (reader.Read())
+            {
+                Jogador C = new Jogador();
+                C.ID_FIFPro = reader["ID_FIFPro"].ToString();
+                C.Jogador_Nome = reader["Jogador_Nome"].ToString();
+                C.Jogador_Altura = reader["Jogador_Altura"].ToString();
+                C.Jogador_Peso = reader["Jogador_Peso"].ToString();
+                C.Pe_Favorito = reader["Pe_Favorito"].ToString();
+                C.Idade = reader["Idade"].ToString();
+                C.Dupla_Nacionalidade = reader["Dupla_Nacionalidade"].ToString();
+                C.Numero_Internacionalizao = reader["Numero_Internacionalizacoes"].ToString();
+                C.Lista_Idade_Maxima = reader["Lista_Idade_Maxima"].ToString();
+                listBoxJogadoresClube.Items.Add(C);
+            }
+            //cn.Close();
+            reader.Close();
+           
+        }
+
+
+        private void GetTreinadorAtualClube(String x) {
+
+
+            if (!verifySGBDConnection())
+                return;
+            SqlCommand cmd = new SqlCommand();
+            SqlDataReader reader;
+            //cmd.Connection = cn;
+            cmd.CommandType = CommandType.Text;
+            cmd = new SqlCommand("Scouting.Get_TreinadorAtual_By_Clube", cn);
+            cmd.CommandType = CommandType.StoredProcedure;
+            //cmd.CommandText="EXEC Scouting.GetListaJogadores @IdadeList , @OrderBy";
+            cmd.Parameters.AddWithValue("@Club_ID", x);
+
+            reader = cmd.ExecuteReader();
+            textBoxTreinadorAtual.Clear();
+            while (reader.Read())
+            {
+
+                textBoxTreinadorAtual.Text = reader["Treinador_Nome"].ToString();
+   
+            }
+            //cn.Close();
+            reader.Close();
+
+
+
+
+
+
+
+
+        }
+
+        private void listBoxCompeticaoClube_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (listBoxClubes.SelectedIndex >= 0)
+            {
+                currentClubeComp = listBoxCompeticaoClube.SelectedIndex;
+                Competicao c = new Competicao();
+                c = (Competicao)listBoxCompeticaoClube.Items[listBoxCompeticaoClube.SelectedIndex];
+                String namec = c.Competicao_ID_FIFA.ToString();
+                MessageBox.Show(namec+ "Funciona crl com dados certos");
+                //Mostrar Jogos do Clube na Competicao
+                GetClubeJogosCompeticao(textBoxNumeroInscricaoFifaClube.Text, namec);
+            }
         }
     }
 }

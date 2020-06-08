@@ -119,13 +119,17 @@ namespace Gestão_Scouting
             this.FILTROS_OBS = new System.Windows.Forms.ComboBox();
             this.LISTA_OBSERVADORES = new System.Windows.Forms.ListBox();
             this.tabPage4 = new System.Windows.Forms.TabPage();
-            this.label38 = new System.Windows.Forms.Label();
             this.ORDENAR_COMP = new System.Windows.Forms.ComboBox();
             this.label36 = new System.Windows.Forms.Label();
             this.label37 = new System.Windows.Forms.Label();
             this.FILTRAR_COMP = new System.Windows.Forms.ComboBox();
-            this.listBox1 = new System.Windows.Forms.ListBox();
+            this.listBoxCompeticao = new System.Windows.Forms.ListBox();
             this.tabPage5 = new System.Windows.Forms.TabPage();
+            this.listBoxJogadoresClube = new System.Windows.Forms.ListBox();
+            this.label39 = new System.Windows.Forms.Label();
+            this.listBoxCompeticaoJogos = new System.Windows.Forms.ListBox();
+            this.label38 = new System.Windows.Forms.Label();
+            this.label40 = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -142,7 +146,7 @@ namespace Gestão_Scouting
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(5, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(1371, 28);
+            this.menuStrip1.Size = new System.Drawing.Size(1413, 28);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -152,7 +156,7 @@ namespace Gestão_Scouting
             this.toolStripMenuItem2,
             this.exitToolStripMenuItem});
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(52, 24);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(52, 26);
             this.toolStripMenuItem1.Text = "Utils";
             // 
             // toolStripMenuItem2
@@ -541,6 +545,8 @@ namespace Gestão_Scouting
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.label39);
+            this.tabPage2.Controls.Add(this.listBoxJogadoresClube);
             this.tabPage2.Controls.Add(this.textBoxTreinadorAtual);
             this.tabPage2.Controls.Add(this.textBoxNúmeroJogadores);
             this.tabPage2.Controls.Add(this.textBoxClubeNome);
@@ -572,7 +578,7 @@ namespace Gestão_Scouting
             this.textBoxTreinadorAtual.Location = new System.Drawing.Point(1153, 119);
             this.textBoxTreinadorAtual.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.textBoxTreinadorAtual.Name = "textBoxTreinadorAtual";
-            this.textBoxTreinadorAtual.Size = new System.Drawing.Size(116, 22);
+            this.textBoxTreinadorAtual.Size = new System.Drawing.Size(177, 22);
             this.textBoxTreinadorAtual.TabIndex = 17;
             // 
             // textBoxNúmeroJogadores
@@ -675,7 +681,7 @@ namespace Gestão_Scouting
             // label14
             // 
             this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(1085, 254);
+            this.label14.Location = new System.Drawing.Point(1149, 302);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(89, 17);
             this.label14.TabIndex = 4;
@@ -684,7 +690,7 @@ namespace Gestão_Scouting
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(1116, 473);
+            this.label13.Location = new System.Drawing.Point(1169, 476);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(46, 17);
             this.label13.TabIndex = 3;
@@ -694,21 +700,22 @@ namespace Gestão_Scouting
             // 
             this.listBoxJogosClubeCompeticao.FormattingEnabled = true;
             this.listBoxJogosClubeCompeticao.ItemHeight = 16;
-            this.listBoxJogosClubeCompeticao.Location = new System.Drawing.Point(981, 505);
+            this.listBoxJogosClubeCompeticao.Location = new System.Drawing.Point(1068, 505);
             this.listBoxJogosClubeCompeticao.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.listBoxJogosClubeCompeticao.Name = "listBoxJogosClubeCompeticao";
-            this.listBoxJogosClubeCompeticao.Size = new System.Drawing.Size(311, 148);
+            this.listBoxJogosClubeCompeticao.Size = new System.Drawing.Size(262, 148);
             this.listBoxJogosClubeCompeticao.TabIndex = 2;
             // 
             // listBoxCompeticaoClube
             // 
             this.listBoxCompeticaoClube.FormattingEnabled = true;
             this.listBoxCompeticaoClube.ItemHeight = 16;
-            this.listBoxCompeticaoClube.Location = new System.Drawing.Point(981, 286);
+            this.listBoxCompeticaoClube.Location = new System.Drawing.Point(1068, 331);
             this.listBoxCompeticaoClube.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.listBoxCompeticaoClube.Name = "listBoxCompeticaoClube";
-            this.listBoxCompeticaoClube.Size = new System.Drawing.Size(311, 132);
+            this.listBoxCompeticaoClube.Size = new System.Drawing.Size(262, 132);
             this.listBoxCompeticaoClube.TabIndex = 1;
+            this.listBoxCompeticaoClube.SelectedIndexChanged += new System.EventHandler(this.listBoxCompeticaoClube_SelectedIndexChanged);
             // 
             // listBoxClubes
             // 
@@ -764,9 +771,10 @@ namespace Gestão_Scouting
             // 
             // comboBox5
             // 
+            this.comboBox5.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox5.FormattingEnabled = true;
             this.comboBox5.Location = new System.Drawing.Point(985, 174);
-            this.comboBox5.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.comboBox5.Margin = new System.Windows.Forms.Padding(4);
             this.comboBox5.Name = "comboBox5";
             this.comboBox5.Size = new System.Drawing.Size(155, 24);
             this.comboBox5.TabIndex = 29;
@@ -793,18 +801,20 @@ namespace Gestão_Scouting
             // 
             // comboBox6
             // 
+            this.comboBox6.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox6.FormattingEnabled = true;
             this.comboBox6.Location = new System.Drawing.Point(985, 124);
-            this.comboBox6.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.comboBox6.Margin = new System.Windows.Forms.Padding(4);
             this.comboBox6.Name = "comboBox6";
             this.comboBox6.Size = new System.Drawing.Size(155, 24);
             this.comboBox6.TabIndex = 26;
             // 
             // ORDENAR_RELATORIOS
             // 
+            this.ORDENAR_RELATORIOS.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.ORDENAR_RELATORIOS.FormattingEnabled = true;
             this.ORDENAR_RELATORIOS.Location = new System.Drawing.Point(489, 180);
-            this.ORDENAR_RELATORIOS.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.ORDENAR_RELATORIOS.Margin = new System.Windows.Forms.Padding(4);
             this.ORDENAR_RELATORIOS.Name = "ORDENAR_RELATORIOS";
             this.ORDENAR_RELATORIOS.Size = new System.Drawing.Size(155, 24);
             this.ORDENAR_RELATORIOS.TabIndex = 25;
@@ -831,9 +841,10 @@ namespace Gestão_Scouting
             // 
             // FILTRAR_RELATORIOS
             // 
+            this.FILTRAR_RELATORIOS.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.FILTRAR_RELATORIOS.FormattingEnabled = true;
             this.FILTRAR_RELATORIOS.Location = new System.Drawing.Point(489, 130);
-            this.FILTRAR_RELATORIOS.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.FILTRAR_RELATORIOS.Margin = new System.Windows.Forms.Padding(4);
             this.FILTRAR_RELATORIOS.Name = "FILTRAR_RELATORIOS";
             this.FILTRAR_RELATORIOS.Size = new System.Drawing.Size(155, 24);
             this.FILTRAR_RELATORIOS.TabIndex = 22;
@@ -853,7 +864,7 @@ namespace Gestão_Scouting
             this.JOGOS_ANALISADOS.FormattingEnabled = true;
             this.JOGOS_ANALISADOS.ItemHeight = 16;
             this.JOGOS_ANALISADOS.Location = new System.Drawing.Point(888, 241);
-            this.JOGOS_ANALISADOS.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.JOGOS_ANALISADOS.Margin = new System.Windows.Forms.Padding(4);
             this.JOGOS_ANALISADOS.Name = "JOGOS_ANALISADOS";
             this.JOGOS_ANALISADOS.Size = new System.Drawing.Size(252, 356);
             this.JOGOS_ANALISADOS.TabIndex = 20;
@@ -861,7 +872,7 @@ namespace Gestão_Scouting
             // AREA_OBSERVACAO
             // 
             this.AREA_OBSERVACAO.Location = new System.Drawing.Point(1169, 75);
-            this.AREA_OBSERVACAO.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.AREA_OBSERVACAO.Margin = new System.Windows.Forms.Padding(4);
             this.AREA_OBSERVACAO.Name = "AREA_OBSERVACAO";
             this.AREA_OBSERVACAO.Size = new System.Drawing.Size(157, 22);
             this.AREA_OBSERVACAO.TabIndex = 19;
@@ -879,7 +890,7 @@ namespace Gestão_Scouting
             // IDADE_OBS
             // 
             this.IDADE_OBS.Location = new System.Drawing.Point(1032, 75);
-            this.IDADE_OBS.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.IDADE_OBS.Margin = new System.Windows.Forms.Padding(4);
             this.IDADE_OBS.Name = "IDADE_OBS";
             this.IDADE_OBS.Size = new System.Drawing.Size(108, 22);
             this.IDADE_OBS.TabIndex = 17;
@@ -907,7 +918,7 @@ namespace Gestão_Scouting
             // NACIONALIDADE_OBS
             // 
             this.NACIONALIDADE_OBS.Location = new System.Drawing.Point(868, 75);
-            this.NACIONALIDADE_OBS.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.NACIONALIDADE_OBS.Margin = new System.Windows.Forms.Padding(4);
             this.NACIONALIDADE_OBS.Name = "NACIONALIDADE_OBS";
             this.NACIONALIDADE_OBS.Size = new System.Drawing.Size(137, 22);
             this.NACIONALIDADE_OBS.TabIndex = 14;
@@ -925,7 +936,7 @@ namespace Gestão_Scouting
             // QUALIFIC_OBS
             // 
             this.QUALIFIC_OBS.Location = new System.Drawing.Point(711, 75);
-            this.QUALIFIC_OBS.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.QUALIFIC_OBS.Margin = new System.Windows.Forms.Padding(4);
             this.QUALIFIC_OBS.Name = "QUALIFIC_OBS";
             this.QUALIFIC_OBS.Size = new System.Drawing.Size(127, 22);
             this.QUALIFIC_OBS.TabIndex = 12;
@@ -943,7 +954,7 @@ namespace Gestão_Scouting
             // NOME_OBS
             // 
             this.NOME_OBS.Location = new System.Drawing.Point(539, 75);
-            this.NOME_OBS.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.NOME_OBS.Margin = new System.Windows.Forms.Padding(4);
             this.NOME_OBS.Name = "NOME_OBS";
             this.NOME_OBS.Size = new System.Drawing.Size(151, 22);
             this.NOME_OBS.TabIndex = 10;
@@ -961,7 +972,7 @@ namespace Gestão_Scouting
             // ID_FEDER
             // 
             this.ID_FEDER.Location = new System.Drawing.Point(392, 75);
-            this.ID_FEDER.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.ID_FEDER.Margin = new System.Windows.Forms.Padding(4);
             this.ID_FEDER.Name = "ID_FEDER";
             this.ID_FEDER.Size = new System.Drawing.Size(120, 22);
             this.ID_FEDER.TabIndex = 8;
@@ -991,16 +1002,17 @@ namespace Gestão_Scouting
             this.RELATORIOS_OBS.FormattingEnabled = true;
             this.RELATORIOS_OBS.ItemHeight = 16;
             this.RELATORIOS_OBS.Location = new System.Drawing.Point(392, 241);
-            this.RELATORIOS_OBS.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.RELATORIOS_OBS.Margin = new System.Windows.Forms.Padding(4);
             this.RELATORIOS_OBS.Name = "RELATORIOS_OBS";
             this.RELATORIOS_OBS.Size = new System.Drawing.Size(252, 356);
             this.RELATORIOS_OBS.TabIndex = 5;
             // 
             // ORDENAR_OBS
             // 
+            this.ORDENAR_OBS.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.ORDENAR_OBS.FormattingEnabled = true;
             this.ORDENAR_OBS.Location = new System.Drawing.Point(163, 75);
-            this.ORDENAR_OBS.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.ORDENAR_OBS.Margin = new System.Windows.Forms.Padding(4);
             this.ORDENAR_OBS.Name = "ORDENAR_OBS";
             this.ORDENAR_OBS.Size = new System.Drawing.Size(155, 24);
             this.ORDENAR_OBS.TabIndex = 4;
@@ -1027,9 +1039,10 @@ namespace Gestão_Scouting
             // 
             // FILTROS_OBS
             // 
+            this.FILTROS_OBS.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.FILTROS_OBS.FormattingEnabled = true;
             this.FILTROS_OBS.Location = new System.Drawing.Point(163, 26);
-            this.FILTROS_OBS.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.FILTROS_OBS.Margin = new System.Windows.Forms.Padding(4);
             this.FILTROS_OBS.Name = "FILTROS_OBS";
             this.FILTROS_OBS.Size = new System.Drawing.Size(155, 24);
             this.FILTROS_OBS.TabIndex = 1;
@@ -1039,19 +1052,21 @@ namespace Gestão_Scouting
             this.LISTA_OBSERVADORES.FormattingEnabled = true;
             this.LISTA_OBSERVADORES.ItemHeight = 16;
             this.LISTA_OBSERVADORES.Location = new System.Drawing.Point(63, 129);
-            this.LISTA_OBSERVADORES.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.LISTA_OBSERVADORES.Margin = new System.Windows.Forms.Padding(4);
             this.LISTA_OBSERVADORES.Name = "LISTA_OBSERVADORES";
             this.LISTA_OBSERVADORES.Size = new System.Drawing.Size(255, 468);
             this.LISTA_OBSERVADORES.TabIndex = 0;
             // 
             // tabPage4
             // 
+            this.tabPage4.Controls.Add(this.label40);
             this.tabPage4.Controls.Add(this.label38);
+            this.tabPage4.Controls.Add(this.listBoxCompeticaoJogos);
             this.tabPage4.Controls.Add(this.ORDENAR_COMP);
             this.tabPage4.Controls.Add(this.label36);
             this.tabPage4.Controls.Add(this.label37);
             this.tabPage4.Controls.Add(this.FILTRAR_COMP);
-            this.tabPage4.Controls.Add(this.listBox1);
+            this.tabPage4.Controls.Add(this.listBoxCompeticao);
             this.tabPage4.Location = new System.Drawing.Point(4, 25);
             this.tabPage4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tabPage4.Name = "tabPage4";
@@ -1061,21 +1076,12 @@ namespace Gestão_Scouting
             this.tabPage4.Text = "Competição";
             this.tabPage4.UseVisualStyleBackColor = true;
             // 
-            // label38
-            // 
-            this.label38.AutoSize = true;
-            this.label38.Location = new System.Drawing.Point(819, 26);
-            this.label38.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label38.Name = "label38";
-            this.label38.Size = new System.Drawing.Size(90, 17);
-            this.label38.TabIndex = 10;
-            this.label38.Text = "Ordenar por:";
-            // 
             // ORDENAR_COMP
             // 
+            this.ORDENAR_COMP.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.ORDENAR_COMP.FormattingEnabled = true;
             this.ORDENAR_COMP.Location = new System.Drawing.Point(147, 81);
-            this.ORDENAR_COMP.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.ORDENAR_COMP.Margin = new System.Windows.Forms.Padding(4);
             this.ORDENAR_COMP.Name = "ORDENAR_COMP";
             this.ORDENAR_COMP.Size = new System.Drawing.Size(155, 24);
             this.ORDENAR_COMP.TabIndex = 9;
@@ -1104,20 +1110,20 @@ namespace Gestão_Scouting
             // 
             this.FILTRAR_COMP.FormattingEnabled = true;
             this.FILTRAR_COMP.Location = new System.Drawing.Point(147, 32);
-            this.FILTRAR_COMP.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.FILTRAR_COMP.Margin = new System.Windows.Forms.Padding(4);
             this.FILTRAR_COMP.Name = "FILTRAR_COMP";
             this.FILTRAR_COMP.Size = new System.Drawing.Size(155, 24);
             this.FILTRAR_COMP.TabIndex = 6;
             // 
-            // listBox1
+            // listBoxCompeticao
             // 
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.ItemHeight = 16;
-            this.listBox1.Location = new System.Drawing.Point(47, 135);
-            this.listBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(255, 468);
-            this.listBox1.TabIndex = 5;
+            this.listBoxCompeticao.FormattingEnabled = true;
+            this.listBoxCompeticao.ItemHeight = 16;
+            this.listBoxCompeticao.Location = new System.Drawing.Point(47, 167);
+            this.listBoxCompeticao.Margin = new System.Windows.Forms.Padding(4);
+            this.listBoxCompeticao.Name = "listBoxCompeticao";
+            this.listBoxCompeticao.Size = new System.Drawing.Size(255, 436);
+            this.listBoxCompeticao.TabIndex = 5;
             // 
             // tabPage5
             // 
@@ -1130,11 +1136,56 @@ namespace Gestão_Scouting
             this.tabPage5.Text = "Gestão";
             this.tabPage5.UseVisualStyleBackColor = true;
             // 
+            // listBoxJogadoresClube
+            // 
+            this.listBoxJogadoresClube.FormattingEnabled = true;
+            this.listBoxJogadoresClube.ItemHeight = 16;
+            this.listBoxJogadoresClube.Location = new System.Drawing.Point(478, 235);
+            this.listBoxJogadoresClube.Name = "listBoxJogadoresClube";
+            this.listBoxJogadoresClube.Size = new System.Drawing.Size(232, 420);
+            this.listBoxJogadoresClube.TabIndex = 18;
+            // 
+            // label39
+            // 
+            this.label39.AutoSize = true;
+            this.label39.Location = new System.Drawing.Point(494, 205);
+            this.label39.Name = "label39";
+            this.label39.Size = new System.Drawing.Size(193, 17);
+            this.label39.TabIndex = 19;
+            this.label39.Text = "Jogadores Atuais Clube temp";
+            // 
+            // listBoxCompeticaoJogos
+            // 
+            this.listBoxCompeticaoJogos.FormattingEnabled = true;
+            this.listBoxCompeticaoJogos.ItemHeight = 16;
+            this.listBoxCompeticaoJogos.Location = new System.Drawing.Point(363, 218);
+            this.listBoxCompeticaoJogos.Name = "listBoxCompeticaoJogos";
+            this.listBoxCompeticaoJogos.Size = new System.Drawing.Size(280, 468);
+            this.listBoxCompeticaoJogos.TabIndex = 10;
+            // 
+            // label38
+            // 
+            this.label38.AutoSize = true;
+            this.label38.Location = new System.Drawing.Point(47, 135);
+            this.label38.Name = "label38";
+            this.label38.Size = new System.Drawing.Size(86, 17);
+            this.label38.TabIndex = 11;
+            this.label38.Text = "Competição:";
+            // 
+            // label40
+            // 
+            this.label40.AutoSize = true;
+            this.label40.Location = new System.Drawing.Point(360, 181);
+            this.label40.Name = "label40";
+            this.label40.Size = new System.Drawing.Size(50, 17);
+            this.label40.TabIndex = 12;
+            this.label40.Text = "Jogos:";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1371, 750);
+            this.ClientSize = new System.Drawing.Size(1413, 759);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.textJogadorNome);
             this.Controls.Add(this.menuStrip1);
@@ -1252,12 +1303,16 @@ namespace Gestão_Scouting
         private System.Windows.Forms.Label label32;
         private System.Windows.Forms.Label label33;
         private System.Windows.Forms.ComboBox FILTRAR_RELATORIOS;
-        private System.Windows.Forms.Label label38;
         private System.Windows.Forms.ComboBox ORDENAR_COMP;
         private System.Windows.Forms.Label label36;
         private System.Windows.Forms.Label label37;
         private System.Windows.Forms.ComboBox FILTRAR_COMP;
-        private System.Windows.Forms.ListBox listBox1;
+        private System.Windows.Forms.ListBox listBoxCompeticao;
+        private System.Windows.Forms.Label label39;
+        private System.Windows.Forms.ListBox listBoxJogadoresClube;
+        private System.Windows.Forms.Label label40;
+        private System.Windows.Forms.Label label38;
+        private System.Windows.Forms.ListBox listBoxCompeticaoJogos;
     }
 }
 

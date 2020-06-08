@@ -22,3 +22,4 @@ C:\Users\João Soares\source\repos\BD\Gestão_Scouting\obj\Debug\Gestão_Scoutin
 C:\Users\Utilizador\Desktop\2ºano\BD\Projeto\BD\Gestão_Scouting\obj\Debug\Gestão_Scouting.DadosRelatorio.resources
 C:\Users\João Soares\source\repos\BD\Gestão_Scouting\obj\Debug\Gestão_Scouting.DadosRelatorio.resources
 C:\Users\Utilizador\Desktop\2ºano\BD\Projeto\BD\Gestão_Scouting\obj\Debug\Gestão_Scouting.Login.resources
+C:\Users\João Soares\source\repos\BD\Gestão_Scouting\obj\Debug\Gestão_Scouting.Login.resources
