@@ -327,7 +327,15 @@ namespace Gestão_Scouting
             // Editar Jogador
         private void buttonEditarJogador_Click(object sender, EventArgs e)
         {
-            //Query quase feita
+            EditarJogador ap = new EditarJogador(textID_FIFPro.Text);
+            ap.ShowDialog();
+            List = "";
+            Order = "";
+            comboBoxListaSelecaoJogadores.SelectedIndex = 0;
+            comboBoxOrder.SelectedIndex = 0;
+            LoadJogadores("", "");
+
+            
         }
             //Eliminar Jogador
         private void buttonEliminarJogador_Click(object sender, EventArgs e)

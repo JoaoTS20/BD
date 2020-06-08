@@ -38,7 +38,7 @@ namespace Gestão_Scouting
             return cn.State == ConnectionState.Open;
         }
 
-        //Mostrar Jogadores por Lista
+        //Mostrar  Lista
         public void GetListaObservacaoSelecaoDis()
         {
             if (!verifySGBDConnection())
@@ -61,6 +61,8 @@ namespace Gestão_Scouting
 
         private void Adicionar_Click(object sender, EventArgs e)
         {
+            if (!verifySGBDConnection())
+                return;
             String bitPe="";
             String bitDupl="";
             if (radDupSim.Checked == true)

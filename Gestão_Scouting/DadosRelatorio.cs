@@ -121,6 +121,5 @@ namespace Gestão_Scouting
             reader.Close();
         }
 
-
     }
 }
