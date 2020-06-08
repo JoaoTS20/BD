@@ -81,7 +81,6 @@ namespace Gestão_Scouting
             }
             //
             SqlCommand cmda = new SqlCommand();
-            SqlDataReader readera;
             cmda.CommandType = CommandType.Text;
             cmda = new SqlCommand("Scouting.Insert_Jogador", cn);
             cmda.CommandType = CommandType.StoredProcedure;
@@ -98,16 +97,19 @@ namespace Gestão_Scouting
             list = (Lista_Observacao_Selecao)comboBoxListas.Items[comboBoxListas.SelectedIndex];
             String name = list.Lista_Idade_Maxima.ToString();
             cmda.Parameters.AddWithValue("@Lista",name );
+
             try
             {
                 cmda.ExecuteNonQuery();
-                MessageBox.Show("Jogador " +TextBoxNome.Text.ToString() + " Inserido");
-                this.Close();
             }
-            catch
+            catch (Exception ex)
             {
-
-                MessageBox.Show("Erro!");
+                throw new Exception("Falhou Inserir Jogador na BD database. \n ERROR MESSAGE: \n" + ex.Message);
+                
+            }
+            finally {
+                MessageBox.Show("Jogador " + TextBoxNome.Text.ToString() + " Inserido!");
+                this.Close();
             }
 
 

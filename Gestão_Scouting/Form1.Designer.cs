@@ -136,6 +136,11 @@ namespace Gestão_Scouting
             this.textBoxNumeroRelatoriosJogador = new System.Windows.Forms.TextBox();
             this.textBoxNumeroJogadoresAtuais = new System.Windows.Forms.TextBox();
             this.label43 = new System.Windows.Forms.Label();
+            this.buttonInserirPos = new System.Windows.Forms.Button();
+            this.buttonRemovePos = new System.Windows.Forms.Button();
+            this.buttonInsLista = new System.Windows.Forms.Button();
+            this.buttonDelListas = new System.Windows.Forms.Button();
+            this.textBoxinsertPosicoes = new System.Windows.Forms.TextBox();
             this.menuStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -214,6 +219,11 @@ namespace Gestão_Scouting
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.textBoxinsertPosicoes);
+            this.tabPage1.Controls.Add(this.buttonDelListas);
+            this.tabPage1.Controls.Add(this.buttonInsLista);
+            this.tabPage1.Controls.Add(this.buttonRemovePos);
+            this.tabPage1.Controls.Add(this.buttonInserirPos);
             this.tabPage1.Controls.Add(this.textBoxNumeroRelatoriosJogador);
             this.tabPage1.Controls.Add(this.label42);
             this.tabPage1.Controls.Add(this.label41);
@@ -1214,15 +1224,15 @@ namespace Gestão_Scouting
             this.label42.AutoSize = true;
             this.label42.Location = new System.Drawing.Point(372, 609);
             this.label42.Name = "label42";
-            this.label42.Size = new System.Drawing.Size(150, 17);
+            this.label42.Size = new System.Drawing.Size(226, 17);
             this.label42.TabIndex = 36;
-            this.label42.Text = "Número de Relatórios:";
+            this.label42.Text = "Número de Relatórios do Jogador:";
             // 
             // textBoxNumeroRelatoriosJogador
             // 
-            this.textBoxNumeroRelatoriosJogador.Location = new System.Drawing.Point(554, 606);
+            this.textBoxNumeroRelatoriosJogador.Location = new System.Drawing.Point(600, 606);
             this.textBoxNumeroRelatoriosJogador.Name = "textBoxNumeroRelatoriosJogador";
-            this.textBoxNumeroRelatoriosJogador.Size = new System.Drawing.Size(100, 22);
+            this.textBoxNumeroRelatoriosJogador.Size = new System.Drawing.Size(139, 22);
             this.textBoxNumeroRelatoriosJogador.TabIndex = 37;
             // 
             // textBoxNumeroJogadoresAtuais
@@ -1240,6 +1250,50 @@ namespace Gestão_Scouting
             this.label43.Size = new System.Drawing.Size(133, 17);
             this.label43.TabIndex = 21;
             this.label43.Text = "Número Jogadores:";
+            // 
+            // buttonInserirPos
+            // 
+            this.buttonInserirPos.Location = new System.Drawing.Point(803, 187);
+            this.buttonInserirPos.Name = "buttonInserirPos";
+            this.buttonInserirPos.Size = new System.Drawing.Size(129, 28);
+            this.buttonInserirPos.TabIndex = 38;
+            this.buttonInserirPos.Text = "Adicionar Posição";
+            this.buttonInserirPos.UseVisualStyleBackColor = true;
+            this.buttonInserirPos.Click += new System.EventHandler(this.buttonInserirPos_Click);
+            // 
+            // buttonRemovePos
+            // 
+            this.buttonRemovePos.Location = new System.Drawing.Point(651, 225);
+            this.buttonRemovePos.Name = "buttonRemovePos";
+            this.buttonRemovePos.Size = new System.Drawing.Size(129, 28);
+            this.buttonRemovePos.TabIndex = 40;
+            this.buttonRemovePos.Text = "Remover Posição";
+            this.buttonRemovePos.UseVisualStyleBackColor = true;
+            // 
+            // buttonInsLista
+            // 
+            this.buttonInsLista.Location = new System.Drawing.Point(411, 17);
+            this.buttonInsLista.Name = "buttonInsLista";
+            this.buttonInsLista.Size = new System.Drawing.Size(111, 23);
+            this.buttonInsLista.TabIndex = 41;
+            this.buttonInsLista.Text = "Inserir Lista";
+            this.buttonInsLista.UseVisualStyleBackColor = true;
+            // 
+            // buttonDelListas
+            // 
+            this.buttonDelListas.Location = new System.Drawing.Point(411, 46);
+            this.buttonDelListas.Name = "buttonDelListas";
+            this.buttonDelListas.Size = new System.Drawing.Size(111, 23);
+            this.buttonDelListas.TabIndex = 42;
+            this.buttonDelListas.Text = "Eliminar Listas";
+            this.buttonDelListas.UseVisualStyleBackColor = true;
+            // 
+            // textBoxinsertPosicoes
+            // 
+            this.textBoxinsertPosicoes.Location = new System.Drawing.Point(657, 190);
+            this.textBoxinsertPosicoes.Name = "textBoxinsertPosicoes";
+            this.textBoxinsertPosicoes.Size = new System.Drawing.Size(123, 22);
+            this.textBoxinsertPosicoes.TabIndex = 43;
             // 
             // Form1
             // 
@@ -1379,6 +1433,11 @@ namespace Gestão_Scouting
         private System.Windows.Forms.TextBox textBoxNumeroRelatoriosJogador;
         private System.Windows.Forms.TextBox textBoxNumeroJogadoresAtuais;
         private System.Windows.Forms.Label label43;
+        private System.Windows.Forms.Button buttonRemovePos;
+        private System.Windows.Forms.Button buttonInserirPos;
+        private System.Windows.Forms.Button buttonDelListas;
+        private System.Windows.Forms.Button buttonInsLista;
+        private System.Windows.Forms.TextBox textBoxinsertPosicoes;
     }
 }
 

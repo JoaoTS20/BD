@@ -172,6 +172,8 @@ namespace Gestão_Scouting
             //ObterPosicoes;
         public void LoadPositions(String x)
         {
+            if (!verifySGBDConnection())
+                return;
             SqlCommand cmda = new SqlCommand();
             SqlDataReader readera;
             cmda.CommandType = CommandType.Text;
@@ -292,7 +294,8 @@ namespace Gestão_Scouting
         }
         //
         private void GetNumeroJogadoresLista(String list) {
-
+            if (!verifySGBDConnection())
+                return;
             SqlCommand cmda = new SqlCommand();
 
             //cmd.Connection = cn;
@@ -323,12 +326,42 @@ namespace Gestão_Scouting
             // Editar Jogador
         private void buttonEditarJogador_Click(object sender, EventArgs e)
         {
-
+            //Query quase feita
         }
             //Eliminar Jogador
         private void buttonEliminarJogador_Click(object sender, EventArgs e)
         {
+            //Query Quase feita
+        }
 
+        //Adicionar Posição
+        private void buttonInserirPos_Click(object sender, EventArgs e)
+        {
+            if (!verifySGBDConnection())
+                return;
+            if (textBoxinsertPosicoes.Text.Length == 0)
+                return;
+            SqlCommand cmda = new SqlCommand();
+            cmda.CommandType = CommandType.Text;
+            cmda = new SqlCommand("Scouting.Insert_Posicoes", cn);
+            cmda.CommandType = CommandType.StoredProcedure;
+            cmda.Parameters.AddWithValue("@ID", textID_FIFPro.Text);
+            cmda.Parameters.AddWithValue("J_Posicoes", textBoxinsertPosicoes.Text);
+            try
+            {
+                cmda.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Falhou Inserir Posição Jogador na BD database. \n ERROR MESSAGE: \n" + ex.Message);
+
+            }
+            finally
+            {
+                MessageBox.Show("Posição " + textBoxinsertPosicoes.Text + " Inserida!");
+                textBoxinsertPosicoes.Clear();
+                LoadPositions(textID_FIFPro.Text);
+            }
         }
         //-----------------------------------------------------------------------------
 
@@ -628,6 +661,8 @@ namespace Gestão_Scouting
                 GetClubeJogosCompeticao(textBoxNumeroInscricaoFifaClube.Text, namec);
             }
         }
+
+
     }
 }
 
