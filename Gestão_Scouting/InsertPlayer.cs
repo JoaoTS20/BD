@@ -63,6 +63,7 @@ namespace Gestão_Scouting
         {
             if (!verifySGBDConnection())
                 return;
+            
             String bitPe="";
             String bitDupl="";
             if (radDupSim.Checked == true)
@@ -103,16 +104,17 @@ namespace Gestão_Scouting
             try
             {
                 cmda.ExecuteNonQuery();
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Falhou Inserir Jogador na BD database. \n ERROR MESSAGE: \n" + ex.Message);
-                
-            }
-            finally {
                 MessageBox.Show("Jogador " + TextBoxNome.Text.ToString() + " Inserido!");
                 this.Close();
             }
+            
+            catch (Exception ex)
+            {
+                MessageBox.Show("Falhou Inserir Jogador na BD database. \n ERROR MESSAGE: \n" + ex.Message);
+                
+            }
+
+
 
 
 

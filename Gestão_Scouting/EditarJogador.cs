@@ -185,16 +185,13 @@ namespace Gestão_Scouting
             try
             {
                 cmda.ExecuteNonQuery();
+                MessageBox.Show("Jogador " + TextBoxNome.Text.ToString() + " Editado !");
+                this.Close();
             }
             catch (Exception ex)
             {
-                throw new Exception("Falhou Editar Jogador na BD database. \n ERROR MESSAGE: \n" + ex.Message);
-
-            }
-            finally
-            {
-                MessageBox.Show("Jogador " + TextBoxNome.Text.ToString() + " Editado !");
-                this.Close();
+                MessageBox.Show ("Falhou Editar Jogador na BD database. \n ERROR MESSAGE: \n" + ex.Message);
+                 
             }
         }
     }
