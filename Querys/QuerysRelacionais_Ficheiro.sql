@@ -482,16 +482,27 @@ as
 
 
 --UDF Numero jogadores na lista 
-CREATE FUNCTION Scouting.Get_NumeroJogadoresLista (@lista int) RETURNS int
+CREATE FUNCTION Scouting.Get_NumeroJogadoresLista (@lista varchar(3)) RETURNS int
 AS
-	Begin
-		Declare @Total int
+	begin
+	Declare @Total int
+	if len(@lista)>0
+		Begin
+			
 			Select @Total=count(*) FROM Scouting.Jogador WHERE Lista_Idade_Maxima=@lista;	
-		Return @Total
-	End
+			
+		end
+	if LEN(@lista)=0
+		Begin
+			
+			Select @Total=count(*) FROM Scouting.Jogador
+			
+		end
+	Return @Total
+	end
 
---Select  Scouting.Get_NumeroJogadoresLista (21)
---drop function Scouting.Get_NumeroJogadoresLista
+	--drop function Scouting.Get_NumeroJogadoresLista
+	--Select  Scouting.Get_NumeroJogadoresLista('')
 
 
 
