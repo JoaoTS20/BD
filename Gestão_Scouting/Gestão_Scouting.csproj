@@ -46,6 +46,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddRel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddRel.Designer.cs">
+      <DependentUpon>AddRel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DadosRel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DadosRel.Designer.cs">
+      <DependentUpon>DadosRel.cs</DependentUpon>
+    </Compile>
     <Compile Include="EditarJogador.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -94,6 +106,12 @@
     <Compile Include="Classes\Relatorio.cs" />
     <Compile Include="Classes\Selecionador.cs" />
     <Compile Include="Classes\Treinador.cs" />
+    <EmbeddedResource Include="AddRel.resx">
+      <DependentUpon>AddRel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DadosRel.resx">
+      <DependentUpon>DadosRel.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="EditarJogador.resx">
       <DependentUpon>EditarJogador.cs</DependentUpon>
     </EmbeddedResource>

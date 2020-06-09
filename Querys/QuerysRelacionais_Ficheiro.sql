@@ -433,7 +433,21 @@ as
 			END CATCH
 	END
 
+Begin Transaction  x
+			BEGIN TRY
+				INSERT INTO Scouting.Jog_Posicoes VALUES (@J_Posicoes , @ID);
+				print ('Posição Inserida')
+				Commit Transaction x
+			END TRY
 
+			BEGIN CATCH 
+				IF @@TRANCOUNT>0
+				BEGIN
+					THROW;
+					raiserror ('Erro na Inserção', 16, 1);
+					RollBack Transaction x
+				END
+			END CATCH
 
 
 
@@ -644,6 +658,7 @@ CREATE TRIGGER PosicaoUniqueGR on Scouting.Jog_Posicoes
 AFTER INSERT
 AS 
 	SET NOCOUNT ON;
+	SELECT * FROM inserted;
 	Declare @jogid as int
 	Select @jogid= Jog_Posicoes_ID_FIFPro from inserted
 	Declare @SerGR as int
@@ -655,8 +670,7 @@ AS
 			RAISERROR ('Guarda-Redes só tem uma posição', 16,1);
 				ROLLBACK TRAN; -- Anula a inserção
 		END
--- drop trigger PosicaoUniqueGR
-
+drop trigger PosicaoUniqueGR
 
 --Inserir Relatorio e Consequencias 
 CREATE PROCEDURE Scouting.Insert_Relatorio(@Titulo varchar(50), @Data date, @ID_Federacao_Obs varchar(9), @ID varchar(9),@Local varchar(100), @Jogo_Data date, 
@@ -685,11 +699,24 @@ as
 			END CATCH
 	END
 
+CREATE TRIGGER check_local on Scouting.Relatorio
+AFTER INSERT
+AS
+	declare @loc as varchar(100);
+	declare @Obs as varchar(9);
+	declare @Area_obs as varchar(50);
+	declare @num as int;
+	SELECT @loc = Jogo_Local FROM inserted;
+	SELECT @Obs = Numero_Identificacao_Federacao FROM inserted;
 
+	SELECT @num=COUNT(*) FROM Observador.Area_Observacao WHERE Observador.Numero_Identificacao_Federacao=@Obs and Observador.Area_Observacao LIKE '%'+@loc+'%';
+	if(@num=0)
+	BEGIN
+		RAISERROR ('Observador so pode observar na sua área!', 16,1);
+		ROLLBACK TRAN;
+	END
 
-
-
-
+DROP TRIGGER check_local
 
 
 
