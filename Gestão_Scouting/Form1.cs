@@ -292,7 +292,7 @@ namespace Gestão_Scouting
 
             }
         }
-        //
+        //Get Número de Jogadores
         private void GetNumeroJogadoresLista(String list) {
             if (!verifySGBDConnection())
                 return;
@@ -333,8 +333,9 @@ namespace Gestão_Scouting
             comboBoxListaSelecaoJogadores.SelectedIndex = 0;
             comboBoxOrder.SelectedIndex = 0;
             LoadJogadores("", "");
+            GetNumeroJogadoresLista(List);
 
-            
+
         }
             //Eliminar Jogador
         private void buttonEliminarJogador_Click(object sender, EventArgs e)
@@ -365,6 +366,7 @@ namespace Gestão_Scouting
                 LoadJogadores(List, Order);
 
             }
+            GetNumeroJogadoresLista(List);
 
         }
 
