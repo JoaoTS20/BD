@@ -1,7 +1,7 @@
-
+CREATE DATABASE Proj
 CREATE SCHEMA Scouting;
 GO
-
+use Proj;
 CREATE TABLE Scouting.Jogador (
 	ID_FIFPro varchar(9) PRIMARY KEY,
 	Jogador_Nome varchar(50) NOT NULL,
