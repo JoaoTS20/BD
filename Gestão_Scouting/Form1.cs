@@ -337,7 +337,33 @@ namespace Gestão_Scouting
             //Eliminar Jogador
         private void buttonEliminarJogador_Click(object sender, EventArgs e)
         {
-            //Query Quase feita
+            if (listBoxJogadores.Items.Count == 0 | currentJogador < 0)
+                return;
+            String ID = textID_FIFPro.Text;
+            if(!verifySGBDConnection())
+                return;
+            SqlCommand cmda = new SqlCommand();
+            SqlDataReader readera;
+            cmda.CommandType = CommandType.Text;
+            cmda = new SqlCommand("Scouting.Delete_Jogador", cn);
+            cmda.CommandType = CommandType.StoredProcedure;
+            cmda.Parameters.AddWithValue("@ID_FIFPro", ID);
+            try
+            {
+                cmda.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Falhou Remover Jogador na BD database. \n ERROR MESSAGE: \n" + ex.Message);
+
+            }
+            finally
+            {
+                MessageBox.Show("Jogador " + textID_FIFPro.Text + " Removido!");
+                LoadJogadores(List, Order);
+
+            }
+
         }
 
         //Adicionar Posição
