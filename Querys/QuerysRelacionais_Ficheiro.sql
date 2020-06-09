@@ -507,7 +507,7 @@ AS
 
 
 
---Trigger Não ter mais que um treinador com data de saida Null --Ainda não testada
+--Trigger Não ter mais que um treinador com data de saida Null 
 CREATE TRIGGER UmTreinador on Scouting.Treina
 AFTER INSERT,UPDATE
 AS 
@@ -624,8 +624,37 @@ AS
 			END CATCH
 	END
 
+--UDF Numero Relatórios sobre Jogador
+CREATE FUNCTION Scouting.Get_NumeroRelatoriosJogadores (@id varchar(9)) RETURNS int
+AS
+	begin
+	Declare @Total int
+	if len(@id)>0
+		Begin
+			
+			Select @Total=count(*) FROM Scouting.Relatorio WHERE ID_FIFPro=@id
+		end
+	Return @Total
+	end
 
 
+--Limitar Posição GR
+CREATE TRIGGER PosicaoUniqueGR on Scouting.Jog_Posicoes
+AFTER INSERT
+AS 
+	SET NOCOUNT ON;
+	Declare @jogid as int
+	Select @jogid= Jog_Posicoes_ID_FIFPro from inserted
+	Declare @SerGR as int
+	Declare @Ser as int
+	Select @SerGR= COUNT(*) from Scouting.Jog_Posicoes where Jog_Posicoes_ID_FIFPro=@jogid and J_Posicoes='GR'
+	Select @Ser= COUNT(*) from Scouting.Jog_Posicoes where Jog_Posicoes_ID_FIFPro=@jogid and J_Posicoes!='GR'
+	if(@SerGR=1 and @Ser>0)
+		BEGIN
+			RAISERROR ('Guarda-Redes só tem uma posição', 16,1);
+				ROLLBACK TRAN; -- Anula a inserção
+		END
+-- drop trigger PosicaoUniqueGR
 
 
 

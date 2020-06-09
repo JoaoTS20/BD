@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using System.Data.SqlClient;
 using System.Security.Authentication;
 
+
 namespace Gestão_Scouting
 {
     public partial class Form1 : Form
@@ -130,7 +131,8 @@ namespace Gestão_Scouting
                 LoadPositions(textID_FIFPro.Text);
                 //Mostrar Relatorios Jogadores
                 GetRelatoriosJogadores(textID_FIFPro.Text);
-
+                //Mostrar Número de Relatórios do Jogador
+                GetNumeroRelatoriosJogador(textID_FIFPro.Text);
             }
         }
             //Função Mostrar Jogadores
@@ -213,7 +215,7 @@ namespace Gestão_Scouting
             }
             reader.Close();
         }
-            //ComboBox Order by
+            //ComboBox Order by Lista Jogadores
         public void ComboBoxOrderJogadores()
         {
             ComboBoxOrder Null = new ComboBoxOrder();
@@ -383,6 +385,12 @@ namespace Gestão_Scouting
             {
                 cmda.ExecuteNonQuery();
             }
+            catch (System.Data.SqlClient.SqlException exe)
+            {
+                MessageBox.Show("there was an issue!");
+                throw new Exception("Falhou re Posição Jogador na BD database. \n ERROR MESSAGE: \n" + exe.Message);
+                throw;
+            }
             catch (Exception ex)
             {
                 throw new Exception("Falhou Inserir Posição Jogador na BD database. \n ERROR MESSAGE: \n" + ex.Message);
@@ -403,7 +411,8 @@ namespace Gestão_Scouting
                 return;
             if (listBoxPosicoes.Items.Count == 0)
                 return;
-
+            if (listBoxPosicoes.SelectedIndex < 0) //NÃO ESQUECER COLOCAR
+                return;
             String pos = (String)listBoxPosicoes.Items[listBoxPosicoes.SelectedIndex].ToString();
             SqlCommand cmda = new SqlCommand();
             cmda.CommandType = CommandType.Text;
@@ -475,6 +484,20 @@ namespace Gestão_Scouting
                 dr.ShowDialog();
             }
         }
+        private void GetNumeroRelatoriosJogador(String list)
+        {
+            if (!verifySGBDConnection())
+                return;
+            SqlCommand cmda = new SqlCommand();
+
+            //cmd.Connection = cn;
+            cmda.CommandType = CommandType.Text;
+            cmda = new SqlCommand("select Scouting.Get_NumeroRelatoriosJogadores (@id)", cn);
+            //cmda.CommandType = CommandType.StoredProcedure;
+            cmda.Parameters.AddWithValue("@id", list);
+            textBoxNumeroRelatoriosJogador.Text = cmda.ExecuteScalar().ToString();
+        }
+//----------------------------------------------------------------------------------------------------------------------
         //TAB CLUBES
         //Funções Clubes
         private void LoadClubes(String Order)
