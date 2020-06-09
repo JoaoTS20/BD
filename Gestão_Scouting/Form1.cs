@@ -97,7 +97,6 @@ namespace Gestão_Scouting
   
             reader = cmd.ExecuteReader();
             listBoxJogadores.Items.Clear();
-            int i = 0;
             while (reader.Read())
             {
                 Jogador C = new Jogador();
@@ -111,7 +110,6 @@ namespace Gestão_Scouting
                 C.Numero_Internacionalizao = reader["Numero_Internacionalizacoes"].ToString();
                 C.Lista_Idade_Maxima = reader["Lista_Idade_Maxima"].ToString();
                 listBoxJogadores.Items.Add(C);
-                i++;
             }
             //cn.Close();
             reader.Close();
@@ -259,7 +257,6 @@ namespace Gestão_Scouting
             textJogadorIdade.ReadOnly = true;
             textDuplaNacionalidade.ReadOnly = true;
             textNumeroInter.ReadOnly = true;
-            //text_Idade_max.ReadOnly = true;
             radioButtonEsquerdo.Enabled = false;
             radioButtonDireito.Enabled = false;
         }

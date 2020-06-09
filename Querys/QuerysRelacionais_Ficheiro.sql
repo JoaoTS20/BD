@@ -556,7 +556,62 @@ AS
 	END
 
 
+--Eliminar Relatório
+CREATE PROCEDURE Scouting.Delete_Relatorio @ID int
+AS
+	BEGIN
+		Begin Transaction  x
+			BEGIN TRY
+				 Delete from Scouting.Analise_Caracteristica_Jogador where Rel_ID=@ID
+				 Delete from Scouting.Metricas_Jogo_Jogador where Rel_ID=@ID
+				 Delete from Scouting.Observacao_Metodo_de_Observacao where Rel_ID_Relatorio=@ID
+				 delete from Scouting.Relatorio where ID=@ID
+				Commit Transaction x
+			END TRY
 
+			BEGIN CATCH 
+				IF @@TRANCOUNT>0
+				BEGIN
+					raiserror ('Erro Eliminar Relatório', 16, 1);
+					RollBack Transaction x
+				END
+			END CATCH
+	END
+
+--Eliminar Jogador
+CREATE PROCEDURE Scouting.Delete_Jogador @ID_FIFPro varchar(9)
+AS
+	BEGIN
+		Begin Transaction  x
+			BEGIN TRY
+				Declare @idRel as int
+				 DELETE FROM Scouting.Jog_Posicoes where Jog_Posicoes_ID_FIFPro=@ID_FIFPro;
+				 DELETE FROM Scouting.Jogador_Pertence_Clube WHERE ID_FIFPro=@ID_FIFPro;
+
+				WHILE (1 = 1) 
+					BEGIN  
+
+					  -- Get next id
+					  SELECT TOP 1 @idRel = ID From Scouting.Relatorio where ID_FIFPro=@ID_FIFPro
+
+					  -- Exit loop if no more Relatorios com aquele id
+					  IF @@ROWCOUNT = 0 BREAK;
+
+					  -- call your sproc
+					  EXEC Scouting.Delete_Relatorio @idRel;
+						End
+				DELETE from Scouting.Jogador where ID_FIFPro=@ID_FIFPro;
+				Commit Transaction x
+				END TRY
+
+			BEGIN CATCH 
+				IF @@TRANCOUNT>0
+				BEGIN
+					raiserror ('Erro Eliminar Jogador', 16, 1);
+					RollBack Transaction x
+				END
+			END CATCH
+	END
 
 
 
