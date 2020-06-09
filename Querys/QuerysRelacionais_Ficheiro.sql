@@ -392,6 +392,7 @@ as
 			BEGIN CATCH 
 				IF @@TRANCOUNT>0
 				BEGIN
+					THROW;
 					raiserror ('Erro na Inserção', 16, 1);
 					RollBack Transaction x
 				END

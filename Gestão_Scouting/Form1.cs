@@ -373,6 +373,9 @@ namespace Gestão_Scouting
         {
             if (!verifySGBDConnection())
                 return;
+            if (listBoxJogadores.Items.Count == 0 | currentJogador < 0)
+                return;
+
             if (textBoxinsertPosicoes.Text.Length == 0)
                 return;
             SqlCommand cmda = new SqlCommand();
@@ -384,24 +387,16 @@ namespace Gestão_Scouting
             try
             {
                 cmda.ExecuteNonQuery();
-            }
-            catch (System.Data.SqlClient.SqlException exe)
-            {
-                MessageBox.Show("there was an issue!");
-                throw new Exception("Falhou re Posição Jogador na BD database. \n ERROR MESSAGE: \n" + exe.Message);
-                throw;
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Falhou Inserir Posição Jogador na BD database. \n ERROR MESSAGE: \n" + ex.Message);
-
-            }
-            finally
-            {
                 MessageBox.Show("Posição " + textBoxinsertPosicoes.Text + " Inserida!");
                 textBoxinsertPosicoes.Clear();
                 LoadPositions(textID_FIFPro.Text);
             }
+            catch (Exception ex)
+            {
+                //throw new Exception("Falhou Inserir Posição Jogador na BD database. \n ERROR MESSAGE: \n" + ex.Message);
+                MessageBox.Show("ERRO! " + textBoxinsertPosicoes.Text + " Não Inserida!");
+            }
+
 
         }
             //Remover Posição
