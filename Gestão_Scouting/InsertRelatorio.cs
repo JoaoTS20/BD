@@ -29,7 +29,7 @@ namespace Gestão_Scouting
         private SqlConnection getSGBDConnection()
         {
             //Local a Editar!!
-            return new SqlConnection("data source=LAPTOP-MH91MTBV;integrated security=true;initial catalog=Trabalho_Final");
+            return new SqlConnection("data source=LAPTOP-2KEGA0ER;integrated security=true;initial catalog=Proj");
             //MH91MTBV
             //2KEGA0ER
         }
@@ -176,7 +176,82 @@ namespace Gestão_Scouting
             {
                 return;
             }
-
+            if (String.IsNullOrEmpty(textBoxTitulo.Text))
+            {
+                return;
+            }
+            if (String.IsNullOrEmpty(GolosBox.Text))
+            {
+                return;
+            }
+            if (String.IsNullOrEmpty(AssistsBox.Text))
+            {
+                return;
+            }
+            if (String.IsNullOrEmpty(PassesBox.Text))
+            {
+                return;
+            }
+            if (String.IsNullOrEmpty(PassesCompBox.Text))
+            {
+                return;
+            }
+            if (String.IsNullOrEmpty(ToquesBox.Text))
+            {
+                return;
+            }
+            if (String.IsNullOrEmpty(RematesBox.Text))
+            {
+                return;
+            }
+            if (String.IsNullOrEmpty(CortesBox.Text))
+            {
+                return;
+            }
+            if (String.IsNullOrEmpty(MinutosBox.Text))
+            {
+                return;
+            }
+            if (String.IsNullOrEmpty(DefesasBox.Text))
+            {
+                return;
+            }
+            if (String.IsNullOrEmpty(DistanciaBox.Text))
+            {
+                return;
+            }
+            if (String.IsNullOrEmpty(DriblesBox.Text))
+            {
+                return;
+            }
+            if (String.IsNullOrEmpty(QualAtualBox.Text))
+            {
+                return;
+            }
+            if (String.IsNullOrEmpty(QualPotBox.Text))
+            {
+                return;
+            }
+            if (String.IsNullOrEmpty(MelhorAtribBox.Text))
+            {
+                return;
+            }
+            if (String.IsNullOrEmpty(EticaTrabBox.Text))
+            {
+                return;
+            }
+            if (String.IsNullOrEmpty(DeterminacaoBox.Text))
+            {
+                return;
+            }
+            if (String.IsNullOrEmpty(CapDecBox.Text))
+            {
+                return;
+            }
+            if (String.IsNullOrEmpty(NivTecBox.Text))
+            {
+                return;
+            }
             //Restantes Checks
 
 
@@ -188,7 +263,8 @@ namespace Gestão_Scouting
                 cmda = new SqlCommand("Scouting.Insert_Relatorio", cn);
                 cmda.CommandType = CommandType.StoredProcedure;
                 cmda.Parameters.AddWithValue("@Titulo", textBoxTitulo.Text);
-                cmda.Parameters.AddWithValue("@Data", dateTimePicker1.Value.ToString());//Hope it works
+                cmda.Parameters.AddWithValue("@Data", dateTimePicker1.Value.Date);//Hope it works
+
                 //
                 Observador O = new Observador();
                 O = (Observador)listBoxObservadores.Items[listBoxObservadores.SelectedIndex];
@@ -201,15 +277,56 @@ namespace Gestão_Scouting
                 J = (Jogo)listBoxJogos.Items[listBoxJogos.SelectedIndex];
                 String local = J.Jogo_Local.ToString();
                 String Data = J.Jogo_Data.ToString();
+ 
                 cmda.Parameters.AddWithValue("@Local", local);
-                cmda.Parameters.AddWithValue("@Jogo_Data", Data);
+                cmda.Parameters.AddWithValue("@Jogo_Data",Data);
+                Analise_Caracteristica_Jogador A = new Analise_Caracteristica_Jogador();
+                A.Qualidade_Atual = QualAtualBox.Text;
+                A.Qualidade_Potencial = QualPotBox.Text;
+                A.Melhor_Atributo = MelhorAtribBox.Text;
+                A.Etica_Trabalho = EticaTrabBox.Text;
+                A.Determinacao = DeterminacaoBox.Text;
+                A.Capacidade_Decisao = CapDecBox.Text;
+                A.Nivel_tecnica = NivTecBox.Text;
+
+                cmda.Parameters.AddWithValue("@Qualidade_Atual", Int32.Parse(A.Qualidade_Atual));
+                cmda.Parameters.AddWithValue("@Qualidade_Potencial", Int32.Parse(A.Qualidade_Potencial.ToString()));
+                cmda.Parameters.AddWithValue("@M_Atributo", A.Melhor_Atributo.ToString());
+                cmda.Parameters.AddWithValue("@Etica", Int32.Parse(A.Etica_Trabalho.ToString()));
+                cmda.Parameters.AddWithValue("@Determinacao", Int32.Parse(A.Determinacao.ToString()));
+                cmda.Parameters.AddWithValue("@Decisao", Int32.Parse(A.Capacidade_Decisao.ToString()));
+                cmda.Parameters.AddWithValue("@Tecnica", Int32.Parse(A.Nivel_tecnica.ToString()));
+
+                Metricas_Jogo_Jogador M = new Metricas_Jogo_Jogador();
+                M.Numero_Golos = GolosBox.Text;
+                M.Numero_Assistencias = AssistsBox.Text;
+                M.Numero_Passes_Efectuados = PassesBox.Text;
+                M.Numero_Passes_Completos = PassesCompBox.Text;
+                M.Numero_Cortes = CortesBox.Text;
+                M.Minutos_Jogados = MinutosBox.Text;
+                M.Defesas_Realizadas = DefesasBox.Text;
+                M.Distancia_Percorrida = DistanciaBox.Text;
+                M.Numero_Toques = ToquesBox.Text;
+                M.Numero_Dribles = DriblesBox.Text;
+                M.Numero_Remates = RematesBox.Text;
+                cmda.Parameters.AddWithValue("@Numero_Golo", Int32.Parse(M.Numero_Golos.ToString()));
+                cmda.Parameters.AddWithValue("@assistencias", Int32.Parse(M.Numero_Assistencias.ToString()));
+                cmda.Parameters.AddWithValue("@passes_efec", Int32.Parse(M.Numero_Passes_Efectuados.ToString()));
+                cmda.Parameters.AddWithValue("@passes_comp", Int32.Parse(M.Numero_Passes_Completos.ToString()));
+                cmda.Parameters.AddWithValue("@numero_cortes", Int32.Parse(M.Numero_Cortes.ToString()));
+                cmda.Parameters.AddWithValue("@minutos_jogados", Int32.Parse(M.Minutos_Jogados.ToString()));
+                cmda.Parameters.AddWithValue("@Defesa_Realizada", Int32.Parse(M.Defesas_Realizadas.ToString()));
+                cmda.Parameters.AddWithValue("@distancia", Int32.Parse(M.Distancia_Percorrida.ToString()));
+                cmda.Parameters.AddWithValue("@toques", Int32.Parse(M.Numero_Toques.ToString()));
+                cmda.Parameters.AddWithValue("@dribles", Int32.Parse(M.Numero_Dribles.ToString()));
+                cmda.Parameters.AddWithValue("@remates", Int32.Parse(M.Numero_Remates.ToString()));
                 //
                 //Inserir Métricas
-                
+
                 //@Numero_Golo,@ID_Rel,@assistencias,@passes_efec,@passes_comp,@numero_cortes, @minutos_jogados, @Defesa_Realizada, @distancia, @toques, @dribles, @remates, @ID_Federacao_Obs
 
                 //Analisar Jogadores
-                
+
                 //@ID_Rel,@Qualidade_Atual,@Qualidade_Potencial, @M_Atributo, @Etica, @Determinacao, @Decisao, @Tecnica, @ID_Federacao_Obs
 
 

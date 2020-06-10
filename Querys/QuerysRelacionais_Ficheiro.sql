@@ -726,16 +726,15 @@ as
 	select * from Scouting.Jogador_Pertence_Clube join Scouting.Clube on Scouting.Jogador_Pertence_Clube.JPC_Clube_Numero_Inscricao_FIFA=Clube_Numero_Inscricao_FIFA WHERE Pertence_Data_Saida is null and ID_FIFPro=@id;
 	end
 
-
-
-
-
-
-
-
-
-
-
+-- Obter jogos em que jogador participou
+CREATE PROCEDURE Scouting.Get_Jogos_Jogador @id_fifpro varchar(9)
+as
+	BEGIN
+		SELECT Jogo.* FROM (((Jogador JOIN Jogador_Pertence_Clube ON Jogador.ID_FIFPro=Jogador_Pertence_Clube.ID_FIFPro) JOIN Scouting.Clube ON Clube.Clube_Numero_Inscricao_FIFA=JPC_Clube_Numero_Inscricao_FIFA)
+						JOIN Participa_Em ON JPC_Clube_Numero_Inscricao_FIFA = Participa_Clube_Numero_Inscricao_FIFA) JOIN Jogo ON Jogo.Jogo_Data=Participa_Em.Participa_Em_Jogo_Data AND Jogo.Jogo_Local=Participa_Em_Jogo_Local WHERE Jogador.ID_FIFPro=@id_fifpro
+	END
+--EXEC Scouting.Get_Jogos_Jogador 13
+DROP PROCEDURE Scouting.Get_Jogos_Jogador
 
 
 
