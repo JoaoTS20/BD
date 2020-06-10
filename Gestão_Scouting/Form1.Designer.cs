@@ -145,7 +145,6 @@ namespace Gestão_Scouting
             this.label22 = new System.Windows.Forms.Label();
             this.LISTA_OBSERVADORES = new System.Windows.Forms.ListBox();
             this.tabPage4 = new System.Windows.Forms.TabPage();
-            this.label21 = new System.Windows.Forms.Label();
             this.label40 = new System.Windows.Forms.Label();
             this.listBoxCompeticaoJogos = new System.Windows.Forms.ListBox();
             this.ORDENAR_COMP = new System.Windows.Forms.ComboBox();
@@ -169,6 +168,41 @@ namespace Gestão_Scouting
             this.buttonDeleteJogo = new System.Windows.Forms.Button();
             this.buttonInsertJogo = new System.Windows.Forms.Button();
             this.buttonEditJogo = new System.Windows.Forms.Button();
+            this.listBoxListasDeSelecao = new System.Windows.Forms.ListBox();
+            this.label21 = new System.Windows.Forms.Label();
+            this.textBoxSelecionadorID = new System.Windows.Forms.TextBox();
+            this.buttonEditLista = new System.Windows.Forms.Button();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.textBoxSelecionadorQualificacoes = new System.Windows.Forms.TextBox();
+            this.textBoxSelecionadorIdade = new System.Windows.Forms.TextBox();
+            this.textBoxNomeSelecionador = new System.Windows.Forms.TextBox();
+            this.label50 = new System.Windows.Forms.Label();
+            this.label51 = new System.Windows.Forms.Label();
+            this.label52 = new System.Windows.Forms.Label();
+            this.label53 = new System.Windows.Forms.Label();
+            this.label54 = new System.Windows.Forms.Label();
+            this.listBoxTreinadores = new System.Windows.Forms.ListBox();
+            this.label55 = new System.Windows.Forms.Label();
+            this.label56 = new System.Windows.Forms.Label();
+            this.label57 = new System.Windows.Forms.Label();
+            this.label58 = new System.Windows.Forms.Label();
+            this.label59 = new System.Windows.Forms.Label();
+            this.label60 = new System.Windows.Forms.Label();
+            this.textBoxTreinadorNome = new System.Windows.Forms.TextBox();
+            this.textBoxTreinadorIdade = new System.Windows.Forms.TextBox();
+            this.textBoxTreinadorQualificoes = new System.Windows.Forms.TextBox();
+            this.textBoxTreinadorNacionalidade = new System.Windows.Forms.TextBox();
+            this.textBoxIDTreinador = new System.Windows.Forms.TextBox();
+            this.Treinador = new System.Windows.Forms.Label();
+            this.label62 = new System.Windows.Forms.Label();
+            this.textBoxTreinadorClubeAtual = new System.Windows.Forms.TextBox();
+            this.listBoxClubesTreinadorPassados = new System.Windows.Forms.ListBox();
+            this.label61 = new System.Windows.Forms.Label();
+            this.button3 = new System.Windows.Forms.Button();
+            this.button4 = new System.Windows.Forms.Button();
+            this.button5 = new System.Windows.Forms.Button();
+            this.buttonTreinadorNewClube = new System.Windows.Forms.Button();
+            this.buttonJogadorClube = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -248,6 +282,7 @@ namespace Gestão_Scouting
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.buttonJogadorClube);
             this.tabPage1.Controls.Add(this.button1);
             this.tabPage1.Controls.Add(this.button2);
             this.tabPage1.Controls.Add(this.label44);
@@ -335,7 +370,7 @@ namespace Gestão_Scouting
             this.listBoxClubePassados.ItemHeight = 16;
             this.listBoxClubePassados.Location = new System.Drawing.Point(1135, 260);
             this.listBoxClubePassados.Name = "listBoxClubePassados";
-            this.listBoxClubePassados.Size = new System.Drawing.Size(164, 164);
+            this.listBoxClubePassados.Size = new System.Drawing.Size(247, 164);
             this.listBoxClubePassados.TabIndex = 46;
             // 
             // textBoxClubeAtual
@@ -389,7 +424,7 @@ namespace Gestão_Scouting
             this.textBoxNumeroRelatoriosJogador.Location = new System.Drawing.Point(600, 606);
             this.textBoxNumeroRelatoriosJogador.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.textBoxNumeroRelatoriosJogador.Name = "textBoxNumeroRelatoriosJogador";
-            this.textBoxNumeroRelatoriosJogador.Size = new System.Drawing.Size(139, 22);
+            this.textBoxNumeroRelatoriosJogador.Size = new System.Drawing.Size(156, 22);
             this.textBoxNumeroRelatoriosJogador.TabIndex = 37;
             // 
             // label42
@@ -570,7 +605,7 @@ namespace Gestão_Scouting
             this.textNumeroInter.Location = new System.Drawing.Point(1180, 133);
             this.textNumeroInter.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.textNumeroInter.Name = "textNumeroInter";
-            this.textNumeroInter.Size = new System.Drawing.Size(100, 22);
+            this.textNumeroInter.Size = new System.Drawing.Size(187, 22);
             this.textNumeroInter.TabIndex = 17;
             // 
             // textPeso
@@ -594,7 +629,7 @@ namespace Gestão_Scouting
             this.textDuplaNacionalidade.Location = new System.Drawing.Point(1033, 134);
             this.textDuplaNacionalidade.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.textDuplaNacionalidade.Name = "textDuplaNacionalidade";
-            this.textDuplaNacionalidade.Size = new System.Drawing.Size(100, 22);
+            this.textDuplaNacionalidade.Size = new System.Drawing.Size(135, 22);
             this.textDuplaNacionalidade.TabIndex = 14;
             // 
             // textJNome
@@ -842,7 +877,7 @@ namespace Gestão_Scouting
             // label39
             // 
             this.label39.AutoSize = true;
-            this.label39.Location = new System.Drawing.Point(487, 206);
+            this.label39.Location = new System.Drawing.Point(510, 207);
             this.label39.Name = "label39";
             this.label39.Size = new System.Drawing.Size(158, 17);
             this.label39.TabIndex = 19;
@@ -1235,7 +1270,7 @@ namespace Gestão_Scouting
             // 
             // NACIONALIDADE_OBS
             // 
-            this.NACIONALIDADE_OBS.Location = new System.Drawing.Point(868, 122);
+            this.NACIONALIDADE_OBS.Location = new System.Drawing.Point(874, 121);
             this.NACIONALIDADE_OBS.Margin = new System.Windows.Forms.Padding(4);
             this.NACIONALIDADE_OBS.Name = "NACIONALIDADE_OBS";
             this.NACIONALIDADE_OBS.Size = new System.Drawing.Size(137, 22);
@@ -1244,7 +1279,7 @@ namespace Gestão_Scouting
             // label27
             // 
             this.label27.AutoSize = true;
-            this.label27.Location = new System.Drawing.Point(864, 102);
+            this.label27.Location = new System.Drawing.Point(870, 102);
             this.label27.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label27.Name = "label27";
             this.label27.Size = new System.Drawing.Size(102, 17);
@@ -1372,7 +1407,6 @@ namespace Gestão_Scouting
             this.tabPage4.Controls.Add(this.textBoxNumeroClubesCompeticao);
             this.tabPage4.Controls.Add(this.label46);
             this.tabPage4.Controls.Add(this.textBoxNumeroCompeticao);
-            this.tabPage4.Controls.Add(this.label21);
             this.tabPage4.Controls.Add(this.label40);
             this.tabPage4.Controls.Add(this.listBoxCompeticaoJogos);
             this.tabPage4.Controls.Add(this.ORDENAR_COMP);
@@ -1386,16 +1420,6 @@ namespace Gestão_Scouting
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "Competição";
             this.tabPage4.UseVisualStyleBackColor = true;
-            // 
-            // label21
-            // 
-            this.label21.AutoSize = true;
-            this.label21.Location = new System.Drawing.Point(501, 36);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(734, 17);
-            this.label21.TabIndex = 13;
-            this.label21.Text = "COLOCAR BOTÕES ADICIONAR/EDITAR/ELIMNAR COMPETIÇÃO E COLOCAR ELIMINAR/EDITAR/INSE" +
-    "RIR JOGO";
             // 
             // label40
             // 
@@ -1420,7 +1444,7 @@ namespace Gestão_Scouting
             // 
             this.ORDENAR_COMP.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.ORDENAR_COMP.FormattingEnabled = true;
-            this.ORDENAR_COMP.Location = new System.Drawing.Point(117, 75);
+            this.ORDENAR_COMP.Location = new System.Drawing.Point(117, 54);
             this.ORDENAR_COMP.Margin = new System.Windows.Forms.Padding(4);
             this.ORDENAR_COMP.Name = "ORDENAR_COMP";
             this.ORDENAR_COMP.Size = new System.Drawing.Size(185, 24);
@@ -1429,7 +1453,7 @@ namespace Gestão_Scouting
             // label36
             // 
             this.label36.AutoSize = true;
-            this.label36.Location = new System.Drawing.Point(19, 78);
+            this.label36.Location = new System.Drawing.Point(19, 54);
             this.label36.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label36.Name = "label36";
             this.label36.Size = new System.Drawing.Size(90, 17);
@@ -1448,6 +1472,40 @@ namespace Gestão_Scouting
             // 
             // tabPage5
             // 
+            this.tabPage5.Controls.Add(this.buttonTreinadorNewClube);
+            this.tabPage5.Controls.Add(this.button3);
+            this.tabPage5.Controls.Add(this.button4);
+            this.tabPage5.Controls.Add(this.button5);
+            this.tabPage5.Controls.Add(this.label61);
+            this.tabPage5.Controls.Add(this.listBoxClubesTreinadorPassados);
+            this.tabPage5.Controls.Add(this.textBoxTreinadorClubeAtual);
+            this.tabPage5.Controls.Add(this.label62);
+            this.tabPage5.Controls.Add(this.label56);
+            this.tabPage5.Controls.Add(this.label57);
+            this.tabPage5.Controls.Add(this.label58);
+            this.tabPage5.Controls.Add(this.label59);
+            this.tabPage5.Controls.Add(this.label60);
+            this.tabPage5.Controls.Add(this.textBoxTreinadorNome);
+            this.tabPage5.Controls.Add(this.textBoxTreinadorIdade);
+            this.tabPage5.Controls.Add(this.textBoxTreinadorQualificoes);
+            this.tabPage5.Controls.Add(this.textBoxTreinadorNacionalidade);
+            this.tabPage5.Controls.Add(this.textBoxIDTreinador);
+            this.tabPage5.Controls.Add(this.Treinador);
+            this.tabPage5.Controls.Add(this.label55);
+            this.tabPage5.Controls.Add(this.listBoxTreinadores);
+            this.tabPage5.Controls.Add(this.label51);
+            this.tabPage5.Controls.Add(this.label52);
+            this.tabPage5.Controls.Add(this.label53);
+            this.tabPage5.Controls.Add(this.label54);
+            this.tabPage5.Controls.Add(this.label50);
+            this.tabPage5.Controls.Add(this.textBoxNomeSelecionador);
+            this.tabPage5.Controls.Add(this.textBoxSelecionadorIdade);
+            this.tabPage5.Controls.Add(this.textBoxSelecionadorQualificacoes);
+            this.tabPage5.Controls.Add(this.textBox1);
+            this.tabPage5.Controls.Add(this.buttonEditLista);
+            this.tabPage5.Controls.Add(this.textBoxSelecionadorID);
+            this.tabPage5.Controls.Add(this.label21);
+            this.tabPage5.Controls.Add(this.listBoxListasDeSelecao);
             this.tabPage5.Controls.Add(this.label35);
             this.tabPage5.Controls.Add(this.buttonDelListas);
             this.tabPage5.Controls.Add(this.buttonInsLista);
@@ -1463,7 +1521,7 @@ namespace Gestão_Scouting
             // label35
             // 
             this.label35.AutoSize = true;
-            this.label35.Location = new System.Drawing.Point(128, 15);
+            this.label35.Location = new System.Drawing.Point(162, 20);
             this.label35.Name = "label35";
             this.label35.Size = new System.Drawing.Size(148, 17);
             this.label35.TabIndex = 45;
@@ -1471,10 +1529,10 @@ namespace Gestão_Scouting
             // 
             // buttonDelListas
             // 
-            this.buttonDelListas.Location = new System.Drawing.Point(179, 46);
+            this.buttonDelListas.Location = new System.Drawing.Point(24, 161);
             this.buttonDelListas.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.buttonDelListas.Name = "buttonDelListas";
-            this.buttonDelListas.Size = new System.Drawing.Size(111, 23);
+            this.buttonDelListas.Size = new System.Drawing.Size(121, 43);
             this.buttonDelListas.TabIndex = 44;
             this.buttonDelListas.Text = "Eliminar Listas";
             this.buttonDelListas.UseVisualStyleBackColor = true;
@@ -1484,7 +1542,7 @@ namespace Gestão_Scouting
             this.buttonInsLista.Location = new System.Drawing.Point(24, 46);
             this.buttonInsLista.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.buttonInsLista.Name = "buttonInsLista";
-            this.buttonInsLista.Size = new System.Drawing.Size(111, 23);
+            this.buttonInsLista.Size = new System.Drawing.Size(121, 43);
             this.buttonInsLista.TabIndex = 43;
             this.buttonInsLista.Text = "Inserir Lista";
             this.buttonInsLista.UseVisualStyleBackColor = true;
@@ -1520,7 +1578,7 @@ namespace Gestão_Scouting
             this.textBoxNumeroClubesCompeticao.Location = new System.Drawing.Point(462, 664);
             this.textBoxNumeroClubesCompeticao.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.textBoxNumeroClubesCompeticao.Name = "textBoxNumeroClubesCompeticao";
-            this.textBoxNumeroClubesCompeticao.Size = new System.Drawing.Size(155, 22);
+            this.textBoxNumeroClubesCompeticao.Size = new System.Drawing.Size(183, 22);
             this.textBoxNumeroClubesCompeticao.TabIndex = 42;
             // 
             // listBoxJogosCompeticao
@@ -1534,7 +1592,7 @@ namespace Gestão_Scouting
             // 
             // buttonDeleteCompeticao
             // 
-            this.buttonDeleteCompeticao.Location = new System.Drawing.Point(893, 65);
+            this.buttonDeleteCompeticao.Location = new System.Drawing.Point(894, 28);
             this.buttonDeleteCompeticao.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.buttonDeleteCompeticao.Name = "buttonDeleteCompeticao";
             this.buttonDeleteCompeticao.Size = new System.Drawing.Size(133, 43);
@@ -1544,7 +1602,7 @@ namespace Gestão_Scouting
             // 
             // buttonEditarCompeticao
             // 
-            this.buttonEditarCompeticao.Location = new System.Drawing.Point(715, 65);
+            this.buttonEditarCompeticao.Location = new System.Drawing.Point(715, 28);
             this.buttonEditarCompeticao.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.buttonEditarCompeticao.Name = "buttonEditarCompeticao";
             this.buttonEditarCompeticao.Size = new System.Drawing.Size(128, 43);
@@ -1554,7 +1612,7 @@ namespace Gestão_Scouting
             // 
             // buttonInserirCompeticao
             // 
-            this.buttonInserirCompeticao.Location = new System.Drawing.Point(537, 65);
+            this.buttonInserirCompeticao.Location = new System.Drawing.Point(530, 28);
             this.buttonInserirCompeticao.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.buttonInserirCompeticao.Name = "buttonInserirCompeticao";
             this.buttonInserirCompeticao.Size = new System.Drawing.Size(128, 43);
@@ -1565,7 +1623,7 @@ namespace Gestão_Scouting
             // label48
             // 
             this.label48.AutoSize = true;
-            this.label48.Location = new System.Drawing.Point(734, 474);
+            this.label48.Location = new System.Drawing.Point(739, 471);
             this.label48.Name = "label48";
             this.label48.Size = new System.Drawing.Size(104, 17);
             this.label48.TabIndex = 49;
@@ -1576,7 +1634,7 @@ namespace Gestão_Scouting
             this.textBox.Location = new System.Drawing.Point(849, 471);
             this.textBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.textBox.Name = "textBox";
-            this.textBox.Size = new System.Drawing.Size(155, 22);
+            this.textBox.Size = new System.Drawing.Size(167, 22);
             this.textBox.TabIndex = 48;
             // 
             // label49
@@ -1617,6 +1675,309 @@ namespace Gestão_Scouting
             this.buttonEditJogo.TabIndex = 53;
             this.buttonEditJogo.Text = "Editar Jogo";
             this.buttonEditJogo.UseVisualStyleBackColor = true;
+            // 
+            // listBoxListasDeSelecao
+            // 
+            this.listBoxListasDeSelecao.FormattingEnabled = true;
+            this.listBoxListasDeSelecao.ItemHeight = 16;
+            this.listBoxListasDeSelecao.Location = new System.Drawing.Point(165, 40);
+            this.listBoxListasDeSelecao.Name = "listBoxListasDeSelecao";
+            this.listBoxListasDeSelecao.Size = new System.Drawing.Size(221, 164);
+            this.listBoxListasDeSelecao.TabIndex = 46;
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Location = new System.Drawing.Point(793, 33);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(91, 17);
+            this.label21.TabIndex = 47;
+            this.label21.Text = "Selecionador";
+            // 
+            // textBoxSelecionadorID
+            // 
+            this.textBoxSelecionadorID.Location = new System.Drawing.Point(417, 91);
+            this.textBoxSelecionadorID.Name = "textBoxSelecionadorID";
+            this.textBoxSelecionadorID.Size = new System.Drawing.Size(213, 22);
+            this.textBoxSelecionadorID.TabIndex = 48;
+            // 
+            // buttonEditLista
+            // 
+            this.buttonEditLista.Location = new System.Drawing.Point(24, 105);
+            this.buttonEditLista.Name = "buttonEditLista";
+            this.buttonEditLista.Size = new System.Drawing.Size(121, 43);
+            this.buttonEditLista.TabIndex = 49;
+            this.buttonEditLista.Text = "Editar Lista";
+            this.buttonEditLista.UseVisualStyleBackColor = true;
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(1049, 91);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(133, 22);
+            this.textBox1.TabIndex = 50;
+            // 
+            // textBoxSelecionadorQualificacoes
+            // 
+            this.textBoxSelecionadorQualificacoes.Location = new System.Drawing.Point(849, 91);
+            this.textBoxSelecionadorQualificacoes.Name = "textBoxSelecionadorQualificacoes";
+            this.textBoxSelecionadorQualificacoes.Size = new System.Drawing.Size(180, 22);
+            this.textBoxSelecionadorQualificacoes.TabIndex = 51;
+            // 
+            // textBoxSelecionadorIdade
+            // 
+            this.textBoxSelecionadorIdade.Location = new System.Drawing.Point(1212, 91);
+            this.textBoxSelecionadorIdade.Name = "textBoxSelecionadorIdade";
+            this.textBoxSelecionadorIdade.Size = new System.Drawing.Size(133, 22);
+            this.textBoxSelecionadorIdade.TabIndex = 52;
+            // 
+            // textBoxNomeSelecionador
+            // 
+            this.textBoxNomeSelecionador.Location = new System.Drawing.Point(658, 91);
+            this.textBoxNomeSelecionador.Name = "textBoxNomeSelecionador";
+            this.textBoxNomeSelecionador.Size = new System.Drawing.Size(162, 22);
+            this.textBoxNomeSelecionador.TabIndex = 53;
+            // 
+            // label50
+            // 
+            this.label50.AutoSize = true;
+            this.label50.Location = new System.Drawing.Point(414, 71);
+            this.label50.Name = "label50";
+            this.label50.Size = new System.Drawing.Size(213, 17);
+            this.label50.TabIndex = 54;
+            this.label50.Text = "Número identificação Federação";
+            // 
+            // label51
+            // 
+            this.label51.AutoSize = true;
+            this.label51.Location = new System.Drawing.Point(1209, 71);
+            this.label51.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label51.Name = "label51";
+            this.label51.Size = new System.Drawing.Size(47, 17);
+            this.label51.TabIndex = 58;
+            this.label51.Text = "Idade:";
+            // 
+            // label52
+            // 
+            this.label52.AutoSize = true;
+            this.label52.Location = new System.Drawing.Point(1046, 72);
+            this.label52.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label52.Name = "label52";
+            this.label52.Size = new System.Drawing.Size(102, 17);
+            this.label52.TabIndex = 57;
+            this.label52.Text = "Nacionalidade:";
+            // 
+            // label53
+            // 
+            this.label53.AutoSize = true;
+            this.label53.Location = new System.Drawing.Point(846, 71);
+            this.label53.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label53.Name = "label53";
+            this.label53.Size = new System.Drawing.Size(97, 17);
+            this.label53.TabIndex = 56;
+            this.label53.Text = "Qualificações:";
+            // 
+            // label54
+            // 
+            this.label54.AutoSize = true;
+            this.label54.Location = new System.Drawing.Point(655, 71);
+            this.label54.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label54.Name = "label54";
+            this.label54.Size = new System.Drawing.Size(49, 17);
+            this.label54.TabIndex = 55;
+            this.label54.Text = "Nome:";
+            // 
+            // listBoxTreinadores
+            // 
+            this.listBoxTreinadores.FormattingEnabled = true;
+            this.listBoxTreinadores.ItemHeight = 16;
+            this.listBoxTreinadores.Location = new System.Drawing.Point(165, 331);
+            this.listBoxTreinadores.Name = "listBoxTreinadores";
+            this.listBoxTreinadores.Size = new System.Drawing.Size(221, 244);
+            this.listBoxTreinadores.TabIndex = 59;
+            // 
+            // label55
+            // 
+            this.label55.AutoSize = true;
+            this.label55.Location = new System.Drawing.Point(162, 311);
+            this.label55.Name = "label55";
+            this.label55.Size = new System.Drawing.Size(89, 17);
+            this.label55.TabIndex = 60;
+            this.label55.Text = "Treinadores:";
+            // 
+            // label56
+            // 
+            this.label56.AutoSize = true;
+            this.label56.Location = new System.Drawing.Point(1209, 369);
+            this.label56.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label56.Name = "label56";
+            this.label56.Size = new System.Drawing.Size(47, 17);
+            this.label56.TabIndex = 71;
+            this.label56.Text = "Idade:";
+            // 
+            // label57
+            // 
+            this.label57.AutoSize = true;
+            this.label57.Location = new System.Drawing.Point(1046, 370);
+            this.label57.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label57.Name = "label57";
+            this.label57.Size = new System.Drawing.Size(102, 17);
+            this.label57.TabIndex = 70;
+            this.label57.Text = "Nacionalidade:";
+            // 
+            // label58
+            // 
+            this.label58.AutoSize = true;
+            this.label58.Location = new System.Drawing.Point(846, 369);
+            this.label58.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label58.Name = "label58";
+            this.label58.Size = new System.Drawing.Size(97, 17);
+            this.label58.TabIndex = 69;
+            this.label58.Text = "Qualificações:";
+            // 
+            // label59
+            // 
+            this.label59.AutoSize = true;
+            this.label59.Location = new System.Drawing.Point(655, 369);
+            this.label59.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label59.Name = "label59";
+            this.label59.Size = new System.Drawing.Size(49, 17);
+            this.label59.TabIndex = 68;
+            this.label59.Text = "Nome:";
+            // 
+            // label60
+            // 
+            this.label60.AutoSize = true;
+            this.label60.Location = new System.Drawing.Point(414, 369);
+            this.label60.Name = "label60";
+            this.label60.Size = new System.Drawing.Size(213, 17);
+            this.label60.TabIndex = 67;
+            this.label60.Text = "Número identificação Federação";
+            // 
+            // textBoxTreinadorNome
+            // 
+            this.textBoxTreinadorNome.Location = new System.Drawing.Point(658, 389);
+            this.textBoxTreinadorNome.Name = "textBoxTreinadorNome";
+            this.textBoxTreinadorNome.Size = new System.Drawing.Size(162, 22);
+            this.textBoxTreinadorNome.TabIndex = 66;
+            // 
+            // textBoxTreinadorIdade
+            // 
+            this.textBoxTreinadorIdade.Location = new System.Drawing.Point(1212, 389);
+            this.textBoxTreinadorIdade.Name = "textBoxTreinadorIdade";
+            this.textBoxTreinadorIdade.Size = new System.Drawing.Size(133, 22);
+            this.textBoxTreinadorIdade.TabIndex = 65;
+            // 
+            // textBoxTreinadorQualificoes
+            // 
+            this.textBoxTreinadorQualificoes.Location = new System.Drawing.Point(849, 389);
+            this.textBoxTreinadorQualificoes.Name = "textBoxTreinadorQualificoes";
+            this.textBoxTreinadorQualificoes.Size = new System.Drawing.Size(180, 22);
+            this.textBoxTreinadorQualificoes.TabIndex = 64;
+            // 
+            // textBoxTreinadorNacionalidade
+            // 
+            this.textBoxTreinadorNacionalidade.Location = new System.Drawing.Point(1049, 389);
+            this.textBoxTreinadorNacionalidade.Name = "textBoxTreinadorNacionalidade";
+            this.textBoxTreinadorNacionalidade.Size = new System.Drawing.Size(133, 22);
+            this.textBoxTreinadorNacionalidade.TabIndex = 63;
+            // 
+            // textBoxIDTreinador
+            // 
+            this.textBoxIDTreinador.Location = new System.Drawing.Point(417, 389);
+            this.textBoxIDTreinador.Name = "textBoxIDTreinador";
+            this.textBoxIDTreinador.Size = new System.Drawing.Size(213, 22);
+            this.textBoxIDTreinador.TabIndex = 62;
+            // 
+            // Treinador
+            // 
+            this.Treinador.AutoSize = true;
+            this.Treinador.Location = new System.Drawing.Point(814, 331);
+            this.Treinador.Name = "Treinador";
+            this.Treinador.Size = new System.Drawing.Size(70, 17);
+            this.Treinador.TabIndex = 61;
+            this.Treinador.Text = "Treinador";
+            // 
+            // label62
+            // 
+            this.label62.AutoSize = true;
+            this.label62.Location = new System.Drawing.Point(417, 435);
+            this.label62.Name = "label62";
+            this.label62.Size = new System.Drawing.Size(80, 17);
+            this.label62.TabIndex = 72;
+            this.label62.Text = "Clube Atual";
+            // 
+            // textBoxTreinadorClubeAtual
+            // 
+            this.textBoxTreinadorClubeAtual.Location = new System.Drawing.Point(420, 456);
+            this.textBoxTreinadorClubeAtual.Name = "textBoxTreinadorClubeAtual";
+            this.textBoxTreinadorClubeAtual.Size = new System.Drawing.Size(210, 22);
+            this.textBoxTreinadorClubeAtual.TabIndex = 73;
+            // 
+            // listBoxClubesTreinadorPassados
+            // 
+            this.listBoxClubesTreinadorPassados.FormattingEnabled = true;
+            this.listBoxClubesTreinadorPassados.ItemHeight = 16;
+            this.listBoxClubesTreinadorPassados.Location = new System.Drawing.Point(714, 456);
+            this.listBoxClubesTreinadorPassados.Name = "listBoxClubesTreinadorPassados";
+            this.listBoxClubesTreinadorPassados.Size = new System.Drawing.Size(229, 132);
+            this.listBoxClubesTreinadorPassados.TabIndex = 74;
+            // 
+            // label61
+            // 
+            this.label61.AutoSize = true;
+            this.label61.Location = new System.Drawing.Point(714, 435);
+            this.label61.Name = "label61";
+            this.label61.Size = new System.Drawing.Size(120, 17);
+            this.label61.TabIndex = 75;
+            this.label61.Text = "Clubes Anteriores";
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(24, 390);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(121, 43);
+            this.button3.TabIndex = 78;
+            this.button3.Text = "Editar Treinador";
+            this.button3.UseVisualStyleBackColor = true;
+            // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(24, 446);
+            this.button4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(121, 43);
+            this.button4.TabIndex = 77;
+            this.button4.Text = "Eliminar Treinador";
+            this.button4.UseVisualStyleBackColor = true;
+            // 
+            // button5
+            // 
+            this.button5.Location = new System.Drawing.Point(24, 331);
+            this.button5.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(121, 43);
+            this.button5.TabIndex = 76;
+            this.button5.Text = "Inserir Treinador";
+            this.button5.UseVisualStyleBackColor = true;
+            // 
+            // buttonTreinadorNewClube
+            // 
+            this.buttonTreinadorNewClube.Location = new System.Drawing.Point(417, 507);
+            this.buttonTreinadorNewClube.Name = "buttonTreinadorNewClube";
+            this.buttonTreinadorNewClube.Size = new System.Drawing.Size(213, 40);
+            this.buttonTreinadorNewClube.TabIndex = 79;
+            this.buttonTreinadorNewClube.Text = "Mudar Clube";
+            this.buttonTreinadorNewClube.UseVisualStyleBackColor = true;
+            // 
+            // buttonJogadorClube
+            // 
+            this.buttonJogadorClube.Location = new System.Drawing.Point(1210, 447);
+            this.buttonJogadorClube.Name = "buttonJogadorClube";
+            this.buttonJogadorClube.Size = new System.Drawing.Size(104, 40);
+            this.buttonJogadorClube.TabIndex = 80;
+            this.buttonJogadorClube.Text = "Mudar Clube";
+            this.buttonJogadorClube.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
@@ -1756,7 +2117,6 @@ namespace Gestão_Scouting
         private System.Windows.Forms.Button buttonAdicionarJogadorClube;
         private System.Windows.Forms.Button buttonDeleteCompClube;
         private System.Windows.Forms.Button buttonAdicionarClubeCompeticao;
-        private System.Windows.Forms.Label label21;
         private System.Windows.Forms.Label label35;
         private System.Windows.Forms.Button buttonDelListas;
         private System.Windows.Forms.Button buttonInsLista;
@@ -1791,6 +2151,41 @@ namespace Gestão_Scouting
         private System.Windows.Forms.Button buttonEditJogo;
         private System.Windows.Forms.Button buttonDeleteJogo;
         private System.Windows.Forms.Button buttonInsertJogo;
+        private System.Windows.Forms.ListBox listBoxListasDeSelecao;
+        private System.Windows.Forms.TextBox textBoxSelecionadorID;
+        private System.Windows.Forms.Label label21;
+        private System.Windows.Forms.Button buttonEditLista;
+        private System.Windows.Forms.TextBox textBoxNomeSelecionador;
+        private System.Windows.Forms.TextBox textBoxSelecionadorIdade;
+        private System.Windows.Forms.TextBox textBoxSelecionadorQualificacoes;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Label label51;
+        private System.Windows.Forms.Label label52;
+        private System.Windows.Forms.Label label53;
+        private System.Windows.Forms.Label label54;
+        private System.Windows.Forms.Label label50;
+        private System.Windows.Forms.Label label55;
+        private System.Windows.Forms.ListBox listBoxTreinadores;
+        private System.Windows.Forms.TextBox textBoxTreinadorClubeAtual;
+        private System.Windows.Forms.Label label62;
+        private System.Windows.Forms.Label label56;
+        private System.Windows.Forms.Label label57;
+        private System.Windows.Forms.Label label58;
+        private System.Windows.Forms.Label label59;
+        private System.Windows.Forms.Label label60;
+        private System.Windows.Forms.TextBox textBoxTreinadorNome;
+        private System.Windows.Forms.TextBox textBoxTreinadorIdade;
+        private System.Windows.Forms.TextBox textBoxTreinadorQualificoes;
+        private System.Windows.Forms.TextBox textBoxTreinadorNacionalidade;
+        private System.Windows.Forms.TextBox textBoxIDTreinador;
+        private System.Windows.Forms.Label Treinador;
+        private System.Windows.Forms.Label label61;
+        private System.Windows.Forms.ListBox listBoxClubesTreinadorPassados;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Button buttonJogadorClube;
+        private System.Windows.Forms.Button buttonTreinadorNewClube;
     }
 }
 
