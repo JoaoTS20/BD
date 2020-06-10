@@ -280,6 +280,7 @@
             this.CortesBox.ReadOnly = true;
             this.CortesBox.Size = new System.Drawing.Size(132, 22);
             this.CortesBox.TabIndex = 27;
+            this.CortesBox.TextChanged += new System.EventHandler(this.CortesBox_TextChanged);
             // 
             // MinutosBox
             // 

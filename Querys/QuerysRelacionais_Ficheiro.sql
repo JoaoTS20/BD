@@ -72,7 +72,7 @@ AS
 --  Stored Procedure Obter Dados completos Relatorio
 Create Procedure Scouting.GetRelatorioData @ID varchar(9)
 AS
-	Select *from (Scouting.Relatorio Join  ( (Scouting.Analise_Caracteristica_Jogador join Scouting.Metricas_Jogo_Jogador on Scouting.Metricas_Jogo_Jogador.Rel_ID=Scouting.Analise_Caracteristica_Jogador.Rel_ID)) on ID=Scouting.Analise_Caracteristica_Jogador.Rel_ID) join Scouting.Jogo on (Jogo.Jogo_Local=Relatorio.Jogo_Local And Jogo.Jogo_Data=Relatorio.Jogo_Data) WHERE Relatorio.ID=@ID
+	Select *from (Scouting.Relatorio Join  ( (Scouting.Analise_Caracteristica_Jogador join Scouting.Metricas_Jogo_Jogador on Scouting.Metricas_Jogo_Jogador.Rel_ID=Scouting.Analise_Caracteristica_Jogador.Rel_ID)) on ID=Scouting.Analise_Caracteristica_Jogador.Rel_ID) join Scouting.Jogo on (Jogo.Jogo_Local=Relatorio.Jogo_Local And Jogo.Jogo_Data=Relatorio.Jogo_Data) join Scouting.Observador ON Scouting.Observador.Numero_Identificacao_Federacao= Scouting.Relatorio.Numero_Identificacao_Federacao  WHERE Relatorio.ID=@ID
 --EXEC Scouting.GetRelatorioData '12'
 --SELECT * From Scouting.Relatorio;
 
@@ -672,6 +672,10 @@ AS
 		END
 drop trigger PosicaoUniqueGR
 
+
+
+
+
 --Inserir Relatorio e Consequentes 
 Create PROCEDURE Scouting.Insert_Relatorio(@Titulo varchar(50), @Data date, @ID_Federacao_Obs varchar(9), @ID varchar(9),@Local varchar(100), @Jogo_Data date, 
 @Qualidade_Atual int,@Qualidade_Potencial int, @M_Atributo varchar(50), @Etica varchar(50), @Determinacao int, @Decisao int, @Tecnica int,@Numero_Golo int,
@@ -700,6 +704,9 @@ as
 			END CATCH
 	END
 
+
+
+
 --Stored Procedure Obter Jogos Clube Participou e Observador Analisou 
 Create Procedure Scouting.Get_Jogos_By_Clube_Observador @club_id varchar(9), @obs_id varchar(9)
 AS
@@ -717,6 +724,11 @@ AS
 			SELECT * FROM Scouting.Observador
 			END
 -- drop Provedure Scouting.Get_Observador
+
+
+
+
+
 
 --Stored Procedure BIG Obter Observador
 CREATE PROCEDURE Scouting.Get_Lista_Observadores @sort_by varchar(30), @filter_by varchar(60), @filter_value varchar(50)
@@ -752,6 +764,10 @@ CREATE PROCEDURE Scouting.Get_Lista_Observadores @sort_by varchar(30), @filter_b
 	END
 
 
+
+
+
+
 --Obter Clube Atual Jogador
 Create Procedure Scouting.Get_ClubeAtual_Jogador @id varchar(9)
 as
@@ -770,6 +786,8 @@ as
 --EXEC Scouting.Get_Jogos_Jogador 13
 DROP PROCEDURE Scouting.Get_Jogos_Jogador
 
+
+
 --Obter Jogadores do Passado Jogador
 CREATE Procedure Scouting.Get_ClubesPassado @id varchar(9)
 AS
@@ -782,7 +800,15 @@ select * from Scouting.Jogador_Pertence_Clube join Scouting.Clube on JPC_Clube_N
 
 
 
+--Obter Metodos de Observacao Do Relatório
+CREATE Procedure Scouting.Get_Metodo_Observacao @idRel int
+AS
+		IF(LEN(@idRel)>0 )
+			BEGIN
+			select * from Scouting.Observacao_Metodo_de_Observacao WHERE Rel_ID_Relatorio=@idRel 
+			end
 
+Exec Scouting.Get_Metodo_Observacao 74
 
 
 
@@ -808,6 +834,7 @@ AS
 	END
 
 --DROP TRIGGER check_local
+
 
 
 

@@ -2,28 +2,25 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Data.SqlClient;
-
 
 namespace Gestão_Scouting
 {
-
-    public partial class DadosRelatorioTabJogador : Form
+    public partial class ViewRelatorio : Form
     {
-
-
-        public DadosRelatorioTabJogador(String id, SqlConnection cn)
+        public ViewRelatorio(String id, SqlConnection cn)
         {
             InitializeComponent();
-            Load_Show_Data(id,cn);
+            Load_Show_Data(id, cn);
         }
 
-        private void Load_Show_Data(String id,SqlConnection cn)
+
+        private void Load_Show_Data(String id, SqlConnection cn)
         {
             SqlCommand cmd = new SqlCommand();
             SqlDataReader reader;
@@ -34,10 +31,12 @@ namespace Gestão_Scouting
             cmd.Parameters.AddWithValue("@ID", id);
             reader = cmd.ExecuteReader();
             while (reader.Read())
-            {   
+            {
 
-
-                
+                textBoxTitulo.Text= reader["Relatorio_Titulo"].ToString();
+                textBoxJogID.Text = reader["ID_FIFPro"].ToString();
+                textBoxData.Text = reader["Relatorio_Data"].ToString();
+                textBoxJogo.Text = reader["Jogo_Local"].ToString() + "  " + reader["Jogo_Data"].ToString();
                 //Load Part
                 Metricas_Jogo_Jogador DAA = new Metricas_Jogo_Jogador();
                 Analise_Caracteristica_Jogador DBB = new Analise_Caracteristica_Jogador();
@@ -82,7 +81,7 @@ namespace Gestão_Scouting
                 DriblesBox.Text = DAA.Numero_Dribles;
                 RematesBox.Text = DAA.Numero_Remates;
                 //-----------------------------------------------------------------------
-                    //Analise_Caracteristica_Jogador
+                //Analise_Caracteristica_Jogador
                 EticaTrabBox.Text = DBB.Etica_Trabalho;
                 MelhorAtribBox.Text = DBB.Melhor_Atributo;
                 //QualAtualBox.Text = DBB.Qualidade_Atual;
@@ -91,10 +90,10 @@ namespace Gestão_Scouting
                 DeterminacaoBox.Text = DBB.Determinacao;
 
                 //CapDecBox.Text = DBB.Capacidade_Decisao;
-                if (Int32.Parse(DBB.Capacidade_Decisao) > 85){ CapDecBox.Text = DBB.Capacidade_Decisao + " - Muito Bom ";}
-                else if (Int32.Parse(DBB.Capacidade_Decisao) < 85 && Int32.Parse(DBB.Capacidade_Decisao)>70){CapDecBox.Text = DBB.Capacidade_Decisao + " - Bom ";}
-                else if (Int32.Parse(DBB.Capacidade_Decisao) < 70 && Int32.Parse(DBB.Capacidade_Decisao) > 50){CapDecBox.Text = DBB.Capacidade_Decisao + " - Médio ";}
-                else{CapDecBox.Text = DBB.Capacidade_Decisao + " - Fraco ";}
+                if (Int32.Parse(DBB.Capacidade_Decisao) > 85) { CapDecBox.Text = DBB.Capacidade_Decisao + " - Muito Bom "; }
+                else if (Int32.Parse(DBB.Capacidade_Decisao) < 85 && Int32.Parse(DBB.Capacidade_Decisao) > 70) { CapDecBox.Text = DBB.Capacidade_Decisao + " - Bom "; }
+                else if (Int32.Parse(DBB.Capacidade_Decisao) < 70 && Int32.Parse(DBB.Capacidade_Decisao) > 50) { CapDecBox.Text = DBB.Capacidade_Decisao + " - Médio "; }
+                else { CapDecBox.Text = DBB.Capacidade_Decisao + " - Fraco "; }
 
 
                 if (Int32.Parse(DBB.Qualidade_Atual) > 85) { QualAtualBox.Text = DBB.Capacidade_Decisao + " - Muito Bom "; }
@@ -124,7 +123,7 @@ namespace Gestão_Scouting
             reader.Close();
         }
 
-        private void CortesBox_TextChanged(object sender, EventArgs e)
+        private void buttonInserirRelatorio_Click(object sender, EventArgs e)
         {
 
         }

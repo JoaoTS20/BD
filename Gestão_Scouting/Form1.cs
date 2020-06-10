@@ -566,6 +566,7 @@ namespace Gestão_Scouting
             InsertRelatorio ap = new InsertRelatorio(textID_FIFPro.Text);
             ap.ShowDialog();
 
+
         }
 
         private void GoToInfoRelatorio(object sender, MouseEventArgs e)
@@ -577,7 +578,7 @@ namespace Gestão_Scouting
                 Relatorio rel = new Relatorio();
                 rel = (Relatorio)listBoxRelatoriosJogador.Items[currentRelatorioJogador];
                 String ID = rel.ID.ToString();
-                DadosRelatorioTabJogador dr = new DadosRelatorioTabJogador(ID, cn);
+                ViewRelatorio dr = new ViewRelatorio(ID, cn);
                 dr.ShowDialog();
             }
         }
