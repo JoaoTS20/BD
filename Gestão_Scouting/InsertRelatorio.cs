@@ -21,6 +21,8 @@ namespace Gestão_Scouting
             InitializeComponent();
             textBoxJogID.Text = idJogador;
             textBoxJogID.Enabled = false;
+            dateTimePicker1.Format = DateTimePickerFormat.Custom;
+            dateTimePicker1.CustomFormat = "yyyy-MM-dd";
             loadClubeAtual(idJogador);
             LoadObservador();
         }
@@ -29,7 +31,7 @@ namespace Gestão_Scouting
         private SqlConnection getSGBDConnection()
         {
             //Local a Editar!!
-            return new SqlConnection("data source=LAPTOP-2KEGA0ER;integrated security=true;initial catalog=Proj");
+            return new SqlConnection("data source=LAPTOP-MH91MTBV;integrated security=true;initial catalog=Trabalho_Final");
             //MH91MTBV
             //2KEGA0ER
         }
@@ -292,7 +294,7 @@ namespace Gestão_Scouting
                 cmda.Parameters.AddWithValue("@Qualidade_Atual", Int32.Parse(A.Qualidade_Atual));
                 cmda.Parameters.AddWithValue("@Qualidade_Potencial", Int32.Parse(A.Qualidade_Potencial.ToString()));
                 cmda.Parameters.AddWithValue("@M_Atributo", A.Melhor_Atributo.ToString());
-                cmda.Parameters.AddWithValue("@Etica", Int32.Parse(A.Etica_Trabalho.ToString()));
+                cmda.Parameters.AddWithValue("@Etica", A.Etica_Trabalho.ToString());
                 cmda.Parameters.AddWithValue("@Determinacao", Int32.Parse(A.Determinacao.ToString()));
                 cmda.Parameters.AddWithValue("@Decisao", Int32.Parse(A.Capacidade_Decisao.ToString()));
                 cmda.Parameters.AddWithValue("@Tecnica", Int32.Parse(A.Nivel_tecnica.ToString()));

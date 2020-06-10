@@ -208,6 +208,5 @@ namespace Gestão_Scouting
             this.Close();
         }
 
-
     }
 }

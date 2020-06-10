@@ -38,6 +38,8 @@ namespace Gestão_Scouting
             this.textJogadorNome = new System.Windows.Forms.TextBox();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.textBoxClubeAtual = new System.Windows.Forms.TextBox();
+            this.label37 = new System.Windows.Forms.Label();
             this.textBoxinsertPosicoes = new System.Windows.Forms.TextBox();
             this.buttonRemovePos = new System.Windows.Forms.Button();
             this.buttonInserirPos = new System.Windows.Forms.Button();
@@ -143,8 +145,6 @@ namespace Gestão_Scouting
             this.label35 = new System.Windows.Forms.Label();
             this.buttonDelListas = new System.Windows.Forms.Button();
             this.buttonInsLista = new System.Windows.Forms.Button();
-            this.label37 = new System.Windows.Forms.Label();
-            this.textBoxClubeAtual = new System.Windows.Forms.TextBox();
             this.menuStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -162,7 +162,7 @@ namespace Gestão_Scouting
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(5, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(1371, 28);
+            this.menuStrip1.Size = new System.Drawing.Size(1413, 28);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -271,6 +271,22 @@ namespace Gestão_Scouting
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Jogadores";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // textBoxClubeAtual
+            // 
+            this.textBoxClubeAtual.Location = new System.Drawing.Point(1135, 201);
+            this.textBoxClubeAtual.Name = "textBoxClubeAtual";
+            this.textBoxClubeAtual.Size = new System.Drawing.Size(164, 22);
+            this.textBoxClubeAtual.TabIndex = 45;
+            // 
+            // label37
+            // 
+            this.label37.AutoSize = true;
+            this.label37.Location = new System.Drawing.Point(1045, 201);
+            this.label37.Name = "label37";
+            this.label37.Size = new System.Drawing.Size(84, 17);
+            this.label37.TabIndex = 44;
+            this.label37.Text = "Clube Atual:";
             // 
             // textBoxinsertPosicoes
             // 
@@ -1338,27 +1354,11 @@ namespace Gestão_Scouting
             this.buttonInsLista.Text = "Inserir Lista";
             this.buttonInsLista.UseVisualStyleBackColor = true;
             // 
-            // label37
-            // 
-            this.label37.AutoSize = true;
-            this.label37.Location = new System.Drawing.Point(1045, 201);
-            this.label37.Name = "label37";
-            this.label37.Size = new System.Drawing.Size(84, 17);
-            this.label37.TabIndex = 44;
-            this.label37.Text = "Clube Atual:";
-            // 
-            // textBoxClubeAtual
-            // 
-            this.textBoxClubeAtual.Location = new System.Drawing.Point(1135, 201);
-            this.textBoxClubeAtual.Name = "textBoxClubeAtual";
-            this.textBoxClubeAtual.Size = new System.Drawing.Size(164, 22);
-            this.textBoxClubeAtual.TabIndex = 45;
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1371, 750);
+            this.ClientSize = new System.Drawing.Size(1413, 846);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.textJogadorNome);
             this.Controls.Add(this.menuStrip1);
