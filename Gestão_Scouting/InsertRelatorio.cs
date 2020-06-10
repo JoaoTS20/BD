@@ -23,6 +23,7 @@ namespace Gestão_Scouting
             textBoxJogID.Enabled = false;
             dateTimePicker1.Format = DateTimePickerFormat.Custom;
             dateTimePicker1.CustomFormat = "yyyy-MM-dd";
+
             loadClubeAtual(idJogador);
             LoadObservador();
         }
@@ -133,7 +134,7 @@ namespace Gestão_Scouting
                 while (readera.Read())
                 {
                     Jogo J = new Jogo();
-                    J.Jogo_Data = readera["Jogo_Data"].ToString();
+                    J.Jogo_Data = readera["Jogo_Data"].ToString().Replace("/","-");
                     J.Jogo_Local = readera["Jogo_Local"].ToString();
                     J.Resultado = readera["Resultado"].ToString();
                     J.Jogo_Competicao_ID_FIFA = readera["Jogo_Competicao_ID_FIFA"].ToString();
@@ -265,7 +266,7 @@ namespace Gestão_Scouting
                 cmda = new SqlCommand("Scouting.Insert_Relatorio", cn);
                 cmda.CommandType = CommandType.StoredProcedure;
                 cmda.Parameters.AddWithValue("@Titulo", textBoxTitulo.Text);
-                cmda.Parameters.AddWithValue("@Data", dateTimePicker1.Value.Date);//Hope it works
+                cmda.Parameters.AddWithValue("@Data", dateTimePicker1.Value.Date.ToString());//Hope it works
 
                 //
                 Observador O = new Observador();
@@ -278,10 +279,10 @@ namespace Gestão_Scouting
                 Jogo J = new Jogo();
                 J = (Jogo)listBoxJogos.Items[listBoxJogos.SelectedIndex];
                 String local = J.Jogo_Local.ToString();
-                String Data = J.Jogo_Data.ToString();
+                String Data = J.Jogo_Data.ToString().Replace("/","-");
  
                 cmda.Parameters.AddWithValue("@Local", local);
-                cmda.Parameters.AddWithValue("@Jogo_Data",Data);
+                cmda.Parameters.AddWithValue("@Jogo_Data", DateTime.Parse(Data));
                 Analise_Caracteristica_Jogador A = new Analise_Caracteristica_Jogador();
                 A.Qualidade_Atual = QualAtualBox.Text;
                 A.Qualidade_Potencial = QualPotBox.Text;

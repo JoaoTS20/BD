@@ -1,7 +1,9 @@
 {
   "ExpandedNodes": [
     "",
-    "\\Gestão_Scouting"
+    "\\Gestão_Scouting",
+    "\\Querys"
   ],
+  "SelectedNode": "\\Querys\\QuerysRelacionais_Ficheiro.sql",
   "PreviewInSolutionExplorer": false
 }
