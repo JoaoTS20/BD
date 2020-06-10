@@ -672,7 +672,7 @@ AS
 		END
 drop trigger PosicaoUniqueGR
 
---Inserir Relatorio e Consequencias 
+--Inserir Relatorio e Consequentes 
 CREATE PROCEDURE Scouting.Insert_Relatorio(@Titulo varchar(50), @Data date, @ID_Federacao_Obs varchar(9), @ID varchar(9),@Local varchar(100), @Jogo_Data date, 
 @Qualidade_Atual int,@Qualidade_Potencial int, @M_Atributo varchar(50), @Etica varchar(50), @Determinacao int, @Decisao int, @Tecnica int,@Numero_Golo int,
 @assistencias int,@passes_efec int,@passes_comp int,@numero_cortes int, @minutos_jogados int, @Defesa_Realizada int, @distancia int, @toques int, @dribles int,@remates int)
@@ -699,6 +699,50 @@ as
 			END CATCH
 	END
 
+--Stored Procedure Obter Jogos Clube Participou e Observador Analisou 
+Create Procedure Scouting.Get_Jogos_By_Clube_Observador @club_id varchar(9), @obs_id varchar(9)
+AS
+			BEGIN
+			SELECT * FROM Scouting.Participa_Em join Scouting.Jogo on Jogo_Local=Participa_Em_Jogo_Local and Jogo_Data=Participa_Em_Jogo_Data where Participa_Clube_Numero_Inscricao_FIFA=@club_id and Obs_Num_Iden_Federacao=@obs_id;
+			END
+
+-- drop Procedure Scouting.Get_Jogos_By_Clube_Observador
+
+
+--Stored Procedure Obter Observador
+Create Procedure Scouting.Get_Observador
+AS
+			BEGIN
+			SELECT * FROM Scouting.Observador
+			END
+-- drop Provedure Scouting.Get_Observador
+
+
+
+--Obter Clube Atual Jogador
+Create Procedure Scouting.Get_ClubeAtual_Jogador @id varchar(9)
+as
+	begin
+	select * from Scouting.Jogador_Pertence_Clube join Scouting.Clube on Scouting.Jogador_Pertence_Clube.JPC_Clube_Numero_Inscricao_FIFA=Clube_Numero_Inscricao_FIFA WHERE Pertence_Data_Saida is null and ID_FIFPro=@id;
+	end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+--nÃO TESTADA 
 CREATE TRIGGER check_local on Scouting.Relatorio
 AFTER INSERT
 AS
@@ -716,7 +760,7 @@ AS
 		ROLLBACK TRAN;
 	END
 
-DROP TRIGGER check_local
+--DROP TRIGGER check_local
 
 
 

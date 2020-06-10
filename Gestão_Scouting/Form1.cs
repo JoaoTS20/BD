@@ -19,12 +19,14 @@ namespace Gestão_Scouting
         //Jogador TAB
         private int currentJogador;
         private int currentRelatorioJogador;
-        private static String List="";
-        private static String Order="";
-        public static  String[] ids;
+        private static String List = "";
+        private static String Order = "";
+        public static String[] ids;
         //Clubes TAB
         private int currentClube;
         private int currentClubeComp;
+        //Observador TAB
+        private int currentObservador;
         public Form1()
         {
             InitializeComponent();
@@ -35,14 +37,16 @@ namespace Gestão_Scouting
         {
             cn = getSGBDConnection();
             //Jogadores
-            LoadJogadores(List,Order);
+            LoadJogadores(List, Order);
             GetListaObservacaoSelecao();
             ComboBoxOrderJogadores();
-            comboBoxListaSelecaoJogadores.SelectedIndex=0;
+            comboBoxListaSelecaoJogadores.SelectedIndex = 0;
             comboBoxOrder.SelectedIndex = 0;
             //Clubes
             LoadClubes("");
             ComboBoxOrderClubes();
+            //Observador
+            LoadObservador();
 
         }
 
@@ -50,7 +54,7 @@ namespace Gestão_Scouting
         private SqlConnection getSGBDConnection()
         {
             //Local a Editar!!
-            return new SqlConnection("data source=LAPTOP-2KEGA0ER;integrated security=true;initial catalog=Proj");
+            return new SqlConnection("data source=LAPTOP-MH91MTBV;integrated security=true;initial catalog=Trabalho_Final");
             //MH91MTBV
             //2KEGA0ER
         }
@@ -70,8 +74,10 @@ namespace Gestão_Scouting
         //Utils Functions
         private void toolStripMenuItem2_Click(object sender, EventArgs e)
         {
-            LoadJogadores("","");
+            //Meter muito mais coisas
+            LoadJogadores("", "");
             LoadClubes("");
+            LoadObservador();
             comboBoxListaSelecaoJogadores.SelectedIndex = 0;
             comboBoxOrder.SelectedIndex = 0;
         }
@@ -82,11 +88,11 @@ namespace Gestão_Scouting
         //-----------------------------------------------------------------------------
         //TAB JOGADORES
         //Jogadores Functions
-        private void LoadJogadores(String numero, String Order) //Com as alterações fica 70%feita
+        private void LoadJogadores(String numero, String Order) //Possivel bug no Order By Idade
         {
             if (!verifySGBDConnection())
                 return;
-            SqlCommand cmd=new SqlCommand();
+            SqlCommand cmd = new SqlCommand();
             SqlDataReader reader;
             //cmd.Connection = cn;
             try
@@ -120,9 +126,9 @@ namespace Gestão_Scouting
                 LockJogadoresControls();
                 ShowJogadores();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-                MessageBox.Show("Falhou Mostrar Jogador na BD database. \n ERROR MESSAGE:" + ex.Message);
+                MessageBox.Show("Falhou Load Jogador na BD database. \n ERROR MESSAGE:" + ex.Message);
             }
         }
 
@@ -131,7 +137,7 @@ namespace Gestão_Scouting
             if (listBoxJogadores.SelectedIndex >= 0)
             {
                 currentJogador = listBoxJogadores.SelectedIndex;
-                
+
                 //Mostrar Jogadores
                 ShowJogadores();
                 //Mostrar Posicoes Jogadores
@@ -140,9 +146,11 @@ namespace Gestão_Scouting
                 GetRelatoriosJogadores(textID_FIFPro.Text);
                 //Mostrar Número de Relatórios do Jogador
                 GetNumeroRelatoriosJogador(textID_FIFPro.Text);
+                //Mostrar Clube Atual
+                loadClubeAtual(textID_FIFPro.Text);
             }
         }
-            //Função Mostrar Jogadores
+        //Função Mostrar Jogadores
         public void ShowJogadores()
         {
             if (listBoxJogadores.Items.Count == 0 | currentJogador < 0)
@@ -152,7 +160,7 @@ namespace Gestão_Scouting
             textID_FIFPro.Text = jogador.ID_FIFPro;
             textJNome.Text = jogador.Jogador_Nome;
             textAltura.Text = jogador.Jogador_Altura.ToString() + " m";
-            textPeso.Text = jogador.Jogador_Peso.ToString()+ " Kg";
+            textPeso.Text = jogador.Jogador_Peso.ToString() + " Kg";
             //textPe_fav.Text = jogador.Pe_Favorito.ToString();
             textJogadorIdade.Text = jogador.Idade.ToString();
             textDuplaNacionalidade.Text = jogador.Dupla_Nacionalidade.ToString();
@@ -175,9 +183,9 @@ namespace Gestão_Scouting
             else
             {
                 textDuplaNacionalidade.Text = "Não";
-            }  
+            }
         }
-            //ObterPosicoes;
+        //ObterPosicoes;
         public void LoadPositions(String x)
         {
             if (!verifySGBDConnection())
@@ -192,23 +200,24 @@ namespace Gestão_Scouting
                 cmda.Parameters.AddWithValue("@ID", x);
                 readera = cmda.ExecuteReader();
                 listBoxPosicoes.Items.Clear();
+                while (readera.Read())
+                {
+                    Jog_Posicoes L = new Jog_Posicoes();
+                    L.J_Posicoes_ID_FIFPro = readera["Jog_Posicoes_ID_FIFPro"].ToString();
+                    L.J_Posicoes = readera["J_Posicoes"].ToString();
+
+                    listBoxPosicoes.Items.Add(L.ToString());
+                }
+                readera.Close();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-                throw new Exception("Falhou Carregar Jogadores da BD database. \n ERROR MESSAGE: " + ex.Message);
+                throw new Exception("Falhou Carregar Posições da BD database. \n ERROR MESSAGE: " + ex.Message);
             }
-            while (readera.Read())
-            {
-                Jog_Posicoes L = new Jog_Posicoes();
-                L.J_Posicoes_ID_FIFPro = readera["Jog_Posicoes_ID_FIFPro"].ToString();
-                L.J_Posicoes = readera["J_Posicoes"].ToString();
-                
-                listBoxPosicoes.Items.Add(L.ToString());
-            }
-            readera.Close();
+
         }
 
-            //Mostrar Jogadores por Lista
+        //Mostrar Jogadores por Lista
         public void GetListaObservacaoSelecao()
         {
 
@@ -234,12 +243,12 @@ namespace Gestão_Scouting
                 }
                 reader.Close();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-                throw new Exception("Falhou Carregar Listas da BD database. \n ERROR MESSAGE: " + ex.Message);
+                throw new Exception("Falhou Carregar Lista da BD database. \n ERROR MESSAGE: " + ex.Message);
             }
         }
-            //ComboBox Order by Lista Jogadores
+        //ComboBox Order by Lista Jogadores
         public void ComboBoxOrderJogadores()
         {
             ComboBoxOrder Null = new ComboBoxOrder();
@@ -273,7 +282,7 @@ namespace Gestão_Scouting
             comboBoxOrder.Items.Add(Idade);
         }
 
-            //Bloquear Dados Jogadores
+        //Bloquear Dados Jogadores
         public void LockJogadoresControls()
         {
             textID_FIFPro.ReadOnly = true;
@@ -286,7 +295,7 @@ namespace Gestão_Scouting
             radioButtonEsquerdo.Enabled = false;
             radioButtonDireito.Enabled = false;
         }
-            //Selecionar Tipo de Selecao
+        //Selecionar Tipo de Selecao
         private void comboBoxListaSelecao_SelectedIndexChanged(object sender, EventArgs e) //Função na 90% certa
         {
             if (comboBoxListaSelecaoJogadores.SelectedIndex >= 0)
@@ -296,13 +305,13 @@ namespace Gestão_Scouting
                 String name = list.Lista_Idade_Maxima.ToString();
                 List = name;
                 //LoadListaNova
-                LoadJogadores(List,Order);
+                LoadJogadores(List, Order);
                 //LoadNumeroNovo
                 GetNumeroJogadoresLista(List);
 
             }
         }
-            //Selecionar Order
+        //Selecionar Order
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (comboBoxListaSelecaoJogadores.SelectedIndex >= 0)
@@ -317,7 +326,8 @@ namespace Gestão_Scouting
             }
         }
         //Get Número de Jogadores
-        private void GetNumeroJogadoresLista(String list) {
+        private void GetNumeroJogadoresLista(String list)
+        {
             if (!verifySGBDConnection())
                 return;
             SqlCommand cmda = new SqlCommand();
@@ -330,13 +340,13 @@ namespace Gestão_Scouting
                 cmda.Parameters.AddWithValue("@lista", list);
                 textBoxNumeroJogadoresLista.Text = cmda.ExecuteScalar().ToString();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-                throw new Exception("Falhou Carregar Jogadores da BD database. \n ERROR MESSAGE: " + ex.Message);
+                throw new Exception("Falhou Obter o número de  Jogadores da BD database. \n ERROR MESSAGE: " + ex.Message);
             }
         }
 
-            //Criar Jogador
+        //Criar Jogador
         private void buttonCriarJogadores_Click(object sender, EventArgs e)
         {
             if (listBoxJogadores.SelectedIndex > -1)
@@ -353,7 +363,7 @@ namespace Gestão_Scouting
 
         }
 
-            // Editar Jogador
+        // Editar Jogador
         private void buttonEditarJogador_Click(object sender, EventArgs e)
         {
             EditarJogador ap = new EditarJogador(textID_FIFPro.Text);
@@ -367,32 +377,32 @@ namespace Gestão_Scouting
 
 
         }
-            //Eliminar Jogador
+        //Eliminar Jogador
         private void buttonEliminarJogador_Click(object sender, EventArgs e)
         {
             if (listBoxJogadores.Items.Count == 0 | currentJogador < 0)
                 return;
             String ID = textID_FIFPro.Text;
-            if(!verifySGBDConnection())
+            if (!verifySGBDConnection())
                 return;
             SqlCommand cmda = new SqlCommand();
-            SqlDataReader readera;
             cmda.CommandType = CommandType.Text;
             cmda = new SqlCommand("Scouting.Delete_Jogador", cn);
             cmda.CommandType = CommandType.StoredProcedure;
             cmda.Parameters.AddWithValue("@ID_FIFPro", ID);
             try
-            { 
+            {
                 cmda.ExecuteNonQuery();
                 MessageBox.Show("Jogador " + textID_FIFPro.Text + " Removido!");
                 LoadJogadores(List, Order);
+                GetNumeroJogadoresLista(List);
             }
             catch (Exception ex)
             {
-                throw new Exception("Falhou Remover Jogador na BD database. \n ERROR MESSAGE: " + ex.Message);
+                throw new Exception("Erro Remover Jogador na BD database. \n ERROR MESSAGE: " + ex.Message);
 
             }
-            GetNumeroJogadoresLista(List);
+
 
         }
 
@@ -406,14 +416,15 @@ namespace Gestão_Scouting
 
             if (textBoxinsertPosicoes.Text.Length == 0)
                 return;
-            SqlCommand cmda = new SqlCommand();
-            cmda.CommandType = CommandType.Text;
-            cmda = new SqlCommand("Scouting.Insert_Posicoes", cn);
-            cmda.CommandType = CommandType.StoredProcedure;
-            cmda.Parameters.AddWithValue("@ID", textID_FIFPro.Text);
-            cmda.Parameters.AddWithValue("J_Posicoes", textBoxinsertPosicoes.Text);
             try
             {
+                SqlCommand cmda = new SqlCommand();
+                cmda.CommandType = CommandType.Text;
+                cmda = new SqlCommand("Scouting.Insert_Posicoes", cn);
+                cmda.CommandType = CommandType.StoredProcedure;
+                cmda.Parameters.AddWithValue("@ID", textID_FIFPro.Text);
+                cmda.Parameters.AddWithValue("J_Posicoes", textBoxinsertPosicoes.Text);
+
                 cmda.ExecuteNonQuery();
                 MessageBox.Show("Posição " + textBoxinsertPosicoes.Text + " Inserida!");
                 textBoxinsertPosicoes.Clear();
@@ -421,13 +432,12 @@ namespace Gestão_Scouting
             }
             catch (Exception ex)
             {
-                //throw new Exception("Falhou Inserir Posição Jogador na BD database. \n ERROR MESSAGE: \n" + ex.Message);
-                MessageBox.Show("ERRO! " + textBoxinsertPosicoes.Text + " Não Inserida!");
+                MessageBox.Show("ERRO! " + textBoxinsertPosicoes.Text + " Não Inserida! \n ERROR MESSAGE: " + ex.Message);
             }
 
 
         }
-            //Remover Posição
+        //Remover Posição
         private void buttonRemovePos_Click(object sender, EventArgs e)
         {
             if (!verifySGBDConnection())
@@ -456,7 +466,41 @@ namespace Gestão_Scouting
 
             }
         }
+        //Obter Clube Atual
+        public void loadClubeAtual(String ID)
+        {
+            if (!verifySGBDConnection())
+                return;
+            SqlCommand cmda = new SqlCommand();
+            SqlDataReader readera;
+            //Obter Clube
+            try
+            {
+                cmda.CommandType = CommandType.Text;
+                cmda = new SqlCommand("Scouting.Get_ClubeAtual_Jogador", cn);
+                cmda.CommandType = CommandType.StoredProcedure;
+                cmda.Parameters.AddWithValue("@id", ID);
+                readera = cmda.ExecuteReader();
+                while (readera.Read())
+                {
+                    Clube C = new Clube();
+                    C.Clube_Numero_Inscricao_FIFA = readera["Clube_Numero_Inscricao_FIFA"].ToString();
+                    C.Clube_Nome = readera["Clube_Nome"].ToString();
+                    C.Clube_Pais = readera["Clube_Pais"].ToString();
+                    //
+                    textBoxClubeAtual.Text = C.Clube_Nome;
+                }
 
+                textBoxClubeAtual.Enabled = false;
+                readera.Close();
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Falhou Carregar Clube do Jogador da BD database. \n ERROR MESSAGE: " + ex.Message);
+            }
+
+        }
 
         //-----------------------------------------------------------------------------
 
@@ -487,6 +531,13 @@ namespace Gestão_Scouting
             readera.Close();
 
         }
+        //Adicionar Relatórios
+        private void AdicionarRelatorioJogador_Click(object sender, EventArgs e)
+        {
+            InsertRelatorio ap = new InsertRelatorio(textID_FIFPro.Text);
+            ap.ShowDialog();
+
+        }
 
         private void GoToInfoRelatorio(object sender, MouseEventArgs e)
         {
@@ -494,13 +545,10 @@ namespace Gestão_Scouting
             {
                 currentRelatorioJogador = listBoxRelatoriosJogador.SelectedIndex;
                 String dados = listBoxRelatoriosJogador.GetItemText(listBoxRelatoriosJogador);
-
-                //String[] texto = listBoxRelatoriosJogador.GetItemText(dados).Split(' ');
-                //String id = texto[0];
                 Relatorio rel = new Relatorio();
                 rel = (Relatorio)listBoxRelatoriosJogador.Items[currentRelatorioJogador];
                 String ID = rel.ID.ToString();
-                DadosRelatorio dr = new DadosRelatorio(ID, cn);
+                DadosRelatorioTabJogador dr = new DadosRelatorioTabJogador(ID, cn);
                 dr.ShowDialog();
             }
         }
@@ -517,7 +565,10 @@ namespace Gestão_Scouting
             cmda.Parameters.AddWithValue("@id", list);
             textBoxNumeroRelatoriosJogador.Text = cmda.ExecuteScalar().ToString();
         }
-//----------------------------------------------------------------------------------------------------------------------
+
+
+
+        //----------------------------------------------------------------------------------------------------------------------
         //TAB CLUBES
         //Funções Clubes
         private void LoadClubes(String Order)
@@ -528,7 +579,7 @@ namespace Gestão_Scouting
             SqlDataReader reader;
             cmd.CommandType = CommandType.Text;
             cmd = new SqlCommand("Scouting.Get_Lista_Clubes", cn);
-            cmd.CommandType = CommandType.StoredProcedure; 
+            cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.AddWithValue("@OrderBy", Order);
 
             reader = cmd.ExecuteReader();
@@ -546,7 +597,7 @@ namespace Gestão_Scouting
             LockClubesControls();
             ShowClubes();
         }
-            //Mostrar Dados Clube
+        //Mostrar Dados Clube
         private void ShowClubes()
         {
             if (listBoxClubes.Items.Count == 0 | currentClube < 0)
@@ -559,7 +610,7 @@ namespace Gestão_Scouting
 
 
         }
-          //MostrarDadosClubeSelected
+        //MostrarDadosClubeSelected
         private void listBoxClubes_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (listBoxClubes.SelectedIndex >= 0)
@@ -571,7 +622,7 @@ namespace Gestão_Scouting
                 //Mostrar Competições Clube
                 GetClubeCompeticoes(textBoxNumeroInscricaoFifaClube.Text);
                 //Mostrar Jogos do Clube na Competicao
-                GetClubeJogosCompeticao(textBoxNumeroInscricaoFifaClube.Text,"");
+                GetClubeJogosCompeticao(textBoxNumeroInscricaoFifaClube.Text, "");
                 //Mostrar Jogadores Atuais do Clube
                 GetClubeJogadores(textBoxNumeroInscricaoFifaClube.Text);
                 //Mostrar Treinador Atual
@@ -581,7 +632,7 @@ namespace Gestão_Scouting
             }
 
         }
-            //PrencherComboBoxOrderClubes
+        //PrencherComboBoxOrderClubes
         public void ComboBoxOrderClubes()
         {
             ComboBoxOrder Null = new ComboBoxOrder();
@@ -636,7 +687,7 @@ namespace Gestão_Scouting
             cmda = new SqlCommand("select Scouting.Get_NumeroJogadoresEquipa (@Clube_Numero_Inscricao_FIFA)", cn);
             //cmda.CommandType = CommandType.StoredProcedure;
             cmda.Parameters.AddWithValue("@Clube_Numero_Inscricao_FIFA", clube);
-             textBoxNumeroJogadoresAtuais.Text = cmda.ExecuteScalar().ToString();
+            textBoxNumeroJogadoresAtuais.Text = cmda.ExecuteScalar().ToString();
         }
 
 
@@ -671,7 +722,8 @@ namespace Gestão_Scouting
             readera.Close();
         }
 
-        private void GetClubeJogosCompeticao(String Club, String Comp) {
+        private void GetClubeJogosCompeticao(String Club, String Comp)
+        {
             SqlCommand cmda = new SqlCommand();
             SqlDataReader readera;
             //cmd.Connection = cn;
@@ -694,7 +746,7 @@ namespace Gestão_Scouting
             }
             readera.Close();
         }
-            //Get  Jogadores
+        //Get  Jogadores
         private void GetClubeJogadores(String x)
         {
 
@@ -727,11 +779,12 @@ namespace Gestão_Scouting
             }
             //cn.Close();
             reader.Close();
-           
+
         }
 
 
-        private void GetTreinadorAtualClube(String x) {
+        private void GetTreinadorAtualClube(String x)
+        {
 
 
             if (!verifySGBDConnection())
@@ -751,7 +804,7 @@ namespace Gestão_Scouting
             {
 
                 textBoxTreinadorAtual.Text = reader["Treinador_Nome"].ToString();
-   
+
             }
             //cn.Close();
             reader.Close();
@@ -765,7 +818,6 @@ namespace Gestão_Scouting
                 Competicao c = new Competicao();
                 c = (Competicao)listBoxCompeticaoClube.Items[listBoxCompeticaoClube.SelectedIndex];
                 String namec = c.Competicao_ID_FIFA.ToString();
-                MessageBox.Show(namec+ "Funciona crl com dados certos");
                 //Mostrar Jogos do Clube na Competicao
                 GetClubeJogosCompeticao(textBoxNumeroInscricaoFifaClube.Text, namec);
             }
@@ -774,6 +826,84 @@ namespace Gestão_Scouting
         private void buttonInsertClube_Click(object sender, EventArgs e)
         {
             //AddClube ac = new AddClube();
+        }
+
+
+
+
+
+
+        //TAB OBSERVADOR
+        private void LoadObservador() //SEM ORDER BY PARA AGORA (REUTILIZAR A DO CRIAR RELATORIO
+        {
+            if (!verifySGBDConnection())
+                return;
+            SqlCommand cmd = new SqlCommand();
+            SqlDataReader reader;
+            //cmd.Connection = cn;
+            try
+            {
+                cmd.CommandType = CommandType.Text;
+                cmd = new SqlCommand("Scouting.Get_Observador", cn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                reader = cmd.ExecuteReader();
+                LISTA_OBSERVADORES.Items.Clear();
+                while (reader.Read())
+                {
+                    Observador O = new Observador();
+                    O.Numero_Identificacao_Federacao = reader["Numero_Identificacao_Federacao"].ToString();
+                    O.Observador_Nome = reader["Observador_Nome"].ToString();
+                    O.Observador_Idade = reader["Observador_Idade"].ToString();
+                    O.Observador_Nacionalidade = reader["Observador_Nacionalidade"].ToString();
+                    O.Area_Observacao = reader["Area_Observacao"].ToString();
+                    O.Observador_Qualificacoes = reader["Observador_Qualificações"].ToString();
+                    LISTA_OBSERVADORES.Items.Add(O);
+                }
+                //cn.Close();
+                reader.Close();
+                currentObservador = 0;
+                LockObservadorControls();
+                ShowObservador();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Falhou Load Observadores na BD database. \n ERROR MESSAGE:" + ex.Message);
+            }
+        }
+        public void ShowObservador()
+        {
+            if (LISTA_OBSERVADORES.Items.Count == 0 | currentObservador < 0)
+                return;
+            Observador observador = new Observador();
+            observador = (Observador)LISTA_OBSERVADORES.Items[currentObservador];
+            ID_FEDER.Text = observador.Numero_Identificacao_Federacao;
+            NOME_OBS.Text = observador.Observador_Nome;
+            QUALIFIC_OBS.Text = observador.Observador_Qualificacoes;
+            NACIONALIDADE_OBS.Text = observador.Observador_Nacionalidade;
+            IDADE_OBS.Text = observador.Observador_Idade;
+            AREA_OBSERVACAO.Text = observador.Area_Observacao;
+            
+            
+        }
+        private void LockObservadorControls() {
+
+            ID_FEDER.Enabled = false;
+            NOME_OBS.Enabled = false;
+            QUALIFIC_OBS.Enabled = false;
+            NACIONALIDADE_OBS.Enabled = false;
+            IDADE_OBS.Enabled = false;
+            AREA_OBSERVACAO.Enabled = false;
+
+        }
+        private void LISTA_OBSERVADORES_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (LISTA_OBSERVADORES.SelectedIndex >= 0)
+            {
+                currentObservador = LISTA_OBSERVADORES.SelectedIndex;
+
+                //Mostrar Observador
+                ShowObservador();
+            }
         }
     }
 }

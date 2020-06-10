@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
-
+using System.Globalization;
 
 namespace Gestão_Scouting
 {
@@ -25,7 +25,7 @@ namespace Gestão_Scouting
         private SqlConnection getSGBDConnection()
         {
             //Local a Editar!!
-            return new SqlConnection("data source=LAPTOP-2KEGA0ER;integrated security=true;initial catalog=Proj");
+            return new SqlConnection("data source=LAPTOP-MH91MTBV;integrated security=true;initial catalog=Trabalho_Final");
         }
         private bool verifySGBDConnection()
         {
@@ -63,6 +63,10 @@ namespace Gestão_Scouting
         {
             if (!verifySGBDConnection())
                 return;
+            if (comboBoxListas.SelectedIndex < 0)
+            {
+                return;
+            }
             
             String bitPe="";
             String bitDupl="";
@@ -83,37 +87,45 @@ namespace Gestão_Scouting
                 bitPe = "0";
             }
             //
-            SqlCommand cmda = new SqlCommand();
-            cmda.CommandType = CommandType.Text;
-            cmda = new SqlCommand("Scouting.Insert_Jogador", cn);
-            cmda.CommandType = CommandType.StoredProcedure;
-            cmda.Parameters.AddWithValue("@ID_FIFPro",textBoxID.Text);
-            cmda.Parameters.AddWithValue("@Nome", TextBoxNome.Text);
-            cmda.Parameters.AddWithValue("@Altura", TextBoxAltura.Text);
-            cmda.Parameters.AddWithValue("@Peso", textBoxPeso.Text);
-            cmda.Parameters.AddWithValue("@Pe",bitPe );
-            cmda.Parameters.AddWithValue("@Idade", TextBoxIdade.Text);
-            cmda.Parameters.AddWithValue("@Dupla_Na",bitDupl );
-            cmda.Parameters.AddWithValue("@numint", textBoxNumeroInter.Text);
-            //
-            Lista_Observacao_Selecao list = new Lista_Observacao_Selecao();
-            list = (Lista_Observacao_Selecao)comboBoxListas.Items[comboBoxListas.SelectedIndex];
-            String name = list.Lista_Idade_Maxima.ToString();
-            cmda.Parameters.AddWithValue("@Lista",name );
-
             try
             {
-                cmda.ExecuteNonQuery();
-                MessageBox.Show("Jogador " + TextBoxNome.Text.ToString() + " Inserido!");
-                this.Close();
+                float al = (float)double.Parse(TextBoxAltura.Text.ToString(), CultureInfo.CurrentCulture);
+                float pe = (float)double.Parse(textBoxPeso.Text.ToString(), CultureInfo.CurrentCulture);
+                SqlCommand cmda = new SqlCommand();
+                cmda.CommandType = CommandType.Text;
+                cmda = new SqlCommand("Scouting.Insert_Jogador", cn);
+                cmda.CommandType = CommandType.StoredProcedure;
+                cmda.Parameters.AddWithValue("@ID_FIFPro", textBoxID.Text);
+                cmda.Parameters.AddWithValue("@Nome", TextBoxNome.Text);
+                cmda.Parameters.AddWithValue("@Altura", Math.Round(al, 2));
+                cmda.Parameters.AddWithValue("@Peso", Math.Round(pe, 2));
+                cmda.Parameters.AddWithValue("@Pe", bitPe);
+                cmda.Parameters.AddWithValue("@Idade", TextBoxIdade.Text);
+                cmda.Parameters.AddWithValue("@Dupla_Na", bitDupl);
+                cmda.Parameters.AddWithValue("@numint", textBoxNumeroInter.Text);
+                //
+                Lista_Observacao_Selecao list = new Lista_Observacao_Selecao();
+                list = (Lista_Observacao_Selecao)comboBoxListas.Items[comboBoxListas.SelectedIndex];
+                String name = list.Lista_Idade_Maxima.ToString();
+                cmda.Parameters.AddWithValue("@Lista", name);
+
+                try
+                {
+                    cmda.ExecuteNonQuery();
+                    MessageBox.Show("Jogador " + TextBoxNome.Text.ToString() + " Inserido!");
+                    this.Close();
+                }
+
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Falhou Inserir Jogador na BD database. \n ERROR MESSAGE:" + ex.Message);
+
+                }
             }
-            
             catch (Exception ex)
             {
-                MessageBox.Show("Falhou Inserir Jogador na BD database. \n ERROR MESSAGE:" + ex.Message);
-                
+                MessageBox.Show("Erro Dados. \n ERROR MESSAGE:" + ex.Message);
             }
-
 
 
 

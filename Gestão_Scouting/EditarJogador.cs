@@ -18,7 +18,7 @@ namespace Gestão_Scouting
         private SqlConnection getSGBDConnection()
         {
             //Local a Editar!!
-            return new SqlConnection("data source=LAPTOP-2KEGA0ER;integrated security=true;initial catalog=Proj");
+            return new SqlConnection("data source=LAPTOP-MH91MTBV;integrated security=true;initial catalog=Trabalho_Final");
         }
         public EditarJogador(String ID)
         {
@@ -161,38 +161,46 @@ namespace Gestão_Scouting
             {
                 bitPe = "0";
             }
-            //String al =TextBoxAltura.Text.ToString();
-            //String pe = TextBoxAltura.Text.ToString();
-            float al = (float)double.Parse(TextBoxAltura.Text.ToString(), CultureInfo.CurrentCulture);
-            float pe = (float)double.Parse(textBoxPeso.Text.ToString(), CultureInfo.CurrentCulture);
-            SqlCommand cmda = new SqlCommand();
-            cmda.CommandType = CommandType.Text;
-            cmda = new SqlCommand("Scouting.Update_Jogador", cn);
-            cmda.CommandType = CommandType.StoredProcedure;
-            cmda.Parameters.AddWithValue("@ID_FIFPro", textBoxID.Text);
-            cmda.Parameters.AddWithValue("@Nome", TextBoxNome.Text);
-            cmda.Parameters.AddWithValue("@Altura", Math.Round(al, 2));
-            cmda.Parameters.AddWithValue("@Peso", Math.Round(pe, 2));
-            cmda.Parameters.AddWithValue("@Pe", bitPe);
-            cmda.Parameters.AddWithValue("@Idade", TextBoxIdade.Text);
-            cmda.Parameters.AddWithValue("@Dupla_Na", bitDupl);
-            cmda.Parameters.AddWithValue("@numint", textBoxNumeroInter.Text);
-            //
-            Lista_Observacao_Selecao list = new Lista_Observacao_Selecao();
-            list = (Lista_Observacao_Selecao)comboBoxListas.Items[comboBoxListas.SelectedIndex];
-            String name = list.Lista_Idade_Maxima.ToString();
-            cmda.Parameters.AddWithValue("@Lista", name);
             try
             {
-                cmda.ExecuteNonQuery();
-                MessageBox.Show("Jogador " + TextBoxNome.Text.ToString() + " Editado !");
-                this.Close();
+                //String al =TextBoxAltura.Text.ToString();
+                //String pe = TextBoxAltura.Text.ToString();
+                float al = (float)double.Parse(TextBoxAltura.Text.ToString(), CultureInfo.CurrentCulture);
+                float pe = (float)double.Parse(textBoxPeso.Text.ToString(), CultureInfo.CurrentCulture);
+                SqlCommand cmda = new SqlCommand();
+                cmda.CommandType = CommandType.Text;
+                cmda = new SqlCommand("Scouting.Update_Jogador", cn);
+                cmda.CommandType = CommandType.StoredProcedure;
+                cmda.Parameters.AddWithValue("@ID_FIFPro", textBoxID.Text);
+                cmda.Parameters.AddWithValue("@Nome", TextBoxNome.Text);
+                cmda.Parameters.AddWithValue("@Altura", Math.Round(al, 2));
+                cmda.Parameters.AddWithValue("@Peso", Math.Round(pe, 2));
+                cmda.Parameters.AddWithValue("@Pe", bitPe);
+                cmda.Parameters.AddWithValue("@Idade", TextBoxIdade.Text);
+                cmda.Parameters.AddWithValue("@Dupla_Na", bitDupl);
+                cmda.Parameters.AddWithValue("@numint", textBoxNumeroInter.Text);
+                //
+                Lista_Observacao_Selecao list = new Lista_Observacao_Selecao();
+                list = (Lista_Observacao_Selecao)comboBoxListas.Items[comboBoxListas.SelectedIndex];
+                String name = list.Lista_Idade_Maxima.ToString();
+                cmda.Parameters.AddWithValue("@Lista", name);
+                try
+                {
+                    cmda.ExecuteNonQuery();
+                    MessageBox.Show("Jogador " + TextBoxNome.Text.ToString() + " Editado !");
+                    this.Close();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Falhou Editar Jogador na BD database. \n ERROR MESSAGE:" + ex.Message);
+
+                }
             }
-            catch (Exception ex)
+            catch(Exception ex)
             {
-                MessageBox.Show ("Falhou Editar Jogador na BD database. \n ERROR MESSAGE:" + ex.Message);
-                 
+                MessageBox.Show("Verifique os Dados Editados:"+ ex.Message);
             }
+
         }
     }
 }

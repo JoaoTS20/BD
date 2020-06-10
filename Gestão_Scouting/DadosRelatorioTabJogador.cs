@@ -13,11 +13,11 @@ using System.Data.SqlClient;
 namespace Gestão_Scouting
 {
 
-    public partial class DadosRelatorio : Form
+    public partial class DadosRelatorioTabJogador : Form
     {
 
 
-        public DadosRelatorio(String id, SqlConnection cn)
+        public DadosRelatorioTabJogador(String id, SqlConnection cn)
         {
             InitializeComponent();
             Load_Show_Data(id,cn);
@@ -120,6 +120,7 @@ namespace Gestão_Scouting
             }
             reader.Close();
         }
+
 
     }
 }

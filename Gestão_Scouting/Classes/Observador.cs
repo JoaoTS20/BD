@@ -32,6 +32,12 @@ namespace Gestão_Scouting
 			set { _Observador_Nacionalidade = value; }
 		}
 
+		public String Observador_Qualificacoes
+		{
+			get { return _Observador_Qualificacoes; }
+			set { _Observador_Qualificacoes = value; }
+		}
+
 		public String Observador_Idade
 		{
 			get { return _Observador_Idade; }
@@ -42,6 +48,10 @@ namespace Gestão_Scouting
 		{
 			get { return _Area_Observacao; }
 			set { _Area_Observacao = value; }
+		}
+		public override string ToString()
+		{
+			return Numero_Identificacao_Federacao + "  " + _Observador_Nome;
 		}
 	}
 }

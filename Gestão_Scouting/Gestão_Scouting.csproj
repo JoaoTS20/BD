@@ -46,18 +46,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AddRel.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="AddRel.Designer.cs">
-      <DependentUpon>AddRel.cs</DependentUpon>
-    </Compile>
-    <Compile Include="DadosRel.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="DadosRel.Designer.cs">
-      <DependentUpon>DadosRel.cs</DependentUpon>
-    </Compile>
     <Compile Include="EditarJogador.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -73,11 +61,11 @@
     <Compile Include="Classes\Clube.cs" />
     <Compile Include="Classes\ComboBoxOrder.cs" />
     <Compile Include="Classes\Competicao.cs" />
-    <Compile Include="DadosRelatorio.cs">
+    <Compile Include="DadosRelatorioTabJogador.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="DadosRelatorio.Designer.cs">
-      <DependentUpon>DadosRelatorio.cs</DependentUpon>
+    <Compile Include="DadosRelatorioTabJogador.Designer.cs">
+      <DependentUpon>DadosRelatorioTabJogador.cs</DependentUpon>
     </Compile>
     <Compile Include="Classes\Metricas_Jogo_Jogador.cs" />
     <Compile Include="Classes\Analise_Caracteristica_Jogador.cs" />
@@ -96,6 +84,12 @@
     <Compile Include="Classes\Observador.cs" />
     <Compile Include="Classes\Participa_Em.cs" />
     <Compile Include="Classes\Program.cs" />
+    <Compile Include="InsertRelatorio.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="InsertRelatorio.Designer.cs">
+      <DependentUpon>InsertRelatorio.cs</DependentUpon>
+    </Compile>
     <Compile Include="Login.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -106,23 +100,20 @@
     <Compile Include="Classes\Relatorio.cs" />
     <Compile Include="Classes\Selecionador.cs" />
     <Compile Include="Classes\Treinador.cs" />
-    <EmbeddedResource Include="AddRel.resx">
-      <DependentUpon>AddRel.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="DadosRel.resx">
-      <DependentUpon>DadosRel.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="EditarJogador.resx">
       <DependentUpon>EditarJogador.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="InsertPlayer.resx">
       <DependentUpon>InsertPlayer.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="DadosRelatorio.resx">
-      <DependentUpon>DadosRelatorio.cs</DependentUpon>
+    <EmbeddedResource Include="DadosRelatorioTabJogador.resx">
+      <DependentUpon>DadosRelatorioTabJogador.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InsertRelatorio.resx">
+      <DependentUpon>InsertRelatorio.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
