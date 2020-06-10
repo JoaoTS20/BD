@@ -936,7 +936,10 @@ namespace Gestão_Scouting
             }
         }
 
+        private void buttonJogadorClube_Click(object sender, EventArgs e)
+        {
 
+        }
     }
 }
 

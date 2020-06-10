@@ -38,7 +38,6 @@ namespace Gestão_Scouting
             this.textJogadorNome = new System.Windows.Forms.TextBox();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.buttonJogadorClube = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.label44 = new System.Windows.Forms.Label();
@@ -282,7 +281,6 @@ namespace Gestão_Scouting
             // 
             // tabPage1
             // 
-            this.tabPage1.Controls.Add(this.buttonJogadorClube);
             this.tabPage1.Controls.Add(this.button1);
             this.tabPage1.Controls.Add(this.button2);
             this.tabPage1.Controls.Add(this.label44);
@@ -334,15 +332,6 @@ namespace Gestão_Scouting
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Jogadores";
             this.tabPage1.UseVisualStyleBackColor = true;
-            // 
-            // buttonJogadorClube
-            // 
-            this.buttonJogadorClube.Location = new System.Drawing.Point(1210, 447);
-            this.buttonJogadorClube.Name = "buttonJogadorClube";
-            this.buttonJogadorClube.Size = new System.Drawing.Size(104, 40);
-            this.buttonJogadorClube.TabIndex = 80;
-            this.buttonJogadorClube.Text = "Mudar Clube";
-            this.buttonJogadorClube.UseVisualStyleBackColor = true;
             // 
             // button1
             // 
@@ -2184,7 +2173,6 @@ namespace Gestão_Scouting
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.Button buttonJogadorClube;
         private System.Windows.Forms.Button buttonTreinadorNewClube;
     }
 }
