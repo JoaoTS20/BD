@@ -202,6 +202,10 @@ namespace Gestão_Scouting
             this.label35 = new System.Windows.Forms.Label();
             this.buttonDelListas = new System.Windows.Forms.Button();
             this.buttonInsLista = new System.Windows.Forms.Button();
+            this.listBoxMetodos = new System.Windows.Forms.ListBox();
+            this.label63 = new System.Windows.Forms.Label();
+            this.button6 = new System.Windows.Forms.Button();
+            this.button7 = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -281,6 +285,10 @@ namespace Gestão_Scouting
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.button7);
+            this.tabPage1.Controls.Add(this.button6);
+            this.tabPage1.Controls.Add(this.listBoxMetodos);
+            this.tabPage1.Controls.Add(this.label63);
             this.tabPage1.Controls.Add(this.button1);
             this.tabPage1.Controls.Add(this.button2);
             this.tabPage1.Controls.Add(this.label44);
@@ -330,7 +338,7 @@ namespace Gestão_Scouting
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tabPage1.Size = new System.Drawing.Size(1539, 863);
             this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "Jogadores";
+            this.tabPage1.Text = "v";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
             // button1
@@ -528,6 +536,7 @@ namespace Gestão_Scouting
             this.listBoxRelatoriosJogador.Name = "listBoxRelatoriosJogador";
             this.listBoxRelatoriosJogador.Size = new System.Drawing.Size(381, 260);
             this.listBoxRelatoriosJogador.TabIndex = 24;
+            this.listBoxRelatoriosJogador.SelectedIndexChanged += new System.EventHandler(this.listBoxRelatoriosJogador_SelectedIndexChanged);
             this.listBoxRelatoriosJogador.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.GoToInfoRelatorio);
             // 
             // comboBoxListaSelecaoJogadores
@@ -1968,6 +1977,44 @@ namespace Gestão_Scouting
             this.buttonInsLista.Text = "Inserir Lista";
             this.buttonInsLista.UseVisualStyleBackColor = true;
             // 
+            // listBoxMetodos
+            // 
+            this.listBoxMetodos.FormattingEnabled = true;
+            this.listBoxMetodos.ItemHeight = 16;
+            this.listBoxMetodos.Location = new System.Drawing.Point(772, 455);
+            this.listBoxMetodos.Name = "listBoxMetodos";
+            this.listBoxMetodos.Size = new System.Drawing.Size(227, 132);
+            this.listBoxMetodos.TabIndex = 154;
+            // 
+            // label63
+            // 
+            this.label63.AutoSize = true;
+            this.label63.Location = new System.Drawing.Point(769, 431);
+            this.label63.Name = "label63";
+            this.label63.Size = new System.Drawing.Size(162, 17);
+            this.label63.TabIndex = 153;
+            this.label63.Text = "Método De Observação:";
+            // 
+            // button6
+            // 
+            this.button6.Location = new System.Drawing.Point(1005, 487);
+            this.button6.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(129, 28);
+            this.button6.TabIndex = 155;
+            this.button6.Text = "Remover Método";
+            this.button6.UseVisualStyleBackColor = true;
+            // 
+            // button7
+            // 
+            this.button7.Location = new System.Drawing.Point(1005, 455);
+            this.button7.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.button7.Name = "button7";
+            this.button7.Size = new System.Drawing.Size(129, 28);
+            this.button7.TabIndex = 156;
+            this.button7.Text = "Adicionar Método";
+            this.button7.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -2174,6 +2221,10 @@ namespace Gestão_Scouting
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Button buttonTreinadorNewClube;
+        private System.Windows.Forms.ListBox listBoxMetodos;
+        private System.Windows.Forms.Label label63;
+        private System.Windows.Forms.Button button7;
+        private System.Windows.Forms.Button button6;
     }
 }
 

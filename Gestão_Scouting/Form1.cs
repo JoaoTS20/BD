@@ -574,7 +574,16 @@ namespace Gestão_Scouting
 
 
         }
-
+        private void listBoxRelatoriosJogador_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            listBoxMetodos.Items.Clear();
+            currentRelatorioJogador = listBoxRelatoriosJogador.SelectedIndex;
+            String dados = listBoxRelatoriosJogador.GetItemText(listBoxRelatoriosJogador);
+            Relatorio rel = new Relatorio();
+            rel = (Relatorio)listBoxRelatoriosJogador.Items[currentRelatorioJogador];
+            String ID = rel.ID.ToString();
+            Load_Metodos(ID);
+        }
         private void GoToInfoRelatorio(object sender, MouseEventArgs e)
         {
             if (listBoxRelatoriosJogador.SelectedIndex >= 0)
@@ -601,7 +610,23 @@ namespace Gestão_Scouting
             cmda.Parameters.AddWithValue("@id", list);
             textBoxNumeroRelatoriosJogador.Text = cmda.ExecuteScalar().ToString();
         }
-
+        private void Load_Metodos(String id)
+        {
+            SqlCommand cmd = new SqlCommand();
+            SqlDataReader reader;
+            //cmda.Connection = cn;
+            cmd.CommandType = CommandType.Text;
+            cmd = new SqlCommand("Scouting.Get_Metodo_Observacao", cn);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@idRel", id);
+            reader = cmd.ExecuteReader();
+            while (reader.Read())
+            {
+                String s = reader["Rel_Metodo_de_Observacao"].ToString();
+                listBoxMetodos.Items.Add(s);
+            }
+            reader.Close();
+        }
 
 
         //----------------------------------------------------------------------------------------------------------------------
@@ -946,6 +971,8 @@ namespace Gestão_Scouting
         {
 
         }
+
+
     }
 }
 
