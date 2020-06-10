@@ -148,6 +148,8 @@ namespace Gestão_Scouting
                 GetNumeroRelatoriosJogador(textID_FIFPro.Text);
                 //Mostrar Clube Atual
                 loadClubeAtual(textID_FIFPro.Text);
+                //Mostrar Clubes Passados
+                GetClubesJogadorPassados(textID_FIFPro.Text);
             }
         }
         //Função Mostrar Jogadores
@@ -344,6 +346,33 @@ namespace Gestão_Scouting
             {
                 throw new Exception("Falhou Obter o número de  Jogadores da BD database. \n ERROR MESSAGE: " + ex.Message);
             }
+        }
+        //Obter Clubes Passados
+        private void GetClubesJogadorPassados(String id)
+        {
+            if (!verifySGBDConnection())
+                return;
+            SqlCommand cmd = new SqlCommand();
+            SqlDataReader reader;
+            cmd.CommandType = CommandType.Text;
+            cmd = new SqlCommand("Scouting.Get_ClubesPassado", cn);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@id", id);
+
+            reader = cmd.ExecuteReader();
+            listBoxJogadorClubePassados.Items.Clear();
+            while (reader.Read())
+            {
+                Clube C = new Clube();
+                C.Clube_Numero_Inscricao_FIFA = reader["JPC_Clube_Numero_Inscricao_FIFA"].ToString();
+                C.Clube_Nome = reader["Clube_Nome"].ToString();
+                C.Clube_Pais = reader["Clube_Pais"].ToString();
+                DateTime Data_Inicio = DateTime.Parse(reader["Pertence_Data_Inicio"].ToString());
+                DateTime Data_Fim = DateTime.Parse(reader["Pertence_Data_Saida"].ToString());
+                listBoxJogadorClubePassados.Items.Add(Data_Inicio.ToShortDateString() + "->" + Data_Fim.ToShortDateString() + " " + C.Clube_Nome.ToString());
+            }
+            reader.Close();
+
         }
 
         //Criar Jogador
