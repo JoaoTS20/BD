@@ -100,6 +100,12 @@
     <Compile Include="Classes\Relatorio.cs" />
     <Compile Include="Classes\Selecionador.cs" />
     <Compile Include="Classes\Treinador.cs" />
+    <Compile Include="UpdateRelatorio.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UpdateRelatorio.Designer.cs">
+      <DependentUpon>UpdateRelatorio.cs</DependentUpon>
+    </Compile>
     <Compile Include="ViewRelatorio.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -133,6 +139,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="UpdateRelatorio.resx">
+      <DependentUpon>UpdateRelatorio.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ViewRelatorio.resx">
       <DependentUpon>ViewRelatorio.cs</DependentUpon>
     </EmbeddedResource>

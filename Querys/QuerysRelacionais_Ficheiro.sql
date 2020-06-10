@@ -808,9 +808,33 @@ AS
 			select * from Scouting.Observacao_Metodo_de_Observacao WHERE Rel_ID_Relatorio=@idRel 
 			end
 
-Exec Scouting.Get_Metodo_Observacao 74
+--Exec Scouting.Get_Metodo_Observacao 74
 
+--Editar Relatorio e Consequentes 
+Create PROCEDURE Scouting.Update_Relatorio(@idRel int,@Titulo varchar(50), @Data date, @ID_Federacao_Obs varchar(9), @ID varchar(9), 
+@Qualidade_Atual int,@Qualidade_Potencial int, @M_Atributo varchar(50), @Etica varchar(50), @Determinacao int, @Decisao int, @Tecnica int,@Numero_Golo int,
+@assistencias int,@passes_efec int,@passes_comp int,@numero_cortes int, @minutos_jogados int, @Defesa_Realizada int, @distancia int, @toques int, @dribles int,@remates int)
+as 
+	BEGIN
+		Declare @ID_Rel int
+		Begin Transaction  x
+			BEGIN TRY
+				Update Scouting.Relatorio set Relatorio_Titulo=@Titulo, Relatorio_Data=@Data, Numero_Identificacao_Federacao=@ID_Federacao_Obs, ID_FIFPro=@ID where ID=@idRel;
+				Update Scouting.Analise_Caracteristica_Jogador set Qualidade_Atual=@Qualidade_Atual,Qualidade_Potencial=@Qualidade_Potencial, Melhor_Atributo=@M_Atributo, Etica_Trabalho=@Etica, Determinacao=@Determinacao,@Decisao=@Decisao,Nivel_Tecnica=@Tecnica where Rel_ID=@ID_Rel
+				Update Scouting.Metricas_Jogo_Jogador set @Numero_Golo=@Numero_Golo,Numero_Assistencias=@assistencias, Numero_Passes_Efectuados=@passes_efec, Numero_Passes_Completos= @passes_comp, @numero_cortes=@numero_cortes, @minutos_jogados= @minutos_jogados, Defesas_Realizadas= @Defesa_Realizada,Distancia_Percorrida= @distancia, Numero_Toques= @toques, Numero_Dribles= @dribles, Numero_Remates=@remates where Rel_ID=@idRel;
+				PRINT 'Relatório Editado'
+				Commit Transaction x
+			END TRY
 
+			BEGIN CATCH 
+				IF @@TRANCOUNT>0
+				BEGIN
+					THROW;
+					raiserror ('Erro Editar De Relatório', 16, 1);
+					RollBack Transaction x
+				END
+			END CATCH
+	END
 
 
 

@@ -39,7 +39,7 @@ namespace Gestão_Scouting
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.buttonEditRelatorio = new System.Windows.Forms.Button();
             this.label44 = new System.Windows.Forms.Label();
             this.listBoxJogadorClubePassados = new System.Windows.Forms.ListBox();
             this.textBoxClubeAtual = new System.Windows.Forms.TextBox();
@@ -223,7 +223,7 @@ namespace Gestão_Scouting
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(5, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(1413, 28);
+            this.menuStrip1.Size = new System.Drawing.Size(1413, 30);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -233,7 +233,7 @@ namespace Gestão_Scouting
             this.toolStripMenuItem2,
             this.exitToolStripMenuItem});
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(52, 24);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(52, 26);
             this.toolStripMenuItem1.Text = "Utils";
             // 
             // toolStripMenuItem2
@@ -290,7 +290,7 @@ namespace Gestão_Scouting
             this.tabPage1.Controls.Add(this.listBoxMetodos);
             this.tabPage1.Controls.Add(this.label63);
             this.tabPage1.Controls.Add(this.button1);
-            this.tabPage1.Controls.Add(this.button2);
+            this.tabPage1.Controls.Add(this.buttonEditRelatorio);
             this.tabPage1.Controls.Add(this.label44);
             this.tabPage1.Controls.Add(this.listBoxJogadorClubePassados);
             this.tabPage1.Controls.Add(this.textBoxClubeAtual);
@@ -338,7 +338,7 @@ namespace Gestão_Scouting
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tabPage1.Size = new System.Drawing.Size(1539, 863);
             this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "v";
+            this.tabPage1.Text = "Jogadores";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
             // button1
@@ -351,15 +351,16 @@ namespace Gestão_Scouting
             this.button1.Text = "Eliminar Relatório";
             this.button1.UseVisualStyleBackColor = true;
             // 
-            // button2
+            // buttonEditRelatorio
             // 
-            this.button2.Location = new System.Drawing.Point(772, 359);
-            this.button2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(145, 28);
-            this.button2.TabIndex = 48;
-            this.button2.Text = "Editar Relatório";
-            this.button2.UseVisualStyleBackColor = true;
+            this.buttonEditRelatorio.Location = new System.Drawing.Point(772, 359);
+            this.buttonEditRelatorio.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.buttonEditRelatorio.Name = "buttonEditRelatorio";
+            this.buttonEditRelatorio.Size = new System.Drawing.Size(145, 28);
+            this.buttonEditRelatorio.TabIndex = 48;
+            this.buttonEditRelatorio.Text = "Editar Relatório";
+            this.buttonEditRelatorio.UseVisualStyleBackColor = true;
+            this.buttonEditRelatorio.Click += new System.EventHandler(this.button2_Click);
             // 
             // label44
             // 
@@ -2164,7 +2165,7 @@ namespace Gestão_Scouting
         private System.Windows.Forms.Button buttonEditObservador;
         private System.Windows.Forms.Button buttonInserirObs;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button buttonEditRelatorio;
         private System.Windows.Forms.Label label28;
         private System.Windows.Forms.TextBox textBoxNumeroClubes;
         private System.Windows.Forms.Label label45;

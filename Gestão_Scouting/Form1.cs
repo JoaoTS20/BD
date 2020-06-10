@@ -571,6 +571,7 @@ namespace Gestão_Scouting
         {
             InsertRelatorio ap = new InsertRelatorio(textID_FIFPro.Text);
             ap.ShowDialog();
+            GetRelatoriosJogadores(textID_FIFPro.Text);
 
 
         }
@@ -597,6 +598,20 @@ namespace Gestão_Scouting
                 dr.ShowDialog();
             }
         }
+        //Editar Relatório
+        private void button2_Click(object sender, EventArgs e)
+        {
+            if (listBoxRelatoriosJogador.SelectedIndex < 0) { return; }
+            currentRelatorioJogador = listBoxRelatoriosJogador.SelectedIndex;
+            String dados = listBoxRelatoriosJogador.GetItemText(listBoxRelatoriosJogador);
+            Relatorio rel = new Relatorio();
+            rel = (Relatorio)listBoxRelatoriosJogador.Items[currentRelatorioJogador];
+            String ID = rel.ID.ToString();
+            UpdateRelatorio dr = new UpdateRelatorio(ID);
+            dr.ShowDialog();
+            GetRelatoriosJogadores(textID_FIFPro.Text);
+        }
+
         private void GetNumeroRelatoriosJogador(String list)
         {
             if (!verifySGBDConnection())
