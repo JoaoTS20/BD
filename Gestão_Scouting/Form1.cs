@@ -279,9 +279,9 @@ namespace Gestão_Scouting
             comboBoxOrder.Items.Add(Idade);
 
             ComboBoxOrder Numero_Internacionalizao = new ComboBoxOrder();
-            Idade.Text = "Internacionalizações";
-            Idade.Value = "Numero_Internacionalizacoes";
-            comboBoxOrder.Items.Add(Idade);
+            Numero_Internacionalizao.Text = "Internacionalizações";
+            Numero_Internacionalizao.Value = "Numero_Internacionalizacoes";
+            comboBoxOrder.Items.Add(Numero_Internacionalizao);
         }
 
         //Bloquear Dados Jogadores

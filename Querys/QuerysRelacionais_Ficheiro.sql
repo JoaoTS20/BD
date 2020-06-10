@@ -673,9 +673,9 @@ AS
 drop trigger PosicaoUniqueGR
 
 --Inserir Relatorio e Consequentes 
-CREATE PROCEDURE Scouting.Insert_Relatorio(@Titulo varchar(50), @Data date, @ID_Federacao_Obs varchar(9), @ID varchar(9),@Local varchar(100), @Jogo_Data date, 
+Create PROCEDURE Scouting.Insert_Relatorio(@Titulo varchar(50), @Data date, @ID_Federacao_Obs varchar(9), @ID varchar(9),@Local varchar(100), @Jogo_Data date, 
 @Qualidade_Atual int,@Qualidade_Potencial int, @M_Atributo varchar(50), @Etica varchar(50), @Determinacao int, @Decisao int, @Tecnica int,@Numero_Golo int,
-@assistencias int,@passes_efec int,@passes_comp int,@numero_cortes int, @minutos_jogados int, @Defesa_Realizada int, @distancia int, @toques int, @dribles int,@remates int)
+@assistencias int,@passes_efec int,@passes_comp int,@numero_cortes int, @minutos_jogados int, @Defesa_Realizada int, @distancia int, @toques int, @dribles int,@remates int, @metodo_observacao varchar(15))
 as 
 	BEGIN
 		Declare @ID_Rel int
@@ -683,6 +683,7 @@ as
 			BEGIN TRY
 				INSERT INTO Scouting.Relatorio VALUES (@Titulo, @Data, @ID_Federacao_Obs, @ID,@Local, @Jogo_Data);--Inserir Relatorio
 				Select @ID_Rel=IDENT_CURRENT ('Scouting.Relatorio')
+				Insert INTO Scouting.Observacao_Metodo_de_Observacao values (@metodo_observacao,@ID_Rel)
 				Insert INTO Scouting.Analise_Caracteristica_Jogador VALUES (@ID_Rel,@Qualidade_Atual,@Qualidade_Potencial, @M_Atributo, @Etica, @Determinacao, @Decisao, @Tecnica, @ID_Federacao_Obs);
 				Insert INTO Scouting.Metricas_Jogo_Jogador values (@Numero_Golo,@ID_Rel,@assistencias,@passes_efec,@passes_comp,@numero_cortes, @minutos_jogados, @Defesa_Realizada, @distancia, @toques, @dribles, @remates, @ID_Federacao_Obs);
 				PRINT 'Relatório Criado'
@@ -717,6 +718,38 @@ AS
 			END
 -- drop Provedure Scouting.Get_Observador
 
+--Stored Procedure BIG Obter Observador
+CREATE PROCEDURE Scouting.Get_Lista_Observadores @sort_by varchar(30), @filter_by varchar(60), @filter_value varchar(50)
+ AS
+	DECLARE @SQLStatement varchar(200)
+	IF(LEN(@sort_by)=0 AND LEN(@filter_by)=0)
+	BEGIN
+		SELECT * FROM Scouting.Observador;
+	END
+	IF(LEN(@sort_by)>0 AND LEN(@filter_by)=0)
+	BEGIN
+	PRINT 'talvez'
+		SELECT @SQLStatement= 'SELECT * FROM Scouting.Observador ORDER BY ' + @sort_by;
+		EXEC(@SQLStatement)
+	END
+	--se filter_value len=0 a partir daqui erro
+	IF(LEN(@filter_value)=0)
+	BEGIN
+		PRINT 'filtro nao tem valor associado'
+		return
+	END
+	IF(LEN(@sort_by)=0 AND LEN(@filter_by)>0)
+	BEGIN
+		PRINT 'nao'
+		SELECT @SQLStatement= 'SELECT * FROM Scouting.Observador WHERE ' + @filter_by+'='''+@filter_value+'''';
+		EXEC(@SQLStatement)
+	END
+	IF(LEN(@sort_by)>0 AND LEN(@filter_by)>0)
+	BEGIN
+		PRINT 'sim'
+		SELECT @SQLStatement= 'SELECT * FROM Scouting.Observador WHERE ' + @filter_by+'='''+@filter_value+''' ORDER BY '+@sort_by;
+		EXEC(@SQLStatement)
+	END
 
 
 --Obter Clube Atual Jogador
@@ -725,6 +758,7 @@ as
 	begin
 	select * from Scouting.Jogador_Pertence_Clube join Scouting.Clube on Scouting.Jogador_Pertence_Clube.JPC_Clube_Numero_Inscricao_FIFA=Clube_Numero_Inscricao_FIFA WHERE Pertence_Data_Saida is null and ID_FIFPro=@id;
 	end
+
 
 -- Obter jogos em que jogador participou
 CREATE PROCEDURE Scouting.Get_Jogos_Jogador @id_fifpro varchar(9)
@@ -735,6 +769,20 @@ as
 	END
 --EXEC Scouting.Get_Jogos_Jogador 13
 DROP PROCEDURE Scouting.Get_Jogos_Jogador
+
+--Obter Jogadores do Passado Jogador
+CREATE Procedure Scouting.Get_ClubesPassado @id varchar(9)
+AS
+		IF(LEN(@id)>0 )
+			BEGIN
+			select * from Scouting.Jogador_Pertence_Clube join Scouting.Clube on JPC_Clube_Numero_Inscricao_FIFA=Clube_Numero_Inscricao_FIFA where Pertence_Data_Saida is not null and ID_FIFPro=@id;
+			END
+
+select * from Scouting.Jogador_Pertence_Clube join Scouting.Clube on JPC_Clube_Numero_Inscricao_FIFA=Clube_Numero_Inscricao_FIFA where ID_FIFPro=20
+
+
+
+
 
 
 

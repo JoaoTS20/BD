@@ -82,7 +82,7 @@
             this.textBoxClubeAtual = new System.Windows.Forms.TextBox();
             this.Cancelar = new System.Windows.Forms.Button();
             this.label25 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.textBoxMetodo = new System.Windows.Forms.TextBox();
             this.comboBoxObservadoresList = new System.Windows.Forms.ComboBox();
             this.label26 = new System.Windows.Forms.Label();
             this.SuspendLayout();
@@ -99,7 +99,7 @@
             // buttonInserirRelatorio
             // 
             this.buttonInserirRelatorio.Location = new System.Drawing.Point(973, 534);
-            this.buttonInserirRelatorio.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.buttonInserirRelatorio.Margin = new System.Windows.Forms.Padding(4);
             this.buttonInserirRelatorio.Name = "buttonInserirRelatorio";
             this.buttonInserirRelatorio.Size = new System.Drawing.Size(131, 48);
             this.buttonInserirRelatorio.TabIndex = 80;
@@ -110,7 +110,7 @@
             // ToquesBox
             // 
             this.ToquesBox.Location = new System.Drawing.Point(27, 534);
-            this.ToquesBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.ToquesBox.Margin = new System.Windows.Forms.Padding(4);
             this.ToquesBox.Name = "ToquesBox";
             this.ToquesBox.Size = new System.Drawing.Size(132, 22);
             this.ToquesBox.TabIndex = 79;
@@ -128,7 +128,7 @@
             // DriblesBox
             // 
             this.DriblesBox.Location = new System.Drawing.Point(249, 534);
-            this.DriblesBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.DriblesBox.Margin = new System.Windows.Forms.Padding(4);
             this.DriblesBox.Name = "DriblesBox";
             this.DriblesBox.Size = new System.Drawing.Size(132, 22);
             this.DriblesBox.TabIndex = 77;
@@ -146,7 +146,7 @@
             // RematesBox
             // 
             this.RematesBox.Location = new System.Drawing.Point(27, 598);
-            this.RematesBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.RematesBox.Margin = new System.Windows.Forms.Padding(4);
             this.RematesBox.Name = "RematesBox";
             this.RematesBox.Size = new System.Drawing.Size(132, 22);
             this.RematesBox.TabIndex = 75;
@@ -164,7 +164,7 @@
             // DistanciaBox
             // 
             this.DistanciaBox.Location = new System.Drawing.Point(249, 468);
-            this.DistanciaBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.DistanciaBox.Margin = new System.Windows.Forms.Padding(4);
             this.DistanciaBox.Name = "DistanciaBox";
             this.DistanciaBox.Size = new System.Drawing.Size(132, 22);
             this.DistanciaBox.TabIndex = 73;
@@ -182,7 +182,7 @@
             // AssistsBox
             // 
             this.AssistsBox.Location = new System.Drawing.Point(27, 324);
-            this.AssistsBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.AssistsBox.Margin = new System.Windows.Forms.Padding(4);
             this.AssistsBox.Name = "AssistsBox";
             this.AssistsBox.Size = new System.Drawing.Size(132, 22);
             this.AssistsBox.TabIndex = 71;
@@ -190,7 +190,7 @@
             // PassesBox
             // 
             this.PassesBox.Location = new System.Drawing.Point(27, 400);
-            this.PassesBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.PassesBox.Margin = new System.Windows.Forms.Padding(4);
             this.PassesBox.Name = "PassesBox";
             this.PassesBox.Size = new System.Drawing.Size(132, 22);
             this.PassesBox.TabIndex = 70;
@@ -198,7 +198,7 @@
             // PassesCompBox
             // 
             this.PassesCompBox.Location = new System.Drawing.Point(27, 468);
-            this.PassesCompBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.PassesCompBox.Margin = new System.Windows.Forms.Padding(4);
             this.PassesCompBox.Name = "PassesCompBox";
             this.PassesCompBox.Size = new System.Drawing.Size(132, 22);
             this.PassesCompBox.TabIndex = 69;
@@ -206,7 +206,7 @@
             // CortesBox
             // 
             this.CortesBox.Location = new System.Drawing.Point(249, 250);
-            this.CortesBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.CortesBox.Margin = new System.Windows.Forms.Padding(4);
             this.CortesBox.Name = "CortesBox";
             this.CortesBox.Size = new System.Drawing.Size(132, 22);
             this.CortesBox.TabIndex = 68;
@@ -214,7 +214,7 @@
             // MinutosBox
             // 
             this.MinutosBox.Location = new System.Drawing.Point(249, 324);
-            this.MinutosBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.MinutosBox.Margin = new System.Windows.Forms.Padding(4);
             this.MinutosBox.Name = "MinutosBox";
             this.MinutosBox.Size = new System.Drawing.Size(132, 22);
             this.MinutosBox.TabIndex = 67;
@@ -222,7 +222,7 @@
             // DefesasBox
             // 
             this.DefesasBox.Location = new System.Drawing.Point(249, 400);
-            this.DefesasBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.DefesasBox.Margin = new System.Windows.Forms.Padding(4);
             this.DefesasBox.Name = "DefesasBox";
             this.DefesasBox.Size = new System.Drawing.Size(132, 22);
             this.DefesasBox.TabIndex = 66;
@@ -230,7 +230,7 @@
             // GolosBox
             // 
             this.GolosBox.Location = new System.Drawing.Point(25, 250);
-            this.GolosBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.GolosBox.Margin = new System.Windows.Forms.Padding(4);
             this.GolosBox.Name = "GolosBox";
             this.GolosBox.Size = new System.Drawing.Size(132, 22);
             this.GolosBox.TabIndex = 65;
@@ -308,7 +308,7 @@
             // QualPotBox
             // 
             this.QualPotBox.Location = new System.Drawing.Point(413, 324);
-            this.QualPotBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.QualPotBox.Margin = new System.Windows.Forms.Padding(4);
             this.QualPotBox.Name = "QualPotBox";
             this.QualPotBox.Size = new System.Drawing.Size(132, 22);
             this.QualPotBox.TabIndex = 57;
@@ -316,7 +316,7 @@
             // MelhorAtribBox
             // 
             this.MelhorAtribBox.Location = new System.Drawing.Point(413, 400);
-            this.MelhorAtribBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.MelhorAtribBox.Margin = new System.Windows.Forms.Padding(4);
             this.MelhorAtribBox.Name = "MelhorAtribBox";
             this.MelhorAtribBox.Size = new System.Drawing.Size(132, 22);
             this.MelhorAtribBox.TabIndex = 56;
@@ -324,7 +324,7 @@
             // EticaTrabBox
             // 
             this.EticaTrabBox.Location = new System.Drawing.Point(413, 468);
-            this.EticaTrabBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.EticaTrabBox.Margin = new System.Windows.Forms.Padding(4);
             this.EticaTrabBox.Name = "EticaTrabBox";
             this.EticaTrabBox.Size = new System.Drawing.Size(132, 22);
             this.EticaTrabBox.TabIndex = 55;
@@ -333,7 +333,7 @@
             // 
             this.DeterminacaoBox.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.DeterminacaoBox.Location = new System.Drawing.Point(656, 250);
-            this.DeterminacaoBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.DeterminacaoBox.Margin = new System.Windows.Forms.Padding(4);
             this.DeterminacaoBox.Name = "DeterminacaoBox";
             this.DeterminacaoBox.Size = new System.Drawing.Size(132, 22);
             this.DeterminacaoBox.TabIndex = 54;
@@ -341,7 +341,7 @@
             // CapDecBox
             // 
             this.CapDecBox.Location = new System.Drawing.Point(656, 324);
-            this.CapDecBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.CapDecBox.Margin = new System.Windows.Forms.Padding(4);
             this.CapDecBox.Name = "CapDecBox";
             this.CapDecBox.Size = new System.Drawing.Size(132, 22);
             this.CapDecBox.TabIndex = 53;
@@ -349,7 +349,7 @@
             // NivTecBox
             // 
             this.NivTecBox.Location = new System.Drawing.Point(656, 400);
-            this.NivTecBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.NivTecBox.Margin = new System.Windows.Forms.Padding(4);
             this.NivTecBox.Name = "NivTecBox";
             this.NivTecBox.Size = new System.Drawing.Size(132, 22);
             this.NivTecBox.TabIndex = 52;
@@ -357,7 +357,7 @@
             // QualAtualBox
             // 
             this.QualAtualBox.Location = new System.Drawing.Point(413, 250);
-            this.QualAtualBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.QualAtualBox.Margin = new System.Windows.Forms.Padding(4);
             this.QualAtualBox.Name = "QualAtualBox";
             this.QualAtualBox.Size = new System.Drawing.Size(132, 22);
             this.QualAtualBox.TabIndex = 51;
@@ -564,7 +564,7 @@
             // Cancelar
             // 
             this.Cancelar.Location = new System.Drawing.Point(791, 534);
-            this.Cancelar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Cancelar.Margin = new System.Windows.Forms.Padding(4);
             this.Cancelar.Name = "Cancelar";
             this.Cancelar.Size = new System.Drawing.Size(133, 48);
             this.Cancelar.TabIndex = 93;
@@ -581,12 +581,12 @@
             this.label25.TabIndex = 94;
             this.label25.Text = "Método De Observação:";
             // 
-            // textBox1
+            // textBoxMetodo
             // 
-            this.textBox1.Location = new System.Drawing.Point(877, 288);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(193, 22);
-            this.textBox1.TabIndex = 95;
+            this.textBoxMetodo.Location = new System.Drawing.Point(877, 288);
+            this.textBoxMetodo.Name = "textBoxMetodo";
+            this.textBoxMetodo.Size = new System.Drawing.Size(193, 22);
+            this.textBoxMetodo.TabIndex = 95;
             // 
             // comboBoxObservadoresList
             // 
@@ -596,6 +596,7 @@
             this.comboBoxObservadoresList.Name = "comboBoxObservadoresList";
             this.comboBoxObservadoresList.Size = new System.Drawing.Size(191, 24);
             this.comboBoxObservadoresList.TabIndex = 96;
+            this.comboBoxObservadoresList.SelectedIndexChanged += new System.EventHandler(this.comboBoxObservadoresList_SelectedIndexChanged);
             // 
             // label26
             // 
@@ -613,7 +614,7 @@
             this.ClientSize = new System.Drawing.Size(1235, 644);
             this.Controls.Add(this.label26);
             this.Controls.Add(this.comboBoxObservadoresList);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.textBoxMetodo);
             this.Controls.Add(this.label25);
             this.Controls.Add(this.Cancelar);
             this.Controls.Add(this.textBoxClubeAtual);
@@ -732,7 +733,7 @@
         private System.Windows.Forms.TextBox textBoxClubeAtual;
         private System.Windows.Forms.Button Cancelar;
         private System.Windows.Forms.Label label25;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox textBoxMetodo;
         private System.Windows.Forms.ComboBox comboBoxObservadoresList;
         private System.Windows.Forms.Label label26;
     }

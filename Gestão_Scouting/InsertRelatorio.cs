@@ -25,7 +25,9 @@ namespace Gestão_Scouting
             dateTimePicker1.CustomFormat = "yyyy-MM-dd";
 
             loadClubeAtual(idJogador);
-            LoadObservador();
+            ComboBoxOrder();
+            comboBoxObservadoresList.SelectedIndex = 0;
+            LoadObservador("");
         }
 
         //Funções SQL
@@ -47,7 +49,48 @@ namespace Gestão_Scouting
 
             return cn.State == ConnectionState.Open;
         }
-        private void LoadObservador()
+
+
+        //ComboBox Order by Lista Observadores
+        public void ComboBoxOrder()
+        {
+            ComboBoxOrder Null = new ComboBoxOrder();
+            Null.Text = "Null";
+            Null.Value = "";
+            comboBoxObservadoresList.Items.Add(Null);
+
+            ComboBoxOrder ID = new ComboBoxOrder();
+            ID.Text = "Número Identificação Federação";
+            ID.Value = "Numero_Identificacao_Federacao";
+            comboBoxObservadoresList.Items.Add(ID);
+
+
+            ComboBoxOrder NOME = new ComboBoxOrder();
+            NOME.Text = "Nome";
+            NOME.Value = "Observador_Nome";
+            comboBoxObservadoresList.Items.Add(NOME);
+
+            ComboBoxOrder QUAL = new ComboBoxOrder();
+            QUAL.Text = "Qualificações";
+            QUAL.Value = "Observador_Qualificações";
+            comboBoxObservadoresList.Items.Add(QUAL);
+
+            ComboBoxOrder NAC = new ComboBoxOrder();
+            NAC.Text = "Nacionalidade";
+            NAC.Value = "Observador_Nacionalidade";
+            comboBoxObservadoresList.Items.Add(NAC);
+
+            ComboBoxOrder Idade = new ComboBoxOrder();
+            Idade.Text = "Idade";
+            Idade.Value = "Observador_Idade";
+            comboBoxObservadoresList.Items.Add(Idade);
+
+            ComboBoxOrder Area = new ComboBoxOrder();
+            Area.Text = "Área Observação";
+            Area.Value = "Area_Observacao";
+            comboBoxObservadoresList.Items.Add(Area);
+        }
+        private void LoadObservador(String order)
         {
             if (!verifySGBDConnection())
                 return;
@@ -57,8 +100,12 @@ namespace Gestão_Scouting
             try
             {
                 cmd.CommandType = CommandType.Text;
-                cmd = new SqlCommand("Scouting.Get_Observador", cn);
+                cmd = new SqlCommand("Scouting.Get_Lista_Observadores", cn);
                 cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@sort_by", order);
+                cmd.Parameters.AddWithValue("@filter_by", "");
+                cmd.Parameters.AddWithValue("@filter_value", "");
+
                 reader = cmd.ExecuteReader();
                 listBoxObservadores.Items.Clear();
                 while (reader.Read())
@@ -181,38 +228,47 @@ namespace Gestão_Scouting
             }
             if (String.IsNullOrEmpty(textBoxTitulo.Text))
             {
+                MessageBox.Show("Prencher Parâmetros todos!");
                 return;
             }
             if (String.IsNullOrEmpty(GolosBox.Text))
             {
+                MessageBox.Show("Prencher Parâmetros todos!");
                 return;
             }
             if (String.IsNullOrEmpty(AssistsBox.Text))
             {
+                MessageBox.Show("Prencher Parâmetros todos!");
                 return;
             }
             if (String.IsNullOrEmpty(PassesBox.Text))
             {
+                MessageBox.Show("Prencher Parâmetros todos!");
                 return;
             }
             if (String.IsNullOrEmpty(PassesCompBox.Text))
             {
+                MessageBox.Show("Prencher Parâmetros todos!");
                 return;
             }
             if (String.IsNullOrEmpty(ToquesBox.Text))
             {
+                MessageBox.Show("Prencher Parâmetros todos!");
                 return;
             }
             if (String.IsNullOrEmpty(RematesBox.Text))
             {
+                MessageBox.Show("Prencher Parâmetros todos!");
                 return;
             }
             if (String.IsNullOrEmpty(CortesBox.Text))
             {
+                MessageBox.Show("Prencher Parâmetros todos!");
                 return;
             }
             if (String.IsNullOrEmpty(MinutosBox.Text))
             {
+                MessageBox.Show("Prencher Parâmetros todos!");
                 return;
             }
             if (String.IsNullOrEmpty(DefesasBox.Text))
@@ -221,18 +277,22 @@ namespace Gestão_Scouting
             }
             if (String.IsNullOrEmpty(DistanciaBox.Text))
             {
+                MessageBox.Show("Prencher Parâmetros todos!");
                 return;
             }
             if (String.IsNullOrEmpty(DriblesBox.Text))
             {
+                MessageBox.Show("Prencher Parâmetros todos!");
                 return;
             }
             if (String.IsNullOrEmpty(QualAtualBox.Text))
             {
+                MessageBox.Show("Prencher Parâmetros todos!");
                 return;
             }
             if (String.IsNullOrEmpty(QualPotBox.Text))
             {
+                MessageBox.Show("Prencher Parâmetros todos!");
                 return;
             }
             if (String.IsNullOrEmpty(MelhorAtribBox.Text))
@@ -241,18 +301,22 @@ namespace Gestão_Scouting
             }
             if (String.IsNullOrEmpty(EticaTrabBox.Text))
             {
+                MessageBox.Show("Prencher Parâmetros todos!");
                 return;
             }
             if (String.IsNullOrEmpty(DeterminacaoBox.Text))
             {
+                MessageBox.Show("Prencher Parâmetros todos!");
                 return;
             }
             if (String.IsNullOrEmpty(CapDecBox.Text))
             {
+                MessageBox.Show("Prencher Parâmetros todos!");
                 return;
             }
             if (String.IsNullOrEmpty(NivTecBox.Text))
             {
+                MessageBox.Show("Prencher Parâmetros todos!");
                 return;
             }
             //Restantes Checks
@@ -323,6 +387,7 @@ namespace Gestão_Scouting
                 cmda.Parameters.AddWithValue("@toques", Int32.Parse(M.Numero_Toques.ToString()));
                 cmda.Parameters.AddWithValue("@dribles", Int32.Parse(M.Numero_Dribles.ToString()));
                 cmda.Parameters.AddWithValue("@remates", Int32.Parse(M.Numero_Remates.ToString()));
+                cmda.Parameters.AddWithValue("@metodo_observacao", textBoxMetodo.Text);
                 //
                 //Inserir Métricas
 
@@ -355,6 +420,19 @@ namespace Gestão_Scouting
         private void Cancelar_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void comboBoxObservadoresList_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (comboBoxObservadoresList.SelectedIndex >= 0)
+            {
+                ComboBoxOrder list = new ComboBoxOrder();
+                list = (ComboBoxOrder)comboBoxObservadoresList.Items[comboBoxObservadoresList.SelectedIndex];
+                String x = list.Value.ToString();
+                //Alterar Load oBSERVADORES
+                LoadObservador(x);
+                listBoxJogos.Items.Clear();
+            }
         }
     }
 }
