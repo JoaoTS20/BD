@@ -905,6 +905,8 @@ namespace Gestão_Scouting
                 ShowObservador();
             }
         }
+
+
     }
 }
 
