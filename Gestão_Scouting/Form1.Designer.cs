@@ -38,7 +38,11 @@ namespace Gestão_Scouting
             this.textJogadorNome = new System.Windows.Forms.TextBox();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.button1 = new System.Windows.Forms.Button();
+            this.button7 = new System.Windows.Forms.Button();
+            this.button6 = new System.Windows.Forms.Button();
+            this.listBoxMetodos = new System.Windows.Forms.ListBox();
+            this.label63 = new System.Windows.Forms.Label();
+            this.buttonRemoverRelatorio = new System.Windows.Forms.Button();
             this.buttonEditRelatorio = new System.Windows.Forms.Button();
             this.label44 = new System.Windows.Forms.Label();
             this.listBoxJogadorClubePassados = new System.Windows.Forms.ListBox();
@@ -202,10 +206,6 @@ namespace Gestão_Scouting
             this.label35 = new System.Windows.Forms.Label();
             this.buttonDelListas = new System.Windows.Forms.Button();
             this.buttonInsLista = new System.Windows.Forms.Button();
-            this.listBoxMetodos = new System.Windows.Forms.ListBox();
-            this.label63 = new System.Windows.Forms.Label();
-            this.button6 = new System.Windows.Forms.Button();
-            this.button7 = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -223,7 +223,7 @@ namespace Gestão_Scouting
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(5, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(1413, 30);
+            this.menuStrip1.Size = new System.Drawing.Size(1413, 28);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -233,7 +233,7 @@ namespace Gestão_Scouting
             this.toolStripMenuItem2,
             this.exitToolStripMenuItem});
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(52, 26);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(52, 24);
             this.toolStripMenuItem1.Text = "Utils";
             // 
             // toolStripMenuItem2
@@ -289,7 +289,7 @@ namespace Gestão_Scouting
             this.tabPage1.Controls.Add(this.button6);
             this.tabPage1.Controls.Add(this.listBoxMetodos);
             this.tabPage1.Controls.Add(this.label63);
-            this.tabPage1.Controls.Add(this.button1);
+            this.tabPage1.Controls.Add(this.buttonRemoverRelatorio);
             this.tabPage1.Controls.Add(this.buttonEditRelatorio);
             this.tabPage1.Controls.Add(this.label44);
             this.tabPage1.Controls.Add(this.listBoxJogadorClubePassados);
@@ -341,15 +341,54 @@ namespace Gestão_Scouting
             this.tabPage1.Text = "Jogadores";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
-            // button1
+            // button7
             // 
-            this.button1.Location = new System.Drawing.Point(772, 391);
-            this.button1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(145, 28);
-            this.button1.TabIndex = 49;
-            this.button1.Text = "Eliminar Relatório";
-            this.button1.UseVisualStyleBackColor = true;
+            this.button7.Location = new System.Drawing.Point(1005, 455);
+            this.button7.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.button7.Name = "button7";
+            this.button7.Size = new System.Drawing.Size(129, 28);
+            this.button7.TabIndex = 156;
+            this.button7.Text = "Adicionar Método";
+            this.button7.UseVisualStyleBackColor = true;
+            // 
+            // button6
+            // 
+            this.button6.Location = new System.Drawing.Point(1005, 487);
+            this.button6.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(129, 28);
+            this.button6.TabIndex = 155;
+            this.button6.Text = "Remover Método";
+            this.button6.UseVisualStyleBackColor = true;
+            // 
+            // listBoxMetodos
+            // 
+            this.listBoxMetodos.FormattingEnabled = true;
+            this.listBoxMetodos.ItemHeight = 16;
+            this.listBoxMetodos.Location = new System.Drawing.Point(772, 455);
+            this.listBoxMetodos.Name = "listBoxMetodos";
+            this.listBoxMetodos.Size = new System.Drawing.Size(227, 132);
+            this.listBoxMetodos.TabIndex = 154;
+            // 
+            // label63
+            // 
+            this.label63.AutoSize = true;
+            this.label63.Location = new System.Drawing.Point(769, 431);
+            this.label63.Name = "label63";
+            this.label63.Size = new System.Drawing.Size(162, 17);
+            this.label63.TabIndex = 153;
+            this.label63.Text = "Método De Observação:";
+            // 
+            // buttonRemoverRelatorio
+            // 
+            this.buttonRemoverRelatorio.Location = new System.Drawing.Point(772, 391);
+            this.buttonRemoverRelatorio.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.buttonRemoverRelatorio.Name = "buttonRemoverRelatorio";
+            this.buttonRemoverRelatorio.Size = new System.Drawing.Size(145, 28);
+            this.buttonRemoverRelatorio.TabIndex = 49;
+            this.buttonRemoverRelatorio.Text = "Eliminar Relatório";
+            this.buttonRemoverRelatorio.UseVisualStyleBackColor = true;
+            this.buttonRemoverRelatorio.Click += new System.EventHandler(this.buttonRemoverRelatorio_Click);
             // 
             // buttonEditRelatorio
             // 
@@ -1978,44 +2017,6 @@ namespace Gestão_Scouting
             this.buttonInsLista.Text = "Inserir Lista";
             this.buttonInsLista.UseVisualStyleBackColor = true;
             // 
-            // listBoxMetodos
-            // 
-            this.listBoxMetodos.FormattingEnabled = true;
-            this.listBoxMetodos.ItemHeight = 16;
-            this.listBoxMetodos.Location = new System.Drawing.Point(772, 455);
-            this.listBoxMetodos.Name = "listBoxMetodos";
-            this.listBoxMetodos.Size = new System.Drawing.Size(227, 132);
-            this.listBoxMetodos.TabIndex = 154;
-            // 
-            // label63
-            // 
-            this.label63.AutoSize = true;
-            this.label63.Location = new System.Drawing.Point(769, 431);
-            this.label63.Name = "label63";
-            this.label63.Size = new System.Drawing.Size(162, 17);
-            this.label63.TabIndex = 153;
-            this.label63.Text = "Método De Observação:";
-            // 
-            // button6
-            // 
-            this.button6.Location = new System.Drawing.Point(1005, 487);
-            this.button6.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(129, 28);
-            this.button6.TabIndex = 155;
-            this.button6.Text = "Remover Método";
-            this.button6.UseVisualStyleBackColor = true;
-            // 
-            // button7
-            // 
-            this.button7.Location = new System.Drawing.Point(1005, 455);
-            this.button7.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(129, 28);
-            this.button7.TabIndex = 156;
-            this.button7.Text = "Adicionar Método";
-            this.button7.UseVisualStyleBackColor = true;
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -2164,7 +2165,7 @@ namespace Gestão_Scouting
         private System.Windows.Forms.Button buttonDeleteObs;
         private System.Windows.Forms.Button buttonEditObservador;
         private System.Windows.Forms.Button buttonInserirObs;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button buttonRemoverRelatorio;
         private System.Windows.Forms.Button buttonEditRelatorio;
         private System.Windows.Forms.Label label28;
         private System.Windows.Forms.TextBox textBoxNumeroClubes;

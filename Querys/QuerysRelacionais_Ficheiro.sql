@@ -837,6 +837,31 @@ as
 	END
 
 
+--Stored Procedure Delete Relatorio
+Create PROCEDURE [Scouting].[Delete_Relatorio] @ID int
+AS
+	BEGIN
+		Begin Transaction  x
+			BEGIN TRY
+				 Delete from Scouting.Analise_Caracteristica_Jogador where Rel_ID=@ID
+				 Delete from Scouting.Metricas_Jogo_Jogador where Rel_ID=@ID
+				 Delete from Scouting.Observacao_Metodo_de_Observacao where Rel_ID_Relatorio=@ID
+				 delete from Scouting.Relatorio where ID=@ID
+				 print ('Relatorio Removido')
+				Commit Transaction x
+			END TRY
+
+			BEGIN CATCH 
+				IF @@TRANCOUNT>0
+				BEGIN
+					raiserror ('Erro Eliminar Relatório', 16, 1);
+					RollBack Transaction x
+				END
+			END CATCH
+	END
+
+
+
 
 
 --nÃO TESTADA 

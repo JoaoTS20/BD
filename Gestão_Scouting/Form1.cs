@@ -575,6 +575,39 @@ namespace Gestão_Scouting
 
 
         }
+        //Remover Relatorio
+        private void buttonRemoverRelatorio_Click(object sender, EventArgs e)
+        {
+            if (listBoxRelatoriosJogador.SelectedIndex >= 0)
+            {
+                currentRelatorioJogador = listBoxRelatoriosJogador.SelectedIndex;
+                Relatorio rel = new Relatorio();
+                rel = (Relatorio)listBoxRelatoriosJogador.Items[currentRelatorioJogador];
+                String ID = rel.ID.ToString();
+                if (!verifySGBDConnection())
+                    return;
+                SqlCommand cmda = new SqlCommand();
+                cmda.CommandType = CommandType.Text;
+                cmda = new SqlCommand("Scouting.Delete_Relatorio", cn);
+                cmda.CommandType = CommandType.StoredProcedure;
+                cmda.Parameters.AddWithValue("@ID", ID);
+                try
+                {
+                    cmda.ExecuteNonQuery();
+                    MessageBox.Show("Relatório de " + textJNome.Text + " Removido!");
+                    GetRelatoriosJogadores(textID_FIFPro.Text);
+                    GetNumeroRelatoriosJogador(textID_FIFPro.Text);
+                    listBoxMetodos.Items.Clear();
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception("Erro Remover Relatorio na BD database. \n ERROR MESSAGE: " + ex.Message);
+
+                }
+
+
+            }
+            }
         private void listBoxRelatoriosJogador_SelectedIndexChanged(object sender, EventArgs e)
         {
             listBoxMetodos.Items.Clear();
@@ -585,6 +618,7 @@ namespace Gestão_Scouting
             String ID = rel.ID.ToString();
             Load_Metodos(ID);
         }
+        //Get INFO REL
         private void GoToInfoRelatorio(object sender, MouseEventArgs e)
         {
             if (listBoxRelatoriosJogador.SelectedIndex >= 0)
@@ -986,7 +1020,6 @@ namespace Gestão_Scouting
         {
 
         }
-
 
     }
 }
