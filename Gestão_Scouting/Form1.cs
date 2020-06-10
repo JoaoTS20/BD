@@ -539,26 +539,32 @@ namespace Gestão_Scouting
             SqlCommand cmda = new SqlCommand();
             SqlDataReader readera;
             //cmd.Connection = cn;
-            cmda.CommandType = CommandType.Text;
-            cmda = new SqlCommand("Scouting.GetRelatorioByJogador", cn);
-            cmda.CommandType = CommandType.StoredProcedure;
-            cmda.Parameters.AddWithValue("@ID", x);
-            readera = cmda.ExecuteReader();
-            listBoxRelatoriosJogador.Items.Clear();
-            while (readera.Read())
+            try
             {
-                Relatorio L = new Relatorio();
-                L.ID = readera["ID"].ToString();
-                L.Relatorio_Titulo = readera["Relatorio_Titulo"].ToString();
-                L.Relatorio_Data = readera["Relatorio_Data"].ToString();
-                L.Numero_Identificacao_Federacao = readera["Numero_Identificacao_Federacao"].ToString();
-                L.ID_FIFPro = readera["ID_FIFPro"].ToString();
-                L.Jogo_Local = readera["Jogo_Local"].ToString();
-                L.Jogo_Data = readera["Jogo_Data"].ToString();
-                listBoxRelatoriosJogador.Items.Add(L);
+                cmda.CommandType = CommandType.Text;
+                cmda = new SqlCommand("Scouting.GetRelatorioByJogador", cn);
+                cmda.CommandType = CommandType.StoredProcedure;
+                cmda.Parameters.AddWithValue("@ID", x);
+                readera = cmda.ExecuteReader();
+                listBoxRelatoriosJogador.Items.Clear();
+                while (readera.Read())
+                {
+                    Relatorio L = new Relatorio();
+                    L.ID = readera["ID"].ToString();
+                    L.Relatorio_Titulo = readera["Relatorio_Titulo"].ToString();
+                    L.Relatorio_Data = readera["Relatorio_Data"].ToString();
+                    L.Numero_Identificacao_Federacao = readera["Numero_Identificacao_Federacao"].ToString();
+                    L.ID_FIFPro = readera["ID_FIFPro"].ToString();
+                    L.Jogo_Local = readera["Jogo_Local"].ToString();
+                    L.Jogo_Data = readera["Jogo_Data"].ToString();
+                    listBoxRelatoriosJogador.Items.Add(L);
+                }
+                readera.Close();
             }
-            readera.Close();
-
+            catch(Exception ex)
+            {
+                MessageBox.Show("Falhou Load Relatórios da BD. \n ERROR MESSAGE:" + ex.Message);
+            }
         }
         //Adicionar Relatórios
         private void AdicionarRelatorioJogador_Click(object sender, EventArgs e)

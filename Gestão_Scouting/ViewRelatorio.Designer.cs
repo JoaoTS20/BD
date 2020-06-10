@@ -30,8 +30,6 @@
         {
             this.label25 = new System.Windows.Forms.Label();
             this.Cancelar = new System.Windows.Forms.Button();
-            this.textBoxClubeAtual = new System.Windows.Forms.TextBox();
-            this.label24 = new System.Windows.Forms.Label();
             this.textBoxJogID = new System.Windows.Forms.TextBox();
             this.label23 = new System.Windows.Forms.Label();
             this.label22 = new System.Windows.Forms.Label();
@@ -102,23 +100,7 @@
             this.Cancelar.TabIndex = 150;
             this.Cancelar.Text = "Voltar";
             this.Cancelar.UseVisualStyleBackColor = true;
-            // 
-            // textBoxClubeAtual
-            // 
-            this.textBoxClubeAtual.Location = new System.Drawing.Point(143, 107);
-            this.textBoxClubeAtual.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.textBoxClubeAtual.Name = "textBoxClubeAtual";
-            this.textBoxClubeAtual.Size = new System.Drawing.Size(210, 22);
-            this.textBoxClubeAtual.TabIndex = 149;
-            // 
-            // label24
-            // 
-            this.label24.AutoSize = true;
-            this.label24.Location = new System.Drawing.Point(55, 107);
-            this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(84, 17);
-            this.label24.TabIndex = 148;
-            this.label24.Text = "Clube Atual:";
+            this.Cancelar.Click += new System.EventHandler(this.Cancelar_Click);
             // 
             // textBoxJogID
             // 
@@ -158,7 +140,7 @@
             // label20
             // 
             this.label20.AutoSize = true;
-            this.label20.Location = new System.Drawing.Point(97, 154);
+            this.label20.Location = new System.Drawing.Point(94, 108);
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(42, 17);
             this.label20.TabIndex = 140;
@@ -560,7 +542,7 @@
             // 
             // textBoxData
             // 
-            this.textBoxData.Location = new System.Drawing.Point(143, 149);
+            this.textBoxData.Location = new System.Drawing.Point(143, 108);
             this.textBoxData.Name = "textBoxData";
             this.textBoxData.Size = new System.Drawing.Size(210, 22);
             this.textBoxData.TabIndex = 155;
@@ -576,8 +558,6 @@
             this.Controls.Add(this.listBoxMetodos);
             this.Controls.Add(this.label25);
             this.Controls.Add(this.Cancelar);
-            this.Controls.Add(this.textBoxClubeAtual);
-            this.Controls.Add(this.label24);
             this.Controls.Add(this.textBoxJogID);
             this.Controls.Add(this.label23);
             this.Controls.Add(this.label22);
@@ -635,8 +615,6 @@
 
         private System.Windows.Forms.Label label25;
         private System.Windows.Forms.Button Cancelar;
-        private System.Windows.Forms.TextBox textBoxClubeAtual;
-        private System.Windows.Forms.Label label24;
         private System.Windows.Forms.TextBox textBoxJogID;
         private System.Windows.Forms.Label label23;
         private System.Windows.Forms.Label label22;
