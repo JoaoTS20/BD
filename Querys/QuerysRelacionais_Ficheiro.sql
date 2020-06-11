@@ -1665,7 +1665,58 @@ AS
 	SELECT * FROM (Scouting.Treinador JOIN Scouting.Treina ON Treinador_Numero_Inscricao_FIFA=Treina_Num_Insc_FIFA)
 	JOIN Scouting.Clube ON Clube_Num_insc_FIFA=Clube_Numero_Inscricao_FIFA WHERE Treinador.Treinador_Numero_Inscricao_FIFA=@id_treinador AND Treinador_Da
 
+--Trigger metricas coerentes
+CREATE TRIGGER MetricasCoerentes on Scouting.Metricas_Jogo_Jogador
+AFTER INSERT,UPDATE
+AS 
+	SET NOCOUNT ON;
+	Declare @numeroAs as int
+	Declare @numeroG as int
+	Declare @numero_Passes_efectuados as int
+	Declare @numero_Passes_completos as int
+	Declare @numero_Cortes as int
+	Declare @minutos_jogados as int
+	Declare @defesas_realizadas as int
+	Declare @numero_toques as int
+	Declare @numero_dribles as int
+	Declare @Numero_remates as int
+	--
+	Select @numeroAs = Numero_Assistencias from inserted 
+	Select @numeroG = Numero_Golos from inserted 
+	Select @numero_Passes_efectuados = Numero_Passes_Efectuados from inserted 
+	Select @numero_Passes_completos = Numero_Passes_Completos from inserted 
+	Select @numero_Cortes = Numero_Cortes from inserted 
+	Select @minutos_jogados = Minutos_Jogados from inserted 
+	Select @defesas_realizadas = Defesas_Realizadas from inserted 
+	Select @numero_toques = Numero_Toques from inserted 
+	Select @numero_dribles = Numero_Dribles from inserted 
+	Select @Numero_remates = Numero_Remates from inserted 
 
+	if(@numero_Passes_completos>@numero_Passes_efectuados)
+		BEGIN
+			RAISERROR ('Número de Passes Completos > Número de Passes Efectuados', 16,1);
+				ROLLBACK TRAN; -- Anula a inserção
+		END
+	if(@numeroAs>@numero_Passes_completos)
+		BEGIN
+			RAISERROR ('Número de Assistências > Número de Passes Completos', 16,1);
+				ROLLBACK TRAN; -- Anula a inserção
+		END
+	if(@minutos_jogados<=0 AND @minutos_jogados >=120)
+		BEGIN
+			RAISERROR ('Número de Minutos de 0 a 120', 16,1);
+				ROLLBACK TRAN; -- Anula a inserção
+		END
+	if(@numeroG>@Numero_remates)
+		BEGIN
+			RAISERROR ('Número de Golos> Número de Remates', 16,1);
+				ROLLBACK TRAN; -- Anula a inserção
+		END
+	if(@numero_toques<@Numero_Passes_Efectuados )
+		BEGIN
+			RAISERROR ('Número de Toques < Número de Passes Efectuados', 16,1);
+				ROLLBACK TRAN; -- Anula a inserção
+		END
 
 
 

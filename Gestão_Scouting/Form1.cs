@@ -698,13 +698,16 @@ namespace Gestão_Scouting
 
         private void listBoxRelatoriosJogador_SelectedIndexChanged(object sender, EventArgs e)
         {
-            listBoxMetodos.Items.Clear();
-            currentRelatorioJogador = listBoxRelatoriosJogador.SelectedIndex;
-            String dados = listBoxRelatoriosJogador.GetItemText(listBoxRelatoriosJogador);
-            Relatorio rel = new Relatorio();
-            rel = (Relatorio)listBoxRelatoriosJogador.Items[currentRelatorioJogador];
-            String ID = rel.ID.ToString();
-            Load_Metodos(ID);
+            if (listBoxRelatoriosJogador.SelectedIndex >= 0)
+            {
+                listBoxMetodos.Items.Clear();
+                currentRelatorioJogador = listBoxRelatoriosJogador.SelectedIndex;
+                String dados = listBoxRelatoriosJogador.GetItemText(listBoxRelatoriosJogador);
+                Relatorio rel = new Relatorio();
+                rel = (Relatorio)listBoxRelatoriosJogador.Items[currentRelatorioJogador];
+                String ID = rel.ID.ToString();
+                Load_Metodos(ID);
+            }
         }
         //Get INFO REL
         private void GoToInfoRelatorio(object sender, MouseEventArgs e)
@@ -1810,6 +1813,7 @@ namespace Gestão_Scouting
                 ORDENAR_COMP.SelectedIndex = 0;
                 ObterCompeticaoClube(x);
                 GetNumeroJogosCompeticoes(x);
+                ObterCompeticaoJogos(x);
             }
         }
         //Editar Jogo
