@@ -978,6 +978,128 @@ AS
 
 
 
+--Stored Procedure Update Observador
+CREATE PROCEDURE Scouting.Update_Observador @id_fed varchar(9), @nome varchar(50), @qualificacoes varchar(100), @nacionalidade varchar(40),@idade int,@area varchar(50)
+AS
+	Begin Transaction  x
+			BEGIN TRY
+				UPDATE Scouting.Observador 
+				SET Observador_Nome=@nome,Observador_Idade=@idade,Observador_Nacionalidade=@nacionalidade,Observador_Qualificações=@qualificacoes,Area_Observacao=@area
+				WHERE Numero_Identificacao_Federacao=@id_fed;
+				PRINT 'Observador editado com sucesso'
+				Commit Transaction x
+			END TRY
+
+			BEGIN CATCH 
+				IF @@TRANCOUNT>0
+				BEGIN
+					THROW;
+					raiserror ('Erro ao Editar Observador', 16, 1);
+					ROLLBACK TRANSACTION x
+				END
+			END CATCH
+
+
+
+
+
+--Stored Procedure Obter Relatorios Observador
+CREATE PROCEDURE Scouting.Get_Relatorios_Observador @id varchar(9), @Order_By varchar(50)
+AS
+	DECLARE @SQLStatement varchar(300);
+		IF(LEN(@Order_By)>0 )
+			BEGIN
+				SELECT @SQLStatement= 'SELECT Relatorio.* FROM Scouting.Observador JOIN Scouting.Relatorio ON Relatorio.Numero_Identificacao_Federacao=Observador.Numero_Identificacao_Federacao
+				WHERE Observador.Numero_Identificacao_Federacao = '''+@id+'''ORDER BY ' + @Order_By;
+				EXEC(@SQLStatement)
+			END
+		IF(LEN(@Order_By)=0)
+			BEGIN
+				SELECT Relatorio.* FROM Scouting.Relatorio JOIN Scouting.Observador ON Relatorio.Numero_Identificacao_Federacao=Observador.Numero_Identificacao_Federacao
+				WHERE Observador.Numero_Identificacao_Federacao=@id;
+			END
+
+
+
+
+
+--Stored Procedure Update Competicao
+CREATE PROCEDURE Scouting.Update_Competicao @id_fifa varchar(9), @nome varchar(50), @num_equipas int
+AS
+	Begin Transaction  x
+			BEGIN TRY
+				UPDATE Scouting.Competicao 
+				SET Competicao_Nome=@nome,Competicao_Numero_Equipas=@num_equipas
+				WHERE Competicao_ID_FIFA=@id_fifa;
+				PRINT 'Competicao editada Com Sucesso'
+				Commit Transaction x
+			END TRY
+
+			BEGIN CATCH 
+				IF @@TRANCOUNT>0
+				BEGIN
+					THROW;
+					raiserror ('Erro ao Editar Competicao', 16, 1);
+					ROLLBACK TRANSACTION x
+				END
+			END CATCH
+
+
+
+
+--Stored Processo Remover Clube de Competicao
+CREATE PROCEDURE Scouting.Delete_Competicao_Clube @clube_id varchar(9), @compet_id varchar(9)
+AS
+	BEGIN
+	Begin Transaction  x
+			BEGIN TRY
+				UPDATE Scouting.Participa_Em SET Participa_Clube_Numero_Inscricao_FIFA=null 
+				WHERE Participa_Clube_Numero_Inscricao_FIFA=@clube_id AND
+				(SELECT Jogo.Jogo_Competicao_ID_FIFA FROM Scouting.Jogo JOIN Scouting.Participa_Em ON Participa_Em_Jogo_Data=Jogo_Data AND Participa_Em_Jogo_Local=Jogo_Local)=@compet_id;
+				
+				DELETE FROM Scouting.Inscrito_Em WHERE Inscrito_Em.Ins_Clube_Numero_Inscricao_FIFA=@clube_id AND Ins_Competicao_ID_FIFA = @compet_id;
+				PRINT 'Inscricao Eliminada'
+				Commit Transaction x
+			END TRY
+
+			BEGIN CATCH 
+				IF @@TRANCOUNT>0
+				BEGIN
+					THROW;
+					raiserror ('Erro ao Remover Inscricao', 16, 1);
+					ROLLBACK TRANSACTION x
+				END
+			END CATCH
+	END
+
+
+
+
+
+--Stored Procedure Adicionar Clube à Competição
+CREATE PROCEDURE Scouting.Insert_Competicao_Clube @clube_id varchar(9), @compet_id varchar(9),@num_jog int,@data_insc date
+AS
+	BEGIN
+	Begin Transaction  x
+			BEGIN TRY
+				INSERT INTO Scouting.Inscrito_Em VALUES (@clube_id, @compet_id, @num_jog, @data_insc);
+				PRINT 'Inscricao Realizada'
+				Commit Transaction x
+			END TRY
+
+			BEGIN CATCH 
+				IF @@TRANCOUNT>0
+				BEGIN
+					THROW;
+					raiserror ('Erro na Inscricao', 16, 1);
+					ROLLBACK TRANSACTION x
+				END
+			END CATCH
+	END
+
+
+
+
 
 
 
