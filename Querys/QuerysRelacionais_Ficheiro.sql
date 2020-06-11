@@ -1150,6 +1150,62 @@ AS
 
 
 
+--UDF Obter Numero de Observadores
+
+CREATE FUNCTION Scouting.Get_NumeroObservadores () RETURNS int
+AS	
+	BEGIN
+		DECLARE @res int;
+		Select @res=count(*) FROM Scouting.Observador;
+		return @res;
+	END
+
+
+
+
+
+
+--UDF Obter Numero de Relatorios do Observador
+CREATE FUNCTION Scouting.Get_NumRelatoriosObservador (@id_obs varchar(9)) RETURNS int
+AS	
+		begin
+			DECLARE @res int;
+			Select @res=count(*) FROM Scouting.Observador JOIN Scouting.Relatorio 
+			ON Observador.Numero_Identificacao_Federacao= Relatorio.Numero_Identificacao_Federacao
+			WHERE Observador.Numero_Identificacao_Federacao=@id_obs;
+		return @res;
+	END
+
+
+
+
+
+
+
+
+
+
+
+--UDF Obter Numero de Jogos Observados pelo Observador 
+Create FUNCTION Scouting.Get_NumJogosObservador (@id_obs varchar(9)) RETURNS int
+AS	
+	BEGIN
+		DECLARE @res int;
+		
+			Select @res=count(*) FROM Scouting.Observador JOIN Scouting.Jogo 
+			ON Observador.Numero_Identificacao_Federacao= Jogo.Obs_Num_Iden_Federacao
+			WHERE Numero_Identificacao_Federacao=@id_obs;
+		return @res;
+	END
+
+--Obter Jogos Analisados Jogador
+Create Procedure [Scouting].[Get_Jogos_Observador]  @obs_id varchar(9)
+AS
+			BEGIN
+			SELECT * FROM Scouting.Participa_Em join Scouting.Jogo on Jogo_Local=Participa_Em_Jogo_Local and Jogo_Data=Participa_Em_Jogo_Data where Obs_Num_Iden_Federacao=@obs_id;
+			END
+
+
 
 
 

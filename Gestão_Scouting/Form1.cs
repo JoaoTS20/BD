@@ -1071,6 +1071,7 @@ namespace Gestão_Scouting
                 currentObservador = 0;
                 LockObservadorControls();
                 ShowObservador();
+                GetNumeroObservador();
             }
             catch (Exception ex)
             {
@@ -1131,7 +1132,41 @@ namespace Gestão_Scouting
             }
 
         }
+        private void GetJogosObservador(String ID)
+        {
+            if (!verifySGBDConnection())
+                return;
+            SqlCommand cmda = new SqlCommand();
+            SqlDataReader readera;
+            try
+            {
+                cmda.CommandType = CommandType.Text;
+                cmda = new SqlCommand("Scouting.Get_Jogos_Observador", cn);
+                cmda.CommandType = CommandType.StoredProcedure;
+                cmda.Parameters.AddWithValue("@obs_id", ID);
+                readera = cmda.ExecuteReader();
+               JOGOS_ANALISADOS.Items.Clear();
+                while (readera.Read())
+                {
+                    Jogo J = new Jogo();
+                    J.Jogo_Data = readera["Jogo_Data"].ToString().Replace("/", "-");
+                    J.Jogo_Local = readera["Jogo_Local"].ToString();
+                    J.Resultado = readera["Resultado"].ToString();
+                    J.Jogo_Competicao_ID_FIFA = readera["Jogo_Competicao_ID_FIFA"].ToString();
+                    J.Obs_Num_Iden_Federacao = readera["Obs_Num_Iden_Federacao"].ToString();
+                    JOGOS_ANALISADOS.Items.Add(J);
+                }
+                readera.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Falhou Carregar Jogos do Jogador da BD database. \n ERROR MESSAGE: " + ex.Message);
+            }
 
+
+
+
+        }
         private void LockObservadorControls()
         {
 
@@ -1153,7 +1188,14 @@ namespace Gestão_Scouting
                 ShowObservador();
                 //Mostrar Relatorios
                 ORDENAR_RELATORIOS.SelectedIndex = 0;
+                
                 GetRelatoriosObservador(ID_FEDER.Text, "");
+                //gET nÚMERO DE Relatorios
+                GetNumeroRelatorios(ID_FEDER.Text);
+                //gET nÚMERO DE jogos
+                GetNumeroJogosObservador(ID_FEDER.Text);
+                //GET JOGOS OBS
+                GetJogosObservador(ID_FEDER.Text);
             }
         }
         //PREENCHER ComboBOX oBSERVADDOR
@@ -1231,42 +1273,6 @@ namespace Gestão_Scouting
 
 
 
-        //PRENCHER combox Ordernar Jogos
-        public void ComboBoxOrderJogos()
-        {
-            ComboBoxOrder Null = new ComboBoxOrder();
-            Null.Text = "Null";
-            Null.Value = "";
-            ORDENAR_OBS.Items.Add(Null);
-
-            ComboBoxOrder Observador_Nome = new ComboBoxOrder();
-            Observador_Nome.Text = "Nome";
-            Observador_Nome.Value = "Observador_Nome";
-            ORDENAR_OBS.Items.Add(Observador_Nome);
-
-            ComboBoxOrder Observador_Qualificações = new ComboBoxOrder();
-            Observador_Qualificações.Text = "Qualificações";
-            Observador_Qualificações.Value = "Observador_Qualificações";
-            ORDENAR_OBS.Items.Add(Observador_Qualificações);
-
-            ComboBoxOrder Observador_Nacionalidade = new ComboBoxOrder();
-            Observador_Nacionalidade.Text = "Nacionalidade";
-            Observador_Nacionalidade.Value = "Observador_Nacionalidade";
-            ORDENAR_OBS.Items.Add(Observador_Nacionalidade);
-
-            ComboBoxOrder Idade = new ComboBoxOrder();
-            Idade.Text = "Idade";
-            Idade.Value = "Observador_Idade";
-            ORDENAR_OBS.Items.Add(Idade);
-
-            ComboBoxOrder Area_Observacao = new ComboBoxOrder();
-            Area_Observacao.Text = "Área Observação";
-            Area_Observacao.Value = "Area_Observacao";
-            ORDENAR_OBS.Items.Add(Area_Observacao);
-        }
-
-
-
         //Criar Observador
         private void buttonInserirObs_Click(object sender, EventArgs e)
         {
@@ -1274,6 +1280,7 @@ namespace Gestão_Scouting
             io.ShowDialog();
             LoadObservador("");
             ORDENAR_OBS.SelectedIndex = 0;
+            GetNumeroObservador();
         }
         //Editar Observador
         private void buttonEditObservador_Click(object sender, EventArgs e)
@@ -1311,6 +1318,8 @@ namespace Gestão_Scouting
                 ORDENAR_OBS.SelectedIndex = 0;
                 GetRelatoriosJogadores(textID_FIFPro.Text);
                 RELATORIOS_OBS.Items.Clear();
+                GetNumeroObservador();
+
             }
             catch (Exception ex)
             {
@@ -1347,6 +1356,55 @@ namespace Gestão_Scouting
                 //Alterar Load oBSERVADORES
 
                 GetRelatoriosObservador(ID_FEDER.Text, x);
+            }
+        }
+        //
+        private void GetNumeroObservador()
+        {
+            if (!verifySGBDConnection())
+                return;
+            SqlCommand cmda = new SqlCommand();
+            cmda.CommandType = CommandType.Text;
+            cmda = new SqlCommand("select Scouting.Get_NumeroObservadores ()", cn);
+            textBoxNumeroObservadores.Text = cmda.ExecuteScalar().ToString();
+        }
+        private void GetNumeroRelatorios(String id)
+        {
+            if (!verifySGBDConnection())
+                return;
+            SqlCommand cmda = new SqlCommand();
+            try
+            {
+                //cmd.Connection = cn;
+                cmda.CommandType = CommandType.Text;
+                cmda = new SqlCommand("select Scouting.Get_NumRelatoriosObservador (@id_obs)", cn);
+                //cmda.CommandType = CommandType.StoredProcedure;
+                cmda.Parameters.AddWithValue("@id_obs", id);
+                textBoxNumeroRelatoriosObservador.Text = cmda.ExecuteScalar().ToString();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Falhou Obter o número de  Relatorios da BD database. \n ERROR MESSAGE: " + ex.Message);
+            }
+
+        }
+        private void GetNumeroJogosObservador(String id)
+        {
+            if (!verifySGBDConnection())
+                return;
+            SqlCommand cmda = new SqlCommand();
+            try
+            {
+                //cmd.Connection = cn;
+                cmda.CommandType = CommandType.Text;
+                cmda = new SqlCommand("select Scouting.Get_NumJogosObservador (@id_obs)", cn);
+                //cmda.CommandType = CommandType.StoredProcedure;
+                cmda.Parameters.AddWithValue("@id_obs", id);
+                textBoxNumeroJogosObservador.Text = cmda.ExecuteScalar().ToString();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Falhou Obter o número de  Jogos da BD database. \n ERROR MESSAGE: " + ex.Message);
             }
         }
     }

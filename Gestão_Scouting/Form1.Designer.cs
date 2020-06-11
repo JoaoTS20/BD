@@ -125,8 +125,6 @@ namespace Gestão_Scouting
             this.buttonDeleteObs = new System.Windows.Forms.Button();
             this.buttonEditObservador = new System.Windows.Forms.Button();
             this.buttonInserirObs = new System.Windows.Forms.Button();
-            this.comboBox5 = new System.Windows.Forms.ComboBox();
-            this.label34 = new System.Windows.Forms.Label();
             this.ORDENAR_RELATORIOS = new System.Windows.Forms.ComboBox();
             this.label32 = new System.Windows.Forms.Label();
             this.label31 = new System.Windows.Forms.Label();
@@ -1106,8 +1104,6 @@ namespace Gestão_Scouting
             this.tabPage3.Controls.Add(this.buttonDeleteObs);
             this.tabPage3.Controls.Add(this.buttonEditObservador);
             this.tabPage3.Controls.Add(this.buttonInserirObs);
-            this.tabPage3.Controls.Add(this.comboBox5);
-            this.tabPage3.Controls.Add(this.label34);
             this.tabPage3.Controls.Add(this.ORDENAR_RELATORIOS);
             this.tabPage3.Controls.Add(this.label32);
             this.tabPage3.Controls.Add(this.label31);
@@ -1221,26 +1217,6 @@ namespace Gestão_Scouting
             this.buttonInserirObs.Text = "Inserir Observador";
             this.buttonInserirObs.UseVisualStyleBackColor = true;
             this.buttonInserirObs.Click += new System.EventHandler(this.buttonInserirObs_Click);
-            // 
-            // comboBox5
-            // 
-            this.comboBox5.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox5.FormattingEnabled = true;
-            this.comboBox5.Location = new System.Drawing.Point(985, 189);
-            this.comboBox5.Margin = new System.Windows.Forms.Padding(4);
-            this.comboBox5.Name = "comboBox5";
-            this.comboBox5.Size = new System.Drawing.Size(155, 24);
-            this.comboBox5.TabIndex = 29;
-            // 
-            // label34
-            // 
-            this.label34.AutoSize = true;
-            this.label34.Location = new System.Drawing.Point(885, 196);
-            this.label34.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label34.Name = "label34";
-            this.label34.Size = new System.Drawing.Size(90, 17);
-            this.label34.TabIndex = 28;
-            this.label34.Text = "Ordenar por:";
             // 
             // ORDENAR_RELATORIOS
             // 
@@ -2133,8 +2109,6 @@ namespace Gestão_Scouting
         private System.Windows.Forms.Label label31;
         private System.Windows.Forms.ListBox JOGOS_ANALISADOS;
         private System.Windows.Forms.ListBox LISTA_OBSERVADORES;
-        private System.Windows.Forms.ComboBox comboBox5;
-        private System.Windows.Forms.Label label34;
         private System.Windows.Forms.ComboBox ORDENAR_RELATORIOS;
         private System.Windows.Forms.Label label32;
         private System.Windows.Forms.ComboBox ORDENAR_COMP;
