@@ -1799,7 +1799,7 @@ namespace Gestão_Scouting
                 InsertJogo dr = new InsertJogo(x);
                 dr.ShowDialog();
                 ORDENAR_COMP.SelectedIndex = 0;
-                GetNumeroJogosCompeticoes("");
+                GetNumeroJogosCompeticoes(x);
             }
         }
         //Editar Jogo

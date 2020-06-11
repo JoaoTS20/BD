@@ -126,6 +126,63 @@ namespace Gestão_Scouting
         }
         private void buttonInserir_Click(object sender, EventArgs e)
         {
+            if(listBoxObservadores.SelectedIndex>=0 & !String.IsNullOrEmpty(textBoxLocal.Text) & !String.IsNullOrEmpty(textBoxResultado.Text))
+            {
+                Observador c = new Observador();
+                c = (Observador)listBoxObservadores.Items[listBoxObservadores.SelectedIndex];
+                String idObsev = c.Numero_Identificacao_Federacao.ToString();
+                try
+                {
+                    SqlCommand cmda = new SqlCommand();
+                    cmda.CommandType = CommandType.Text;
+                    cmda = new SqlCommand("Scouting.Insert_Jogo", cn);
+                    cmda.CommandType = CommandType.StoredProcedure;
+                    cmda.Parameters.AddWithValue("@data", dateTimePicker1.Value.Date.ToString());
+                    cmda.Parameters.AddWithValue("@local", textBoxLocal.Text);
+                    cmda.Parameters.AddWithValue("@resultado", textBoxResultado.Text);
+                    cmda.Parameters.AddWithValue("@comp_id", textBoxCompID.Text);
+                    cmda.Parameters.AddWithValue("@obs_id", idObsev);
+                    cmda.ExecuteNonQuery();
+                    MessageBox.Show("Jogo Inserido!");
+                    this.Close();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Falhou Delete  na BD database. \n ERROR MESSAGE: \n" + ex.Message);
+
+                }
+
+
+
+
+
+
+
+
+
+            }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         }
     }
