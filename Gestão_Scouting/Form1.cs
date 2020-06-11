@@ -1068,6 +1068,8 @@ namespace Gestão_Scouting
                 MessageBox.Show("Falhou Load Observadores na BD database. \n ERROR MESSAGE:" + ex.Message);
             }
         }
+
+
         public void ShowObservador()
         {
             if (LISTA_OBSERVADORES.Items.Count == 0 | currentObservador < 0)
@@ -1080,9 +1082,47 @@ namespace Gestão_Scouting
             NACIONALIDADE_OBS.Text = observador.Observador_Nacionalidade;
             IDADE_OBS.Text = observador.Observador_Idade;
             AREA_OBSERVACAO.Text = observador.Area_Observacao;
-            
-            
+              
         }
+
+        //Obter Relatorios Observador
+        private void GetRelatoriosObservador(String x,String Order)
+        {
+            if (!verifySGBDConnection())
+                return;
+            SqlCommand cmd = new SqlCommand();
+            SqlDataReader reader;
+            //cmd.Connection = cn;
+            try
+            {
+                cmd.CommandType = CommandType.Text;
+                cmd = new SqlCommand("Scouting.Get_Relatorios_Observador", cn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@id", x);
+                cmd.Parameters.AddWithValue("@Order_By", Order);
+                reader = cmd.ExecuteReader();
+                RELATORIOS_OBS.Items.Clear();
+                while (reader.Read())
+                {
+                    Relatorio L = new Relatorio();
+                    L.ID = reader["ID"].ToString();
+                    L.Relatorio_Titulo = reader["Relatorio_Titulo"].ToString();
+                    L.Relatorio_Data = reader["Relatorio_Data"].ToString();
+                    L.Numero_Identificacao_Federacao = reader["Numero_Identificacao_Federacao"].ToString();
+                    L.ID_FIFPro = reader["ID_FIFPro"].ToString();
+                    L.Jogo_Local = reader["Jogo_Local"].ToString();
+                    L.Jogo_Data = reader["Jogo_Data"].ToString();
+                    RELATORIOS_OBS.Items.Add(L);
+                }
+                reader.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Falhou Load Relatórios da BD. \n ERROR MESSAGE:" + ex.Message);
+            }
+
+        }
+
         private void LockObservadorControls() {
 
             ID_FEDER.Enabled = false;
@@ -1093,6 +1133,7 @@ namespace Gestão_Scouting
             AREA_OBSERVACAO.Enabled = false;
 
         }
+        
         private void LISTA_OBSERVADORES_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (LISTA_OBSERVADORES.SelectedIndex >= 0)
@@ -1101,14 +1142,29 @@ namespace Gestão_Scouting
 
                 //Mostrar Observador
                 ShowObservador();
+                //Mostrar Relatorios
+                GetRelatoriosObservador(ID_FEDER.Text,""); //Sem Order por causa da ComboBox
             }
         }
+        //Criar Observador
+        private void buttonInserirObs_Click(object sender, EventArgs e)
+        {
 
+        }
+        //Editar Observador
+        private void buttonEditObservador_Click(object sender, EventArgs e)
+        {
+
+        }
+        //Eliminar Observador
+        private void buttonDeleteObs_Click(object sender, EventArgs e)
+        {
+
+        }
         private void buttonJogadorClube_Click(object sender, EventArgs e)
         {
 
         }
-
 
     }
 }

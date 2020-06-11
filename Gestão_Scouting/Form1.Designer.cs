@@ -1152,7 +1152,7 @@ namespace Gestão_Scouting
             // 
             // textBoxNumeroRelatoriosObservador
             // 
-            this.textBoxNumeroRelatoriosObservador.Location = new System.Drawing.Point(521, 625);
+            this.textBoxNumeroRelatoriosObservador.Location = new System.Drawing.Point(521, 628);
             this.textBoxNumeroRelatoriosObservador.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.textBoxNumeroRelatoriosObservador.Name = "textBoxNumeroRelatoriosObservador";
             this.textBoxNumeroRelatoriosObservador.Size = new System.Drawing.Size(123, 22);
@@ -1184,6 +1184,7 @@ namespace Gestão_Scouting
             this.buttonDeleteObs.TabIndex = 35;
             this.buttonDeleteObs.Text = "Eliminar Observador";
             this.buttonDeleteObs.UseVisualStyleBackColor = true;
+            this.buttonDeleteObs.Click += new System.EventHandler(this.buttonDeleteObs_Click);
             // 
             // buttonEditObservador
             // 
@@ -1194,6 +1195,7 @@ namespace Gestão_Scouting
             this.buttonEditObservador.TabIndex = 34;
             this.buttonEditObservador.Text = "Editar Observador";
             this.buttonEditObservador.UseVisualStyleBackColor = true;
+            this.buttonEditObservador.Click += new System.EventHandler(this.buttonEditObservador_Click);
             // 
             // buttonInserirObs
             // 
@@ -1204,6 +1206,7 @@ namespace Gestão_Scouting
             this.buttonInserirObs.TabIndex = 33;
             this.buttonInserirObs.Text = "Inserir Observador";
             this.buttonInserirObs.UseVisualStyleBackColor = true;
+            this.buttonInserirObs.Click += new System.EventHandler(this.buttonInserirObs_Click);
             // 
             // comboBox5
             // 
@@ -1262,7 +1265,7 @@ namespace Gestão_Scouting
             this.JOGOS_ANALISADOS.Location = new System.Drawing.Point(888, 241);
             this.JOGOS_ANALISADOS.Margin = new System.Windows.Forms.Padding(4);
             this.JOGOS_ANALISADOS.Name = "JOGOS_ANALISADOS";
-            this.JOGOS_ANALISADOS.Size = new System.Drawing.Size(252, 356);
+            this.JOGOS_ANALISADOS.Size = new System.Drawing.Size(343, 356);
             this.JOGOS_ANALISADOS.TabIndex = 20;
             // 
             // AREA_OBSERVACAO
@@ -1390,7 +1393,7 @@ namespace Gestão_Scouting
             this.RELATORIOS_OBS.Location = new System.Drawing.Point(392, 241);
             this.RELATORIOS_OBS.Margin = new System.Windows.Forms.Padding(4);
             this.RELATORIOS_OBS.Name = "RELATORIOS_OBS";
-            this.RELATORIOS_OBS.Size = new System.Drawing.Size(252, 356);
+            this.RELATORIOS_OBS.Size = new System.Drawing.Size(332, 356);
             this.RELATORIOS_OBS.TabIndex = 5;
             // 
             // ORDENAR_OBS
