@@ -1605,6 +1605,20 @@ AS
 	
 
 
+--udf Obter Numero de clubes 
+Create FUNCTION [Scouting].[Get_Numero_Clubes]() RETURNS int
+AS
+	BEGIN
+
+		DECLARE @res int;
+
+		BEGIN
+			SELECT @res = COUNT (*) FROM Scouting.Clube;
+		END
+		return @res;
+
+	END
+
 
 
 

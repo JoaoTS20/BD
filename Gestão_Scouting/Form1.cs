@@ -792,6 +792,7 @@ namespace Gestão_Scouting
             reader.Close();
             currentClube = 0;
             LockClubesControls();
+            GetNumeroClubes();
             ShowClubes();
         }
         //Mostrar Dados Clube
@@ -806,6 +807,14 @@ namespace Gestão_Scouting
             textBoxNumeroInscricaoFifaClube.Text = clube.Clube_Numero_Inscricao_FIFA;
 
 
+        }
+        private void GetNumeroClubes()
+        {
+            SqlCommand cmda = new SqlCommand();
+            //cmd.Connection = cn;
+            cmda.CommandType = CommandType.Text;
+            cmda = new SqlCommand("select Scouting.Get_Numero_Clubes ()", cn);
+            textBoxNumeroClubes.Text = cmda.ExecuteScalar().ToString();
         }
         //MostrarDadosClubeSelected
         private void listBoxClubes_SelectedIndexChanged(object sender, EventArgs e)
@@ -1950,12 +1959,6 @@ namespace Gestão_Scouting
                 textBoxTreinadorQualificoes.Text=list.Treinador_Qualificacao.ToString();
                 textBoxTreinadorIdade.Text = list.Treindaor_Idade;
                 textBoxTreinadorNacionalidade.Text = list.Treindaor_Nacionalidade;
-
-                
-
-
-
-
             }
 
         }

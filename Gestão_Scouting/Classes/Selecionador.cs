@@ -40,6 +40,9 @@ namespace Gestão_Scouting
 			get { return _Selecionador_Idade; }
 			set { _Selecionador_Idade = value; }
 		}
-
+		public override string ToString()
+		{
+			return Selecionador_Numero_Identificacao_Federacao + "  " + Selecionador_Nome;
+		}
 	}
 }
