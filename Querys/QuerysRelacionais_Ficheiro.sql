@@ -1467,6 +1467,142 @@ AS
 		END CATCH
 
 
+--Stored Procedure Inserir Jogo Competição
+CREATE PROCEDURE Scouting.Insert_Jogo @local varchar(100),@data date, @resultado varchar(5),@comp_id varchar(9),@obs_id varchar(9)
+AS
+	BEGIN TRANSACTION x;
+	IF(LEN(@local)=0 OR LEN(@data)=0)
+	BEGIN
+		return;
+	END
+	BEGIN TRY
+		INSERT INTO Scouting.Jogo VALUES (@local,@data,@resultado,@comp_id,@obs_id)
+		PRINT 'Jogo Adicionada'
+		Commit Transaction x
+	END TRY
+	BEGIN CATCH 
+		IF @@TRANCOUNT>0
+		BEGIN
+			THROW;
+			raiserror ('Erro ao Inserir', 16, 1);
+			ROLLBACK TRANSACTION x
+		END
+	END CATCH
+
+
+
+
+--Stored Procedure Edit Jogo 
+CREATE PROCEDURE Scouting.Edit_Jogo @local varchar(100),@data date, @resultado varchar(5),@comp_id varchar(9)
+AS
+	BEGIN TRANSACTION x;
+	IF(LEN(@local)=0 OR LEN(@data)=0)
+	BEGIN
+		return;
+	END
+	BEGIN TRY
+		UPDATE Scouting.Jogo
+		SET Jogo_Competicao_ID_FIFA=@comp_id,Resultado=@resultado
+		WHERE Jogo_Local=@local AND Jogo_Data=@data;
+		PRINT 'Jogo Editado'
+		Commit Transaction x
+	END TRY
+	BEGIN CATCH 
+		IF @@TRANCOUNT>0
+		BEGIN
+			THROW;
+			raiserror ('Erro ao Editar', 16, 1);
+			ROLLBACK TRANSACTION x
+		END
+	END CATCH
+
+
+
+--Stored Procedure Insert Jogador to Clube
+CREATE PROCEDURE Scouting.Insert_Jogador_To_Clube @club_insc varchar(9),@id_fifpro varchar(9),@data_ini date
+AS
+	BEGIN TRANSACTION x;
+	BEGIN TRY
+		INSERT INTO Scouting.Jogador_Pertence_Clube VALUES(@club_insc,@id_fifpro,@data_ini,null)
+		PRINT 'Jogador Inserido'
+		Commit Transaction x
+	END TRY
+	BEGIN CATCH 
+		IF @@TRANCOUNT>0
+		BEGIN
+			THROW;
+			raiserror ('Erro ao Inserir', 16, 1);
+			ROLLBACK TRANSACTION x
+		END
+	END CATCH
+
+
+--Stored Procedure Delete Clube from Jogador
+CREATE PROCEDURE Scouting.Delete_Jogador_From_Clube @club_insc varchar(9),@id_fifpro varchar(9),@data_fin date
+AS
+		BEGIN TRANSACTION x;
+	BEGIN TRY
+		UPDATE Scouting.Jogador_Pertence_Clube
+		SET Pertence_Data_Saida=@data_fin
+		WHERE JPC_Clube_Numero_Inscricao_FIFA=@club_insc AND ID_FIFPro=@id_fifpro;
+		PRINT 'Jogador Removido do Clube'
+		Commit Transaction x
+	END TRY
+	BEGIN CATCH 
+		IF @@TRANCOUNT>0
+		BEGIN
+			THROW;
+			raiserror ('Erro ao Remover', 16, 1);
+			ROLLBACK TRANSACTION x
+		END
+	END CATCH
+
+
+
+	--Trigger Não ter mais que um Jogador com data de saida Null 
+CREATE TRIGGER UmClubeAtual on Scouting.Jogador_Pertence_Clube
+AFTER INSERT,UPDATE
+AS 
+	SET NOCOUNT ON;
+	Declare @jogadorid as VARCHAR(9)
+	Declare @Actual as int
+	Declare @max_1 as int
+	Select @max_1=1;
+	Select @jogadorid= ID_FIFPro from inserted;
+	Select @Actual=COUNT(*) from Scouting.Jogador_Pertence_Clube where Pertence_Data_Saida is null and ID_FIFPro=@jogadorid
+	if(@Actual>@max_1)
+		BEGIN
+			RAISERROR ('Jogador só pode Jogar num clube de cada vez', 16,1);
+				ROLLBACK TRAN; -- Anula a inserção
+		END
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

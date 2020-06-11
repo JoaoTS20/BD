@@ -862,6 +862,7 @@ namespace Gestão_Scouting
             this.buttonDeleteCompClube.TabIndex = 28;
             this.buttonDeleteCompClube.Text = "Eliminar Competição Clube";
             this.buttonDeleteCompClube.UseVisualStyleBackColor = true;
+            this.buttonDeleteCompClube.Click += new System.EventHandler(this.buttonDeleteCompClube_Click);
             // 
             // buttonAdicionarClubeCompeticao
             // 
@@ -893,6 +894,7 @@ namespace Gestão_Scouting
             this.buttonAdicionarJogadorClube.TabIndex = 25;
             this.buttonAdicionarJogadorClube.Text = "Adicionar Jogador";
             this.buttonAdicionarJogadorClube.UseVisualStyleBackColor = true;
+            this.buttonAdicionarJogadorClube.Click += new System.EventHandler(this.buttonAdicionarJogadorClube_Click);
             // 
             // buttonDeleteClube
             // 

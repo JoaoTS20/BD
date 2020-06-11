@@ -1,6 +1,6 @@
 ﻿namespace Gestão_Scouting
 {
-    partial class InserirJogador_Clube
+    partial class InsertJogador_Clube
     {
         /// <summary>
         /// Required designer variable.
@@ -34,25 +34,29 @@
             this.label1 = new System.Windows.Forms.Label();
             this.listBox1 = new System.Windows.Forms.ListBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // buttonTransferir
             // 
-            this.buttonTransferir.Location = new System.Drawing.Point(167, 335);
+            this.buttonTransferir.Location = new System.Drawing.Point(167, 362);
             this.buttonTransferir.Name = "buttonTransferir";
             this.buttonTransferir.Size = new System.Drawing.Size(122, 37);
             this.buttonTransferir.TabIndex = 0;
             this.buttonTransferir.Text = "Transferir";
             this.buttonTransferir.UseVisualStyleBackColor = true;
+            this.buttonTransferir.Click += new System.EventHandler(this.buttonTransferir_Click);
             // 
             // buttonCancelar
             // 
-            this.buttonCancelar.Location = new System.Drawing.Point(27, 335);
+            this.buttonCancelar.Location = new System.Drawing.Point(27, 362);
             this.buttonCancelar.Name = "buttonCancelar";
             this.buttonCancelar.Size = new System.Drawing.Size(119, 37);
             this.buttonCancelar.TabIndex = 1;
             this.buttonCancelar.Text = "Cancelar";
             this.buttonCancelar.UseVisualStyleBackColor = true;
+            this.buttonCancelar.Click += new System.EventHandler(this.buttonCancelar_Click);
             // 
             // dateTimePicker1
             // 
@@ -88,18 +92,36 @@
             this.label2.TabIndex = 6;
             this.label2.Text = "Jogadores";
             // 
-            // InserirJogador_Clube
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(27, 327);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(61, 17);
+            this.label3.TabIndex = 7;
+            this.label3.Text = "ID Clube";
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(94, 324);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(195, 22);
+            this.textBox1.TabIndex = 8;
+            // 
+            // InsertJogador_Clube
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(329, 424);
+            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.listBox1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.dateTimePicker1);
             this.Controls.Add(this.buttonCancelar);
             this.Controls.Add(this.buttonTransferir);
-            this.Name = "InserirJogador_Clube";
+            this.Name = "InsertJogador_Clube";
             this.Text = "InserirJogador_Clube";
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -114,5 +136,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ListBox listBox1;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TextBox textBox1;
     }
 }

@@ -101,7 +101,7 @@ namespace Gestão_Scouting
         //-----------------------------------------------------------------------------
         //TAB JOGADORES
         //Jogadores Functions
-        private void LoadJogadores(String numero, String Order) //Possivel bug no Order By Idade
+        private void LoadJogadores(String numero, String Order) 
         {
             if (!verifySGBDConnection())
                 return;
@@ -1050,13 +1050,52 @@ namespace Gestão_Scouting
                InsertCompeticao_Clube ap = new InsertCompeticao_Clube(textBoxNumeroInscricaoFifaClube.Text);
                ap.ShowDialog();
                 GetClubeCompeticoes(textBoxNumeroInscricaoFifaClube.Text);
-
-
+                ORDENAR_COMP.SelectedIndex = 0;
+                GetCompeticoes("");
             }
 
         }
+        //Desinscrever
+        private void buttonDeleteCompClube_Click(object sender, EventArgs e)
+        {
+            if(listBoxClubes.SelectedIndex>=0 && listBoxCompeticaoClube.SelectedIndex >= 0)
+            {
+                currentClubeComp = listBoxCompeticaoClube.SelectedIndex;
+                Competicao c = new Competicao();
+                c = (Competicao)listBoxCompeticaoClube.Items[listBoxCompeticaoClube.SelectedIndex];
+                String namec = c.Competicao_ID_FIFA.ToString();
+                try {
+                    SqlCommand cmda = new SqlCommand();
+                    cmda.CommandType = CommandType.Text;
+                    cmda = new SqlCommand("Scouting.Delete_Competicao_Clube", cn);
+                    cmda.CommandType = CommandType.StoredProcedure;
+                    cmda.Parameters.AddWithValue("@clube_id", textBoxNumeroInscricaoFifaClube.Text);
+                    cmda.Parameters.AddWithValue("@compet_id", namec);
+                    
+                        cmda.ExecuteNonQuery();
+                        MessageBox.Show("Desinscrição!");
+                        GetClubeCompeticoes(textBoxNumeroInscricaoFifaClube.Text);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Falhou Inserir Metodo  Observacao na BD database. \n ERROR MESSAGE: \n" + ex.Message);
+
+                }
+            }
+        }
+        private void buttonAdicionarJogadorClube_Click(object sender, EventArgs e)
+        {
+            if (listBoxClubes.SelectedIndex >= 0)
+            {
+                InsertJogador_Clube ap = new InsertJogador_Clube(textBoxNumeroInscricaoFifaClube.Text);
+                ap.ShowDialog();
+                GetClubeCompeticoes(textBoxNumeroInscricaoFifaClube.Text);
+                ORDENAR_COMP.SelectedIndex = 0;
+                GetClubeJogadores(textBoxNumeroInscricaoFifaClube.Text);
+            }
 
 
+        }
 
 
         /////TAB OBSERVADOR\\\\\

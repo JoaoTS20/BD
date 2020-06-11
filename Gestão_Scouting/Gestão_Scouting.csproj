@@ -52,11 +52,11 @@
     <Compile Include="EditarJogador.Designer.cs">
       <DependentUpon>EditarJogador.cs</DependentUpon>
     </Compile>
-    <Compile Include="InserirJogador_Clube.cs">
+    <Compile Include="InsertJogador_Clube.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="InserirJogador_Clube.Designer.cs">
-      <DependentUpon>InserirJogador_Clube.cs</DependentUpon>
+    <Compile Include="InsertJogador_Clube.Designer.cs">
+      <DependentUpon>InsertJogador_Clube.cs</DependentUpon>
     </Compile>
     <Compile Include="Inserir_Observador.cs">
       <SubType>Form</SubType>
@@ -151,8 +151,8 @@
     <EmbeddedResource Include="EditarJogador.resx">
       <DependentUpon>EditarJogador.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="InserirJogador_Clube.resx">
-      <DependentUpon>InserirJogador_Clube.cs</DependentUpon>
+    <EmbeddedResource Include="InsertJogador_Clube.resx">
+      <DependentUpon>InsertJogador_Clube.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Inserir_Observador.resx">
       <DependentUpon>Inserir_Observador.cs</DependentUpon>
