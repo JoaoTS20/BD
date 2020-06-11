@@ -54,7 +54,7 @@ namespace Gestão_Scouting
         private SqlConnection getSGBDConnection()
         {
             //Local a Editar!!
-            return new SqlConnection("data source = LAPTOP-MH91MTBV; integrated security = true; initial catalog = Trabalho_Final");
+            return new SqlConnection("data source = LAPTOP-2KEGA0ER; integrated security = true; initial catalog = Proj");
             //MH91MTBV
             //2KEGA0ER
         }
@@ -563,7 +563,7 @@ namespace Gestão_Scouting
                 }
                 readera.Close();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show("Falhou Load Relatórios da BD. \n ERROR MESSAGE:" + ex.Message);
             }
@@ -609,14 +609,14 @@ namespace Gestão_Scouting
 
 
             }
-            }
+        }
         //Inserir Metodo
         private void buttonInsertMetodo_Click(object sender, EventArgs e)
         {
             if (!verifySGBDConnection())
                 return;
             if (listBoxRelatoriosJogador.SelectedIndex < 0) { return; }
-            if(textBoxMetodo.Text is null) { return;}
+            if (textBoxMetodo.Text is null) { return; }
 
             currentRelatorioJogador = listBoxRelatoriosJogador.SelectedIndex;
             Relatorio rel = new Relatorio();
@@ -651,7 +651,7 @@ namespace Gestão_Scouting
             if (listBoxMetodos.SelectedIndex < 0) //NÃO ESQUECER COLOCAR
                 return;
             if (listBoxRelatoriosJogador.SelectedIndex < 0) { return; }
-            
+
 
             currentRelatorioJogador = listBoxRelatoriosJogador.SelectedIndex;
             String pos = (String)listBoxMetodos.Items[listBoxMetodos.SelectedIndex].ToString();
@@ -1024,7 +1024,7 @@ namespace Gestão_Scouting
             ap.ShowDialog();
             comboBoxOrderClubes.SelectedIndex = 0;
             LoadClubes("");
-            
+
         }
 
 
@@ -1082,12 +1082,13 @@ namespace Gestão_Scouting
             NACIONALIDADE_OBS.Text = observador.Observador_Nacionalidade;
             IDADE_OBS.Text = observador.Observador_Idade;
             AREA_OBSERVACAO.Text = observador.Area_Observacao;
-              
+
         }
 
         //Obter Relatorios Observador
-        private void GetRelatoriosObservador(String x,String Order)
+        private void GetRelatoriosObservador(String x, String Order)
         {
+            Console.WriteLine("Entrou");
             if (!verifySGBDConnection())
                 return;
             SqlCommand cmd = new SqlCommand();
@@ -1123,7 +1124,8 @@ namespace Gestão_Scouting
 
         }
 
-        private void LockObservadorControls() {
+        private void LockObservadorControls()
+        {
 
             ID_FEDER.Enabled = false;
             NOME_OBS.Enabled = false;
@@ -1133,7 +1135,7 @@ namespace Gestão_Scouting
             AREA_OBSERVACAO.Enabled = false;
 
         }
-        
+
         private void LISTA_OBSERVADORES_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (LISTA_OBSERVADORES.SelectedIndex >= 0)
@@ -1143,23 +1145,75 @@ namespace Gestão_Scouting
                 //Mostrar Observador
                 ShowObservador();
                 //Mostrar Relatorios
-                GetRelatoriosObservador(ID_FEDER.Text,""); //Sem Order por causa da ComboBox
+                GetRelatoriosObservador(ID_FEDER.Text, ""); //Sem Order por causa da ComboBox
             }
         }
         //Criar Observador
         private void buttonInserirObs_Click(object sender, EventArgs e)
         {
-
+            Inserir_Observador io = new Inserir_Observador();
+            io.ShowDialog();
+            LoadObservador();
         }
         //Editar Observador
         private void buttonEditObservador_Click(object sender, EventArgs e)
         {
+            Observador O = new Observador();
+            O.Area_Observacao = AREA_OBSERVACAO.Text.ToString();
+            O.Numero_Identificacao_Federacao = ID_FEDER.Text.ToString();
+            O.Observador_Idade = IDADE_OBS.Text.ToString();
+            O.Observador_Nacionalidade = NACIONALIDADE_OBS.Text.ToString();
+            O.Observador_Qualificacoes = QUALIFIC_OBS.Text.ToString();
+            O.Observador_Nome = NOME_OBS.Text.ToString();
 
+            if (!verifySGBDConnection())
+                return;
+            SqlCommand cmda = new SqlCommand();
+            cmda.CommandType = CommandType.Text;
+            cmda = new SqlCommand("Scouting.Update_Observador", cn);
+            cmda.CommandType = CommandType.StoredProcedure;
+
+            cmda.Parameters.AddWithValue("@Numero_Identificacao_Federacao", O.Numero_Identificacao_Federacao);
+            cmda.Parameters.AddWithValue("@Observador_Nome", O.Observador_Nome);
+            cmda.Parameters.AddWithValue("@Observador_Qualificacoes", O.Observador_Qualificacoes);
+            cmda.Parameters.AddWithValue("@Obsevador_Nacionalidade", O.Observador_Nacionalidade);
+            cmda.Parameters.AddWithValue("@Observador_Idade", Int32.Parse(O.Observador_Idade));
+            cmda.Parameters.AddWithValue("@Area_Obsevacao", O.Area_Observacao);
+            try
+            {
+                cmda.ExecuteNonQuery();
+                MessageBox.Show("Observador " + NOME_OBS.Text.ToString() + " Editado!");
+                this.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Falhou Editar Observador na BD database. \n ERROR MESSAGE:" + ex.Message);
+
+            }
         }
         //Eliminar Observador
         private void buttonDeleteObs_Click(object sender, EventArgs e)
         {
+            if (!verifySGBDConnection())
+                return;
+            SqlCommand cmda = new SqlCommand();
+            cmda.CommandType = CommandType.Text;
+            cmda = new SqlCommand("Scouting.Delete_Observador", cn);
+            cmda.CommandType = CommandType.StoredProcedure;
 
+            cmda.Parameters.AddWithValue("@id_Fed", ID_FEDER.Text);
+
+            try
+            {
+                cmda.ExecuteNonQuery();
+                MessageBox.Show("Observador " + NOME_OBS.Text.ToString() + " Editado!");
+                this.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Falhou Editar Observador na BD database. \n ERROR MESSAGE:" + ex.Message);
+
+            }
         }
         private void buttonJogadorClube_Click(object sender, EventArgs e)
         {

@@ -935,7 +935,35 @@ as
 
 
 
+CREATE PROCEDURE Scouting.Delete_Observador @id_Fed varchar(9)
+AS
+Begin Transaction  x
+			BEGIN TRY
+				UPDATE Scouting.Analise_Caracteristica_Jogador
+				SET Obs_Num_Iden_Federacao=null
+				WHERE Obs_Num_Iden_Federacao=@id_Fed;
+				UPDATE Scouting.Metricas_Jogo_Jogador
+				SET Obs_Num_Iden_Federacao=null
+				WHERE Obs_Num_Iden_Federacao=@id_Fed;
+				UPDATE Scouting.Jogo
+				SET Obs_Num_Iden_Federacao=null
+				WHERE Obs_Num_Iden_Federacao=@id_Fed;
+				UPDATE Scouting.Relatorio
+				SET Relatorio.Numero_Identificacao_Federacao=null
+				WHERE Numero_Identificacao_Federacao=@id_Fed;
+				DELETE FROM Scouting.Observador WHERE Numero_Identificacao_Federacao=@id_Fed
+				PRINT 'Observador eliminado com sucesso'
+				Commit Transaction x
+			END TRY
 
+			BEGIN CATCH 
+				IF @@TRANCOUNT>0
+				BEGIN
+					THROW;
+					raiserror ('Erro ao Eliminar Observador', 16, 1);
+					ROLLBACK TRANSACTION x
+				END
+			END CATCH
 
 
 
