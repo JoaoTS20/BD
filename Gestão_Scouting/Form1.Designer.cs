@@ -38,8 +38,8 @@ namespace Gestão_Scouting
             this.textJogadorNome = new System.Windows.Forms.TextBox();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.button7 = new System.Windows.Forms.Button();
-            this.button6 = new System.Windows.Forms.Button();
+            this.buttonInsertMetodo = new System.Windows.Forms.Button();
+            this.buttonDeleteMetodo = new System.Windows.Forms.Button();
             this.listBoxMetodos = new System.Windows.Forms.ListBox();
             this.label63 = new System.Windows.Forms.Label();
             this.buttonRemoverRelatorio = new System.Windows.Forms.Button();
@@ -206,6 +206,7 @@ namespace Gestão_Scouting
             this.label35 = new System.Windows.Forms.Label();
             this.buttonDelListas = new System.Windows.Forms.Button();
             this.buttonInsLista = new System.Windows.Forms.Button();
+            this.textBoxMetodo = new System.Windows.Forms.TextBox();
             this.menuStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -285,8 +286,9 @@ namespace Gestão_Scouting
             // 
             // tabPage1
             // 
-            this.tabPage1.Controls.Add(this.button7);
-            this.tabPage1.Controls.Add(this.button6);
+            this.tabPage1.Controls.Add(this.textBoxMetodo);
+            this.tabPage1.Controls.Add(this.buttonInsertMetodo);
+            this.tabPage1.Controls.Add(this.buttonDeleteMetodo);
             this.tabPage1.Controls.Add(this.listBoxMetodos);
             this.tabPage1.Controls.Add(this.label63);
             this.tabPage1.Controls.Add(this.buttonRemoverRelatorio);
@@ -341,25 +343,27 @@ namespace Gestão_Scouting
             this.tabPage1.Text = "Jogadores";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
-            // button7
+            // buttonInsertMetodo
             // 
-            this.button7.Location = new System.Drawing.Point(1005, 455);
-            this.button7.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(129, 28);
-            this.button7.TabIndex = 156;
-            this.button7.Text = "Adicionar Método";
-            this.button7.UseVisualStyleBackColor = true;
+            this.buttonInsertMetodo.Location = new System.Drawing.Point(1146, 457);
+            this.buttonInsertMetodo.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.buttonInsertMetodo.Name = "buttonInsertMetodo";
+            this.buttonInsertMetodo.Size = new System.Drawing.Size(129, 28);
+            this.buttonInsertMetodo.TabIndex = 156;
+            this.buttonInsertMetodo.Text = "Adicionar Método";
+            this.buttonInsertMetodo.UseVisualStyleBackColor = true;
+            this.buttonInsertMetodo.Click += new System.EventHandler(this.buttonInsertMetodo_Click);
             // 
-            // button6
+            // buttonDeleteMetodo
             // 
-            this.button6.Location = new System.Drawing.Point(1005, 487);
-            this.button6.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(129, 28);
-            this.button6.TabIndex = 155;
-            this.button6.Text = "Remover Método";
-            this.button6.UseVisualStyleBackColor = true;
+            this.buttonDeleteMetodo.Location = new System.Drawing.Point(1005, 487);
+            this.buttonDeleteMetodo.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.buttonDeleteMetodo.Name = "buttonDeleteMetodo";
+            this.buttonDeleteMetodo.Size = new System.Drawing.Size(129, 28);
+            this.buttonDeleteMetodo.TabIndex = 155;
+            this.buttonDeleteMetodo.Text = "Remover Método";
+            this.buttonDeleteMetodo.UseVisualStyleBackColor = true;
+            this.buttonDeleteMetodo.Click += new System.EventHandler(this.buttonDeleteMetodo_Click);
             // 
             // listBoxMetodos
             // 
@@ -2017,6 +2021,13 @@ namespace Gestão_Scouting
             this.buttonInsLista.Text = "Inserir Lista";
             this.buttonInsLista.UseVisualStyleBackColor = true;
             // 
+            // textBoxMetodo
+            // 
+            this.textBoxMetodo.Location = new System.Drawing.Point(1006, 460);
+            this.textBoxMetodo.Name = "textBoxMetodo";
+            this.textBoxMetodo.Size = new System.Drawing.Size(128, 22);
+            this.textBoxMetodo.TabIndex = 157;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -2225,8 +2236,9 @@ namespace Gestão_Scouting
         private System.Windows.Forms.Button buttonTreinadorNewClube;
         private System.Windows.Forms.ListBox listBoxMetodos;
         private System.Windows.Forms.Label label63;
-        private System.Windows.Forms.Button button7;
-        private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.Button buttonInsertMetodo;
+        private System.Windows.Forms.Button buttonDeleteMetodo;
+        private System.Windows.Forms.TextBox textBoxMetodo;
     }
 }
 

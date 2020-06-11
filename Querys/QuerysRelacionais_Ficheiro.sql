@@ -863,6 +863,94 @@ AS
 
 
 
+--Stored Procedure Delete POSICOES
+Create PROCEDURE [Scouting].[Delete_Posicoes] @J_Posicoes varchar(30), @ID varchar(9)
+AS
+	BEGIN
+		Begin Transaction  x
+			BEGIN TRY
+				delete from Scouting.Jog_Posicoes where J_Posicoes=@J_Posicoes and Jog_Posicoes_ID_FIFPro=@ID
+				print ('Posição Removida')
+				Commit Transaction x
+			END TRY
+
+			BEGIN CATCH 
+				IF @@TRANCOUNT>0
+				BEGIN
+					raiserror ('Erro Remover Posição', 16, 1);
+					RollBack Transaction x
+				END
+			END CATCH
+	END
+
+
+
+
+
+
+
+
+
+--Stored Procedure INSERIR AS METODOS DO JOGADOR
+create procedure Scouting.Insert_Metodo_Observacao(@Metodo varchar(15),@ID INT)
+as 
+	BEGIN
+		Begin Transaction  x
+			BEGIN TRY
+				INSERT INTO Scouting.Observacao_Metodo_de_Observacao VALUES (@Metodo , @ID);
+				print ('Método Inserida')
+				Commit Transaction x
+			END TRY
+
+			BEGIN CATCH 
+				IF @@TRANCOUNT>0
+				BEGIN
+					THROW;
+					raiserror ('Erro na Inserção', 16, 1);
+					RollBack Transaction x
+				END
+			END CATCH
+	END
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+--Stored Procedure Remover AS METODOS DO JOGADOR
+create procedure Scouting.Delete_Metodo_Observacao(@Metodo varchar(15),@ID INT)
+as 
+	BEGIN
+		Begin Transaction  x
+			BEGIN TRY
+				delete from Scouting.Observacao_Metodo_de_Observacao where Rel_Metodo_de_Observacao=@Metodo and Rel_ID_Relatorio= @ID;
+				print ('Método Removido')
+				Commit Transaction x
+			END TRY
+
+			BEGIN CATCH 
+				IF @@TRANCOUNT>0
+				BEGIN
+					THROW;
+					raiserror ('Erro no Delete', 16, 1);
+					RollBack Transaction x
+				END
+			END CATCH
+	END
+
 
 --nÃO TESTADA 
 CREATE TRIGGER check_local on Scouting.Relatorio

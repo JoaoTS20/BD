@@ -150,6 +150,8 @@ namespace Gestão_Scouting
                 loadClubeAtual(textID_FIFPro.Text);
                 //Mostrar Clubes Passados
                 GetClubesJogadorPassados(textID_FIFPro.Text);
+                //Clear
+                listBoxMetodos.Items.Clear();
             }
         }
         //Função Mostrar Jogadores
@@ -608,6 +610,75 @@ namespace Gestão_Scouting
 
             }
             }
+        //Inserir Metodo
+        private void buttonInsertMetodo_Click(object sender, EventArgs e)
+        {
+            if (!verifySGBDConnection())
+                return;
+            if (listBoxRelatoriosJogador.SelectedIndex < 0) { return; }
+            if(textBoxMetodo.Text is null) { return;}
+
+            currentRelatorioJogador = listBoxRelatoriosJogador.SelectedIndex;
+            Relatorio rel = new Relatorio();
+            rel = (Relatorio)listBoxRelatoriosJogador.Items[currentRelatorioJogador];
+            String ID = rel.ID.ToString();
+            SqlCommand cmda = new SqlCommand();
+            cmda.CommandType = CommandType.Text;
+            cmda = new SqlCommand("Scouting.Insert_Metodo_Observacao", cn);
+            cmda.CommandType = CommandType.StoredProcedure;
+            cmda.Parameters.AddWithValue("@ID", ID);
+            cmda.Parameters.AddWithValue("@Metodo", textBoxMetodo.Text);
+            try
+            {
+                cmda.ExecuteNonQuery();
+
+                MessageBox.Show("Metodo em " + rel + " Inserido!");
+                textBoxMetodo.Clear();
+                Load_Metodos(ID);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Falhou Insert Metodo Observação na BD database. \n ERROR MESSAGE: \n" + ex.Message);
+            }
+        }
+        //Remover Metodo
+        private void buttonDeleteMetodo_Click(object sender, EventArgs e)
+        {
+            if (!verifySGBDConnection())
+                return;
+            if (listBoxMetodos.Items.Count == 0)
+                return;
+            if (listBoxMetodos.SelectedIndex < 0) //NÃO ESQUECER COLOCAR
+                return;
+            if (listBoxRelatoriosJogador.SelectedIndex < 0) { return; }
+            
+
+            currentRelatorioJogador = listBoxRelatoriosJogador.SelectedIndex;
+            String pos = (String)listBoxMetodos.Items[listBoxMetodos.SelectedIndex].ToString();
+
+            Relatorio rel = new Relatorio();
+            rel = (Relatorio)listBoxRelatoriosJogador.Items[currentRelatorioJogador];
+            String ID = rel.ID.ToString();
+            SqlCommand cmda = new SqlCommand();
+            cmda.CommandType = CommandType.Text;
+            cmda = new SqlCommand("Scouting.Delete_Metodo_Observacao", cn);
+            cmda.CommandType = CommandType.StoredProcedure;
+            cmda.Parameters.AddWithValue("@ID", ID);
+            cmda.Parameters.AddWithValue("@Metodo", pos);
+            try
+            {
+                cmda.ExecuteNonQuery();
+                MessageBox.Show("Metodo " + rel + " Inserido!");
+                textBoxinsertPosicoes.Clear();
+                Load_Metodos(ID);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Falhou Inserir Metodo  Observacao na BD database. \n ERROR MESSAGE: \n" + ex.Message);
+
+            }
+        }
+
         private void listBoxRelatoriosJogador_SelectedIndexChanged(object sender, EventArgs e)
         {
             listBoxMetodos.Items.Clear();
@@ -669,6 +740,7 @@ namespace Gestão_Scouting
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.AddWithValue("@idRel", id);
             reader = cmd.ExecuteReader();
+            listBoxMetodos.Items.Clear();
             while (reader.Read())
             {
                 String s = reader["Rel_Metodo_de_Observacao"].ToString();
@@ -1020,6 +1092,7 @@ namespace Gestão_Scouting
         {
 
         }
+
 
     }
 }
