@@ -154,7 +154,6 @@ namespace Gestão_Scouting
             this.label43 = new System.Windows.Forms.Label();
             this.label64 = new System.Windows.Forms.Label();
             this.buttonEditJogo = new System.Windows.Forms.Button();
-            this.buttonDeleteJogo = new System.Windows.Forms.Button();
             this.buttonInsertJogo = new System.Windows.Forms.Button();
             this.label49 = new System.Windows.Forms.Label();
             this.label48 = new System.Windows.Forms.Label();
@@ -1438,7 +1437,6 @@ namespace Gestão_Scouting
             this.tabPage4.Controls.Add(this.label43);
             this.tabPage4.Controls.Add(this.label64);
             this.tabPage4.Controls.Add(this.buttonEditJogo);
-            this.tabPage4.Controls.Add(this.buttonDeleteJogo);
             this.tabPage4.Controls.Add(this.buttonInsertJogo);
             this.tabPage4.Controls.Add(this.label49);
             this.tabPage4.Controls.Add(this.label48);
@@ -1522,16 +1520,7 @@ namespace Gestão_Scouting
             this.buttonEditJogo.TabIndex = 53;
             this.buttonEditJogo.Text = "Editar Jogo";
             this.buttonEditJogo.UseVisualStyleBackColor = true;
-            // 
-            // buttonDeleteJogo
-            // 
-            this.buttonDeleteJogo.Location = new System.Drawing.Point(1032, 304);
-            this.buttonDeleteJogo.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.buttonDeleteJogo.Name = "buttonDeleteJogo";
-            this.buttonDeleteJogo.Size = new System.Drawing.Size(145, 28);
-            this.buttonDeleteJogo.TabIndex = 52;
-            this.buttonDeleteJogo.Text = "Eliminar Jogo";
-            this.buttonDeleteJogo.UseVisualStyleBackColor = true;
+            this.buttonEditJogo.Click += new System.EventHandler(this.buttonEditJogo_Click);
             // 
             // buttonInsertJogo
             // 
@@ -1542,6 +1531,7 @@ namespace Gestão_Scouting
             this.buttonInsertJogo.TabIndex = 51;
             this.buttonInsertJogo.Text = "Inserir Jogo";
             this.buttonInsertJogo.UseVisualStyleBackColor = true;
+            this.buttonInsertJogo.Click += new System.EventHandler(this.buttonInsertJogo_Click);
             // 
             // label49
             // 
@@ -2233,7 +2223,6 @@ namespace Gestão_Scouting
         private System.Windows.Forms.TextBox textBoxJogoC;
         private System.Windows.Forms.Label label49;
         private System.Windows.Forms.Button buttonEditJogo;
-        private System.Windows.Forms.Button buttonDeleteJogo;
         private System.Windows.Forms.Button buttonInsertJogo;
         private System.Windows.Forms.ListBox listBoxListasDeSelecao;
         private System.Windows.Forms.TextBox textBoxSelecionadorID;

@@ -1788,6 +1788,25 @@ namespace Gestão_Scouting
 
             }
         }
+        //Inserir Jogo à Competição
+        private void buttonInsertJogo_Click(object sender, EventArgs e)
+        {
+            if (listBoxCompeticao.SelectedIndex >= 0)
+            {
+                Competicao list = new Competicao();
+                list = (Competicao)listBoxCompeticao.Items[listBoxCompeticao.SelectedIndex];
+                String x = list.Competicao_ID_FIFA.ToString();
+                InsertJogo dr = new InsertJogo(x);
+                dr.ShowDialog();
+                ORDENAR_COMP.SelectedIndex = 0;
+                GetNumeroJogosCompeticoes("");
+            }
+        }
+        //Editar Jogo
+        private void buttonEditJogo_Click(object sender, EventArgs e)
+        {
+
+        }
         /////////TAB GESTÃO////////
         ///
         //Load ListaObservacaoSelecao()
@@ -1814,7 +1833,6 @@ namespace Gestão_Scouting
                 MessageBox.Show("Falhou Carregar Lista da BD database. \n ERROR MESSAGE: " + ex.Message);
             }
         }
-
 
     }
 }
