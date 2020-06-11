@@ -1619,12 +1619,51 @@ AS
 
 	END
 
+--Stored Procedure Treinador Muda de clube
+CREATE PROCEDURE Scouting.Change_Treinador_Clube @id_treinador varchar(9),@data date, @id_Clube varchar(9)
+AS
+	Begin Transaction  x
+			BEGIN TRY
+				UPDATE Scouting.Treina SET Treinador_Data_Saida=@data
+				WHERE @id_treinador=Treina_Num_Insc_FIFA AND Treinador_Data_Saida IS NULL;
+				IF(LEN(@id_Clube)>0)
+				BEGIN
+					INSERT INTO Scouting.Treina VALUES (@id_treinador,NULL,@data,@id_Clube)
+				END
+	
+
+				print ('Treinador Treina Novo Clube!')
+				Commit Transaction x
+			END TRY
+
+			BEGIN CATCH 
+				IF @@TRANCOUNT>0
+				BEGIN
+					raiserror ('Erro na Alteracao', 16, 1);
+					RollBack Transaction x
+				END
+			END CATCH
+
+
+
+--Stored Procedure Get Clube Atual Treinador
+CREATE PROCEDURE Scouting.Get_Clube_Atual_Treinador @id_treinador varchar(9)
+AS
+	SELECT * FROM (Scouting.Treinador JOIN Scouting.Treina ON Treinador_Numero_Inscricao_FIFA=Treina_Num_Insc_FIFA)
+	JOIN Scouting.Clube ON Clube_Num_insc_FIFA=Clube_Numero_Inscricao_FIFA WHERE Treinador.Treinador_Numero_Inscricao_FIFA=@id_treinador AND Treinador_Data_Saida IS NULL;
 
 
 
 
 
 
+
+
+--Stored Procedure Get Clube Antigos Treinador
+CREATE PROCEDURE Scouting.Get_Clubes_Antigos_Treinador @id_treinador varchar(9)
+AS
+	SELECT * FROM (Scouting.Treinador JOIN Scouting.Treina ON Treinador_Numero_Inscricao_FIFA=Treina_Num_Insc_FIFA)
+	JOIN Scouting.Clube ON Clube_Num_insc_FIFA=Clube_Numero_Inscricao_FIFA WHERE Treinador.Treinador_Numero_Inscricao_FIFA=@id_treinador AND Treinador_Da
 
 
 

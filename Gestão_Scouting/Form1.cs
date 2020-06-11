@@ -37,7 +37,8 @@ namespace Gestão_Scouting
         {
             dateTimePicker1.Format = DateTimePickerFormat.Custom;
             dateTimePicker1.CustomFormat = "yyyy-MM-dd";
-
+            dateTimePicker2.Format = DateTimePickerFormat.Custom;
+            dateTimePicker2.CustomFormat = "yyyy-MM-dd";
             cn = getSGBDConnection();
             //Jogadores
             LoadJogadores(List, Order);
@@ -61,6 +62,7 @@ namespace Gestão_Scouting
             //Gestão
             loadListaObservacaoSelecao();
             GetTreinadores();
+            loadClubesTAB();
 
 
         }
@@ -1947,7 +1949,7 @@ namespace Gestão_Scouting
 
 
 
-        //Var Dados do Treinador 
+        //Ver Dados do Treinador 
         private void listBoxTreinadores_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (listBoxTreinadores.SelectedIndex >= 0)
@@ -1959,8 +1961,169 @@ namespace Gestão_Scouting
                 textBoxTreinadorQualificoes.Text=list.Treinador_Qualificacao.ToString();
                 textBoxTreinadorIdade.Text = list.Treindaor_Idade;
                 textBoxTreinadorNacionalidade.Text = list.Treindaor_Nacionalidade;
+                LoadClubesAntigos(list.Treinador_Numero_Inscricao_FIFA.ToString());
+                LoadClubeAtualTreinador(list.Treinador_Numero_Inscricao_FIFA.ToString());
             }
 
+        }
+
+        private void loadClubesTAB()
+        {
+            if (!verifySGBDConnection())
+                return;
+            SqlCommand cmd = new SqlCommand();
+            SqlDataReader reader;
+            try
+            {
+                cmd.CommandType = CommandType.Text;
+                cmd = new SqlCommand("Scouting.Get_Lista_Clubes", cn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@OrderBy", Order);
+
+                reader = cmd.ExecuteReader();
+                listBoxClubesGestao.Items.Clear();
+                while (reader.Read())
+                {
+                    Clube C = new Clube();
+                    C.Clube_Numero_Inscricao_FIFA = reader["Clube_Numero_Inscricao_FIFA"].ToString();
+                    C.Clube_Nome = reader["Clube_Nome"].ToString();
+                    C.Clube_Pais = reader["Clube_Pais"].ToString();
+                    listBoxClubesGestao.Items.Add(C);
+                }
+                reader.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erro!: " + ex.Message);
+            }
+        }
+        private void LoadClubeAtualTreinador(String id)
+        {
+            if (!verifySGBDConnection())
+                return;
+            SqlCommand cmd = new SqlCommand();
+            SqlDataReader reader;
+            try
+            {
+                cmd.CommandType = CommandType.Text;
+                cmd = new SqlCommand("Scouting.Get_Clube_Atual_Treinador", cn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@id_treinador", id);
+                textBoxTreinadorClubeAtual.Clear();
+                reader = cmd.ExecuteReader();
+                //textBoxClubeAtual.Clear();
+                while (reader.Read())
+                {
+
+                    textBoxTreinadorClubeAtual.Text = reader["Clube_Nome"].ToString();
+                }
+                reader.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erro!: " + ex.Message);
+            }
+        }
+        private void LoadClubesAntigos(String id)
+        {
+            if (!verifySGBDConnection())
+                return;
+            SqlCommand cmd = new SqlCommand();
+            SqlDataReader reader;
+            try
+            {
+                cmd.CommandType = CommandType.Text;
+                cmd = new SqlCommand("Scouting.Get_Clubes_Antigos_Treinador", cn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@id_treinador", id);
+
+                reader = cmd.ExecuteReader();
+                listBoxClubesTreinadorPassados.Items.Clear();
+                while (reader.Read())
+                {
+                    Clube C = new Clube();
+                    C.Clube_Numero_Inscricao_FIFA = reader["Clube_Numero_Inscricao_FIFA"].ToString();
+                    C.Clube_Nome = reader["Clube_Nome"].ToString();
+                    C.Clube_Pais = reader["Clube_Pais"].ToString();
+                    String Data_Inicio= reader["Treinador_Data_Inicio"].ToString();
+                    String Data_Fim= reader["Treinador_Data_Saida"].ToString();
+                    listBoxClubesTreinadorPassados.Items.Add(C.ToString()+"  " +Data_Inicio+"-->"+ Data_Fim);
+                }
+                reader.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erro!: " + ex.Message);
+            }
+        }
+        //Mudar Clube Treinador
+        private void buttonTreinadorNewClube_Click(object sender, EventArgs e)
+        {
+
+            if(listBoxTreinadores.SelectedIndex >= 0 & listBoxClubesGestao.SelectedIndex>=0) {
+
+                Treinador list = new Treinador();
+                list = (Treinador)listBoxTreinadores.Items[listBoxTreinadores.SelectedIndex];
+                Clube lista = new Clube();
+                lista = (Clube)listBoxClubesGestao.Items[listBoxClubesGestao.SelectedIndex];
+                if (!verifySGBDConnection())
+                    return;
+                SqlCommand cmda = new SqlCommand();
+                cmda.CommandType = CommandType.Text;
+                cmda = new SqlCommand("Scouting.Change_Treinador_Clube", cn);
+                cmda.CommandType = CommandType.StoredProcedure;
+                cmda.Parameters.AddWithValue("@id_treinador", list.Treinador_Numero_Inscricao_FIFA);
+                cmda.Parameters.AddWithValue("@data", dateTimePicker2.Value.Date.ToString());
+                cmda.Parameters.AddWithValue("@id_Clube", lista.Clube_Numero_Inscricao_FIFA);
+                try
+                {
+                    cmda.ExecuteNonQuery();
+                    MessageBox.Show(list.Treinador_Nome + " a Treinar " + lista.Clube_Nome);
+                    listBoxClubesGestao.SelectedIndex = -1;
+                    GetTreinadorAtualClube(textBoxNumeroInscricaoFifaClube.Text);
+                    LoadClubesAntigos(textBoxIDTreinador.Text);
+                    LoadClubeAtualTreinador(textBoxIDTreinador.Text);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Falhou  na BD database. \n ERROR MESSAGE:" + ex.Message);
+
+                }
+            }  
+        }
+        //Desemprego
+        private void buttonSemClube_Click(object sender, EventArgs e)
+        {
+            if (listBoxTreinadores.SelectedIndex >= 0 )
+            {
+
+                Treinador list = new Treinador();
+                list = (Treinador)listBoxTreinadores.Items[listBoxTreinadores.SelectedIndex];
+                if (!verifySGBDConnection())
+                    return;
+                SqlCommand cmda = new SqlCommand();
+                cmda.CommandType = CommandType.Text;
+                cmda = new SqlCommand("Scouting.Change_Treinador_Clube", cn);
+                cmda.CommandType = CommandType.StoredProcedure;
+
+                cmda.Parameters.AddWithValue("@id_treinador", list.Treinador_Numero_Inscricao_FIFA);
+                cmda.Parameters.AddWithValue("@data", dateTimePicker2.Value.Date.ToString());
+                cmda.Parameters.AddWithValue("@id_Clube", "");
+
+                try
+                {
+                    cmda.ExecuteNonQuery();
+                    MessageBox.Show("Treinador " + list.Treinador_Nome.ToString() + " Desemprego!");
+                    LoadClubesAntigos(textBoxIDTreinador.Text);
+                    LoadClubeAtualTreinador(textBoxIDTreinador.Text);
+                    GetTreinadorAtualClube(textBoxNumeroInscricaoFifaClube.Text);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Falhou na BD database. \n ERROR MESSAGE:" + ex.Message);
+
+                }
+            }
         }
     }
 }
