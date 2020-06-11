@@ -13,8 +13,7 @@ namespace Gestão_Scouting
 		private String _Selecionador_Qualificacao;
 		private String _Selecionador_Nacionalidade;
 		private String _Selecionador_Idade;
-		private String _Res_Data_Inicio;
-		private String _Res_Data_Final;
+
 
 		public String Selecionador_Numero_Identificacao_Federacao
 		{
@@ -41,15 +40,6 @@ namespace Gestão_Scouting
 			get { return _Selecionador_Idade; }
 			set { _Selecionador_Idade = value; }
 		}
-		public String Res_Data_Inicio
-		{
-			get { return _Res_Data_Inicio; }
-			set { _Res_Data_Inicio = value; }
-		}
-		public String Res_Data_Final
-		{
-			get { return _Res_Data_Final; }
-			set { _Res_Data_Final = value; }
-		}
+
 	}
 }

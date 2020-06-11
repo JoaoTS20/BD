@@ -39,5 +39,9 @@ namespace Gestão_Scouting
             get { return _Treindaor_Nacionalidade; }
             set { _Treindaor_Nacionalidade = value; }
         }
+        public override string ToString()
+        {
+            return Treinador_Numero_Inscricao_FIFA + "  " + Treinador_Nome;
+        }
     }
 }

@@ -198,7 +198,7 @@ namespace Gestão_Scouting
             this.textBoxNomeSelecionador = new System.Windows.Forms.TextBox();
             this.textBoxSelecionadorIdade = new System.Windows.Forms.TextBox();
             this.textBoxSelecionadorQualificacoes = new System.Windows.Forms.TextBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.textBoxNac = new System.Windows.Forms.TextBox();
             this.textBoxSelecionadorID = new System.Windows.Forms.TextBox();
             this.label21 = new System.Windows.Forms.Label();
             this.listBoxListasDeSelecao = new System.Windows.Forms.ListBox();
@@ -1695,7 +1695,7 @@ namespace Gestão_Scouting
             this.tabPage5.Controls.Add(this.textBoxNomeSelecionador);
             this.tabPage5.Controls.Add(this.textBoxSelecionadorIdade);
             this.tabPage5.Controls.Add(this.textBoxSelecionadorQualificacoes);
-            this.tabPage5.Controls.Add(this.textBox1);
+            this.tabPage5.Controls.Add(this.textBoxNac);
             this.tabPage5.Controls.Add(this.textBoxSelecionadorID);
             this.tabPage5.Controls.Add(this.label21);
             this.tabPage5.Controls.Add(this.listBoxListasDeSelecao);
@@ -1882,6 +1882,7 @@ namespace Gestão_Scouting
             this.listBoxTreinadores.Name = "listBoxTreinadores";
             this.listBoxTreinadores.Size = new System.Drawing.Size(221, 244);
             this.listBoxTreinadores.TabIndex = 59;
+            this.listBoxTreinadores.SelectedIndexChanged += new System.EventHandler(this.listBoxTreinadores_SelectedIndexChanged);
             // 
             // label51
             // 
@@ -1953,12 +1954,12 @@ namespace Gestão_Scouting
             this.textBoxSelecionadorQualificacoes.Size = new System.Drawing.Size(180, 22);
             this.textBoxSelecionadorQualificacoes.TabIndex = 51;
             // 
-            // textBox1
+            // textBoxNac
             // 
-            this.textBox1.Location = new System.Drawing.Point(1049, 91);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(133, 22);
-            this.textBox1.TabIndex = 50;
+            this.textBoxNac.Location = new System.Drawing.Point(1049, 91);
+            this.textBoxNac.Name = "textBoxNac";
+            this.textBoxNac.Size = new System.Drawing.Size(133, 22);
+            this.textBoxNac.TabIndex = 50;
             // 
             // textBoxSelecionadorID
             // 
@@ -1980,10 +1981,11 @@ namespace Gestão_Scouting
             // 
             this.listBoxListasDeSelecao.FormattingEnabled = true;
             this.listBoxListasDeSelecao.ItemHeight = 16;
-            this.listBoxListasDeSelecao.Location = new System.Drawing.Point(30, 40);
+            this.listBoxListasDeSelecao.Location = new System.Drawing.Point(73, 40);
             this.listBoxListasDeSelecao.Name = "listBoxListasDeSelecao";
             this.listBoxListasDeSelecao.Size = new System.Drawing.Size(221, 164);
             this.listBoxListasDeSelecao.TabIndex = 46;
+            this.listBoxListasDeSelecao.SelectedIndexChanged += new System.EventHandler(this.listBoxListasDeSelecao_SelectedIndexChanged);
             // 
             // label35
             // 
@@ -2207,7 +2209,7 @@ namespace Gestão_Scouting
         private System.Windows.Forms.TextBox textBoxNomeSelecionador;
         private System.Windows.Forms.TextBox textBoxSelecionadorIdade;
         private System.Windows.Forms.TextBox textBoxSelecionadorQualificacoes;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox textBoxNac;
         private System.Windows.Forms.Label label51;
         private System.Windows.Forms.Label label52;
         private System.Windows.Forms.Label label53;

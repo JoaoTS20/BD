@@ -1577,12 +1577,32 @@ AS
 				ROLLBACK TRAN; -- Anula a inserção
 		END
 
+--Get Selecionador por lista
+CREATE PROCEDURE Scouting.Get_ID_Selecionador @idade_max int
+AS
+	BEGIN
+	IF(LEN(@idade_max)=0)
+	BEGIN
+		RETURN;
+	END
+	declare @res varchar(9);
+	SELECT Selecionador.* FROM (Scouting.Selecionador JOIN Scouting.Responsavel 
+	ON Responsavel.Selec_Numero_Iden_Federacao=Selecionador_Numero_Identificacao_Federacao) JOIN Scouting.Lista_Observacao_Selecao
+	ON Lista_Idade_Maxima=Idade_Maxima
+	WHERE Idade_Maxima=@idade_max AND Res_Data_Final IS NULL;
+	END
 
 
 
 
-
-
+--Stored Procedure Get Treinadores
+CREATE PROCEDURE Scouting.Get_Treinadores
+AS
+	
+	BEGIN
+		SELECT * FROM Scouting.Treinador
+	END
+	
 
 
 

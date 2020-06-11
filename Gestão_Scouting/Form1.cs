@@ -60,7 +60,7 @@ namespace Gestão_Scouting
             GetCompeticoes("");
             //Gestão
             loadListaObservacaoSelecao();
-
+            GetTreinadores();
 
 
         }
@@ -1855,6 +1855,107 @@ namespace Gestão_Scouting
             catch(Exception ex)
             {
                 MessageBox.Show("ERRO: " +ex.Message);
+            }
+
+        }
+
+
+        private void GetSelecionador(String idlista)
+        {
+            SqlCommand cmd = new SqlCommand();
+            cmd.CommandType = CommandType.Text;
+            cmd = new SqlCommand("Scouting.Get_ID_Selecionador", cn);
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            cmd.Parameters.AddWithValue("@idade_max", idlista);
+            try
+            {
+                textBoxSelecionadorID.Clear();
+                textBoxSelecionadorIdade.Clear();
+                textBoxSelecionadorQualificacoes.Clear();
+                textBoxNomeSelecionador.Clear();
+                textBoxNac.Clear();
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    Selecionador L = new Selecionador();
+                    L.Selecionador_Nome = reader["Selecionador_Nome"].ToString();
+                    L.Selecionador_Idade = reader["Selecionador_Idade"].ToString();
+                    L.Selecionador_Nacionalidade = reader["Selecionador_Nacionalidade"].ToString();
+                    L.Selecionador_Numero_Identificacao_Federacao = reader["Selecionador_Numero_Identificacao_Federacao"].ToString();
+                    L.Selecionador_Qualificacao = reader["Selecionador_Qualificacao"].ToString();
+                
+                    textBoxSelecionadorID.Text = L.Selecionador_Numero_Identificacao_Federacao;
+                    textBoxSelecionadorIdade.Text = L.Selecionador_Idade;
+                    textBoxSelecionadorQualificacoes.Text = L.Selecionador_Qualificacao;
+                    textBoxNomeSelecionador.Text = L.Selecionador_Nome;
+                    textBoxNac.Text = L.Selecionador_Nacionalidade;
+                }
+                reader.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Falhou Carregar Selec da BD database. \n ERROR MESSAGE: " + ex.Message);
+            }
+        }
+        //Ver o Selecionador
+        private void listBoxListasDeSelecao_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (listBoxListasDeSelecao.SelectedIndex >= 0)
+            {
+                Lista_Observacao_Selecao list = new Lista_Observacao_Selecao();
+                list = (Lista_Observacao_Selecao)listBoxListasDeSelecao.Items[listBoxListasDeSelecao.SelectedIndex];
+                String x = list.Lista_Idade_Maxima.ToString();
+                GetSelecionador(x);
+            }
+        }
+
+        private void GetTreinadores()
+        {
+            SqlCommand cmd = new SqlCommand();
+            cmd.CommandType = CommandType.Text;
+            cmd = new SqlCommand("Scouting.Get_Treinadores", cn);
+            try
+            {
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    Treinador L = new Treinador();
+                    L.Treinador_Nome = reader["Treinador_Nome"].ToString();
+                    L.Treinador_Numero_Inscricao_FIFA = reader["Treinador_Numero_Inscricao_FIFA"].ToString();
+                    L.Treinador_Qualificacao = reader["Treinador_Qualificacao"].ToString();
+                    L.Treindaor_Idade = reader["Treinador_Idade"].ToString();
+                    L.Treindaor_Nacionalidade = reader["Treinador_Nacionalidade"].ToString();
+                    listBoxTreinadores.Items.Add(L);
+                }
+                reader.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Falhou Carregar Selec da BD database. \n ERROR MESSAGE: " + ex.Message);
+            }
+        }
+
+
+
+        //Var Dados do Treinador 
+        private void listBoxTreinadores_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (listBoxTreinadores.SelectedIndex >= 0)
+            {
+                Treinador list = new Treinador();
+                list = (Treinador)listBoxTreinadores.Items[listBoxTreinadores.SelectedIndex];
+                textBoxIDTreinador.Text = list.Treinador_Numero_Inscricao_FIFA.ToString();
+                textBoxTreinadorNome.Text =list.Treinador_Nome;
+                textBoxTreinadorQualificoes.Text=list.Treinador_Qualificacao.ToString();
+                textBoxTreinadorIdade.Text = list.Treindaor_Idade;
+                textBoxTreinadorNacionalidade.Text = list.Treindaor_Nacionalidade;
+
+                
+
+
+
+
             }
 
         }
