@@ -89,7 +89,6 @@ namespace Gestão_Scouting
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.label28 = new System.Windows.Forms.Label();
             this.textBoxNumeroClubes = new System.Windows.Forms.TextBox();
-            this.buttonDeleteCompClube = new System.Windows.Forms.Button();
             this.buttonAdicionarClubeCompeticao = new System.Windows.Forms.Button();
             this.buttonDeleteJogadorClube = new System.Windows.Forms.Button();
             this.buttonAdicionarJogadorClube = new System.Windows.Forms.Button();
@@ -153,7 +152,6 @@ namespace Gestão_Scouting
             this.label34 = new System.Windows.Forms.Label();
             this.label43 = new System.Windows.Forms.Label();
             this.label64 = new System.Windows.Forms.Label();
-            this.buttonEditJogo = new System.Windows.Forms.Button();
             this.buttonInsertJogo = new System.Windows.Forms.Button();
             this.label49 = new System.Windows.Forms.Label();
             this.label48 = new System.Windows.Forms.Label();
@@ -174,7 +172,6 @@ namespace Gestão_Scouting
             this.tabPage5 = new System.Windows.Forms.TabPage();
             this.buttonTreinadorNewClube = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
             this.label61 = new System.Windows.Forms.Label();
             this.listBoxClubesTreinadorPassados = new System.Windows.Forms.ListBox();
@@ -202,13 +199,15 @@ namespace Gestão_Scouting
             this.textBoxSelecionadorIdade = new System.Windows.Forms.TextBox();
             this.textBoxSelecionadorQualificacoes = new System.Windows.Forms.TextBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
-            this.buttonEditLista = new System.Windows.Forms.Button();
             this.textBoxSelecionadorID = new System.Windows.Forms.TextBox();
             this.label21 = new System.Windows.Forms.Label();
             this.listBoxListasDeSelecao = new System.Windows.Forms.ListBox();
             this.label35 = new System.Windows.Forms.Label();
-            this.buttonDelListas = new System.Windows.Forms.Button();
             this.buttonInsLista = new System.Windows.Forms.Button();
+            this.label65 = new System.Windows.Forms.Label();
+            this.label66 = new System.Windows.Forms.Label();
+            this.textBoxidademax = new System.Windows.Forms.TextBox();
+            this.textBoxnomelista = new System.Windows.Forms.TextBox();
             this.menuStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -793,7 +792,6 @@ namespace Gestão_Scouting
             this.tabPage2.Controls.Add(this.dateTimePicker1);
             this.tabPage2.Controls.Add(this.label28);
             this.tabPage2.Controls.Add(this.textBoxNumeroClubes);
-            this.tabPage2.Controls.Add(this.buttonDeleteCompClube);
             this.tabPage2.Controls.Add(this.buttonAdicionarClubeCompeticao);
             this.tabPage2.Controls.Add(this.buttonDeleteJogadorClube);
             this.tabPage2.Controls.Add(this.buttonAdicionarJogadorClube);
@@ -851,17 +849,6 @@ namespace Gestão_Scouting
             this.textBoxNumeroClubes.Name = "textBoxNumeroClubes";
             this.textBoxNumeroClubes.Size = new System.Drawing.Size(155, 22);
             this.textBoxNumeroClubes.TabIndex = 29;
-            // 
-            // buttonDeleteCompClube
-            // 
-            this.buttonDeleteCompClube.Location = new System.Drawing.Point(903, 421);
-            this.buttonDeleteCompClube.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.buttonDeleteCompClube.Name = "buttonDeleteCompClube";
-            this.buttonDeleteCompClube.Size = new System.Drawing.Size(159, 42);
-            this.buttonDeleteCompClube.TabIndex = 28;
-            this.buttonDeleteCompClube.Text = "Eliminar Competição Clube";
-            this.buttonDeleteCompClube.UseVisualStyleBackColor = true;
-            this.buttonDeleteCompClube.Click += new System.EventHandler(this.buttonDeleteCompClube_Click);
             // 
             // buttonAdicionarClubeCompeticao
             // 
@@ -1436,7 +1423,6 @@ namespace Gestão_Scouting
             this.tabPage4.Controls.Add(this.label34);
             this.tabPage4.Controls.Add(this.label43);
             this.tabPage4.Controls.Add(this.label64);
-            this.tabPage4.Controls.Add(this.buttonEditJogo);
             this.tabPage4.Controls.Add(this.buttonInsertJogo);
             this.tabPage4.Controls.Add(this.label49);
             this.tabPage4.Controls.Add(this.label48);
@@ -1510,17 +1496,6 @@ namespace Gestão_Scouting
             this.label64.Size = new System.Drawing.Size(131, 17);
             this.label64.TabIndex = 54;
             this.label64.Text = "Competição ID FIFA";
-            // 
-            // buttonEditJogo
-            // 
-            this.buttonEditJogo.Location = new System.Drawing.Point(1032, 272);
-            this.buttonEditJogo.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.buttonEditJogo.Name = "buttonEditJogo";
-            this.buttonEditJogo.Size = new System.Drawing.Size(145, 28);
-            this.buttonEditJogo.TabIndex = 53;
-            this.buttonEditJogo.Text = "Editar Jogo";
-            this.buttonEditJogo.UseVisualStyleBackColor = true;
-            this.buttonEditJogo.Click += new System.EventHandler(this.buttonEditJogo_Click);
             // 
             // buttonInsertJogo
             // 
@@ -1688,9 +1663,12 @@ namespace Gestão_Scouting
             // 
             // tabPage5
             // 
+            this.tabPage5.Controls.Add(this.textBoxnomelista);
+            this.tabPage5.Controls.Add(this.textBoxidademax);
+            this.tabPage5.Controls.Add(this.label66);
+            this.tabPage5.Controls.Add(this.label65);
             this.tabPage5.Controls.Add(this.buttonTreinadorNewClube);
             this.tabPage5.Controls.Add(this.button3);
-            this.tabPage5.Controls.Add(this.button4);
             this.tabPage5.Controls.Add(this.button5);
             this.tabPage5.Controls.Add(this.label61);
             this.tabPage5.Controls.Add(this.listBoxClubesTreinadorPassados);
@@ -1718,12 +1696,10 @@ namespace Gestão_Scouting
             this.tabPage5.Controls.Add(this.textBoxSelecionadorIdade);
             this.tabPage5.Controls.Add(this.textBoxSelecionadorQualificacoes);
             this.tabPage5.Controls.Add(this.textBox1);
-            this.tabPage5.Controls.Add(this.buttonEditLista);
             this.tabPage5.Controls.Add(this.textBoxSelecionadorID);
             this.tabPage5.Controls.Add(this.label21);
             this.tabPage5.Controls.Add(this.listBoxListasDeSelecao);
             this.tabPage5.Controls.Add(this.label35);
-            this.tabPage5.Controls.Add(this.buttonDelListas);
             this.tabPage5.Controls.Add(this.buttonInsLista);
             this.tabPage5.Location = new System.Drawing.Point(4, 25);
             this.tabPage5.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -1751,16 +1727,6 @@ namespace Gestão_Scouting
             this.button3.TabIndex = 78;
             this.button3.Text = "Editar Treinador";
             this.button3.UseVisualStyleBackColor = true;
-            // 
-            // button4
-            // 
-            this.button4.Location = new System.Drawing.Point(24, 446);
-            this.button4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(121, 43);
-            this.button4.TabIndex = 77;
-            this.button4.Text = "Eliminar Treinador";
-            this.button4.UseVisualStyleBackColor = true;
             // 
             // button5
             // 
@@ -1994,15 +1960,6 @@ namespace Gestão_Scouting
             this.textBox1.Size = new System.Drawing.Size(133, 22);
             this.textBox1.TabIndex = 50;
             // 
-            // buttonEditLista
-            // 
-            this.buttonEditLista.Location = new System.Drawing.Point(24, 105);
-            this.buttonEditLista.Name = "buttonEditLista";
-            this.buttonEditLista.Size = new System.Drawing.Size(121, 43);
-            this.buttonEditLista.TabIndex = 49;
-            this.buttonEditLista.Text = "Editar Lista";
-            this.buttonEditLista.UseVisualStyleBackColor = true;
-            // 
             // textBoxSelecionadorID
             // 
             this.textBoxSelecionadorID.Location = new System.Drawing.Point(417, 91);
@@ -2023,7 +1980,7 @@ namespace Gestão_Scouting
             // 
             this.listBoxListasDeSelecao.FormattingEnabled = true;
             this.listBoxListasDeSelecao.ItemHeight = 16;
-            this.listBoxListasDeSelecao.Location = new System.Drawing.Point(165, 40);
+            this.listBoxListasDeSelecao.Location = new System.Drawing.Point(30, 40);
             this.listBoxListasDeSelecao.Name = "listBoxListasDeSelecao";
             this.listBoxListasDeSelecao.Size = new System.Drawing.Size(221, 164);
             this.listBoxListasDeSelecao.TabIndex = 46;
@@ -2031,31 +1988,54 @@ namespace Gestão_Scouting
             // label35
             // 
             this.label35.AutoSize = true;
-            this.label35.Location = new System.Drawing.Point(162, 20);
+            this.label35.Location = new System.Drawing.Point(70, 20);
             this.label35.Name = "label35";
             this.label35.Size = new System.Drawing.Size(148, 17);
             this.label35.TabIndex = 45;
             this.label35.Text = "Listas De Observação";
             // 
-            // buttonDelListas
-            // 
-            this.buttonDelListas.Location = new System.Drawing.Point(24, 161);
-            this.buttonDelListas.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.buttonDelListas.Name = "buttonDelListas";
-            this.buttonDelListas.Size = new System.Drawing.Size(121, 43);
-            this.buttonDelListas.TabIndex = 44;
-            this.buttonDelListas.Text = "Eliminar Listas";
-            this.buttonDelListas.UseVisualStyleBackColor = true;
-            // 
             // buttonInsLista
             // 
-            this.buttonInsLista.Location = new System.Drawing.Point(24, 46);
+            this.buttonInsLista.Location = new System.Drawing.Point(30, 227);
             this.buttonInsLista.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.buttonInsLista.Name = "buttonInsLista";
             this.buttonInsLista.Size = new System.Drawing.Size(121, 43);
             this.buttonInsLista.TabIndex = 43;
             this.buttonInsLista.Text = "Inserir Lista";
             this.buttonInsLista.UseVisualStyleBackColor = true;
+            this.buttonInsLista.Click += new System.EventHandler(this.buttonInsLista_Click);
+            // 
+            // label65
+            // 
+            this.label65.AutoSize = true;
+            this.label65.Location = new System.Drawing.Point(183, 227);
+            this.label65.Name = "label65";
+            this.label65.Size = new System.Drawing.Size(94, 17);
+            this.label65.TabIndex = 80;
+            this.label65.Text = "Idade Máxima";
+            // 
+            // label66
+            // 
+            this.label66.AutoSize = true;
+            this.label66.Location = new System.Drawing.Point(228, 256);
+            this.label66.Name = "label66";
+            this.label66.Size = new System.Drawing.Size(49, 17);
+            this.label66.TabIndex = 81;
+            this.label66.Text = "Nome:";
+            // 
+            // textBoxidademax
+            // 
+            this.textBoxidademax.Location = new System.Drawing.Point(284, 227);
+            this.textBoxidademax.Name = "textBoxidademax";
+            this.textBoxidademax.Size = new System.Drawing.Size(102, 22);
+            this.textBoxidademax.TabIndex = 82;
+            // 
+            // textBoxnomelista
+            // 
+            this.textBoxnomelista.Location = new System.Drawing.Point(284, 253);
+            this.textBoxnomelista.Name = "textBoxnomelista";
+            this.textBoxnomelista.Size = new System.Drawing.Size(102, 22);
+            this.textBoxnomelista.TabIndex = 83;
             // 
             // Form1
             // 
@@ -2189,10 +2169,8 @@ namespace Gestão_Scouting
         private System.Windows.Forms.Button buttonInsertClube;
         private System.Windows.Forms.Button buttonDeleteJogadorClube;
         private System.Windows.Forms.Button buttonAdicionarJogadorClube;
-        private System.Windows.Forms.Button buttonDeleteCompClube;
         private System.Windows.Forms.Button buttonAdicionarClubeCompeticao;
         private System.Windows.Forms.Label label35;
-        private System.Windows.Forms.Button buttonDelListas;
         private System.Windows.Forms.Button buttonInsLista;
         private System.Windows.Forms.TextBox textBoxClubeAtual;
         private System.Windows.Forms.Label label37;
@@ -2222,12 +2200,10 @@ namespace Gestão_Scouting
         private System.Windows.Forms.Label label48;
         private System.Windows.Forms.TextBox textBoxJogoC;
         private System.Windows.Forms.Label label49;
-        private System.Windows.Forms.Button buttonEditJogo;
         private System.Windows.Forms.Button buttonInsertJogo;
         private System.Windows.Forms.ListBox listBoxListasDeSelecao;
         private System.Windows.Forms.TextBox textBoxSelecionadorID;
         private System.Windows.Forms.Label label21;
-        private System.Windows.Forms.Button buttonEditLista;
         private System.Windows.Forms.TextBox textBoxNomeSelecionador;
         private System.Windows.Forms.TextBox textBoxSelecionadorIdade;
         private System.Windows.Forms.TextBox textBoxSelecionadorQualificacoes;
@@ -2255,7 +2231,6 @@ namespace Gestão_Scouting
         private System.Windows.Forms.Label label61;
         private System.Windows.Forms.ListBox listBoxClubesTreinadorPassados;
         private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Button buttonTreinadorNewClube;
         private System.Windows.Forms.ListBox listBoxMetodos;
@@ -2270,6 +2245,10 @@ namespace Gestão_Scouting
         private System.Windows.Forms.Label label34;
         private System.Windows.Forms.Label label43;
         private System.Windows.Forms.Label label64;
+        private System.Windows.Forms.TextBox textBoxnomelista;
+        private System.Windows.Forms.TextBox textBoxidademax;
+        private System.Windows.Forms.Label label66;
+        private System.Windows.Forms.Label label65;
     }
 }
 

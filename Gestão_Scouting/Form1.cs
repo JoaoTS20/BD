@@ -240,15 +240,13 @@ namespace Gestão_Scouting
         //Mostrar Jogadores por Lista
         public void GetListaObservacaoSelecao()
         {
-
+            comboBoxListaSelecaoJogadores.Items.Clear();
             SqlCommand cmd = new SqlCommand();
             cmd.CommandType = CommandType.Text;
             cmd = new SqlCommand("Scouting.Get_Listas_Observacao_Selecao", cn);
             try
             {
                 SqlDataReader reader = cmd.ExecuteReader();
-
-
                 Lista_Observacao_Selecao S = new Lista_Observacao_Selecao();
                 S.Lista_Nome = "Todos";
                 S.Lista_Idade_Maxima = "";
@@ -1813,7 +1811,7 @@ namespace Gestão_Scouting
         //Load ListaObservacaoSelecao()
         public void loadListaObservacaoSelecao()
         {
-
+            listBoxListasDeSelecao.Items.Clear();
             SqlCommand cmd = new SqlCommand();
             cmd.CommandType = CommandType.Text;
             cmd = new SqlCommand("Scouting.Get_Listas_Observacao_Selecao", cn);
@@ -1834,9 +1832,35 @@ namespace Gestão_Scouting
                 MessageBox.Show("Falhou Carregar Lista da BD database. \n ERROR MESSAGE: " + ex.Message);
             }
         }
+        //Inserir Lista Observação
+        private void buttonInsLista_Click(object sender, EventArgs e)
+        {
+            if(String.IsNullOrEmpty(textBoxnomelista.Text) || String.IsNullOrEmpty(textBoxidademax.Text)) { return; }
+            try
+            {
+                SqlCommand cmd = new SqlCommand();
+                cmd.CommandType = CommandType.Text;
+                cmd = new SqlCommand("Scouting.Insert_Lista_Observ", cn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@idade_max", Int32.Parse(textBoxidademax.Text));
+                cmd.Parameters.AddWithValue("@lista_nome", textBoxnomelista.Text);
+                cmd.ExecuteNonQuery();
+                MessageBox.Show("Sucesso!");
+                loadListaObservacaoSelecao();
+                textBoxnomelista.Clear();
+                textBoxnomelista.Clear();
+                GetListaObservacaoSelecao();
 
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show("ERRO: " +ex.Message);
+            }
+
+        }
     }
 }
+
 
 
 
