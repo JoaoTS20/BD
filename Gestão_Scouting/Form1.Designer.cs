@@ -884,6 +884,7 @@ namespace Gestão_Scouting
             this.buttonDeleteJogadorClube.TabIndex = 26;
             this.buttonDeleteJogadorClube.Text = "Eliminar Jogador";
             this.buttonDeleteJogadorClube.UseVisualStyleBackColor = true;
+            this.buttonDeleteJogadorClube.Click += new System.EventHandler(this.buttonDeleteJogadorClube_Click);
             // 
             // buttonAdicionarJogadorClube
             // 

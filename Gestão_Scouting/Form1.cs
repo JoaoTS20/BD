@@ -35,6 +35,9 @@ namespace Gestão_Scouting
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            dateTimePicker1.Format = DateTimePickerFormat.Custom;
+            dateTimePicker1.CustomFormat = "yyyy-MM-dd";
+
             cn = getSGBDConnection();
             //Jogadores
             LoadJogadores(List, Order);
@@ -525,6 +528,7 @@ namespace Gestão_Scouting
                 cmda.CommandType = CommandType.StoredProcedure;
                 cmda.Parameters.AddWithValue("@id", ID);
                 readera = cmda.ExecuteReader();
+                textBoxClubeAtual.Clear();
                 while (readera.Read())
                 {
                     Clube C = new Clube();
@@ -1083,6 +1087,7 @@ namespace Gestão_Scouting
                 }
             }
         }
+        //Jogador IR para o Clube
         private void buttonAdicionarJogadorClube_Click(object sender, EventArgs e)
         {
             if (listBoxClubes.SelectedIndex >= 0)
@@ -1095,6 +1100,37 @@ namespace Gestão_Scouting
             }
 
 
+        }
+
+        //Jogador Sair do Clube
+        private void buttonDeleteJogadorClube_Click(object sender, EventArgs e)
+        {
+            if(listBoxClubes.SelectedIndex >= 0 && listBoxJogadoresClube.SelectedIndex >= 0)
+            {
+                currentClubeComp = listBoxCompeticaoClube.SelectedIndex;
+                Jogador c = new Jogador();
+                c = (Jogador)listBoxJogadoresClube.Items[listBoxJogadoresClube.SelectedIndex];
+                String namec = c.ID_FIFPro.ToString();
+                try
+                {
+                    SqlCommand cmda = new SqlCommand();
+                    cmda.CommandType = CommandType.Text;
+                    cmda = new SqlCommand("Scouting.Delete_Jogador_From_Clube", cn);
+                    cmda.CommandType = CommandType.StoredProcedure;
+                    cmda.Parameters.AddWithValue("@club_insc", textBoxNumeroInscricaoFifaClube.Text);
+                    cmda.Parameters.AddWithValue("@id_fifpro", namec);
+                    cmda.Parameters.AddWithValue("data_fin", dateTimePicker1.Value.Date.ToString());
+
+                    cmda.ExecuteNonQuery();
+                    MessageBox.Show("Jogador "+namec+" já não pertence ao Clube!");
+                    GetClubeJogadores(textBoxNumeroInscricaoFifaClube.Text);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Falhou Delete  na BD database. \n ERROR MESSAGE: \n" + ex.Message);
+
+                }
+            }
         }
 
 
