@@ -41,6 +41,9 @@
             this.comboBoxObservadoresList = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
             this.listBoxObservadores = new System.Windows.Forms.ListBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.textBoxConvocados = new System.Windows.Forms.TextBox();
+            this.listBoxCompeticaoClubes = new System.Windows.Forms.ListBox();
             this.SuspendLayout();
             // 
             // label1
@@ -109,7 +112,7 @@
             // 
             // buttonCancelar
             // 
-            this.buttonCancelar.Location = new System.Drawing.Point(40, 204);
+            this.buttonCancelar.Location = new System.Drawing.Point(40, 400);
             this.buttonCancelar.Name = "buttonCancelar";
             this.buttonCancelar.Size = new System.Drawing.Size(75, 23);
             this.buttonCancelar.TabIndex = 8;
@@ -118,7 +121,7 @@
             // 
             // buttonInserir
             // 
-            this.buttonInserir.Location = new System.Drawing.Point(135, 204);
+            this.buttonInserir.Location = new System.Drawing.Point(198, 400);
             this.buttonInserir.Name = "buttonInserir";
             this.buttonInserir.Size = new System.Drawing.Size(87, 23);
             this.buttonInserir.TabIndex = 9;
@@ -153,11 +156,39 @@
             this.listBoxObservadores.Size = new System.Drawing.Size(292, 180);
             this.listBoxObservadores.TabIndex = 12;
             // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(17, 349);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(161, 17);
+            this.label5.TabIndex = 13;
+            this.label5.Text = "Jogadores Convocados:";
+            // 
+            // textBoxConvocados
+            // 
+            this.textBoxConvocados.Location = new System.Drawing.Point(185, 349);
+            this.textBoxConvocados.Name = "textBoxConvocados";
+            this.textBoxConvocados.Size = new System.Drawing.Size(138, 22);
+            this.textBoxConvocados.TabIndex = 14;
+            // 
+            // listBoxCompeticaoClubes
+            // 
+            this.listBoxCompeticaoClubes.FormattingEnabled = true;
+            this.listBoxCompeticaoClubes.ItemHeight = 16;
+            this.listBoxCompeticaoClubes.Location = new System.Drawing.Point(20, 195);
+            this.listBoxCompeticaoClubes.Name = "listBoxCompeticaoClubes";
+            this.listBoxCompeticaoClubes.Size = new System.Drawing.Size(265, 148);
+            this.listBoxCompeticaoClubes.TabIndex = 15;
+            // 
             // InsertJogo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(707, 274);
+            this.ClientSize = new System.Drawing.Size(707, 477);
+            this.Controls.Add(this.listBoxCompeticaoClubes);
+            this.Controls.Add(this.textBoxConvocados);
+            this.Controls.Add(this.label5);
             this.Controls.Add(this.listBoxObservadores);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.comboBoxObservadoresList);
@@ -193,5 +224,8 @@
         private System.Windows.Forms.ComboBox comboBoxObservadoresList;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.ListBox listBoxObservadores;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.TextBox textBoxConvocados;
+        private System.Windows.Forms.ListBox listBoxCompeticaoClubes;
     }
 }

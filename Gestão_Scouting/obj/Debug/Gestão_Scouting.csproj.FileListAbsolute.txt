@@ -1,4 +1,3 @@
-C:\Users\João Soares\source\repos\BD\Gestão_Scouting\obj\Debug\Gestão_Scouting.csprojAssemblyReference.cache
 C:\Users\João Soares\source\repos\BD\Gestão_Scouting\obj\Debug\Gestão_Scouting.Form1.resources
 C:\Users\João Soares\source\repos\BD\Gestão_Scouting\obj\Debug\Gestão_Scouting.Properties.Resources.resources
 C:\Users\João Soares\source\repos\BD\Gestão_Scouting\obj\Debug\Gestão_Scouting.csproj.GenerateResource.cache
@@ -36,3 +35,4 @@ C:\Users\João Soares\source\repos\BD\Gestão_Scouting\obj\Debug\Gestão_Scoutin
 C:\Users\João Soares\source\repos\BD\Gestão_Scouting\obj\Debug\Gestão_Scouting.UpdateCompeticao.resources
 C:\Users\João Soares\source\repos\BD\Gestão_Scouting\obj\Debug\Gestão_Scouting.InsertJogador_Clube.resources
 C:\Users\João Soares\source\repos\BD\Gestão_Scouting\obj\Debug\Gestão_Scouting.InsertJogo.resources
+C:\Users\João Soares\source\repos\BD\Gestão_Scouting\obj\Debug\Gestão_Scouting.csprojAssemblyReference.cache

@@ -24,6 +24,7 @@ namespace Gestão_Scouting
             ComboBoxOrder();
             comboBoxObservadoresList.SelectedIndex = 0;
             LoadObservador("");
+            ObterCompeticaoClube(IDComp);
             dateTimePicker1.Format = DateTimePickerFormat.Custom;
             dateTimePicker1.CustomFormat = "yyyy-MM-dd";
         }
@@ -124,13 +125,52 @@ namespace Gestão_Scouting
             }
 
         }
+        //Obter Equipas Competição
+
+        private void ObterCompeticaoClube(String id)
+        {
+
+            if (!verifySGBDConnection())
+                return;
+            SqlCommand cmda = new SqlCommand();
+            SqlDataReader readera;
+            //cmd.Connection = cn;
+            try
+            {
+                cmda.CommandType = CommandType.Text;
+                cmda = new SqlCommand("Scouting.Get_Clubes_By_Competicao", cn);
+                cmda.CommandType = CommandType.StoredProcedure;
+                cmda.Parameters.AddWithValue("@id_comp", id);
+                cmda.Parameters.AddWithValue("@orderby", "");
+                readera = cmda.ExecuteReader();
+                listBoxCompeticaoClubes.Items.Clear();
+                while (readera.Read())
+                {
+                    Clube C = new Clube();
+                    C.Clube_Numero_Inscricao_FIFA = readera["Clube_Numero_Inscricao_FIFA"].ToString();
+                    C.Clube_Nome = readera["Clube_Nome"].ToString();
+                    C.Clube_Pais = readera["Clube_Pais"].ToString();
+                    listBoxCompeticaoClubes.Items.Add(C);
+                }
+                readera.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erro Load Clubes Jogos :  " + ex.Message);
+            }
+
+        }
         private void buttonInserir_Click(object sender, EventArgs e)
         {
-            if(listBoxObservadores.SelectedIndex>=0 & !String.IsNullOrEmpty(textBoxLocal.Text) & !String.IsNullOrEmpty(textBoxResultado.Text))
+            if(listBoxObservadores.SelectedIndex>=0 & listBoxCompeticaoClubes.SelectedIndex>=0 & !String.IsNullOrEmpty(textBoxConvocados.Text) &!String.IsNullOrEmpty(textBoxLocal.Text) & !String.IsNullOrEmpty(textBoxResultado.Text))
             {
                 Observador c = new Observador();
                 c = (Observador)listBoxObservadores.Items[listBoxObservadores.SelectedIndex];
                 String idObsev = c.Numero_Identificacao_Federacao.ToString();
+
+                Clube ca = new Clube();
+                ca= (Clube)listBoxCompeticaoClubes.Items[listBoxCompeticaoClubes.SelectedIndex];
+                String idc = c.Numero_Identificacao_Federacao.ToString();
                 try
                 {
                     SqlCommand cmda = new SqlCommand();
@@ -142,6 +182,8 @@ namespace Gestão_Scouting
                     cmda.Parameters.AddWithValue("@resultado", textBoxResultado.Text);
                     cmda.Parameters.AddWithValue("@comp_id", textBoxCompID.Text);
                     cmda.Parameters.AddWithValue("@obs_id", idObsev);
+                    cmda.Parameters.AddWithValue("@id_club",idc);
+                    cmda.Parameters.AddWithValue("@convocados", Int32.Parse(textBoxConvocados.Text));
                     cmda.ExecuteNonQuery();
                     MessageBox.Show("Jogo Inserido!");
                     this.Close();
