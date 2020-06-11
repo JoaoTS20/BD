@@ -1443,6 +1443,8 @@ namespace Gestão_Scouting
 
         private void GetCompeticoes(String order)
         {
+            if (!verifySGBDConnection())
+                return;
             SqlCommand cmda = new SqlCommand();
             SqlDataReader readera;
             //cmd.Connection = cn;
@@ -1453,11 +1455,6 @@ namespace Gestão_Scouting
                 cmda.Parameters.AddWithValue("@orderby", order);
                 readera = cmda.ExecuteReader();
                 listBoxCompeticao.Items.Clear();
-                Competicao n = new Competicao();
-                n.Competicao_ID_FIFA = "0";
-                n.Competicao_Nome = "Null";
-                n.Competicao_Numero_Equipas = "Null";
-                comboBoxOrderClubes.Items.Add(n);
                 while (readera.Read())
                 {
                     Competicao P = new Competicao();
@@ -1465,17 +1462,21 @@ namespace Gestão_Scouting
                     P.Competicao_Nome = readera["Competicao_Nome"].ToString();
                     P.Competicao_Numero_Equipas = readera["Competicao_Numero_Equipas"].ToString();
                     listBoxCompeticao.Items.Add(P);
+
                 }
                 readera.Close();
+                GetNumeroCompeticoes();
             }
             catch(Exception ex)
             {
                 MessageBox.Show("Erro Load Competições:  " +ex.Message);
             }
         }
-
+         //Obter Competicao Jogos
         private void ObterCompeticaoJogos(String ID)
         {
+            if (!verifySGBDConnection())
+                return;
             SqlCommand cmda = new SqlCommand();
             SqlDataReader readera;
             //cmd.Connection = cn;
@@ -1504,6 +1505,45 @@ namespace Gestão_Scouting
                 MessageBox.Show("Erro Load Competições Jogos :  " + ex.Message);
             }
         }
+        //Obter Equipas Competição
+
+        private void ObterCompeticaoClube(String id)
+        {
+
+            if (!verifySGBDConnection())
+                return;
+            SqlCommand cmda = new SqlCommand();
+            SqlDataReader readera;
+            //cmd.Connection = cn;
+            try
+            {
+                cmda.CommandType = CommandType.Text;
+                cmda = new SqlCommand("Scouting.Get_Clubes_By_Competicao", cn);
+                cmda.CommandType = CommandType.StoredProcedure;
+                cmda.Parameters.AddWithValue("@id_comp", id);
+                cmda.Parameters.AddWithValue("@orderby", "");
+                readera = cmda.ExecuteReader();
+                listBoxCompeticaoClubes.Items.Clear();
+                while (readera.Read())
+                {
+                    Clube C = new Clube();
+                    C.Clube_Numero_Inscricao_FIFA = readera["Clube_Numero_Inscricao_FIFA"].ToString();
+                    C.Clube_Nome = readera["Clube_Nome"].ToString();
+                    C.Clube_Pais = readera["Clube_Pais"].ToString();
+                    listBoxCompeticaoClubes.Items.Add(C);
+                }
+                readera.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erro Load Clubes Jogos :  " + ex.Message);
+            }
+
+        }
+
+
+
+
 
         private void ORDENAR_COMP_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -1517,16 +1557,22 @@ namespace Gestão_Scouting
                 GetCompeticoes(x);
             }
         }
-        // Mostrar Jogos e Equipas     
+        // Mostrar Jogos e Equipas E data  
         private void listBoxCompeticao_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (listBoxCompeticao.SelectedIndex > 0)
+            if (listBoxCompeticao.SelectedIndex >= 0)
             {
                 Competicao list = new Competicao();
                 list = (Competicao)listBoxCompeticao.Items[listBoxCompeticao.SelectedIndex];
                 String x = list.Competicao_ID_FIFA.ToString();
                 //Obter Jogos
                 ObterCompeticaoJogos(x);
+                //Número de Jogos
+                GetNumeroJogosCompeticoes(x);
+                //Obter Clubes;
+                ObterCompeticaoClube(x);
+                //Obter N Clubes
+                GetNumeroClubesCompeticoes(x);
             }
         }
         //Inserir Competição
@@ -1555,6 +1601,7 @@ namespace Gestão_Scouting
                     MessageBox.Show("Competição " + textBoxNomeComp.Text + " Inserido!");
                     ORDENAR_COMP.SelectedIndex = 0;
                     GetCompeticoes("");
+                    GetNumeroCompeticoes();
                 }
 
                 catch (Exception ex)
@@ -1567,10 +1614,57 @@ namespace Gestão_Scouting
             {
                 MessageBox.Show("Erro Dados. \n ERROR MESSAGE:" + ex.Message);
             }
-
-
-
         }
+        //Update Competição
+        private void buttonEditarCompeticao_Click(object sender, EventArgs e)
+        {
+            if (listBoxCompeticao.SelectedIndex >= 0)
+            {
+                Competicao list = new Competicao();
+                list = (Competicao)listBoxCompeticao.Items[listBoxCompeticao.SelectedIndex];
+                String x = list.Competicao_ID_FIFA.ToString();
+                UpdateCompeticao dr = new UpdateCompeticao(x);
+                dr.ShowDialog();
+                ORDENAR_COMP.SelectedIndex = 0;
+                GetCompeticoes("");
+            }
+        }
+        //Numero Competições
+
+        private void GetNumeroCompeticoes()
+        {
+            if (!verifySGBDConnection())
+                return;
+            SqlCommand cmda = new SqlCommand();
+            cmda.CommandType = CommandType.Text;
+            cmda = new SqlCommand("select Scouting.Get_Numero_Competicoes ()", cn);
+            textBoxNumeroCompeticao.Text = cmda.ExecuteScalar().ToString();
+        }
+        private void GetNumeroJogosCompeticoes(String x)
+        {
+            if (!verifySGBDConnection())
+                return;
+            textBoxJogoC.Clear();
+            SqlCommand cmda = new SqlCommand();
+            cmda.CommandType = CommandType.Text;
+            cmda = new SqlCommand("select Scouting.Get_Numero_Jogos_Por_Competicao (@id_comp)", cn);
+            cmda.Parameters.AddWithValue("@id_comp", x);
+            textBoxJogoC.Text = cmda.ExecuteScalar().ToString();
+        }
+        private void GetNumeroClubesCompeticoes(String x)
+        {
+            if (!verifySGBDConnection())
+                return;
+            textBoxNumeroClubesCompeticao.Clear();
+            SqlCommand cmda = new SqlCommand();
+            cmda.CommandType = CommandType.Text;
+            cmda = new SqlCommand("select Scouting.Get_Numero_Clubes_Por_Competicao (@id_comp)", cn);
+            cmda.Parameters.AddWithValue("@id_comp", x);
+
+            textBoxNumeroClubesCompeticao.Text = cmda.ExecuteScalar().ToString();
+        }
+
+
     }
 }
 

@@ -56,6 +56,7 @@
             this.buttonUpdateCompeticao.TabIndex = 14;
             this.buttonUpdateCompeticao.Text = "Editar Competicao";
             this.buttonUpdateCompeticao.UseVisualStyleBackColor = true;
+            this.buttonUpdateCompeticao.Click += new System.EventHandler(this.buttonUpdateCompeticao_Click);
             // 
             // textBoxNumero
             // 

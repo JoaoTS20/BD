@@ -152,7 +152,7 @@ namespace Gestão_Scouting
             this.buttonInsertJogo = new System.Windows.Forms.Button();
             this.label49 = new System.Windows.Forms.Label();
             this.label48 = new System.Windows.Forms.Label();
-            this.textBox = new System.Windows.Forms.TextBox();
+            this.textBoxJogoC = new System.Windows.Forms.TextBox();
             this.buttonDeleteCompeticao = new System.Windows.Forms.Button();
             this.buttonEditarCompeticao = new System.Windows.Forms.Button();
             this.buttonInserirCompeticao = new System.Windows.Forms.Button();
@@ -1438,7 +1438,7 @@ namespace Gestão_Scouting
             this.tabPage4.Controls.Add(this.buttonInsertJogo);
             this.tabPage4.Controls.Add(this.label49);
             this.tabPage4.Controls.Add(this.label48);
-            this.tabPage4.Controls.Add(this.textBox);
+            this.tabPage4.Controls.Add(this.textBoxJogoC);
             this.tabPage4.Controls.Add(this.buttonDeleteCompeticao);
             this.tabPage4.Controls.Add(this.buttonEditarCompeticao);
             this.tabPage4.Controls.Add(this.buttonInserirCompeticao);
@@ -1509,13 +1509,13 @@ namespace Gestão_Scouting
             this.label48.TabIndex = 49;
             this.label48.Text = "Número Jogos:";
             // 
-            // textBox
+            // textBoxJogoC
             // 
-            this.textBox.Location = new System.Drawing.Point(849, 471);
-            this.textBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.textBox.Name = "textBox";
-            this.textBox.Size = new System.Drawing.Size(167, 22);
-            this.textBox.TabIndex = 48;
+            this.textBoxJogoC.Location = new System.Drawing.Point(849, 471);
+            this.textBoxJogoC.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.textBoxJogoC.Name = "textBoxJogoC";
+            this.textBoxJogoC.Size = new System.Drawing.Size(167, 22);
+            this.textBoxJogoC.TabIndex = 48;
             // 
             // buttonDeleteCompeticao
             // 
@@ -1536,6 +1536,7 @@ namespace Gestão_Scouting
             this.buttonEditarCompeticao.TabIndex = 46;
             this.buttonEditarCompeticao.Text = "Editar Competição";
             this.buttonEditarCompeticao.UseVisualStyleBackColor = true;
+            this.buttonEditarCompeticao.Click += new System.EventHandler(this.buttonEditarCompeticao_Click);
             // 
             // buttonInserirCompeticao
             // 
@@ -2224,7 +2225,7 @@ namespace Gestão_Scouting
         private System.Windows.Forms.Button buttonEditarCompeticao;
         private System.Windows.Forms.Button buttonInserirCompeticao;
         private System.Windows.Forms.Label label48;
-        private System.Windows.Forms.TextBox textBox;
+        private System.Windows.Forms.TextBox textBoxJogoC;
         private System.Windows.Forms.Label label49;
         private System.Windows.Forms.Button buttonEditJogo;
         private System.Windows.Forms.Button buttonDeleteJogo;

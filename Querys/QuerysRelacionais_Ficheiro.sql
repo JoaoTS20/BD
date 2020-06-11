@@ -1239,8 +1239,95 @@ AS
 			SELECT * FROM Scouting.Jogo WHERE @comp_id=Jogo.Jogo_Competicao_ID_FIFA;
 		END
 
+--UDF Obter Numero de Competicoes
+CREATE FUNCTION Scouting.Get_Numero_Competicoes() RETURNS int
+AS
+	BEGIN
+		DECLARE @res int;
+		SELECT @res = COUNT (*) FROM Scouting.Competicao
+		return @res;
+
+	END
+
+--UDF Obter Numero Jogos Competicao
+create FUNCTION Scouting.Get_Numero_Jogos_Por_Competicao(@id_comp varchar(9)) RETURNS int
+AS
+	BEGIN
+		DECLARE @res int;
+		IF(LEN(@id_comp)=0)
+		BEGIN
+			SELECT @res = COUNT (*) FROM Scouting.Jogo;
+		END
+		IF(LEN(@id_comp)>0)
+		BEGIN
+		SELECT @res = COUNT (*) FROM Scouting.Jogo
+		WHERE Jogo.Jogo_Competicao_ID_FIFA=@id_comp;
+		END
+		return @res;
+
+	END
 
 
+--Stored Procedures Obter Numero de Jogos da competicao
+CREATE PROCEDURE Scouting.Get_Clubes_By_Competicao @id_comp varchar(9),@orderby varchar(40)
+AS
+	DECLARE @SQLstat varchar(500);
+	IF(LEN(@id_comp)=0)
+	BEGIN
+		return;
+	END
+	IF(LEN(@orderby)=0)
+	BEGIN
+		SELECT Clube.* FROM (Scouting.Competicao JOIN Scouting.Inscrito_Em ON Ins_Competicao_ID_FIFA=Competicao_ID_FIFA) JOIN Scouting.Clube ON Clube_Numero_Inscricao_FIFA=Ins_Clube_Numero_Inscricao_FIFA
+		WHERE Competicao_ID_FIFA=@id_comp;
+	END
+	IF(LEN(@orderby)>0)
+	BEGIN
+		SELECT @SQLstat = 'SELECT Clube.* FROM (Scouting.Competicao JOIN Scouting.Inscrito_Em ON Ins_Competicao_ID_FIFA=Competicao_ID_FIFA) JOIN Scouting.Clube ON Clube_Numero_Inscricao_FIFA=Ins_Clube_Numero_Inscricao_FIFA
+		WHERE Competicao_ID_FIFA='+@id_comp+' ORDER BY '+@orderby;
+		EXEC(@SQLstat);
+	END
+
+
+--Stored Procedures Obter Clubes da competicao
+CREATE PROCEDURE Scouting.Get_Clubes_By_Competicao @id_comp varchar(9),@orderby varchar(40)
+AS
+	DECLARE @SQLstat varchar(500);
+	IF(LEN(@id_comp)=0)
+	BEGIN
+		return;
+	END
+	IF(LEN(@orderby)=0)
+	BEGIN
+		SELECT Clube.* FROM (Scouting.Competicao JOIN Scouting.Inscrito_Em ON Ins_Competicao_ID_FIFA=Competicao_ID_FIFA) JOIN Scouting.Clube ON Clube_Numero_Inscricao_FIFA=Ins_Clube_Numero_Inscricao_FIFA
+		WHERE Competicao_ID_FIFA=@id_comp;
+	END
+	IF(LEN(@orderby)>0)
+	BEGIN
+		SELECT @SQLstat = 'SELECT Clube.* FROM (Scouting.Competicao JOIN Scouting.Inscrito_Em ON Ins_Competicao_ID_FIFA=Competicao_ID_FIFA) JOIN Scouting.Clube ON Clube_Numero_Inscricao_FIFA=Ins_Clube_Numero_Inscricao_FIFA
+		WHERE Competicao_ID_FIFA='+@id_comp+' ORDER BY '+@orderby;
+		EXEC(@SQLstat);
+	END
+
+
+--udf Obter Numero de clubes Competicao
+CREATE FUNCTION Scouting.Get_Numero_Clubes_Por_Competicao(@id_comp varchar(9)) RETURNS int
+AS
+	BEGIN
+
+		DECLARE @res int;
+		IF(LEN(@id_comp)=0)
+		BEGIN
+			SELECT @res = COUNT (*) FROM (Scouting.Competicao JOIN Scouting.Inscrito_Em ON Competicao_ID_FIFA=Inscrito_Em.Ins_Competicao_ID_FIFA) JOIN Scouting.Clube ON Clube_Numero_Inscricao_FIFA=Ins_Clube_Numero_Inscricao_FIFA;
+		END
+		IF(LEN(@id_comp)>0)
+		BEGIN
+			SELECT @res = COUNT (*) FROM (Scouting.Competicao JOIN Scouting.Inscrito_Em ON Competicao_ID_FIFA=Inscrito_Em.Ins_Competicao_ID_FIFA) JOIN Scouting.Clube ON Clube_Numero_Inscricao_FIFA=Ins_Clube_Numero_Inscricao_FIFA
+			WHERE Competicao.Competicao_ID_FIFA=@id_comp;
+		END
+		return @res;
+
+	END
 
 
 
