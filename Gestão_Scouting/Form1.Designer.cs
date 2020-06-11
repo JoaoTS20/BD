@@ -872,6 +872,7 @@ namespace Gestão_Scouting
             this.buttonAdicionarClubeCompeticao.TabIndex = 27;
             this.buttonAdicionarClubeCompeticao.Text = "Adicionar Competição Clube";
             this.buttonAdicionarClubeCompeticao.UseVisualStyleBackColor = true;
+            this.buttonAdicionarClubeCompeticao.Click += new System.EventHandler(this.buttonAdicionarClubeCompeticao_Click);
             // 
             // buttonDeleteJogadorClube
             // 

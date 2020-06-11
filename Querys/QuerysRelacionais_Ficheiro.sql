@@ -1227,6 +1227,14 @@ AS
 		END
 	END
 
+
+
+
+
+
+
+
+
 --Stored Procedure Obter Jogos Competicao
 CREATE PROCEDURE Scouting.Get_Jogos_By_Competicao @comp_id varchar(9)
 AS
@@ -1239,6 +1247,15 @@ AS
 			SELECT * FROM Scouting.Jogo WHERE @comp_id=Jogo.Jogo_Competicao_ID_FIFA;
 		END
 
+
+
+
+
+
+
+
+
+
 --UDF Obter Numero de Competicoes
 CREATE FUNCTION Scouting.Get_Numero_Competicoes() RETURNS int
 AS
@@ -1248,6 +1265,13 @@ AS
 		return @res;
 
 	END
+
+
+
+
+
+
+
 
 --UDF Obter Numero Jogos Competicao
 create FUNCTION Scouting.Get_Numero_Jogos_Por_Competicao(@id_comp varchar(9)) RETURNS int
@@ -1266,6 +1290,14 @@ AS
 		return @res;
 
 	END
+
+
+
+
+
+
+
+
 
 
 --Stored Procedures Obter Numero de Jogos da competicao
@@ -1289,6 +1321,13 @@ AS
 	END
 
 
+
+
+
+
+
+
+
 --Stored Procedures Obter Clubes da competicao
 CREATE PROCEDURE Scouting.Get_Clubes_By_Competicao @id_comp varchar(9),@orderby varchar(40)
 AS
@@ -1310,6 +1349,11 @@ AS
 	END
 
 
+
+
+
+
+
 --udf Obter Numero de clubes Competicao
 CREATE FUNCTION Scouting.Get_Numero_Clubes_Por_Competicao(@id_comp varchar(9)) RETURNS int
 AS
@@ -1328,6 +1372,13 @@ AS
 		return @res;
 
 	END
+
+
+
+
+
+
+
 
 -- Stored Procedure Delete Competicao
 CREATE PROCEDURE Scouting.Delete_Competicao @id_comp varchar(9)

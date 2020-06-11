@@ -36,6 +36,8 @@
             this.label3 = new System.Windows.Forms.Label();
             this.buttonCancelar = new System.Windows.Forms.Button();
             this.buttonInscrever = new System.Windows.Forms.Button();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // listBoxComp
@@ -105,12 +107,31 @@
             this.buttonInscrever.TabIndex = 6;
             this.buttonInscrever.Text = "Inscrever";
             this.buttonInscrever.UseVisualStyleBackColor = true;
+            this.buttonInscrever.Click += new System.EventHandler(this.buttonInscrever_Click);
+            // 
+            // textBox2
+            // 
+            this.textBox2.Location = new System.Drawing.Point(550, 152);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(100, 22);
+            this.textBox2.TabIndex = 8;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(474, 155);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(61, 17);
+            this.label4.TabIndex = 9;
+            this.label4.Text = "ID Clube";
             // 
             // InsertCompeticao_Clube
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(708, 285);
+            this.ClientSize = new System.Drawing.Size(671, 264);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.textBox2);
             this.Controls.Add(this.buttonCancelar);
             this.Controls.Add(this.buttonInscrever);
             this.Controls.Add(this.label3);
@@ -136,5 +157,7 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button buttonCancelar;
         private System.Windows.Forms.Button buttonInscrever;
+        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.Label label4;
     }
 }

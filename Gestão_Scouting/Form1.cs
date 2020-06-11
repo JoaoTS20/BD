@@ -1033,18 +1033,34 @@ namespace Gestão_Scouting
         //Editar Clube
         private void buttonEditClube_Click(object sender, EventArgs e)
         {
-            UpdateClube ap = new UpdateClube(textBoxNumeroInscricaoFifaClube.Text);
-            ap.ShowDialog();
-            comboBoxOrderClubes.SelectedIndex = 0;
-            LoadClubes("");
+            if (listBoxClubes.SelectedIndex >= 0)
+            {
+                UpdateClube ap = new UpdateClube(textBoxNumeroInscricaoFifaClube.Text);
+                ap.ShowDialog();
+                comboBoxOrderClubes.SelectedIndex = 0;
+                LoadClubes("");
+            }
+        }
+        
+        //Inscrever em Competição;
+        private void buttonAdicionarClubeCompeticao_Click(object sender, EventArgs e)
+        {
+            if (listBoxClubes.SelectedIndex >= 0)
+            {
+               InsertCompeticao_Clube ap = new InsertCompeticao_Clube(textBoxNumeroInscricaoFifaClube.Text);
+               ap.ShowDialog();
+                GetClubeCompeticoes(textBoxNumeroInscricaoFifaClube.Text);
+
+
+            }
 
         }
 
 
 
 
-
-        //TAB OBSERVADOR
+        /////TAB OBSERVADOR\\\\\
+        ///
         private void LoadObservador(String Order) //SEM ORDER BY PARA AGORA (REUTILIZAR A DO CRIAR RELATORIO
         {
             if (!verifySGBDConnection())
@@ -1688,14 +1704,12 @@ namespace Gestão_Scouting
                     textBoxJogoC.Clear();
                     GetNumeroCompeticoes();
 
-
                 }
                 catch(Exception ex)
                 {
                     MessageBox.Show("Falhou Eliminar Competição da BD database. \n ERROR MESSAGE: " + ex.Message);
 
                 }
-
 
             }
         }
@@ -1725,6 +1739,8 @@ namespace Gestão_Scouting
                 MessageBox.Show("Falhou Carregar Lista da BD database. \n ERROR MESSAGE: " + ex.Message);
             }
         }
+
+
     }
 }
 
