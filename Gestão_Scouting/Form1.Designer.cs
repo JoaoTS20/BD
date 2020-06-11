@@ -94,12 +94,10 @@ namespace Gestão_Scouting
             this.buttonDeleteClube = new System.Windows.Forms.Button();
             this.buttonEditClube = new System.Windows.Forms.Button();
             this.buttonInsertClube = new System.Windows.Forms.Button();
-            this.label43 = new System.Windows.Forms.Label();
-            this.textBoxNumeroJogadoresAtuais = new System.Windows.Forms.TextBox();
             this.label39 = new System.Windows.Forms.Label();
             this.listBoxJogadoresClube = new System.Windows.Forms.ListBox();
             this.textBoxTreinadorAtual = new System.Windows.Forms.TextBox();
-            this.textBoxNúmeroJogadores = new System.Windows.Forms.TextBox();
+            this.textBoxNumeroJogadores = new System.Windows.Forms.TextBox();
             this.textBoxClubeNome = new System.Windows.Forms.TextBox();
             this.textBoxClubePais = new System.Windows.Forms.TextBox();
             this.textBoxNumeroInscricaoFifaClube = new System.Windows.Forms.TextBox();
@@ -207,6 +205,7 @@ namespace Gestão_Scouting
             this.buttonDelListas = new System.Windows.Forms.Button();
             this.buttonInsLista = new System.Windows.Forms.Button();
             this.textBoxMetodo = new System.Windows.Forms.TextBox();
+            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.menuStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -781,6 +780,7 @@ namespace Gestão_Scouting
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.dateTimePicker1);
             this.tabPage2.Controls.Add(this.label28);
             this.tabPage2.Controls.Add(this.textBoxNumeroClubes);
             this.tabPage2.Controls.Add(this.buttonDeleteCompClube);
@@ -790,12 +790,10 @@ namespace Gestão_Scouting
             this.tabPage2.Controls.Add(this.buttonDeleteClube);
             this.tabPage2.Controls.Add(this.buttonEditClube);
             this.tabPage2.Controls.Add(this.buttonInsertClube);
-            this.tabPage2.Controls.Add(this.label43);
-            this.tabPage2.Controls.Add(this.textBoxNumeroJogadoresAtuais);
             this.tabPage2.Controls.Add(this.label39);
             this.tabPage2.Controls.Add(this.listBoxJogadoresClube);
             this.tabPage2.Controls.Add(this.textBoxTreinadorAtual);
-            this.tabPage2.Controls.Add(this.textBoxNúmeroJogadores);
+            this.tabPage2.Controls.Add(this.textBoxNumeroJogadores);
             this.tabPage2.Controls.Add(this.textBoxClubeNome);
             this.tabPage2.Controls.Add(this.textBoxClubePais);
             this.tabPage2.Controls.Add(this.textBoxNumeroInscricaoFifaClube);
@@ -859,7 +857,7 @@ namespace Gestão_Scouting
             // 
             // buttonDeleteJogadorClube
             // 
-            this.buttonDeleteJogadorClube.Location = new System.Drawing.Point(727, 270);
+            this.buttonDeleteJogadorClube.Location = new System.Drawing.Point(428, 717);
             this.buttonDeleteJogadorClube.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.buttonDeleteJogadorClube.Name = "buttonDeleteJogadorClube";
             this.buttonDeleteJogadorClube.Size = new System.Drawing.Size(145, 28);
@@ -869,7 +867,7 @@ namespace Gestão_Scouting
             // 
             // buttonAdicionarJogadorClube
             // 
-            this.buttonAdicionarJogadorClube.Location = new System.Drawing.Point(727, 235);
+            this.buttonAdicionarJogadorClube.Location = new System.Drawing.Point(666, 235);
             this.buttonAdicionarJogadorClube.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.buttonAdicionarJogadorClube.Name = "buttonAdicionarJogadorClube";
             this.buttonAdicionarJogadorClube.Size = new System.Drawing.Size(145, 28);
@@ -896,6 +894,7 @@ namespace Gestão_Scouting
             this.buttonEditClube.TabIndex = 23;
             this.buttonEditClube.Text = "Editar Clube";
             this.buttonEditClube.UseVisualStyleBackColor = true;
+            this.buttonEditClube.Click += new System.EventHandler(this.buttonEditClube_Click);
             // 
             // buttonInsertClube
             // 
@@ -908,27 +907,10 @@ namespace Gestão_Scouting
             this.buttonInsertClube.UseVisualStyleBackColor = true;
             this.buttonInsertClube.Click += new System.EventHandler(this.buttonInsertClube_Click);
             // 
-            // label43
-            // 
-            this.label43.AutoSize = true;
-            this.label43.Location = new System.Drawing.Point(475, 690);
-            this.label43.Name = "label43";
-            this.label43.Size = new System.Drawing.Size(133, 17);
-            this.label43.TabIndex = 21;
-            this.label43.Text = "Número Jogadores:";
-            // 
-            // textBoxNumeroJogadoresAtuais
-            // 
-            this.textBoxNumeroJogadoresAtuais.Location = new System.Drawing.Point(615, 687);
-            this.textBoxNumeroJogadoresAtuais.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.textBoxNumeroJogadoresAtuais.Name = "textBoxNumeroJogadoresAtuais";
-            this.textBoxNumeroJogadoresAtuais.Size = new System.Drawing.Size(95, 22);
-            this.textBoxNumeroJogadoresAtuais.TabIndex = 20;
-            // 
             // label39
             // 
             this.label39.AutoSize = true;
-            this.label39.Location = new System.Drawing.Point(510, 207);
+            this.label39.Location = new System.Drawing.Point(431, 207);
             this.label39.Name = "label39";
             this.label39.Size = new System.Drawing.Size(158, 17);
             this.label39.TabIndex = 19;
@@ -938,10 +920,10 @@ namespace Gestão_Scouting
             // 
             this.listBoxJogadoresClube.FormattingEnabled = true;
             this.listBoxJogadoresClube.ItemHeight = 16;
-            this.listBoxJogadoresClube.Location = new System.Drawing.Point(477, 235);
+            this.listBoxJogadoresClube.Location = new System.Drawing.Point(357, 235);
             this.listBoxJogadoresClube.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.listBoxJogadoresClube.Name = "listBoxJogadoresClube";
-            this.listBoxJogadoresClube.Size = new System.Drawing.Size(232, 420);
+            this.listBoxJogadoresClube.Size = new System.Drawing.Size(286, 420);
             this.listBoxJogadoresClube.TabIndex = 18;
             // 
             // textBoxTreinadorAtual
@@ -952,25 +934,25 @@ namespace Gestão_Scouting
             this.textBoxTreinadorAtual.Size = new System.Drawing.Size(177, 22);
             this.textBoxTreinadorAtual.TabIndex = 17;
             // 
-            // textBoxNúmeroJogadores
+            // textBoxNumeroJogadores
             // 
-            this.textBoxNúmeroJogadores.Location = new System.Drawing.Point(955, 119);
-            this.textBoxNúmeroJogadores.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.textBoxNúmeroJogadores.Name = "textBoxNúmeroJogadores";
-            this.textBoxNúmeroJogadores.Size = new System.Drawing.Size(145, 22);
-            this.textBoxNúmeroJogadores.TabIndex = 16;
+            this.textBoxNumeroJogadores.Location = new System.Drawing.Point(969, 119);
+            this.textBoxNumeroJogadores.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.textBoxNumeroJogadores.Name = "textBoxNumeroJogadores";
+            this.textBoxNumeroJogadores.Size = new System.Drawing.Size(145, 22);
+            this.textBoxNumeroJogadores.TabIndex = 16;
             // 
             // textBoxClubeNome
             // 
-            this.textBoxClubeNome.Location = new System.Drawing.Point(813, 119);
+            this.textBoxClubeNome.Location = new System.Drawing.Point(745, 119);
             this.textBoxClubeNome.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.textBoxClubeNome.Name = "textBoxClubeNome";
-            this.textBoxClubeNome.Size = new System.Drawing.Size(100, 22);
+            this.textBoxClubeNome.Size = new System.Drawing.Size(196, 22);
             this.textBoxClubeNome.TabIndex = 15;
             // 
             // textBoxClubePais
             // 
-            this.textBoxClubePais.Location = new System.Drawing.Point(636, 119);
+            this.textBoxClubePais.Location = new System.Drawing.Point(582, 119);
             this.textBoxClubePais.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.textBoxClubePais.Name = "textBoxClubePais";
             this.textBoxClubePais.Size = new System.Drawing.Size(127, 22);
@@ -978,7 +960,7 @@ namespace Gestão_Scouting
             // 
             // textBoxNumeroInscricaoFifaClube
             // 
-            this.textBoxNumeroInscricaoFifaClube.Location = new System.Drawing.Point(415, 119);
+            this.textBoxNumeroInscricaoFifaClube.Location = new System.Drawing.Point(368, 119);
             this.textBoxNumeroInscricaoFifaClube.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.textBoxNumeroInscricaoFifaClube.Name = "textBoxNumeroInscricaoFifaClube";
             this.textBoxNumeroInscricaoFifaClube.Size = new System.Drawing.Size(167, 22);
@@ -996,7 +978,7 @@ namespace Gestão_Scouting
             // label19
             // 
             this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(633, 98);
+            this.label19.Location = new System.Drawing.Point(579, 98);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(35, 17);
             this.label19.TabIndex = 11;
@@ -1005,7 +987,7 @@ namespace Gestão_Scouting
             // label18
             // 
             this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(951, 98);
+            this.label18.Location = new System.Drawing.Point(965, 98);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(149, 17);
             this.label18.TabIndex = 10;
@@ -1014,7 +996,7 @@ namespace Gestão_Scouting
             // label17
             // 
             this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(811, 98);
+            this.label17.Location = new System.Drawing.Point(742, 98);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(45, 17);
             this.label17.TabIndex = 9;
@@ -1023,7 +1005,7 @@ namespace Gestão_Scouting
             // label15
             // 
             this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(412, 98);
+            this.label15.Location = new System.Drawing.Point(365, 98);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(170, 17);
             this.label15.TabIndex = 8;
@@ -1036,7 +1018,7 @@ namespace Gestão_Scouting
             this.comboBoxOrderClubes.Location = new System.Drawing.Point(69, 46);
             this.comboBoxOrderClubes.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.comboBoxOrderClubes.Name = "comboBoxOrderClubes";
-            this.comboBoxOrderClubes.Size = new System.Drawing.Size(180, 24);
+            this.comboBoxOrderClubes.Size = new System.Drawing.Size(217, 24);
             this.comboBoxOrderClubes.TabIndex = 7;
             this.comboBoxOrderClubes.SelectedIndexChanged += new System.EventHandler(this.comboBoxOrderClubes_SelectedIndexChanged);
             // 
@@ -2028,6 +2010,13 @@ namespace Gestão_Scouting
             this.textBoxMetodo.Size = new System.Drawing.Size(128, 22);
             this.textBoxMetodo.TabIndex = 157;
             // 
+            // dateTimePicker1
+            // 
+            this.dateTimePicker1.Location = new System.Drawing.Point(407, 687);
+            this.dateTimePicker1.Name = "dateTimePicker1";
+            this.dateTimePicker1.Size = new System.Drawing.Size(182, 22);
+            this.dateTimePicker1.TabIndex = 31;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -2116,7 +2105,7 @@ namespace Gestão_Scouting
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.TextBox textBoxTreinadorAtual;
-        private System.Windows.Forms.TextBox textBoxNúmeroJogadores;
+        private System.Windows.Forms.TextBox textBoxNumeroJogadores;
         private System.Windows.Forms.TextBox textBoxClubeNome;
         private System.Windows.Forms.TextBox textBoxClubePais;
         private System.Windows.Forms.TextBox textBoxNumeroInscricaoFifaClube;
@@ -2154,8 +2143,6 @@ namespace Gestão_Scouting
         private System.Windows.Forms.TextBox textBoxNumeroJogadoresLista;
         private System.Windows.Forms.Label label42;
         private System.Windows.Forms.TextBox textBoxNumeroRelatoriosJogador;
-        private System.Windows.Forms.TextBox textBoxNumeroJogadoresAtuais;
-        private System.Windows.Forms.Label label43;
         private System.Windows.Forms.Button buttonRemovePos;
         private System.Windows.Forms.Button buttonInserirPos;
         private System.Windows.Forms.TextBox textBoxinsertPosicoes;
@@ -2239,6 +2226,7 @@ namespace Gestão_Scouting
         private System.Windows.Forms.Button buttonInsertMetodo;
         private System.Windows.Forms.Button buttonDeleteMetodo;
         private System.Windows.Forms.TextBox textBoxMetodo;
+        private System.Windows.Forms.DateTimePicker dateTimePicker1;
     }
 }
 

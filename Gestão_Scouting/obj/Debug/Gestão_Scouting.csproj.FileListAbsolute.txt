@@ -29,3 +29,5 @@ C:\Users\Utilizador\Desktop\2ºano\BD\Projeto\BD\Gestão_Scouting\obj\Debug\Gest
 C:\Users\Utilizador\Desktop\2ºano\BD\Projeto\BD\Gestão_Scouting\obj\Debug\Gestão_Scouting.InsertRelatorio.resources
 C:\Users\João Soares\source\repos\BD\Gestão_Scouting\obj\Debug\Gestão_Scouting.ViewRelatorio.resources
 C:\Users\João Soares\source\repos\BD\Gestão_Scouting\obj\Debug\Gestão_Scouting.UpdateRelatorio.resources
+C:\Users\João Soares\source\repos\BD\Gestão_Scouting\obj\Debug\Gestão_Scouting.InsertClube.resources
+C:\Users\João Soares\source\repos\BD\Gestão_Scouting\obj\Debug\Gestão_Scouting.UpdateClube.resources

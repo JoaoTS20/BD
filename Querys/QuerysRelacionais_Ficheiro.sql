@@ -199,8 +199,8 @@ AS
 
 
 
---Stored Procedure INSERIR CLUBES
-create procedure Scouting.Insert_Clubes(@Clube_Numero_Inscricao varchar(9),@Clube_Pais varchar(40),@Clube_Nome varchar(50))
+--Stored Procedure INSERIR CLUBE
+create procedure Scouting.Insert_Clube(@Clube_Numero_Inscricao varchar(9),@Clube_Pais varchar(40),@Clube_Nome varchar(50))
 as 
 	BEGIN
 		Begin Transaction  x
@@ -221,7 +221,25 @@ as
 	--EXEC Scouting.Insert_Clubes 2, 'Portugal', 'FCP'
 	--Drop procedure Scouting.Insert_Clubes
 
+--Stored Procedure Update CLUBES
+create procedure Scouting.Update_Clube(@Clube_Numero_Inscricao varchar(9),@Clube_Pais varchar(40),@Clube_Nome varchar(50))
+as 
+	BEGIN
+		Begin Transaction  x
+			BEGIN TRY
+				Update Scouting.Clube set  Clube_Pais=@Clube_Pais, Clube_Nome=@Clube_Nome where Clube_Numero_Inscricao_FIFA=@Clube_Numero_Inscricao;
+				print ('Clube Editado')
+				Commit Transaction x
+			END TRY
 
+			BEGIN CATCH 
+				IF @@TRANCOUNT>0
+				BEGIN
+					raiserror ('Erro Editar Clube', 16, 1);
+					RollBack Transaction x
+				END
+			END CATCH
+	END
 
 
 

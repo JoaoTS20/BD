@@ -52,6 +52,30 @@
     <Compile Include="EditarJogador.Designer.cs">
       <DependentUpon>EditarJogador.cs</DependentUpon>
     </Compile>
+    <Compile Include="InserirJogador_Clube.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="InserirJogador_Clube.Designer.cs">
+      <DependentUpon>InserirJogador_Clube.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Inserir_Observador.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Inserir_Observador.Designer.cs">
+      <DependentUpon>Inserir_Observador.cs</DependentUpon>
+    </Compile>
+    <Compile Include="InsertClube.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="InsertClube.Designer.cs">
+      <DependentUpon>InsertClube.cs</DependentUpon>
+    </Compile>
+    <Compile Include="InsertCompeticao_Clube.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="InsertCompeticao_Clube.Designer.cs">
+      <DependentUpon>InsertCompeticao_Clube.cs</DependentUpon>
+    </Compile>
     <Compile Include="InsertPlayer.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -100,11 +124,23 @@
     <Compile Include="Classes\Relatorio.cs" />
     <Compile Include="Classes\Selecionador.cs" />
     <Compile Include="Classes\Treinador.cs" />
+    <Compile Include="UpdateClube.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UpdateClube.Designer.cs">
+      <DependentUpon>UpdateClube.cs</DependentUpon>
+    </Compile>
     <Compile Include="UpdateRelatorio.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="UpdateRelatorio.Designer.cs">
       <DependentUpon>UpdateRelatorio.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Update_Observador.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Update_Observador.Designer.cs">
+      <DependentUpon>Update_Observador.cs</DependentUpon>
     </Compile>
     <Compile Include="ViewRelatorio.cs">
       <SubType>Form</SubType>
@@ -114,6 +150,18 @@
     </Compile>
     <EmbeddedResource Include="EditarJogador.resx">
       <DependentUpon>EditarJogador.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InserirJogador_Clube.resx">
+      <DependentUpon>InserirJogador_Clube.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Inserir_Observador.resx">
+      <DependentUpon>Inserir_Observador.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InsertClube.resx">
+      <DependentUpon>InsertClube.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InsertCompeticao_Clube.resx">
+      <DependentUpon>InsertCompeticao_Clube.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="InsertPlayer.resx">
       <DependentUpon>InsertPlayer.cs</DependentUpon>
@@ -139,8 +187,14 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="UpdateClube.resx">
+      <DependentUpon>UpdateClube.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UpdateRelatorio.resx">
       <DependentUpon>UpdateRelatorio.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Update_Observador.resx">
+      <DependentUpon>Update_Observador.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ViewRelatorio.resx">
       <DependentUpon>ViewRelatorio.cs</DependentUpon>

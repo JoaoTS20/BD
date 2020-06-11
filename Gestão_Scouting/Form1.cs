@@ -843,7 +843,7 @@ namespace Gestão_Scouting
             textBoxClubeNome.ReadOnly = true;
             textBoxClubePais.ReadOnly = true;
             textBoxNumeroInscricaoFifaClube.ReadOnly = true;
-            textBoxNúmeroJogadores.ReadOnly = true;
+            textBoxNumeroJogadores.ReadOnly = true;
             textBoxTreinadorAtual.ReadOnly = true;
         }
         //OrderSelected
@@ -869,7 +869,7 @@ namespace Gestão_Scouting
             cmda = new SqlCommand("select Scouting.Get_NumeroJogadoresEquipa (@Clube_Numero_Inscricao_FIFA)", cn);
             //cmda.CommandType = CommandType.StoredProcedure;
             cmda.Parameters.AddWithValue("@Clube_Numero_Inscricao_FIFA", clube);
-            textBoxNumeroJogadoresAtuais.Text = cmda.ExecuteScalar().ToString();
+            textBoxNumeroJogadores.Text = cmda.ExecuteScalar().ToString();
         }
 
 
@@ -1004,12 +1004,28 @@ namespace Gestão_Scouting
                 GetClubeJogosCompeticao(textBoxNumeroInscricaoFifaClube.Text, namec);
             }
         }
-
+        //Inserir Clube
         private void buttonInsertClube_Click(object sender, EventArgs e)
         {
-            //AddClube ac = new AddClube();
+            if (listBoxClubes.SelectedIndex > -1)
+            {
+                listBoxClubes.ClearSelected();
+            }
+            InsertClube ap = new InsertClube();
+            ap.ShowDialog();
+            comboBoxListaSelecaoJogadores.SelectedIndex = 0;
+            comboBoxOrder.SelectedIndex = 0;
+            LoadClubes("");
         }
-
+        //Editar Clube
+        private void buttonEditClube_Click(object sender, EventArgs e)
+        {
+            UpdateClube ap = new UpdateClube(textBoxNumeroInscricaoFifaClube.Text);
+            ap.ShowDialog();
+            comboBoxOrderClubes.SelectedIndex = 0;
+            LoadClubes("");
+            
+        }
 
 
 
