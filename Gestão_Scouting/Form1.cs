@@ -1474,6 +1474,37 @@ namespace Gestão_Scouting
             }
         }
 
+        private void ObterCompeticaoJogos(String ID)
+        {
+            SqlCommand cmda = new SqlCommand();
+            SqlDataReader readera;
+            //cmd.Connection = cn;
+            try
+            {
+                cmda.CommandType = CommandType.Text;
+                cmda = new SqlCommand("Scouting.Get_Jogos_By_Competicao", cn);
+                cmda.CommandType = CommandType.StoredProcedure;
+                cmda.Parameters.AddWithValue("@Comp_ID", ID);
+                readera = cmda.ExecuteReader();
+                listBoxCompeticaoJogos.Items.Clear();
+                while (readera.Read())
+                {
+                    Jogo J = new Jogo();
+                    J.Jogo_Data = readera["Jogo_Data"].ToString();
+                    J.Jogo_Local = readera["Jogo_Local"].ToString();
+                    J.Resultado = readera["Resultado"].ToString();
+                    J.Jogo_Competicao_ID_FIFA = readera["Jogo_Competicao_ID_FIFA"].ToString();
+                    J.Obs_Num_Iden_Federacao = readera["Obs_Num_Iden_Federacao"].ToString();
+                    listBoxCompeticaoJogos.Items.Add(J);
+                }
+                readera.Close();
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show("Erro Load Competições Jogos :  " + ex.Message);
+            }
+        }
+
         private void ORDENAR_COMP_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (ORDENAR_COMP.SelectedIndex >= 0)
@@ -1485,6 +1516,60 @@ namespace Gestão_Scouting
 
                 GetCompeticoes(x);
             }
+        }
+        // Mostrar Jogos e Equipas     
+        private void listBoxCompeticao_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (listBoxCompeticao.SelectedIndex > 0)
+            {
+                Competicao list = new Competicao();
+                list = (Competicao)listBoxCompeticao.Items[listBoxCompeticao.SelectedIndex];
+                String x = list.Competicao_ID_FIFA.ToString();
+                //Obter Jogos
+                ObterCompeticaoJogos(x);
+            }
+        }
+        //Inserir Competição
+        private void buttonInserirCompeticao_Click(object sender, EventArgs e)
+        {
+            if ( String.IsNullOrEmpty(textBoxIDcomp.Text)  || String.IsNullOrEmpty(textBoxNumero.Text) || String.IsNullOrEmpty(textBoxNomeComp.Text))
+            {
+                return;
+            }
+            if (!verifySGBDConnection())
+                return;
+            try
+            {
+                SqlCommand cmda = new SqlCommand();
+                cmda.CommandType = CommandType.Text;
+                cmda = new SqlCommand("Scouting.Insert_Competicao", cn);
+                cmda.CommandType = CommandType.StoredProcedure;
+                cmda.Parameters.AddWithValue("@Competicao_ID_FIFA", textBoxIDcomp.Text);
+                cmda.Parameters.AddWithValue("@Competicao_Nome", textBoxNomeComp.Text);
+                cmda.Parameters.AddWithValue("@Competicao_Numero_Equipas", textBoxNumero.Text);
+
+
+                try
+                {
+                    cmda.ExecuteNonQuery();
+                    MessageBox.Show("Competição " + textBoxNomeComp.Text + " Inserido!");
+                    ORDENAR_COMP.SelectedIndex = 0;
+                    GetCompeticoes("");
+                }
+
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Falhou Inserir Competição na BD database. \n ERROR MESSAGE:" + ex.Message);
+
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erro Dados. \n ERROR MESSAGE:" + ex.Message);
+            }
+
+
+
         }
     }
 }

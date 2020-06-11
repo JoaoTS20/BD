@@ -1227,7 +1227,82 @@ AS
 		END
 	END
 
+--Stored Procedure Obter Jogos Competicao
+CREATE PROCEDURE Scouting.Get_Jogos_By_Competicao @comp_id varchar(9)
+AS
+		IF(LEN(@comp_id)=0)
+		BEGIN
+			SELECT * FROM Scouting.Jogo;
+		END
+		IF(LEN(@comp_id)>0)
+		BEGIN
+			SELECT * FROM Scouting.Jogo WHERE @comp_id=Jogo.Jogo_Competicao_ID_FIFA;
+		END
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+--Stored Procedure Insert Lista Obs
+CREATE PROCEDURE Scouting.Insert_Lista_Observ @idade_max int,@lista_nome varchar(30)
+AS
+	Begin Transaction  x
+		BEGIN TRY
+			INSERT INTO Scouting.Lista_Observacao_Selecao VALUES (@idade_max, @lista_nome);
+			PRINT 'Lista Observacao Introduzida'
+			Commit Transaction x
+		END TRY
+		BEGIN CATCH 
+			IF @@TRANCOUNT>0
+			BEGIN
+				THROW;
+				raiserror ('Erro na Insercao', 16, 1);
+				ROLLBACK TRANSACTION x
+			END
+		END CATCH
+
+----Stored Procedure Update Lista Obs
+CREATE PROCEDURE Scouting.Update_Lista_Observ @idade_max int,@lista_nome varchar(30)
+AS
+	Begin Transaction  x
+		IF(LEN(@idade_max)=0)
+		BEGIN
+			return;
+		END
+		BEGIN TRY
+			UPDATE Scouting.Lista_Observacao_Selecao
+			SET Lista_Nome=@lista_nome
+			WHERE Lista_Idade_Maxima=@idade_max;
+			PRINT 'Lista Observacao Alterada'
+			Commit Transaction x
+		END TRY
+		BEGIN CATCH 
+			IF @@TRANCOUNT>0
+			BEGIN
+				THROW;
+				raiserror ('Erro na Alteração', 16, 1);
+				ROLLBACK TRANSACTION x
+			END
+		END CATCH
 
 
 

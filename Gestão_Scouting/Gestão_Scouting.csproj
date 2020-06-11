@@ -70,6 +70,12 @@
     <Compile Include="InsertClube.Designer.cs">
       <DependentUpon>InsertClube.cs</DependentUpon>
     </Compile>
+    <Compile Include="InsertCompeticao.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="InsertCompeticao.Designer.cs">
+      <DependentUpon>InsertCompeticao.cs</DependentUpon>
+    </Compile>
     <Compile Include="InsertCompeticao_Clube.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -130,6 +136,12 @@
     <Compile Include="UpdateClube.Designer.cs">
       <DependentUpon>UpdateClube.cs</DependentUpon>
     </Compile>
+    <Compile Include="UpdateCompeticao.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UpdateCompeticao.Designer.cs">
+      <DependentUpon>UpdateCompeticao.cs</DependentUpon>
+    </Compile>
     <Compile Include="UpdateRelatorio.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -160,6 +172,9 @@
     <EmbeddedResource Include="InsertClube.resx">
       <DependentUpon>InsertClube.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="InsertCompeticao.resx">
+      <DependentUpon>InsertCompeticao.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="InsertCompeticao_Clube.resx">
       <DependentUpon>InsertCompeticao_Clube.cs</DependentUpon>
     </EmbeddedResource>
@@ -189,6 +204,9 @@
     </Compile>
     <EmbeddedResource Include="UpdateClube.resx">
       <DependentUpon>UpdateClube.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UpdateCompeticao.resx">
+      <DependentUpon>UpdateCompeticao.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UpdateRelatorio.resx">
       <DependentUpon>UpdateRelatorio.cs</DependentUpon>
