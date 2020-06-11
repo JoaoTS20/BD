@@ -1606,6 +1606,7 @@ namespace Gestão_Scouting
             this.ORDENAR_COMP.Name = "ORDENAR_COMP";
             this.ORDENAR_COMP.Size = new System.Drawing.Size(185, 24);
             this.ORDENAR_COMP.TabIndex = 9;
+            this.ORDENAR_COMP.SelectedIndexChanged += new System.EventHandler(this.ORDENAR_COMP_SelectedIndexChanged);
             // 
             // label36
             // 
@@ -1624,7 +1625,7 @@ namespace Gestão_Scouting
             this.listBoxCompeticao.Location = new System.Drawing.Point(22, 119);
             this.listBoxCompeticao.Margin = new System.Windows.Forms.Padding(4);
             this.listBoxCompeticao.Name = "listBoxCompeticao";
-            this.listBoxCompeticao.Size = new System.Drawing.Size(280, 516);
+            this.listBoxCompeticao.Size = new System.Drawing.Size(303, 516);
             this.listBoxCompeticao.TabIndex = 5;
             // 
             // tabPage5

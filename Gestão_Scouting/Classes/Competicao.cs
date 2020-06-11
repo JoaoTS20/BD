@@ -29,7 +29,7 @@ namespace Gestão_Scouting
         }
         public override string ToString()
         {
-            return Competicao_ID_FIFA + "  " + Competicao_Nome;
+            return Competicao_ID_FIFA + "  " + Competicao_Nome +"  NºEquipas: "+Competicao_Numero_Equipas;
         }
     }
    

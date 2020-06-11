@@ -1198,6 +1198,11 @@ AS
 		return @res;
 	END
 
+
+
+
+
+
 --Obter Jogos Analisados Jogador
 Create Procedure [Scouting].[Get_Jogos_Observador]  @obs_id varchar(9)
 AS
@@ -1206,9 +1211,21 @@ AS
 			END
 
 
-
-
-
+--Stored Procedure Get Competições
+CREATE PROCEDURE Scouting.Get_Lista_Competicoes @orderby varchar(50)
+AS
+	BEGIN
+		DECLARE @SQLstat varchar(200)
+		if (LEN(@orderby)=0)
+		BEGIN
+		SELECT * FROM Scouting.Competicao;
+		END
+		IF(LEN(@orderby)>0)
+		BEGIN
+			SELECT @SQLstat = 'SELECT * FROM Scouting.Competicao ORDER BY '+@orderby;
+			EXEC(@SQLstat);
+		END
+	END
 
 
 

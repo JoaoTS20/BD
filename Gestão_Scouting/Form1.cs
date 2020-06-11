@@ -51,6 +51,10 @@ namespace Gestão_Scouting
             ORDENAR_OBS.SelectedIndex = 0;
             ComboBoxOrderRelatorios();
             ORDENAR_RELATORIOS.SelectedIndex = 0;
+            //Competições
+            ComboBoxOrderCompeticao();
+            ORDENAR_COMP.SelectedIndex = 0;
+            GetCompeticoes("");
 
 
         }
@@ -1405,6 +1409,81 @@ namespace Gestão_Scouting
             catch (Exception ex)
             {
                 throw new Exception("Falhou Obter o número de  Jogos da BD database. \n ERROR MESSAGE: " + ex.Message);
+            }
+        }
+
+        ///TAB COMPETIÇÕES
+        ///
+        //pRENCHER COMBOX ORDERNAR RELATORIOS
+        public void ComboBoxOrderCompeticao()
+        {
+            ComboBoxOrder Null = new ComboBoxOrder();
+            Null.Text = "Null";
+            Null.Value = "";
+            ORDENAR_COMP.Items.Add(Null);
+
+            ComboBoxOrder Competicao_Nome = new ComboBoxOrder();
+            Competicao_Nome.Text = "Nome";
+            Competicao_Nome.Value = "Competicao_Nome";
+            ORDENAR_COMP.Items.Add(Competicao_Nome);
+
+            ComboBoxOrder Competicao_Numero_Equipas = new ComboBoxOrder();
+            Competicao_Numero_Equipas.Text = "Número de Equipas";
+            Competicao_Numero_Equipas.Value = "Competicao_Numero_Equipas";
+            ORDENAR_COMP.Items.Add(Competicao_Numero_Equipas);
+
+            ComboBoxOrder Competicao_ID_FIFA = new ComboBoxOrder();
+            Competicao_ID_FIFA.Text = "ID FIFA";
+            Competicao_ID_FIFA.Value = "Competicao_ID_FIFA";
+            ORDENAR_COMP.Items.Add(Competicao_ID_FIFA);
+        }
+
+
+        //Obter Lista Competições Ordenada ou Não
+
+        private void GetCompeticoes(String order)
+        {
+            SqlCommand cmda = new SqlCommand();
+            SqlDataReader readera;
+            //cmd.Connection = cn;
+            try {
+                cmda.CommandType = CommandType.Text;
+                cmda = new SqlCommand("Scouting.Get_Lista_Competicoes", cn);
+                cmda.CommandType = CommandType.StoredProcedure;
+                cmda.Parameters.AddWithValue("@orderby", order);
+                readera = cmda.ExecuteReader();
+                listBoxCompeticao.Items.Clear();
+                Competicao n = new Competicao();
+                n.Competicao_ID_FIFA = "0";
+                n.Competicao_Nome = "Null";
+                n.Competicao_Numero_Equipas = "Null";
+                comboBoxOrderClubes.Items.Add(n);
+                while (readera.Read())
+                {
+                    Competicao P = new Competicao();
+                    P.Competicao_ID_FIFA = readera["Competicao_ID_FIFA"].ToString();
+                    P.Competicao_Nome = readera["Competicao_Nome"].ToString();
+                    P.Competicao_Numero_Equipas = readera["Competicao_Numero_Equipas"].ToString();
+                    listBoxCompeticao.Items.Add(P);
+                }
+                readera.Close();
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show("Erro Load Competições:  " +ex.Message);
+            }
+        }
+
+        private void ORDENAR_COMP_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (ORDENAR_COMP.SelectedIndex >= 0)
+            {
+                ComboBoxOrder list = new ComboBoxOrder();
+                list = (ComboBoxOrder)ORDENAR_COMP.Items[ORDENAR_COMP.SelectedIndex];
+                String x = list.Value.ToString();
+                //Alterar Load oBSERVADORES
+
+                GetCompeticoes(x);
             }
         }
     }
