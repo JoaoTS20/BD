@@ -161,6 +161,7 @@
             this.button1.TabIndex = 38;
             this.button1.Text = "Cancelar";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // buttonInserirObs
             // 
@@ -171,6 +172,7 @@
             this.buttonInserirObs.TabIndex = 37;
             this.buttonInserirObs.Text = "Inserir Observador";
             this.buttonInserirObs.UseVisualStyleBackColor = true;
+            this.buttonInserirObs.Click += new System.EventHandler(this.buttonInserirObs_Click);
             // 
             // Inserir_Observador
             // 

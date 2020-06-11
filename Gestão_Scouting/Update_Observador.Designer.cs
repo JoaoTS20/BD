@@ -63,6 +63,7 @@
             this.buttonEditObs.TabIndex = 51;
             this.buttonEditObs.Text = "Editar Observador";
             this.buttonEditObs.UseVisualStyleBackColor = true;
+            this.buttonEditObs.Click += new System.EventHandler(this.buttonEditObs_Click);
             // 
             // AREA_OBSERVACAO
             // 

@@ -934,7 +934,7 @@ as
 
 
 
-
+-- Stored Procedure Delete Observador
 CREATE PROCEDURE Scouting.Delete_Observador @id_Fed varchar(9)
 AS
 Begin Transaction  x

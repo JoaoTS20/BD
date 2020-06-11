@@ -23,7 +23,7 @@ namespace Gestão_Scouting
         private SqlConnection getSGBDConnection()
         {
             //Local a Editar!!
-            return new SqlConnection("data source=LAPTOP-2KEGA0ER;integrated security=true;initial catalog=Proj");
+            return new SqlConnection("data source = LAPTOP-MH91MTBV; integrated security = true; initial catalog = Trabalho_Final");
             //MH91MTBV
             //2KEGA0ER
         }
@@ -40,9 +40,10 @@ namespace Gestão_Scouting
         }
 
 
-        private void AddObs(object sender, EventArgs e)
+        private void buttonInserirObs_Click(object sender, EventArgs e)
         {
-            verifySGBDConnection();
+            if (!verifySGBDConnection())
+                return;
             Observador O = new Observador();
             O.Area_Observacao = AREA_OBSERVACAO.Text.ToString();
             O.Numero_Identificacao_Federacao = ID_FEDER.Text.ToString();
@@ -75,6 +76,11 @@ namespace Gestão_Scouting
                 MessageBox.Show("Falhou Inserir Observador na BD database. \n ERROR MESSAGE:" + ex.Message);
 
             }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

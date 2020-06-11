@@ -54,7 +54,7 @@ namespace Gestão_Scouting
         private SqlConnection getSGBDConnection()
         {
             //Local a Editar!!
-            return new SqlConnection("data source = LAPTOP-2KEGA0ER; integrated security = true; initial catalog = Proj");
+            return new SqlConnection("data source = LAPTOP-MH91MTBV; integrated security = true; initial catalog = Trabalho_Final");
             //MH91MTBV
             //2KEGA0ER
         }
@@ -1158,44 +1158,23 @@ namespace Gestão_Scouting
         //Editar Observador
         private void buttonEditObservador_Click(object sender, EventArgs e)
         {
-            Observador O = new Observador();
-            O.Area_Observacao = AREA_OBSERVACAO.Text.ToString();
-            O.Numero_Identificacao_Federacao = ID_FEDER.Text.ToString();
-            O.Observador_Idade = IDADE_OBS.Text.ToString();
-            O.Observador_Nacionalidade = NACIONALIDADE_OBS.Text.ToString();
-            O.Observador_Qualificacoes = QUALIFIC_OBS.Text.ToString();
-            O.Observador_Nome = NOME_OBS.Text.ToString();
-
-            if (!verifySGBDConnection())
+            if (LISTA_OBSERVADORES.SelectedIndex < 0)
+            {
                 return;
-            SqlCommand cmda = new SqlCommand();
-            cmda.CommandType = CommandType.Text;
-            cmda = new SqlCommand("Scouting.Update_Observador", cn);
-            cmda.CommandType = CommandType.StoredProcedure;
-
-            cmda.Parameters.AddWithValue("@Numero_Identificacao_Federacao", O.Numero_Identificacao_Federacao);
-            cmda.Parameters.AddWithValue("@Observador_Nome", O.Observador_Nome);
-            cmda.Parameters.AddWithValue("@Observador_Qualificacoes", O.Observador_Qualificacoes);
-            cmda.Parameters.AddWithValue("@Obsevador_Nacionalidade", O.Observador_Nacionalidade);
-            cmda.Parameters.AddWithValue("@Observador_Idade", Int32.Parse(O.Observador_Idade));
-            cmda.Parameters.AddWithValue("@Area_Obsevacao", O.Area_Observacao);
-            try
-            {
-                cmda.ExecuteNonQuery();
-                MessageBox.Show("Observador " + NOME_OBS.Text.ToString() + " Editado!");
-                this.Close();
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Falhou Editar Observador na BD database. \n ERROR MESSAGE:" + ex.Message);
-
-            }
+            Update_Observador io = new Update_Observador(ID_FEDER.Text);
+            io.ShowDialog();
+            LoadObservador();
         }
         //Eliminar Observador
         private void buttonDeleteObs_Click(object sender, EventArgs e)
         {
             if (!verifySGBDConnection())
                 return;
+            if (LISTA_OBSERVADORES.SelectedIndex < 0)
+            {
+                return;
+            }
             SqlCommand cmda = new SqlCommand();
             cmda.CommandType = CommandType.Text;
             cmda = new SqlCommand("Scouting.Delete_Observador", cn);
@@ -1206,8 +1185,10 @@ namespace Gestão_Scouting
             try
             {
                 cmda.ExecuteNonQuery();
-                MessageBox.Show("Observador " + NOME_OBS.Text.ToString() + " Editado!");
-                this.Close();
+                MessageBox.Show("Observador " + NOME_OBS.Text.ToString() + " Eliminado!");
+                LoadObservador();
+                GetRelatoriosJogadores(textID_FIFPro.Text);
+                RELATORIOS_OBS.Items.Clear();
             }
             catch (Exception ex)
             {
