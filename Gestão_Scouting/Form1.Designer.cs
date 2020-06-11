@@ -38,6 +38,7 @@ namespace Gestão_Scouting
             this.textJogadorNome = new System.Windows.Forms.TextBox();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.textBoxMetodo = new System.Windows.Forms.TextBox();
             this.buttonInsertMetodo = new System.Windows.Forms.Button();
             this.buttonDeleteMetodo = new System.Windows.Forms.Button();
             this.listBoxMetodos = new System.Windows.Forms.ListBox();
@@ -85,6 +86,7 @@ namespace Gestão_Scouting
             this.textID_FIFPro = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.label28 = new System.Windows.Forms.Label();
             this.textBoxNumeroClubes = new System.Windows.Forms.TextBox();
             this.buttonDeleteCompClube = new System.Windows.Forms.Button();
@@ -204,8 +206,6 @@ namespace Gestão_Scouting
             this.label35 = new System.Windows.Forms.Label();
             this.buttonDelListas = new System.Windows.Forms.Button();
             this.buttonInsLista = new System.Windows.Forms.Button();
-            this.textBoxMetodo = new System.Windows.Forms.TextBox();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.menuStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -341,6 +341,13 @@ namespace Gestão_Scouting
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Jogadores";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // textBoxMetodo
+            // 
+            this.textBoxMetodo.Location = new System.Drawing.Point(1006, 460);
+            this.textBoxMetodo.Name = "textBoxMetodo";
+            this.textBoxMetodo.Size = new System.Drawing.Size(128, 22);
+            this.textBoxMetodo.TabIndex = 157;
             // 
             // buttonInsertMetodo
             // 
@@ -818,6 +825,13 @@ namespace Gestão_Scouting
             this.tabPage2.Text = "Clubes";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
+            // dateTimePicker1
+            // 
+            this.dateTimePicker1.Location = new System.Drawing.Point(407, 687);
+            this.dateTimePicker1.Name = "dateTimePicker1";
+            this.dateTimePicker1.Size = new System.Drawing.Size(182, 22);
+            this.dateTimePicker1.TabIndex = 31;
+            // 
             // label28
             // 
             this.label28.AutoSize = true;
@@ -1237,6 +1251,7 @@ namespace Gestão_Scouting
             this.ORDENAR_RELATORIOS.Name = "ORDENAR_RELATORIOS";
             this.ORDENAR_RELATORIOS.Size = new System.Drawing.Size(155, 24);
             this.ORDENAR_RELATORIOS.TabIndex = 25;
+            this.ORDENAR_RELATORIOS.SelectedIndexChanged += new System.EventHandler(this.ORDENAR_RELATORIOS_SelectedIndexChanged);
             // 
             // label32
             // 
@@ -1405,6 +1420,7 @@ namespace Gestão_Scouting
             this.ORDENAR_OBS.Name = "ORDENAR_OBS";
             this.ORDENAR_OBS.Size = new System.Drawing.Size(211, 24);
             this.ORDENAR_OBS.TabIndex = 4;
+            this.ORDENAR_OBS.SelectedIndexChanged += new System.EventHandler(this.ORDENAR_OBS_SelectedIndexChanged);
             // 
             // label22
             // 
@@ -2005,20 +2021,6 @@ namespace Gestão_Scouting
             this.buttonInsLista.TabIndex = 43;
             this.buttonInsLista.Text = "Inserir Lista";
             this.buttonInsLista.UseVisualStyleBackColor = true;
-            // 
-            // textBoxMetodo
-            // 
-            this.textBoxMetodo.Location = new System.Drawing.Point(1006, 460);
-            this.textBoxMetodo.Name = "textBoxMetodo";
-            this.textBoxMetodo.Size = new System.Drawing.Size(128, 22);
-            this.textBoxMetodo.TabIndex = 157;
-            // 
-            // dateTimePicker1
-            // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(407, 687);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(182, 22);
-            this.dateTimePicker1.TabIndex = 31;
             // 
             // Form1
             // 

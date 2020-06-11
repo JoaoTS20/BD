@@ -46,7 +46,12 @@ namespace Gestão_Scouting
             LoadClubes("");
             ComboBoxOrderClubes();
             //Observador
-            LoadObservador();
+            LoadObservador("");
+            ComboBoxOrderObservadores();
+            ORDENAR_OBS.SelectedIndex = 0;
+            ComboBoxOrderRelatorios();
+            ORDENAR_RELATORIOS.SelectedIndex = 0;
+
 
         }
 
@@ -77,9 +82,10 @@ namespace Gestão_Scouting
             //Meter muito mais coisas
             LoadJogadores("", "");
             LoadClubes("");
-            LoadObservador();
+            LoadObservador("");
             comboBoxListaSelecaoJogadores.SelectedIndex = 0;
             comboBoxOrder.SelectedIndex = 0;
+            ORDENAR_OBS.SelectedIndex = 0;
         }
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -1032,7 +1038,7 @@ namespace Gestão_Scouting
 
 
         //TAB OBSERVADOR
-        private void LoadObservador() //SEM ORDER BY PARA AGORA (REUTILIZAR A DO CRIAR RELATORIO
+        private void LoadObservador(String Order) //SEM ORDER BY PARA AGORA (REUTILIZAR A DO CRIAR RELATORIO
         {
             if (!verifySGBDConnection())
                 return;
@@ -1042,8 +1048,11 @@ namespace Gestão_Scouting
             try
             {
                 cmd.CommandType = CommandType.Text;
-                cmd = new SqlCommand("Scouting.Get_Observador", cn);
+                cmd = new SqlCommand("Scouting.Get_Lista_Observadores", cn);
                 cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@sort_by", Order);
+                cmd.Parameters.AddWithValue("@filter_by", "");
+                cmd.Parameters.AddWithValue("@filter_value", "");
                 reader = cmd.ExecuteReader();
                 LISTA_OBSERVADORES.Items.Clear();
                 while (reader.Read())
@@ -1088,7 +1097,6 @@ namespace Gestão_Scouting
         //Obter Relatorios Observador
         private void GetRelatoriosObservador(String x, String Order)
         {
-            Console.WriteLine("Entrou");
             if (!verifySGBDConnection())
                 return;
             SqlCommand cmd = new SqlCommand();
@@ -1141,19 +1149,131 @@ namespace Gestão_Scouting
             if (LISTA_OBSERVADORES.SelectedIndex >= 0)
             {
                 currentObservador = LISTA_OBSERVADORES.SelectedIndex;
-
                 //Mostrar Observador
                 ShowObservador();
                 //Mostrar Relatorios
-                GetRelatoriosObservador(ID_FEDER.Text, ""); //Sem Order por causa da ComboBox
+                ORDENAR_RELATORIOS.SelectedIndex = 0;
+                GetRelatoriosObservador(ID_FEDER.Text, "");
             }
         }
+        //PREENCHER ComboBOX oBSERVADDOR
+        public void ComboBoxOrderObservadores()
+        {
+            ComboBoxOrder Null = new ComboBoxOrder();
+            Null.Text = "Null";
+            Null.Value = "";
+            ORDENAR_OBS.Items.Add(Null);
+
+            ComboBoxOrder Observador_Nome = new ComboBoxOrder();
+            Observador_Nome.Text = "Nome";
+            Observador_Nome.Value = "Observador_Nome";
+            ORDENAR_OBS.Items.Add(Observador_Nome);
+
+            ComboBoxOrder Observador_Qualificações = new ComboBoxOrder();
+            Observador_Qualificações.Text = "Qualificações";
+            Observador_Qualificações.Value = "Observador_Qualificações";
+            ORDENAR_OBS.Items.Add(Observador_Qualificações);
+
+            ComboBoxOrder Observador_Nacionalidade = new ComboBoxOrder();
+            Observador_Nacionalidade.Text = "Nacionalidade";
+            Observador_Nacionalidade.Value = "Observador_Nacionalidade";
+            ORDENAR_OBS.Items.Add(Observador_Nacionalidade);
+
+            ComboBoxOrder Idade = new ComboBoxOrder();
+            Idade.Text = "Idade";
+            Idade.Value = "Observador_Idade";
+            ORDENAR_OBS.Items.Add(Idade);
+
+            ComboBoxOrder Area_Observacao = new ComboBoxOrder();
+            Area_Observacao.Text = "Área Observação";
+            Area_Observacao.Value = "Area_Observacao";
+            ORDENAR_OBS.Items.Add(Area_Observacao);
+        }
+        //pRENCHER COMBOX ORDERNAR RELATORIOS
+        public void ComboBoxOrderRelatorios()
+        {
+            ComboBoxOrder Null = new ComboBoxOrder();
+            Null.Text = "Null";
+            Null.Value = "";
+            ORDENAR_RELATORIOS.Items.Add(Null);
+
+            ComboBoxOrder ID = new ComboBoxOrder();
+            ID.Text = "ID";
+            ID.Value = "ID";
+            ORDENAR_RELATORIOS.Items.Add(ID);
+
+            ComboBoxOrder Relatorio_Titulo = new ComboBoxOrder();
+            Relatorio_Titulo.Text = "Título";
+            Relatorio_Titulo.Value = "Relatorio_Titulo";
+            ORDENAR_RELATORIOS.Items.Add(Relatorio_Titulo);
+
+            ComboBoxOrder DATA = new ComboBoxOrder();
+            DATA.Text = "Data";
+            DATA.Value = "Relatorio_Data";
+            ORDENAR_RELATORIOS.Items.Add(DATA);
+
+            ComboBoxOrder ID_J = new ComboBoxOrder();
+            ID_J.Text = "ID_FIFPro";
+            ID_J.Value = "Observador_Idade";
+            ORDENAR_RELATORIOS.Items.Add(ID_J);
+
+            ComboBoxOrder Jogo_Local = new ComboBoxOrder();
+            Jogo_Local.Text = "Jogo Local";
+            Jogo_Local.Value = "Jogo_Local";
+            ORDENAR_RELATORIOS.Items.Add(Jogo_Local);
+
+            ComboBoxOrder Jogo_Data = new ComboBoxOrder();
+            Jogo_Data.Text = "Jogo Data";
+            Jogo_Data.Value = "Jogo_Data";
+            ORDENAR_RELATORIOS.Items.Add(Jogo_Data);
+
+        }
+
+
+
+        //PRENCHER combox Ordernar Jogos
+        public void ComboBoxOrderJogos()
+        {
+            ComboBoxOrder Null = new ComboBoxOrder();
+            Null.Text = "Null";
+            Null.Value = "";
+            ORDENAR_OBS.Items.Add(Null);
+
+            ComboBoxOrder Observador_Nome = new ComboBoxOrder();
+            Observador_Nome.Text = "Nome";
+            Observador_Nome.Value = "Observador_Nome";
+            ORDENAR_OBS.Items.Add(Observador_Nome);
+
+            ComboBoxOrder Observador_Qualificações = new ComboBoxOrder();
+            Observador_Qualificações.Text = "Qualificações";
+            Observador_Qualificações.Value = "Observador_Qualificações";
+            ORDENAR_OBS.Items.Add(Observador_Qualificações);
+
+            ComboBoxOrder Observador_Nacionalidade = new ComboBoxOrder();
+            Observador_Nacionalidade.Text = "Nacionalidade";
+            Observador_Nacionalidade.Value = "Observador_Nacionalidade";
+            ORDENAR_OBS.Items.Add(Observador_Nacionalidade);
+
+            ComboBoxOrder Idade = new ComboBoxOrder();
+            Idade.Text = "Idade";
+            Idade.Value = "Observador_Idade";
+            ORDENAR_OBS.Items.Add(Idade);
+
+            ComboBoxOrder Area_Observacao = new ComboBoxOrder();
+            Area_Observacao.Text = "Área Observação";
+            Area_Observacao.Value = "Area_Observacao";
+            ORDENAR_OBS.Items.Add(Area_Observacao);
+        }
+
+
+
         //Criar Observador
         private void buttonInserirObs_Click(object sender, EventArgs e)
         {
             Inserir_Observador io = new Inserir_Observador();
             io.ShowDialog();
-            LoadObservador();
+            LoadObservador("");
+            ORDENAR_OBS.SelectedIndex = 0;
         }
         //Editar Observador
         private void buttonEditObservador_Click(object sender, EventArgs e)
@@ -1164,7 +1284,8 @@ namespace Gestão_Scouting
             }
             Update_Observador io = new Update_Observador(ID_FEDER.Text);
             io.ShowDialog();
-            LoadObservador();
+            LoadObservador("");
+            ORDENAR_OBS.SelectedIndex = 0;
         }
         //Eliminar Observador
         private void buttonDeleteObs_Click(object sender, EventArgs e)
@@ -1186,7 +1307,8 @@ namespace Gestão_Scouting
             {
                 cmda.ExecuteNonQuery();
                 MessageBox.Show("Observador " + NOME_OBS.Text.ToString() + " Eliminado!");
-                LoadObservador();
+                LoadObservador("");
+                ORDENAR_OBS.SelectedIndex = 0;
                 GetRelatoriosJogadores(textID_FIFPro.Text);
                 RELATORIOS_OBS.Items.Clear();
             }
@@ -1196,11 +1318,37 @@ namespace Gestão_Scouting
 
             }
         }
+        //ORDER OBS
+        private void ORDENAR_OBS_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (ORDENAR_OBS.SelectedIndex >= 0)
+            {
+                ComboBoxOrder list = new ComboBoxOrder();
+                list = (ComboBoxOrder)ORDENAR_OBS.Items[ORDENAR_OBS.SelectedIndex];
+                String x = list.Value.ToString();
+                //Alterar Load oBSERVADORES
+                LoadObservador(x);
+                RELATORIOS_OBS.Items.Clear();
+                
+            }
+        }
         private void buttonJogadorClube_Click(object sender, EventArgs e)
         {
 
         }
+        //Ordenar Relatorios Observador
+        private void ORDENAR_RELATORIOS_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (ORDENAR_RELATORIOS.SelectedIndex >= 0)
+            {
+                ComboBoxOrder list = new ComboBoxOrder();
+                list = (ComboBoxOrder)ORDENAR_RELATORIOS.Items[ORDENAR_RELATORIOS.SelectedIndex];
+                String x = list.Value.ToString();
+                //Alterar Load oBSERVADORES
 
+                GetRelatoriosObservador(ID_FEDER.Text, x);
+            }
+        }
     }
 }
 
