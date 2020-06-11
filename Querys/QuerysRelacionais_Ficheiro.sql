@@ -1468,7 +1468,7 @@ AS
 
 
 --Stored Procedure Inserir Jogo Competição
-CREATE PROCEDURE Scouting.Insert_Jogo @local varchar(100),@data date, @resultado varchar(5),@comp_id varchar(9),@obs_id varchar(9)
+Create PROCEDURE [Scouting].[Insert_Jogo] @id_club varchar(9), @convocados int,@local varchar(100),@data date, @resultado varchar(5),@comp_id varchar(9),@obs_id varchar(9)
 AS
 	BEGIN TRANSACTION x;
 	IF(LEN(@local)=0 OR LEN(@data)=0)
@@ -1477,6 +1477,7 @@ AS
 	END
 	BEGIN TRY
 		INSERT INTO Scouting.Jogo VALUES (@local,@data,@resultado,@comp_id,@obs_id)
+		Insert Into Scouting.Participa_Em VALUES (@id_club,@data,@local,@convocados)
 		PRINT 'Jogo Adicionada'
 		Commit Transaction x
 	END TRY
