@@ -16,5 +16,15 @@ namespace Gestão_Scouting
         {
             InitializeComponent();
         }
+
+        private void UserNameBox_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void PasswordBox_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
