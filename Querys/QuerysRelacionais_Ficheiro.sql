@@ -1329,7 +1329,31 @@ AS
 
 	END
 
-
+-- Stored Procedure Delete Competicao
+CREATE PROCEDURE Scouting.Delete_Competicao @id_comp varchar(9)
+AS
+	Begin Transaction  x
+	IF(LEN(@id_comp)=0)
+	BEGIN
+		return;
+	END
+	BEGIN TRY
+		DELETE Scouting.Inscrito_Em WHERE Ins_Competicao_ID_FIFA=@id_comp;
+		UPDATE Scouting.Jogo
+		SET Jogo_Competicao_ID_FIFA=NULL
+		WHERE Jogo_Competicao_ID_FIFA=@id_comp;
+		DELETE Scouting.Competicao WHERE Competicao_ID_FIFA=@id_comp;
+		PRINT 'Lista Observacao Eliminada'
+		Commit Transaction x
+	END TRY
+	BEGIN CATCH 
+		IF @@TRANCOUNT>0
+		BEGIN
+			THROW;
+			raiserror ('Erro ao Eliminar', 16, 1);
+			ROLLBACK TRANSACTION x
+		END
+	END CATCH
 
 
 

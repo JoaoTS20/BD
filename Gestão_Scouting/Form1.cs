@@ -55,6 +55,9 @@ namespace Gestão_Scouting
             ComboBoxOrderCompeticao();
             ORDENAR_COMP.SelectedIndex = 0;
             GetCompeticoes("");
+            //Gestão
+            loadListaObservacaoSelecao();
+
 
 
         }
@@ -1540,11 +1543,6 @@ namespace Gestão_Scouting
             }
 
         }
-
-
-
-
-
         private void ORDENAR_COMP_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (ORDENAR_COMP.SelectedIndex >= 0)
@@ -1663,8 +1661,70 @@ namespace Gestão_Scouting
 
             textBoxNumeroClubesCompeticao.Text = cmda.ExecuteScalar().ToString();
         }
+        //Apagar Competição
+        private void buttonDeleteCompeticao_Click(object sender, EventArgs e)
+        {
+            if (listBoxCompeticao.SelectedIndex >= 0)
+            {
+
+                Competicao list = new Competicao();
+                list = (Competicao)listBoxCompeticao.Items[listBoxCompeticao.SelectedIndex];
+                String x = list.Competicao_ID_FIFA.ToString();
+                //Meter aqui para SP
+                SqlCommand cmd = new SqlCommand();
+                cmd.CommandType = CommandType.Text;
+                try
+                {
+                   cmd = new SqlCommand("Scouting.Delete_Competicao", cn);
+                   cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@id_comp", x);
+                    cmd.ExecuteNonQuery();
+                    MessageBox.Show("Competição"+ x +"Eliminada");
+                    ORDENAR_COMP.SelectedIndex = 0;
+                    GetCompeticoes("");
+                    listBoxCompeticaoClubes.Items.Clear();
+                    listBoxCompeticaoJogos.Items.Clear();
+                    textBoxNumeroClubesCompeticao.Clear();
+                    textBoxJogoC.Clear();
+                    GetNumeroCompeticoes();
 
 
+                }
+                catch(Exception ex)
+                {
+                    MessageBox.Show("Falhou Eliminar Competição da BD database. \n ERROR MESSAGE: " + ex.Message);
+
+                }
+
+
+            }
+        }
+        /////////TAB GESTÃO////////
+        ///
+        //Load ListaObservacaoSelecao()
+        public void loadListaObservacaoSelecao()
+        {
+
+            SqlCommand cmd = new SqlCommand();
+            cmd.CommandType = CommandType.Text;
+            cmd = new SqlCommand("Scouting.Get_Listas_Observacao_Selecao", cn);
+            try
+            {
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    Lista_Observacao_Selecao L = new Lista_Observacao_Selecao();
+                    L.Lista_Nome = reader["Lista_Nome"].ToString();
+                    L.Lista_Idade_Maxima = reader["Lista_Idade_Maxima"].ToString();
+                    listBoxListasDeSelecao.Items.Add(L);
+                }
+                reader.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Falhou Carregar Lista da BD database. \n ERROR MESSAGE: " + ex.Message);
+            }
+        }
     }
 }
 

@@ -70,12 +70,6 @@
     <Compile Include="InsertClube.Designer.cs">
       <DependentUpon>InsertClube.cs</DependentUpon>
     </Compile>
-    <Compile Include="InsertCompeticao.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="InsertCompeticao.Designer.cs">
-      <DependentUpon>InsertCompeticao.cs</DependentUpon>
-    </Compile>
     <Compile Include="InsertCompeticao_Clube.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -91,12 +85,6 @@
     <Compile Include="Classes\Clube.cs" />
     <Compile Include="Classes\ComboBoxOrder.cs" />
     <Compile Include="Classes\Competicao.cs" />
-    <Compile Include="DadosRelatorioTabJogador.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="DadosRelatorioTabJogador.Designer.cs">
-      <DependentUpon>DadosRelatorioTabJogador.cs</DependentUpon>
-    </Compile>
     <Compile Include="Classes\Metricas_Jogo_Jogador.cs" />
     <Compile Include="Classes\Analise_Caracteristica_Jogador.cs" />
     <Compile Include="Form1.cs">
@@ -172,17 +160,11 @@
     <EmbeddedResource Include="InsertClube.resx">
       <DependentUpon>InsertClube.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="InsertCompeticao.resx">
-      <DependentUpon>InsertCompeticao.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="InsertCompeticao_Clube.resx">
       <DependentUpon>InsertCompeticao_Clube.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="InsertPlayer.resx">
       <DependentUpon>InsertPlayer.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="DadosRelatorioTabJogador.resx">
-      <DependentUpon>DadosRelatorioTabJogador.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>

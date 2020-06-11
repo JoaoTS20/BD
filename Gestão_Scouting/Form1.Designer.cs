@@ -147,6 +147,12 @@ namespace Gestão_Scouting
             this.label22 = new System.Windows.Forms.Label();
             this.LISTA_OBSERVADORES = new System.Windows.Forms.ListBox();
             this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.textBoxNumero = new System.Windows.Forms.TextBox();
+            this.textBoxNomeComp = new System.Windows.Forms.TextBox();
+            this.textBoxIDcomp = new System.Windows.Forms.TextBox();
+            this.label34 = new System.Windows.Forms.Label();
+            this.label43 = new System.Windows.Forms.Label();
+            this.label64 = new System.Windows.Forms.Label();
             this.buttonEditJogo = new System.Windows.Forms.Button();
             this.buttonDeleteJogo = new System.Windows.Forms.Button();
             this.buttonInsertJogo = new System.Windows.Forms.Button();
@@ -204,12 +210,6 @@ namespace Gestão_Scouting
             this.label35 = new System.Windows.Forms.Label();
             this.buttonDelListas = new System.Windows.Forms.Button();
             this.buttonInsLista = new System.Windows.Forms.Button();
-            this.textBoxNumero = new System.Windows.Forms.TextBox();
-            this.textBoxNomeComp = new System.Windows.Forms.TextBox();
-            this.textBoxIDcomp = new System.Windows.Forms.TextBox();
-            this.label34 = new System.Windows.Forms.Label();
-            this.label43 = new System.Windows.Forms.Label();
-            this.label64 = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -227,7 +227,7 @@ namespace Gestão_Scouting
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(5, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(1413, 30);
+            this.menuStrip1.Size = new System.Drawing.Size(1413, 28);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -237,7 +237,7 @@ namespace Gestão_Scouting
             this.toolStripMenuItem2,
             this.exitToolStripMenuItem});
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(52, 26);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(52, 24);
             this.toolStripMenuItem1.Text = "Utils";
             // 
             // toolStripMenuItem2
@@ -1461,6 +1461,54 @@ namespace Gestão_Scouting
             this.tabPage4.Text = "Competição";
             this.tabPage4.UseVisualStyleBackColor = true;
             // 
+            // textBoxNumero
+            // 
+            this.textBoxNumero.Location = new System.Drawing.Point(1090, 158);
+            this.textBoxNumero.Name = "textBoxNumero";
+            this.textBoxNumero.Size = new System.Drawing.Size(128, 22);
+            this.textBoxNumero.TabIndex = 59;
+            // 
+            // textBoxNomeComp
+            // 
+            this.textBoxNomeComp.Location = new System.Drawing.Point(1090, 103);
+            this.textBoxNomeComp.Name = "textBoxNomeComp";
+            this.textBoxNomeComp.Size = new System.Drawing.Size(128, 22);
+            this.textBoxNomeComp.TabIndex = 58;
+            // 
+            // textBoxIDcomp
+            // 
+            this.textBoxIDcomp.Location = new System.Drawing.Point(1090, 49);
+            this.textBoxIDcomp.Name = "textBoxIDcomp";
+            this.textBoxIDcomp.Size = new System.Drawing.Size(128, 22);
+            this.textBoxIDcomp.TabIndex = 57;
+            // 
+            // label34
+            // 
+            this.label34.AutoSize = true;
+            this.label34.Location = new System.Drawing.Point(1087, 138);
+            this.label34.Name = "label34";
+            this.label34.Size = new System.Drawing.Size(133, 17);
+            this.label34.TabIndex = 56;
+            this.label34.Text = "Número de Equipas";
+            // 
+            // label43
+            // 
+            this.label43.AutoSize = true;
+            this.label43.Location = new System.Drawing.Point(1087, 83);
+            this.label43.Name = "label43";
+            this.label43.Size = new System.Drawing.Size(45, 17);
+            this.label43.TabIndex = 55;
+            this.label43.Text = "Nome";
+            // 
+            // label64
+            // 
+            this.label64.AutoSize = true;
+            this.label64.Location = new System.Drawing.Point(1087, 28);
+            this.label64.Name = "label64";
+            this.label64.Size = new System.Drawing.Size(131, 17);
+            this.label64.TabIndex = 54;
+            this.label64.Text = "Competição ID FIFA";
+            // 
             // buttonEditJogo
             // 
             this.buttonEditJogo.Location = new System.Drawing.Point(1032, 272);
@@ -1526,6 +1574,7 @@ namespace Gestão_Scouting
             this.buttonDeleteCompeticao.TabIndex = 47;
             this.buttonDeleteCompeticao.Text = "Eliminar Competição";
             this.buttonDeleteCompeticao.UseVisualStyleBackColor = true;
+            this.buttonDeleteCompeticao.Click += new System.EventHandler(this.buttonDeleteCompeticao_Click);
             // 
             // buttonEditarCompeticao
             // 
@@ -2013,54 +2062,6 @@ namespace Gestão_Scouting
             this.buttonInsLista.TabIndex = 43;
             this.buttonInsLista.Text = "Inserir Lista";
             this.buttonInsLista.UseVisualStyleBackColor = true;
-            // 
-            // textBoxNumero
-            // 
-            this.textBoxNumero.Location = new System.Drawing.Point(1090, 158);
-            this.textBoxNumero.Name = "textBoxNumero";
-            this.textBoxNumero.Size = new System.Drawing.Size(128, 22);
-            this.textBoxNumero.TabIndex = 59;
-            // 
-            // textBoxNomeComp
-            // 
-            this.textBoxNomeComp.Location = new System.Drawing.Point(1090, 103);
-            this.textBoxNomeComp.Name = "textBoxNomeComp";
-            this.textBoxNomeComp.Size = new System.Drawing.Size(128, 22);
-            this.textBoxNomeComp.TabIndex = 58;
-            // 
-            // textBoxIDcomp
-            // 
-            this.textBoxIDcomp.Location = new System.Drawing.Point(1090, 49);
-            this.textBoxIDcomp.Name = "textBoxIDcomp";
-            this.textBoxIDcomp.Size = new System.Drawing.Size(128, 22);
-            this.textBoxIDcomp.TabIndex = 57;
-            // 
-            // label34
-            // 
-            this.label34.AutoSize = true;
-            this.label34.Location = new System.Drawing.Point(1087, 138);
-            this.label34.Name = "label34";
-            this.label34.Size = new System.Drawing.Size(133, 17);
-            this.label34.TabIndex = 56;
-            this.label34.Text = "Número de Equipas";
-            // 
-            // label43
-            // 
-            this.label43.AutoSize = true;
-            this.label43.Location = new System.Drawing.Point(1087, 83);
-            this.label43.Name = "label43";
-            this.label43.Size = new System.Drawing.Size(45, 17);
-            this.label43.TabIndex = 55;
-            this.label43.Text = "Nome";
-            // 
-            // label64
-            // 
-            this.label64.AutoSize = true;
-            this.label64.Location = new System.Drawing.Point(1087, 28);
-            this.label64.Name = "label64";
-            this.label64.Size = new System.Drawing.Size(131, 17);
-            this.label64.TabIndex = 54;
-            this.label64.Text = "Competição ID FIFA";
             // 
             // Form1
             // 

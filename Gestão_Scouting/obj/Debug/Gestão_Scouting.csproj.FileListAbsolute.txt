@@ -23,7 +23,6 @@ C:\Users\João Soares\source\repos\BD\Gestão_Scouting\obj\Debug\Gestão_Scoutin
 C:\Users\Utilizador\Desktop\2ºano\BD\Projeto\BD\Gestão_Scouting\obj\Debug\Gestão_Scouting.InsertPlayer.resources
 C:\Users\João Soares\source\repos\BD\Gestão_Scouting\obj\Debug\Gestão_Scouting.EditarJogador.resources
 C:\Users\Utilizador\Desktop\2ºano\BD\Projeto\BD\Gestão_Scouting\obj\Debug\Gestão_Scouting.EditarJogador.resources
-C:\Users\João Soares\source\repos\BD\Gestão_Scouting\obj\Debug\Gestão_Scouting.DadosRelatorioTabJogador.resources
 C:\Users\João Soares\source\repos\BD\Gestão_Scouting\obj\Debug\Gestão_Scouting.InsertRelatorio.resources
 C:\Users\Utilizador\Desktop\2ºano\BD\Projeto\BD\Gestão_Scouting\obj\Debug\Gestão_Scouting.DadosRelatorioTabJogador.resources
 C:\Users\Utilizador\Desktop\2ºano\BD\Projeto\BD\Gestão_Scouting\obj\Debug\Gestão_Scouting.InsertRelatorio.resources
@@ -35,5 +34,4 @@ C:\Users\João Soares\source\repos\BD\Gestão_Scouting\obj\Debug\Gestão_Scoutin
 C:\Users\João Soares\source\repos\BD\Gestão_Scouting\obj\Debug\Gestão_Scouting.Inserir_Observador.resources
 C:\Users\João Soares\source\repos\BD\Gestão_Scouting\obj\Debug\Gestão_Scouting.InsertCompeticao_Clube.resources
 C:\Users\João Soares\source\repos\BD\Gestão_Scouting\obj\Debug\Gestão_Scouting.Update_Observador.resources
-C:\Users\João Soares\source\repos\BD\Gestão_Scouting\obj\Debug\Gestão_Scouting.InsertCompeticao.resources
 C:\Users\João Soares\source\repos\BD\Gestão_Scouting\obj\Debug\Gestão_Scouting.UpdateCompeticao.resources
