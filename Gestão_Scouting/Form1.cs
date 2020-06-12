@@ -35,10 +35,11 @@ namespace Gestão_Scouting
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            dateTimePicker1.Format = DateTimePickerFormat.Custom;
-            dateTimePicker1.CustomFormat = "yyyy-MM-dd";
+
             dateTimePicker2.Format = DateTimePickerFormat.Custom;
             dateTimePicker2.CustomFormat = "yyyy-MM-dd";
+            dateTimePicker1.Format = DateTimePickerFormat.Custom;
+            dateTimePicker1.CustomFormat = "yyyy-MM-dd";
             cn = getSGBDConnection();
             //Jogadores
             LoadJogadores(List, Order);
@@ -91,13 +92,30 @@ namespace Gestão_Scouting
         //Utils Functions
         private void toolStripMenuItem2_Click(object sender, EventArgs e)
         {
-            //Meter muito mais coisas
-            LoadJogadores("", "");
-            LoadClubes("");
-            LoadObservador("");
+            cn = getSGBDConnection();
+            //Jogadores
+            LoadJogadores(List, Order);
+            GetListaObservacaoSelecao();
+            ComboBoxOrderJogadores();
             comboBoxListaSelecaoJogadores.SelectedIndex = 0;
             comboBoxOrder.SelectedIndex = 0;
+            //Clubes
+            LoadClubes("");
+            ComboBoxOrderClubes();
+            //Observador
+            LoadObservador("");
+            ComboBoxOrderObservadores();
             ORDENAR_OBS.SelectedIndex = 0;
+            ComboBoxOrderRelatorios();
+            ORDENAR_RELATORIOS.SelectedIndex = 0;
+            //Competições
+            ComboBoxOrderCompeticao();
+            ORDENAR_COMP.SelectedIndex = 0;
+            GetCompeticoes("");
+            //Gestão
+            loadListaObservacaoSelecao();
+            GetTreinadores();
+            loadClubesTAB();
         }
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -1130,7 +1148,7 @@ namespace Gestão_Scouting
                     cmda.CommandType = CommandType.StoredProcedure;
                     cmda.Parameters.AddWithValue("@club_insc", textBoxNumeroInscricaoFifaClube.Text);
                     cmda.Parameters.AddWithValue("@id_fifpro", namec);
-                    cmda.Parameters.AddWithValue("data_fin", dateTimePicker1.Value.Date.ToString());
+                    cmda.Parameters.AddWithValue("data_fin", dateTimePicker1.Value.Date);
 
                     cmda.ExecuteNonQuery();
                     MessageBox.Show("Jogador "+namec+" já não pertence ao Clube!");
@@ -1653,7 +1671,7 @@ namespace Gestão_Scouting
                 ComboBoxOrder list = new ComboBoxOrder();
                 list = (ComboBoxOrder)ORDENAR_COMP.Items[ORDENAR_COMP.SelectedIndex];
                 String x = list.Value.ToString();
-                //Alterar Load oBSERVADORES
+                //Alterar Load COMP
 
                 GetCompeticoes(x);
             }
@@ -2077,7 +2095,7 @@ namespace Gestão_Scouting
                 cmda = new SqlCommand("Scouting.Change_Treinador_Clube", cn);
                 cmda.CommandType = CommandType.StoredProcedure;
                 cmda.Parameters.AddWithValue("@id_treinador", list.Treinador_Numero_Inscricao_FIFA);
-                cmda.Parameters.AddWithValue("@data", dateTimePicker2.Value.Date.ToString());
+                cmda.Parameters.AddWithValue("@data", dateTimePicker2.Value.Date);
                 cmda.Parameters.AddWithValue("@id_Clube", lista.Clube_Numero_Inscricao_FIFA);
                 try
                 {
@@ -2111,7 +2129,7 @@ namespace Gestão_Scouting
                 cmda.CommandType = CommandType.StoredProcedure;
 
                 cmda.Parameters.AddWithValue("@id_treinador", list.Treinador_Numero_Inscricao_FIFA);
-                cmda.Parameters.AddWithValue("@data", dateTimePicker2.Value.Date.ToString());
+                cmda.Parameters.AddWithValue("@data", dateTimePicker2.Value.Date);
                 cmda.Parameters.AddWithValue("@id_Clube", "");
 
                 try
@@ -2129,8 +2147,83 @@ namespace Gestão_Scouting
                 }
             }
         }
+        //Inserir Treinador
+        private void buttonInserirTreinador_Click(object sender, EventArgs e)
+        {
+            if(String.IsNullOrEmpty(textBoxTID.Text) || String.IsNullOrEmpty(textBoxTNOME.Text) || String.IsNullOrEmpty(textBoxTIdade.Text) || String.IsNullOrEmpty(textBoxTNa.Text) || String.IsNullOrEmpty(textBoxTQU.Text))
+            {
+                MessageBox.Show("Parâmetros incompletos");
+                return;
+            }
+            else
+            {
+                SqlCommand cmda = new SqlCommand();
+                cmda.CommandType = CommandType.Text;
+                cmda = new SqlCommand("Scouting.Insert_Treinador", cn);
+                cmda.CommandType = CommandType.StoredProcedure;
+                cmda.Parameters.AddWithValue("@Numero_Identificacao", textBoxTID.Text);
+                cmda.Parameters.AddWithValue("@Nome", textBoxTNOME.Text);
+                cmda.Parameters.AddWithValue("@Qualificacoes", textBoxTQU.Text);
+                cmda.Parameters.AddWithValue("@Nacionalidade", textBoxTNa.Text);
+                cmda.Parameters.AddWithValue("@Idade", Int32.Parse(textBoxTIdade.Text));
 
+                try
+                {
+                    cmda.ExecuteNonQuery();
+                    MessageBox.Show("Treinador Inserido!");
+                    GetTreinadores();
+                    textBoxTID.Clear();
+                    textBoxTNOME.Clear();
+                    textBoxTIdade.Clear();
+                    textBoxTNa.Clear();
+                    textBoxTQU.Clear();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Falhou na BD database. \n ERROR MESSAGE:" + ex.Message);
 
+                }
+
+            }
+        }
+
+        private void buttonInserirSelecionador_Click(object sender, EventArgs e)
+        {
+            if (String.IsNullOrEmpty(textBoxSID.Text) || String.IsNullOrEmpty(textBoxSnome.Text) || String.IsNullOrEmpty(textBoxSqual.Text) || String.IsNullOrEmpty(textBoxSnacio.Text) || String.IsNullOrEmpty(textBoxSidade.Text))
+            {
+                MessageBox.Show("Parâmetros incompletos");
+                return;
+            }
+            else
+            {
+                SqlCommand cmda = new SqlCommand();
+                cmda.CommandType = CommandType.Text;
+                cmda = new SqlCommand("Scouting.Insert_Selecionador", cn);
+                cmda.CommandType = CommandType.StoredProcedure;
+                cmda.Parameters.AddWithValue("@Numero_Identificacao", textBoxSID.Text);
+                cmda.Parameters.AddWithValue("@Nome", textBoxSnome.Text);
+                cmda.Parameters.AddWithValue("@Qualificacoes", textBoxSqual.Text);
+                cmda.Parameters.AddWithValue("@Nacionalidade", textBoxSnacio.Text);
+                cmda.Parameters.AddWithValue("@Idade", Int32.Parse(textBoxSidade.Text));
+
+                try
+                {
+                    cmda.ExecuteNonQuery();
+                    MessageBox.Show("Selecionador Inserido!");
+                    textBoxSID.Clear();
+                    textBoxSnome.Clear();
+                    textBoxSidade.Clear();
+                    textBoxSqual.Clear();
+                    textBoxSqual.Clear();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Falhou na BD database. \n ERROR MESSAGE:" + ex.Message);
+
+                }
+
+            }
+        }
     }
 }
 

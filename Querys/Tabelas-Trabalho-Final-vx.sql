@@ -119,7 +119,7 @@ CREATE TABLE Scouting.Treina(
 	Treinador_Data_Inicio date,
 	Clube_Num_insc_FIFA varchar(9),
 	PRIMARY KEY(Treina_Num_Insc_FIFA,Clube_Num_insc_FIFA),
-	CHECK(Treinador_Data_Saida>Treinador_Data_Inicio)
+	CHECK(Treinador_Data_Saida>=Treinador_Data_Inicio)
 );
 
 CREATE TABLE Scouting.Jogador_Pertence_Clube(
@@ -127,7 +127,7 @@ CREATE TABLE Scouting.Jogador_Pertence_Clube(
 	ID_FIFPro varchar(9),
 	Pertence_Data_Inicio date,
 	Pertence_Data_Saida date,
-	CHECK(Pertence_Data_Saida>Pertence_Data_Inicio),
+	CHECK(Pertence_Data_Saida>=Pertence_Data_Inicio),
 	--FOREIGN KEY JPC_Clube_Numero_Inscricao_FIFA REFERENCES Scouting.Clube(Clube_Numero_Inscricao_FIFA),
 	--FOREIGN KEY ID_FIFPro REFERENCES Scouting.Jogador(ID_FIFPro)
 	PRIMARY KEY(JPC_Clube_Numero_Inscricao_FIFA,ID_FIFPro)

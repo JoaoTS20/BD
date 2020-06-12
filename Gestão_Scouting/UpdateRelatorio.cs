@@ -136,7 +136,7 @@ namespace Gestão_Scouting
                     cmda.CommandType = CommandType.StoredProcedure;
                     cmda.Parameters.AddWithValue("@idRel", textBoxIDREL.Text);
                     cmda.Parameters.AddWithValue("@Titulo", textBoxTitulo.Text);
-                    cmda.Parameters.AddWithValue("@Data", dateTimePicker1.Value.Date.ToString());//Hope it works
+                    cmda.Parameters.AddWithValue("@Data", dateTimePicker1.Value.Date);//Hope it works
                     cmda.Parameters.AddWithValue("@ID_Federacao_Obs", textBoxObs.Text);
                     cmda.Parameters.AddWithValue("@ID", textBoxJogID.Text);
                     Analise_Caracteristica_Jogador A = new Analise_Caracteristica_Jogador();

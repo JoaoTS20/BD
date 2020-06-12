@@ -1703,7 +1703,7 @@ AS
 				ROLLBACK TRAN; -- Anula a inserção
 		END
 
---Stored Procedures Ainda não implementados
+--Stored Procedures Inserir Selecionador
 create procedure Scouting.Insert_Selecionador @Numero_Identificacao varchar(9),@Nome varchar(50),@Qualificacoes varchar(100), @Nacionalidade varchar(40),@Idade int
 as 
 	BEGIN
@@ -1723,6 +1723,7 @@ as
 			END CATCH
 	END
 
+----Stored Procedures Inserir Treinador
 create procedure Scouting.Insert_Treinador @Numero_Identificacao varchar(9),@Nome varchar(50),@Qualificacoes varchar(100), @Nacionalidade varchar(40),@Idade int
 as 
 	BEGIN

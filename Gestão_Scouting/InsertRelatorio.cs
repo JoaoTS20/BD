@@ -193,6 +193,7 @@ namespace Gestão_Scouting
             catch (Exception ex)
             {
                 MessageBox.Show("Falhou Carregar Clube do Jogador da BD database. \n ERROR MESSAGE: " + ex.Message);
+                return;
             }
 
         }
@@ -330,7 +331,7 @@ namespace Gestão_Scouting
                 cmda = new SqlCommand("Scouting.Insert_Relatorio", cn);
                 cmda.CommandType = CommandType.StoredProcedure;
                 cmda.Parameters.AddWithValue("@Titulo", textBoxTitulo.Text);
-                cmda.Parameters.AddWithValue("@Data", dateTimePicker1.Value.Date.ToString());//Hope it works
+                cmda.Parameters.AddWithValue("@Data", dateTimePicker1.Value.Date);//Hope it works
 
                 //
                 Observador O = new Observador();

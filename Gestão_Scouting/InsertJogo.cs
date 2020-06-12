@@ -177,7 +177,7 @@ namespace Gestão_Scouting
                     cmda.CommandType = CommandType.Text;
                     cmda = new SqlCommand("Scouting.Insert_Jogo", cn);
                     cmda.CommandType = CommandType.StoredProcedure;
-                    cmda.Parameters.AddWithValue("@data", dateTimePicker1.Value.Date.ToString());
+                    cmda.Parameters.AddWithValue("@data", dateTimePicker1.Value.Date);
                     cmda.Parameters.AddWithValue("@local", textBoxLocal.Text);
                     cmda.Parameters.AddWithValue("@resultado", textBoxResultado.Text);
                     cmda.Parameters.AddWithValue("@comp_id", textBoxCompID.Text);
@@ -232,5 +232,7 @@ namespace Gestão_Scouting
         {
             this.Close();
         }
+
+
     }
 }

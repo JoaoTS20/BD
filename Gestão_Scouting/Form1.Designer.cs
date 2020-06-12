@@ -177,7 +177,7 @@ namespace Gestão_Scouting
             this.label66 = new System.Windows.Forms.Label();
             this.label65 = new System.Windows.Forms.Label();
             this.buttonTreinadorNewClube = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
+            this.buttonInserirTreinador = new System.Windows.Forms.Button();
             this.label61 = new System.Windows.Forms.Label();
             this.listBoxClubesTreinadorPassados = new System.Windows.Forms.ListBox();
             this.textBoxTreinadorClubeAtual = new System.Windows.Forms.TextBox();
@@ -209,6 +209,27 @@ namespace Gestão_Scouting
             this.listBoxListasDeSelecao = new System.Windows.Forms.ListBox();
             this.label35 = new System.Windows.Forms.Label();
             this.buttonInsLista = new System.Windows.Forms.Button();
+            this.label67 = new System.Windows.Forms.Label();
+            this.label68 = new System.Windows.Forms.Label();
+            this.label69 = new System.Windows.Forms.Label();
+            this.label70 = new System.Windows.Forms.Label();
+            this.label71 = new System.Windows.Forms.Label();
+            this.textBoxTNOME = new System.Windows.Forms.TextBox();
+            this.textBoxTIdade = new System.Windows.Forms.TextBox();
+            this.textBoxTQU = new System.Windows.Forms.TextBox();
+            this.textBoxTNa = new System.Windows.Forms.TextBox();
+            this.textBoxTID = new System.Windows.Forms.TextBox();
+            this.label72 = new System.Windows.Forms.Label();
+            this.label73 = new System.Windows.Forms.Label();
+            this.label74 = new System.Windows.Forms.Label();
+            this.label75 = new System.Windows.Forms.Label();
+            this.label76 = new System.Windows.Forms.Label();
+            this.textBoxSnome = new System.Windows.Forms.TextBox();
+            this.textBoxSidade = new System.Windows.Forms.TextBox();
+            this.textBoxSqual = new System.Windows.Forms.TextBox();
+            this.textBoxSnacio = new System.Windows.Forms.TextBox();
+            this.textBoxSID = new System.Windows.Forms.TextBox();
+            this.buttonInserirSelecionador = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -828,6 +849,7 @@ namespace Gestão_Scouting
             // 
             // dateTimePicker1
             // 
+            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dateTimePicker1.Location = new System.Drawing.Point(407, 687);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(182, 22);
@@ -1653,6 +1675,27 @@ namespace Gestão_Scouting
             // 
             // tabPage5
             // 
+            this.tabPage5.Controls.Add(this.label72);
+            this.tabPage5.Controls.Add(this.label73);
+            this.tabPage5.Controls.Add(this.label74);
+            this.tabPage5.Controls.Add(this.label75);
+            this.tabPage5.Controls.Add(this.label76);
+            this.tabPage5.Controls.Add(this.textBoxSnome);
+            this.tabPage5.Controls.Add(this.textBoxSidade);
+            this.tabPage5.Controls.Add(this.textBoxSqual);
+            this.tabPage5.Controls.Add(this.textBoxSnacio);
+            this.tabPage5.Controls.Add(this.textBoxSID);
+            this.tabPage5.Controls.Add(this.buttonInserirSelecionador);
+            this.tabPage5.Controls.Add(this.label67);
+            this.tabPage5.Controls.Add(this.label68);
+            this.tabPage5.Controls.Add(this.label69);
+            this.tabPage5.Controls.Add(this.label70);
+            this.tabPage5.Controls.Add(this.label71);
+            this.tabPage5.Controls.Add(this.textBoxTNOME);
+            this.tabPage5.Controls.Add(this.textBoxTIdade);
+            this.tabPage5.Controls.Add(this.textBoxTQU);
+            this.tabPage5.Controls.Add(this.textBoxTNa);
+            this.tabPage5.Controls.Add(this.textBoxTID);
             this.tabPage5.Controls.Add(this.buttonSemClube);
             this.tabPage5.Controls.Add(this.dateTimePicker2);
             this.tabPage5.Controls.Add(this.listBoxClubesGestao);
@@ -1661,7 +1704,7 @@ namespace Gestão_Scouting
             this.tabPage5.Controls.Add(this.label66);
             this.tabPage5.Controls.Add(this.label65);
             this.tabPage5.Controls.Add(this.buttonTreinadorNewClube);
-            this.tabPage5.Controls.Add(this.button5);
+            this.tabPage5.Controls.Add(this.buttonInserirTreinador);
             this.tabPage5.Controls.Add(this.label61);
             this.tabPage5.Controls.Add(this.listBoxClubesTreinadorPassados);
             this.tabPage5.Controls.Add(this.textBoxTreinadorClubeAtual);
@@ -1704,9 +1747,9 @@ namespace Gestão_Scouting
             // 
             // buttonSemClube
             // 
-            this.buttonSemClube.Location = new System.Drawing.Point(717, 608);
+            this.buttonSemClube.Location = new System.Drawing.Point(420, 643);
             this.buttonSemClube.Name = "buttonSemClube";
-            this.buttonSemClube.Size = new System.Drawing.Size(139, 31);
+            this.buttonSemClube.Size = new System.Drawing.Size(213, 40);
             this.buttonSemClube.TabIndex = 86;
             this.buttonSemClube.Text = "Ficou sem clube";
             this.buttonSemClube.UseVisualStyleBackColor = true;
@@ -1714,16 +1757,16 @@ namespace Gestão_Scouting
             // 
             // dateTimePicker2
             // 
-            this.dateTimePicker2.Location = new System.Drawing.Point(420, 565);
+            this.dateTimePicker2.Location = new System.Drawing.Point(420, 598);
             this.dateTimePicker2.Name = "dateTimePicker2";
-            this.dateTimePicker2.Size = new System.Drawing.Size(207, 22);
+            this.dateTimePicker2.Size = new System.Drawing.Size(213, 22);
             this.dateTimePicker2.TabIndex = 85;
             // 
             // listBoxClubesGestao
             // 
             this.listBoxClubesGestao.FormattingEnabled = true;
             this.listBoxClubesGestao.ItemHeight = 16;
-            this.listBoxClubesGestao.Location = new System.Drawing.Point(420, 608);
+            this.listBoxClubesGestao.Location = new System.Drawing.Point(176, 608);
             this.listBoxClubesGestao.Name = "listBoxClubesGestao";
             this.listBoxClubesGestao.Size = new System.Drawing.Size(210, 164);
             this.listBoxClubesGestao.TabIndex = 84;
@@ -1762,23 +1805,24 @@ namespace Gestão_Scouting
             // 
             // buttonTreinadorNewClube
             // 
-            this.buttonTreinadorNewClube.Location = new System.Drawing.Point(417, 507);
+            this.buttonTreinadorNewClube.Location = new System.Drawing.Point(420, 535);
             this.buttonTreinadorNewClube.Name = "buttonTreinadorNewClube";
             this.buttonTreinadorNewClube.Size = new System.Drawing.Size(213, 40);
             this.buttonTreinadorNewClube.TabIndex = 79;
-            this.buttonTreinadorNewClube.Text = "Mudar Clube";
+            this.buttonTreinadorNewClube.Text = "Novo Clube";
             this.buttonTreinadorNewClube.UseVisualStyleBackColor = true;
             this.buttonTreinadorNewClube.Click += new System.EventHandler(this.buttonTreinadorNewClube_Click);
             // 
-            // button5
+            // buttonInserirTreinador
             // 
-            this.button5.Location = new System.Drawing.Point(24, 331);
-            this.button5.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(121, 43);
-            this.button5.TabIndex = 76;
-            this.button5.Text = "Inserir Treinador";
-            this.button5.UseVisualStyleBackColor = true;
+            this.buttonInserirTreinador.Location = new System.Drawing.Point(859, 635);
+            this.buttonInserirTreinador.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.buttonInserirTreinador.Name = "buttonInserirTreinador";
+            this.buttonInserirTreinador.Size = new System.Drawing.Size(121, 43);
+            this.buttonInserirTreinador.TabIndex = 76;
+            this.buttonInserirTreinador.Text = "Inserir Treinador";
+            this.buttonInserirTreinador.UseVisualStyleBackColor = true;
+            this.buttonInserirTreinador.Click += new System.EventHandler(this.buttonInserirTreinador_Click);
             // 
             // label61
             // 
@@ -2061,6 +2105,185 @@ namespace Gestão_Scouting
             this.buttonInsLista.UseVisualStyleBackColor = true;
             this.buttonInsLista.Click += new System.EventHandler(this.buttonInsLista_Click);
             // 
+            // label67
+            // 
+            this.label67.AutoSize = true;
+            this.label67.Location = new System.Drawing.Point(1244, 739);
+            this.label67.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label67.Name = "label67";
+            this.label67.Size = new System.Drawing.Size(47, 17);
+            this.label67.TabIndex = 96;
+            this.label67.Text = "Idade:";
+            // 
+            // label68
+            // 
+            this.label68.AutoSize = true;
+            this.label68.Location = new System.Drawing.Point(1243, 689);
+            this.label68.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label68.Name = "label68";
+            this.label68.Size = new System.Drawing.Size(102, 17);
+            this.label68.TabIndex = 95;
+            this.label68.Text = "Nacionalidade:";
+            // 
+            // label69
+            // 
+            this.label69.AutoSize = true;
+            this.label69.Location = new System.Drawing.Point(989, 739);
+            this.label69.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label69.Name = "label69";
+            this.label69.Size = new System.Drawing.Size(97, 17);
+            this.label69.TabIndex = 94;
+            this.label69.Text = "Qualificações:";
+            // 
+            // label70
+            // 
+            this.label70.AutoSize = true;
+            this.label70.Location = new System.Drawing.Point(989, 689);
+            this.label70.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label70.Name = "label70";
+            this.label70.Size = new System.Drawing.Size(49, 17);
+            this.label70.TabIndex = 93;
+            this.label70.Text = "Nome:";
+            // 
+            // label71
+            // 
+            this.label71.AutoSize = true;
+            this.label71.Location = new System.Drawing.Point(986, 631);
+            this.label71.Name = "label71";
+            this.label71.Size = new System.Drawing.Size(213, 17);
+            this.label71.TabIndex = 92;
+            this.label71.Text = "Número identificação Federação";
+            // 
+            // textBoxTNOME
+            // 
+            this.textBoxTNOME.Location = new System.Drawing.Point(992, 709);
+            this.textBoxTNOME.Name = "textBoxTNOME";
+            this.textBoxTNOME.Size = new System.Drawing.Size(210, 22);
+            this.textBoxTNOME.TabIndex = 91;
+            // 
+            // textBoxTIdade
+            // 
+            this.textBoxTIdade.Location = new System.Drawing.Point(1247, 759);
+            this.textBoxTIdade.Name = "textBoxTIdade";
+            this.textBoxTIdade.Size = new System.Drawing.Size(133, 22);
+            this.textBoxTIdade.TabIndex = 90;
+            // 
+            // textBoxTQU
+            // 
+            this.textBoxTQU.Location = new System.Drawing.Point(992, 759);
+            this.textBoxTQU.Name = "textBoxTQU";
+            this.textBoxTQU.Size = new System.Drawing.Size(210, 22);
+            this.textBoxTQU.TabIndex = 89;
+            // 
+            // textBoxTNa
+            // 
+            this.textBoxTNa.Location = new System.Drawing.Point(1247, 714);
+            this.textBoxTNa.Name = "textBoxTNa";
+            this.textBoxTNa.Size = new System.Drawing.Size(133, 22);
+            this.textBoxTNa.TabIndex = 88;
+            // 
+            // textBoxTID
+            // 
+            this.textBoxTID.Location = new System.Drawing.Point(989, 651);
+            this.textBoxTID.Name = "textBoxTID";
+            this.textBoxTID.Size = new System.Drawing.Size(213, 22);
+            this.textBoxTID.TabIndex = 87;
+            // 
+            // label72
+            // 
+            this.label72.AutoSize = true;
+            this.label72.Location = new System.Drawing.Point(1181, 271);
+            this.label72.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label72.Name = "label72";
+            this.label72.Size = new System.Drawing.Size(47, 17);
+            this.label72.TabIndex = 107;
+            this.label72.Text = "Idade:";
+            // 
+            // label73
+            // 
+            this.label73.AutoSize = true;
+            this.label73.Location = new System.Drawing.Point(1180, 221);
+            this.label73.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label73.Name = "label73";
+            this.label73.Size = new System.Drawing.Size(102, 17);
+            this.label73.TabIndex = 106;
+            this.label73.Text = "Nacionalidade:";
+            // 
+            // label74
+            // 
+            this.label74.AutoSize = true;
+            this.label74.Location = new System.Drawing.Point(926, 271);
+            this.label74.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label74.Name = "label74";
+            this.label74.Size = new System.Drawing.Size(97, 17);
+            this.label74.TabIndex = 105;
+            this.label74.Text = "Qualificações:";
+            // 
+            // label75
+            // 
+            this.label75.AutoSize = true;
+            this.label75.Location = new System.Drawing.Point(926, 221);
+            this.label75.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label75.Name = "label75";
+            this.label75.Size = new System.Drawing.Size(49, 17);
+            this.label75.TabIndex = 104;
+            this.label75.Text = "Nome:";
+            // 
+            // label76
+            // 
+            this.label76.AutoSize = true;
+            this.label76.Location = new System.Drawing.Point(923, 163);
+            this.label76.Name = "label76";
+            this.label76.Size = new System.Drawing.Size(213, 17);
+            this.label76.TabIndex = 103;
+            this.label76.Text = "Número identificação Federação";
+            // 
+            // textBoxSnome
+            // 
+            this.textBoxSnome.Location = new System.Drawing.Point(929, 241);
+            this.textBoxSnome.Name = "textBoxSnome";
+            this.textBoxSnome.Size = new System.Drawing.Size(210, 22);
+            this.textBoxSnome.TabIndex = 102;
+            // 
+            // textBoxSidade
+            // 
+            this.textBoxSidade.Location = new System.Drawing.Point(1184, 291);
+            this.textBoxSidade.Name = "textBoxSidade";
+            this.textBoxSidade.Size = new System.Drawing.Size(133, 22);
+            this.textBoxSidade.TabIndex = 101;
+            // 
+            // textBoxSqual
+            // 
+            this.textBoxSqual.Location = new System.Drawing.Point(929, 291);
+            this.textBoxSqual.Name = "textBoxSqual";
+            this.textBoxSqual.Size = new System.Drawing.Size(210, 22);
+            this.textBoxSqual.TabIndex = 100;
+            // 
+            // textBoxSnacio
+            // 
+            this.textBoxSnacio.Location = new System.Drawing.Point(1184, 246);
+            this.textBoxSnacio.Name = "textBoxSnacio";
+            this.textBoxSnacio.Size = new System.Drawing.Size(133, 22);
+            this.textBoxSnacio.TabIndex = 99;
+            // 
+            // textBoxSID
+            // 
+            this.textBoxSID.Location = new System.Drawing.Point(926, 183);
+            this.textBoxSID.Name = "textBoxSID";
+            this.textBoxSID.Size = new System.Drawing.Size(213, 22);
+            this.textBoxSID.TabIndex = 98;
+            // 
+            // buttonInserirSelecionador
+            // 
+            this.buttonInserirSelecionador.Location = new System.Drawing.Point(771, 167);
+            this.buttonInserirSelecionador.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.buttonInserirSelecionador.Name = "buttonInserirSelecionador";
+            this.buttonInserirSelecionador.Size = new System.Drawing.Size(146, 43);
+            this.buttonInserirSelecionador.TabIndex = 97;
+            this.buttonInserirSelecionador.Text = "Inserir Selecionador";
+            this.buttonInserirSelecionador.UseVisualStyleBackColor = true;
+            this.buttonInserirSelecionador.Click += new System.EventHandler(this.buttonInserirSelecionador_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -2253,7 +2476,7 @@ namespace Gestão_Scouting
         private System.Windows.Forms.Label Treinador;
         private System.Windows.Forms.Label label61;
         private System.Windows.Forms.ListBox listBoxClubesTreinadorPassados;
-        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Button buttonInserirTreinador;
         private System.Windows.Forms.Button buttonTreinadorNewClube;
         private System.Windows.Forms.ListBox listBoxMetodos;
         private System.Windows.Forms.Label label63;
@@ -2274,6 +2497,27 @@ namespace Gestão_Scouting
         private System.Windows.Forms.ListBox listBoxClubesGestao;
         private System.Windows.Forms.DateTimePicker dateTimePicker2;
         private System.Windows.Forms.Button buttonSemClube;
+        private System.Windows.Forms.Label label67;
+        private System.Windows.Forms.Label label68;
+        private System.Windows.Forms.Label label69;
+        private System.Windows.Forms.Label label70;
+        private System.Windows.Forms.Label label71;
+        private System.Windows.Forms.TextBox textBoxTNOME;
+        private System.Windows.Forms.TextBox textBoxTIdade;
+        private System.Windows.Forms.TextBox textBoxTQU;
+        private System.Windows.Forms.TextBox textBoxTNa;
+        private System.Windows.Forms.TextBox textBoxTID;
+        private System.Windows.Forms.Label label72;
+        private System.Windows.Forms.Label label73;
+        private System.Windows.Forms.Label label74;
+        private System.Windows.Forms.Label label75;
+        private System.Windows.Forms.Label label76;
+        private System.Windows.Forms.TextBox textBoxSnome;
+        private System.Windows.Forms.TextBox textBoxSidade;
+        private System.Windows.Forms.TextBox textBoxSqual;
+        private System.Windows.Forms.TextBox textBoxSnacio;
+        private System.Windows.Forms.TextBox textBoxSID;
+        private System.Windows.Forms.Button buttonInserirSelecionador;
     }
 }
 

@@ -74,7 +74,7 @@ namespace Gestão_Scouting
         }
         private void buttonInscrever_Click(object sender, EventArgs e)
         {
-            if (listBoxComp.SelectedIndex >= 0)
+            if (listBoxComp.SelectedIndex >= 0 & !String.IsNullOrEmpty(textBox1.Text))
             {
                 Competicao list = new Competicao();
                 list = (Competicao)listBoxComp.Items[listBoxComp.SelectedIndex];

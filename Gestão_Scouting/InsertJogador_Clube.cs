@@ -98,7 +98,6 @@ namespace Gestão_Scouting
                 Jogador list = new Jogador();
                 list = (Jogador)listBox1.Items[listBox1.SelectedIndex];
                 String ID_Comp = list.ID_FIFPro.ToString();
-                String data_ini = dateTimePicker1.Value.Date.ToString();
                 if (!verifySGBDConnection())
                     return;
                 SqlCommand cmda = new SqlCommand();
@@ -109,7 +108,7 @@ namespace Gestão_Scouting
                     cmda.CommandType = CommandType.StoredProcedure;
                     cmda.Parameters.AddWithValue("@club_insc", textBox1.Text);
                     cmda.Parameters.AddWithValue("@id_fifpro", ID_Comp);
-                    cmda.Parameters.AddWithValue("@data_ini", data_ini);
+                    cmda.Parameters.AddWithValue("@data_ini", dateTimePicker1.Value.Date);
                     cmda.ExecuteNonQuery();
                     MessageBox.Show("Jogador Inscrito!");
                     this.Close();
