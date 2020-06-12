@@ -229,96 +229,97 @@ namespace Gestão_Scouting
             }
             if (String.IsNullOrEmpty(textBoxTitulo.Text))
             {
-                MessageBox.Show("Prencher Parâmetros todos!");
-                return;
+                MessageBox.Show("Prencher Parâmetros Título!");
+                
             }
             if (String.IsNullOrEmpty(GolosBox.Text))
             {
-                MessageBox.Show("Prencher Parâmetros todos!");
-                return;
+                MessageBox.Show("Prencher Parâmetro Golos!");
+                
             }
             if (String.IsNullOrEmpty(AssistsBox.Text))
             {
-                MessageBox.Show("Prencher Parâmetros todos!");
-                return;
+                MessageBox.Show("Prencher Parâmetros Assistências!");
+                
             }
             if (String.IsNullOrEmpty(PassesBox.Text))
             {
-                MessageBox.Show("Prencher Parâmetros todos!");
-                return;
+                MessageBox.Show("Prencher Parâmetros Passes!");
+                
             }
             if (String.IsNullOrEmpty(PassesCompBox.Text))
             {
-                MessageBox.Show("Prencher Parâmetros todos!");
-                return;
+                MessageBox.Show("Prencher Parâmetros Passes Completos!");
+                
             }
             if (String.IsNullOrEmpty(ToquesBox.Text))
             {
-                MessageBox.Show("Prencher Parâmetros todos!");
-                return;
+                MessageBox.Show("Prencher Parâmetros Toques!");
+                
             }
             if (String.IsNullOrEmpty(RematesBox.Text))
             {
-                MessageBox.Show("Prencher Parâmetros todos!");
-                return;
+                MessageBox.Show("Prencher Parâmetros Remates!");
+                
             }
             if (String.IsNullOrEmpty(CortesBox.Text))
             {
-                MessageBox.Show("Prencher Parâmetros todos!");
-                return;
+                MessageBox.Show("Prencher Parâmetros Cortes!");
+                
             }
             if (String.IsNullOrEmpty(MinutosBox.Text))
             {
-                MessageBox.Show("Prencher Parâmetros todos!");
-                return;
+                MessageBox.Show("Prencher Parâmetros Minutos!");
+                
             }
             if (String.IsNullOrEmpty(DefesasBox.Text))
             {
-                return;
+                MessageBox.Show("Prencher Parâmetros Defesas!");
             }
             if (String.IsNullOrEmpty(DistanciaBox.Text))
             {
-                MessageBox.Show("Prencher Parâmetros todos!");
-                return;
+                MessageBox.Show("Prencher Parâmetros Distâncias!");
+                
             }
             if (String.IsNullOrEmpty(DriblesBox.Text))
             {
-                MessageBox.Show("Prencher Parâmetros todos!");
-                return;
+                MessageBox.Show("Prencher Parâmetros Dribles!");
+                
             }
             if (String.IsNullOrEmpty(QualAtualBox.Text))
             {
-                MessageBox.Show("Prencher Parâmetros todos!");
-                return;
+                MessageBox.Show("Prencher Parâmetros Qualidade Atual!");
+                
             }
             if (String.IsNullOrEmpty(QualPotBox.Text))
             {
-                MessageBox.Show("Prencher Parâmetros todos!");
-                return;
+                MessageBox.Show("Prencher Parâmetros Qualidade Potencial!");
+                
             }
             if (String.IsNullOrEmpty(MelhorAtribBox.Text))
             {
-                return;
+                MessageBox.Show("Prencher Parâmetros Melhor Atributos!");
+                
             }
             if (String.IsNullOrEmpty(EticaTrabBox.Text))
             {
-                MessageBox.Show("Prencher Parâmetros todos!");
-                return;
+                MessageBox.Show("Prencher Parâmetros Ética de Trabalho!");
+                
             }
             if (String.IsNullOrEmpty(DeterminacaoBox.Text))
             {
-                MessageBox.Show("Prencher Parâmetros todos!");
-                return;
+                MessageBox.Show("Prencher Parâmetros Determinação!");
+                
             }
             if (String.IsNullOrEmpty(CapDecBox.Text))
             {
-                MessageBox.Show("Prencher Parâmetros todos!");
-                return;
+                MessageBox.Show("Prencher Parâmetros Capacidade de Decisão!");
+                
             }
             if (String.IsNullOrEmpty(NivTecBox.Text))
             {
-                MessageBox.Show("Prencher Parâmetros todos!");
-                return;
+                MessageBox.Show("Prencher Parâmetros Nível Técnica!");
+                
             }
             //Restantes Checks
 

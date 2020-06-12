@@ -607,6 +607,7 @@ namespace Gestão_Scouting
         private void AdicionarRelatorioJogador_Click(object sender, EventArgs e)
         {
             InsertRelatorio ap = new InsertRelatorio(textID_FIFPro.Text);
+
             ap.ShowDialog();
             GetRelatoriosJogadores(textID_FIFPro.Text);
 
