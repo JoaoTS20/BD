@@ -418,7 +418,7 @@ namespace Gestão_Scouting
             // label44
             // 
             this.label44.AutoSize = true;
-            this.label44.Location = new System.Drawing.Point(975, 260);
+            this.label44.Location = new System.Drawing.Point(936, 260);
             this.label44.Name = "label44";
             this.label44.Size = new System.Drawing.Size(114, 17);
             this.label44.TabIndex = 47;
@@ -428,9 +428,9 @@ namespace Gestão_Scouting
             // 
             this.listBoxJogadorClubePassados.FormattingEnabled = true;
             this.listBoxJogadorClubePassados.ItemHeight = 16;
-            this.listBoxJogadorClubePassados.Location = new System.Drawing.Point(1095, 260);
+            this.listBoxJogadorClubePassados.Location = new System.Drawing.Point(1048, 260);
             this.listBoxJogadorClubePassados.Name = "listBoxJogadorClubePassados";
-            this.listBoxJogadorClubePassados.Size = new System.Drawing.Size(302, 164);
+            this.listBoxJogadorClubePassados.Size = new System.Drawing.Size(349, 164);
             this.listBoxJogadorClubePassados.TabIndex = 46;
             // 
             // textBoxClubeAtual

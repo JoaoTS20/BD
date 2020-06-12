@@ -205,7 +205,7 @@ namespace Gestão_Scouting
 
         private void Cancelar_Click(object sender, EventArgs e)
         {
-
+            this.Close();
         }
     }
 }

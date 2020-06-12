@@ -691,7 +691,7 @@ namespace Gestão_Scouting
             }
             catch (Exception ex)
             {
-                throw new Exception("Falhou Inserir Metodo  Observacao na BD database. \n ERROR MESSAGE: \n" + ex.Message);
+                MessageBox.Show("Falhou Inserir Metodo  Observacao na BD database. \n ERROR MESSAGE: \n" + ex.Message);
 
             }
         }
@@ -1109,6 +1109,7 @@ namespace Gestão_Scouting
                 GetClubeCompeticoes(textBoxNumeroInscricaoFifaClube.Text);
                 ORDENAR_COMP.SelectedIndex = 0;
                 GetClubeJogadores(textBoxNumeroInscricaoFifaClube.Text);
+                loadClubeAtual(textID_FIFPro.Text);
             }
 
 
@@ -1136,6 +1137,7 @@ namespace Gestão_Scouting
                     cmda.ExecuteNonQuery();
                     MessageBox.Show("Jogador "+namec+" já não pertence ao Clube!");
                     GetClubeJogadores(textBoxNumeroInscricaoFifaClube.Text);
+                    loadClubeAtual(textID_FIFPro.Text);
                 }
                 catch (Exception ex)
                 {
@@ -2049,8 +2051,8 @@ namespace Gestão_Scouting
                     C.Clube_Numero_Inscricao_FIFA = reader["Clube_Numero_Inscricao_FIFA"].ToString();
                     C.Clube_Nome = reader["Clube_Nome"].ToString();
                     C.Clube_Pais = reader["Clube_Pais"].ToString();
-                    String Data_Inicio= reader["Treinador_Data_Inicio"].ToString();
-                    String Data_Fim= reader["Treinador_Data_Saida"].ToString();
+                    String Data_Inicio= DateTime.Parse(reader["Treinador_Data_Inicio"].ToString()).ToString();
+                    String Data_Fim= DateTime.Parse(reader["Treinador_Data_Saida"].ToString()).ToString();
                     listBoxClubesTreinadorPassados.Items.Add(C.ToString()+"  " +Data_Inicio+"-->"+ Data_Fim);
                 }
                 reader.Close();
