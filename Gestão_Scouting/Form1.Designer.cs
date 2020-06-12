@@ -92,7 +92,6 @@ namespace Gestão_Scouting
             this.buttonAdicionarClubeCompeticao = new System.Windows.Forms.Button();
             this.buttonDeleteJogadorClube = new System.Windows.Forms.Button();
             this.buttonAdicionarJogadorClube = new System.Windows.Forms.Button();
-            this.buttonDeleteClube = new System.Windows.Forms.Button();
             this.buttonEditClube = new System.Windows.Forms.Button();
             this.buttonInsertClube = new System.Windows.Forms.Button();
             this.label39 = new System.Windows.Forms.Label();
@@ -797,7 +796,6 @@ namespace Gestão_Scouting
             this.tabPage2.Controls.Add(this.buttonAdicionarClubeCompeticao);
             this.tabPage2.Controls.Add(this.buttonDeleteJogadorClube);
             this.tabPage2.Controls.Add(this.buttonAdicionarJogadorClube);
-            this.tabPage2.Controls.Add(this.buttonDeleteClube);
             this.tabPage2.Controls.Add(this.buttonEditClube);
             this.tabPage2.Controls.Add(this.buttonInsertClube);
             this.tabPage2.Controls.Add(this.label39);
@@ -885,19 +883,9 @@ namespace Gestão_Scouting
             this.buttonAdicionarJogadorClube.UseVisualStyleBackColor = true;
             this.buttonAdicionarJogadorClube.Click += new System.EventHandler(this.buttonAdicionarJogadorClube_Click);
             // 
-            // buttonDeleteClube
-            // 
-            this.buttonDeleteClube.Location = new System.Drawing.Point(813, 47);
-            this.buttonDeleteClube.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.buttonDeleteClube.Name = "buttonDeleteClube";
-            this.buttonDeleteClube.Size = new System.Drawing.Size(128, 28);
-            this.buttonDeleteClube.TabIndex = 24;
-            this.buttonDeleteClube.Text = "Eliminar Clube";
-            this.buttonDeleteClube.UseVisualStyleBackColor = true;
-            // 
             // buttonEditClube
             // 
-            this.buttonEditClube.Location = new System.Drawing.Point(636, 46);
+            this.buttonEditClube.Location = new System.Drawing.Point(840, 46);
             this.buttonEditClube.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.buttonEditClube.Name = "buttonEditClube";
             this.buttonEditClube.Size = new System.Drawing.Size(128, 28);
@@ -908,7 +896,7 @@ namespace Gestão_Scouting
             // 
             // buttonInsertClube
             // 
-            this.buttonInsertClube.Location = new System.Drawing.Point(445, 46);
+            this.buttonInsertClube.Location = new System.Drawing.Point(581, 46);
             this.buttonInsertClube.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.buttonInsertClube.Name = "buttonInsertClube";
             this.buttonInsertClube.Size = new System.Drawing.Size(128, 28);
@@ -2200,7 +2188,6 @@ namespace Gestão_Scouting
         private System.Windows.Forms.Button buttonRemovePos;
         private System.Windows.Forms.Button buttonInserirPos;
         private System.Windows.Forms.TextBox textBoxinsertPosicoes;
-        private System.Windows.Forms.Button buttonDeleteClube;
         private System.Windows.Forms.Button buttonEditClube;
         private System.Windows.Forms.Button buttonInsertClube;
         private System.Windows.Forms.Button buttonDeleteJogadorClube;
