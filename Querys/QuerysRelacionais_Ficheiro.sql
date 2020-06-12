@@ -1648,7 +1648,7 @@ AS
 CREATE PROCEDURE Scouting.Get_Clubes_Antigos_Treinador @id_treinador varchar(9)
 AS
 	SELECT * FROM (Scouting.Treinador JOIN Scouting.Treina ON Treinador_Numero_Inscricao_FIFA=Treina_Num_Insc_FIFA)
-	JOIN Scouting.Clube ON Clube_Num_insc_FIFA=Clube_Numero_Inscricao_FIFA WHERE Treinador.Treinador_Numero_Inscricao_FIFA=@id_treinador AND Treinador_Da
+	JOIN Scouting.Clube ON Clube_Num_insc_FIFA=Clube_Numero_Inscricao_FIFA WHERE Treinador.Treinador_Numero_Inscricao_FIFA=@id_treinador AND Treinador_Data_Saida is not null
 
 --Trigger metricas coerentes
 CREATE TRIGGER MetricasCoerentes on Scouting.Metricas_Jogo_Jogador

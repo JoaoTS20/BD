@@ -1041,6 +1041,7 @@ namespace Gestão_Scouting
             comboBoxListaSelecaoJogadores.SelectedIndex = 0;
             comboBoxOrder.SelectedIndex = 0;
             LoadClubes("");
+            loadClubesTAB();
         }
         //Editar Clube
         private void buttonEditClube_Click(object sender, EventArgs e)
@@ -1051,6 +1052,7 @@ namespace Gestão_Scouting
                 ap.ShowDialog();
                 comboBoxOrderClubes.SelectedIndex = 0;
                 LoadClubes("");
+                loadClubesTAB();
             }
         }
         
@@ -2048,7 +2050,7 @@ namespace Gestão_Scouting
                     C.Clube_Nome = reader["Clube_Nome"].ToString();
                     C.Clube_Pais = reader["Clube_Pais"].ToString();
                     String Data_Inicio= DateTime.Parse(reader["Treinador_Data_Inicio"].ToString()).ToShortDateString();
-                    String Data_Fim= DateTime.Parse(reader["Treinador_Data_Saida"].ToString()).ToShortTimeString();
+                    String Data_Fim= DateTime.Parse(reader["Treinador_Data_Saida"].ToString()).ToShortDateString();
                     listBoxClubesTreinadorPassados.Items.Add(C.ToString()+"  " +Data_Inicio+"-->"+ Data_Fim);
                 }
                 reader.Close();
