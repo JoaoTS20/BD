@@ -451,21 +451,6 @@ as
 			END CATCH
 	END
 
-Begin Transaction  x
-			BEGIN TRY
-				INSERT INTO Scouting.Jog_Posicoes VALUES (@J_Posicoes , @ID);
-				print ('Posição Inserida')
-				Commit Transaction x
-			END TRY
-
-			BEGIN CATCH 
-				IF @@TRANCOUNT>0
-				BEGIN
-					THROW;
-					raiserror ('Erro na Inserção', 16, 1);
-					RollBack Transaction x
-				END
-			END CATCH
 
 
 
@@ -688,7 +673,7 @@ AS
 			RAISERROR ('Guarda-Redes só tem uma posição', 16,1);
 				ROLLBACK TRAN; -- Anula a inserção
 		END
-drop trigger PosicaoUniqueGR
+--drop trigger PosicaoUniqueGR
 
 
 
@@ -802,7 +787,7 @@ as
 						JOIN Participa_Em ON JPC_Clube_Numero_Inscricao_FIFA = Participa_Clube_Numero_Inscricao_FIFA) JOIN Jogo ON Jogo.Jogo_Data=Participa_Em.Participa_Em_Jogo_Data AND Jogo.Jogo_Local=Participa_Em_Jogo_Local WHERE Jogador.ID_FIFPro=@id_fifpro
 	END
 --EXEC Scouting.Get_Jogos_Jogador 13
-DROP PROCEDURE Scouting.Get_Jogos_Jogador
+--DROP PROCEDURE Scouting.Get_Jogos_Jogador
 
 
 
@@ -814,7 +799,7 @@ AS
 			select * from Scouting.Jogador_Pertence_Clube join Scouting.Clube on JPC_Clube_Numero_Inscricao_FIFA=Clube_Numero_Inscricao_FIFA where Pertence_Data_Saida is not null and ID_FIFPro=@id;
 			END
 
-select * from Scouting.Jogador_Pertence_Clube join Scouting.Clube on JPC_Clube_Numero_Inscricao_FIFA=Clube_Numero_Inscricao_FIFA where ID_FIFPro=20
+--select * from Scouting.Jogador_Pertence_Clube join Scouting.Clube on JPC_Clube_Numero_Inscricao_FIFA=Clube_Numero_Inscricao_FIFA where ID_FIFPro=20
 
 
 
@@ -882,7 +867,7 @@ AS
 
 
 --Stored Procedure Delete POSICOES
-Create PROCEDURE [Scouting].[Delete_Posicoes] @J_Posicoes varchar(30), @ID varchar(9)
+create PROCEDURE [Scouting].[Delete_Posicoes] @J_Posicoes varchar(30), @ID varchar(9)
 AS
 	BEGIN
 		Begin Transaction  x
@@ -1758,6 +1743,11 @@ as
 	END
 
 
+
+
+
+CREATE UNIQUE NONCLUSTERED INDEX IxJogo ON Scouting.Jogo (Jogo_Local,Jogo_Data);
+CREATE UNIQUE NONCLUSTERED INDEX IxJogador ON Scouting.Jogador (ID_FIFPro);
 
 
 
