@@ -1950,7 +1950,7 @@ namespace Gestão_Scouting
             cmd = new SqlCommand("Scouting.Get_Treinadores", cn);
             try
             {
-                listBoxClubes.Items.Clear();
+                listBoxTreinadores.Items.Clear();
                 SqlDataReader reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
