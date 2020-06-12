@@ -59,7 +59,7 @@ namespace Gestão_Scouting
                     textBoxJogID.Enabled = false;
                     dateTimePicker1.Value = DateTime.Parse(reader["Relatorio_Data"].ToString());
                     textBoxJogo.Text = reader["Jogo_Local"].ToString() + "  " + DateTime.Parse(reader["Jogo_Data"].ToString()).ToShortDateString();
-                    textBoxObs.Text = reader["Observador_Nome"].ToString();
+                    textBoxObs.Text = reader["Numero_Identificacao_Federacao"].ToString();
                     textBoxObs.Enabled = false;
                     textBoxJogo.Enabled = false;
 
@@ -137,7 +137,7 @@ namespace Gestão_Scouting
                     cmda.Parameters.AddWithValue("@idRel", textBoxIDREL.Text);
                     cmda.Parameters.AddWithValue("@Titulo", textBoxTitulo.Text);
                     cmda.Parameters.AddWithValue("@Data", dateTimePicker1.Value.Date.ToString());//Hope it works
-                    cmda.Parameters.AddWithValue("@ID_Federacao_Obs", textBoxJogID.Text);
+                    cmda.Parameters.AddWithValue("@ID_Federacao_Obs", textBoxObs.Text);
                     cmda.Parameters.AddWithValue("@ID", textBoxJogID.Text);
                     Analise_Caracteristica_Jogador A = new Analise_Caracteristica_Jogador();
                     A.Qualidade_Atual = QualAtualBox.Text;
@@ -209,6 +209,9 @@ namespace Gestão_Scouting
             this.Close();
         }
 
-
+        private void Cancelar_Click_1(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

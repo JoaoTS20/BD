@@ -106,6 +106,7 @@
             this.Cancelar.TabIndex = 202;
             this.Cancelar.Text = "Voltar";
             this.Cancelar.UseVisualStyleBackColor = true;
+            this.Cancelar.Click += new System.EventHandler(this.Cancelar_Click_1);
             // 
             // textBoxJogID
             // 
