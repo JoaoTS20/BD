@@ -170,7 +170,7 @@ namespace Gestão_Scouting
 
                 Clube ca = new Clube();
                 ca= (Clube)listBoxCompeticaoClubes.Items[listBoxCompeticaoClubes.SelectedIndex];
-                String idc = c.Numero_Identificacao_Federacao.ToString();
+                String idc = ca.Clube_Numero_Inscricao_FIFA.ToString();
                 try
                 {
                     SqlCommand cmda = new SqlCommand();
@@ -226,6 +226,11 @@ namespace Gestão_Scouting
 
 
 
+        }
+
+        private void buttonCancelar_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

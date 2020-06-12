@@ -1718,9 +1718,44 @@ AS
 				ROLLBACK TRAN; -- Anula a inserção
 		END
 
+--Stored Procedures Ainda não implementados
+create procedure Scouting.Insert_Selecionador @Numero_Identificacao varchar(9),@Nome varchar(50),@Qualificacoes varchar(100), @Nacionalidade varchar(40),@Idade int
+as 
+	BEGIN
+		Begin Transaction  x
+			BEGIN TRY
+				INSERT INTO Scouting.Selecionador VALUES (@Numero_Identificacao,@Nome,@Qualificacoes, @Nacionalidade, @Idade);
+				print ('Selecionador Inserido')
+				Commit Transaction x
+			END TRY
 
+			BEGIN CATCH 
+				IF @@TRANCOUNT>0
+				BEGIN
+					raiserror ('Erro Inserir Selecionador', 16, 1);
+					RollBack Transaction x
+				END
+			END CATCH
+	END
 
+create procedure Scouting.Insert_Treinador @Numero_Identificacao varchar(9),@Nome varchar(50),@Qualificacoes varchar(100), @Nacionalidade varchar(40),@Idade int
+as 
+	BEGIN
+		Begin Transaction  x
+			BEGIN TRY
+				INSERT INTO Scouting.Treinador VALUES (@Numero_Identificacao,@Nome,@Qualificacoes, @Idade, @Nacionalidade);
+				print ('Treinador Inserido')
+				Commit Transaction x
+			END TRY
 
+			BEGIN CATCH 
+				IF @@TRANCOUNT>0
+				BEGIN
+					raiserror ('Erro Inserir Treinador', 16, 1);
+					RollBack Transaction x
+				END
+			END CATCH
+	END
 
 
 

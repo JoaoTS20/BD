@@ -170,6 +170,7 @@ namespace Gestão_Scouting
             this.label36 = new System.Windows.Forms.Label();
             this.listBoxCompeticao = new System.Windows.Forms.ListBox();
             this.tabPage5 = new System.Windows.Forms.TabPage();
+            this.buttonSemClube = new System.Windows.Forms.Button();
             this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
             this.listBoxClubesGestao = new System.Windows.Forms.ListBox();
             this.textBoxnomelista = new System.Windows.Forms.TextBox();
@@ -209,7 +210,6 @@ namespace Gestão_Scouting
             this.listBoxListasDeSelecao = new System.Windows.Forms.ListBox();
             this.label35 = new System.Windows.Forms.Label();
             this.buttonInsLista = new System.Windows.Forms.Button();
-            this.buttonSemClube = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -418,7 +418,7 @@ namespace Gestão_Scouting
             // label44
             // 
             this.label44.AutoSize = true;
-            this.label44.Location = new System.Drawing.Point(936, 260);
+            this.label44.Location = new System.Drawing.Point(928, 260);
             this.label44.Name = "label44";
             this.label44.Size = new System.Drawing.Size(114, 17);
             this.label44.TabIndex = 47;
@@ -1714,6 +1714,16 @@ namespace Gestão_Scouting
             this.tabPage5.Text = "Gestão";
             this.tabPage5.UseVisualStyleBackColor = true;
             // 
+            // buttonSemClube
+            // 
+            this.buttonSemClube.Location = new System.Drawing.Point(717, 608);
+            this.buttonSemClube.Name = "buttonSemClube";
+            this.buttonSemClube.Size = new System.Drawing.Size(139, 31);
+            this.buttonSemClube.TabIndex = 86;
+            this.buttonSemClube.Text = "Ficou sem clube";
+            this.buttonSemClube.UseVisualStyleBackColor = true;
+            this.buttonSemClube.Click += new System.EventHandler(this.buttonSemClube_Click);
+            // 
             // dateTimePicker2
             // 
             this.dateTimePicker2.Location = new System.Drawing.Point(420, 565);
@@ -2062,16 +2072,6 @@ namespace Gestão_Scouting
             this.buttonInsLista.Text = "Inserir Lista";
             this.buttonInsLista.UseVisualStyleBackColor = true;
             this.buttonInsLista.Click += new System.EventHandler(this.buttonInsLista_Click);
-            // 
-            // buttonSemClube
-            // 
-            this.buttonSemClube.Location = new System.Drawing.Point(717, 608);
-            this.buttonSemClube.Name = "buttonSemClube";
-            this.buttonSemClube.Size = new System.Drawing.Size(139, 31);
-            this.buttonSemClube.TabIndex = 86;
-            this.buttonSemClube.Text = "Ficou sem clube";
-            this.buttonSemClube.UseVisualStyleBackColor = true;
-            this.buttonSemClube.Click += new System.EventHandler(this.buttonSemClube_Click);
             // 
             // Form1
             // 

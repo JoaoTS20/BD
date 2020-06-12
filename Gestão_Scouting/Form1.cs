@@ -2051,8 +2051,8 @@ namespace Gestão_Scouting
                     C.Clube_Numero_Inscricao_FIFA = reader["Clube_Numero_Inscricao_FIFA"].ToString();
                     C.Clube_Nome = reader["Clube_Nome"].ToString();
                     C.Clube_Pais = reader["Clube_Pais"].ToString();
-                    String Data_Inicio= DateTime.Parse(reader["Treinador_Data_Inicio"].ToString()).ToString();
-                    String Data_Fim= DateTime.Parse(reader["Treinador_Data_Saida"].ToString()).ToString();
+                    String Data_Inicio= DateTime.Parse(reader["Treinador_Data_Inicio"].ToString()).ToShortDateString();
+                    String Data_Fim= DateTime.Parse(reader["Treinador_Data_Saida"].ToString()).ToShortTimeString();
                     listBoxClubesTreinadorPassados.Items.Add(C.ToString()+"  " +Data_Inicio+"-->"+ Data_Fim);
                 }
                 reader.Close();
@@ -2131,6 +2131,8 @@ namespace Gestão_Scouting
                 }
             }
         }
+
+
     }
 }
 
